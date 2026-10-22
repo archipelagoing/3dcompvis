@@ -95,6 +95,23 @@ $a,b,c,d$ are distinct scalar positions along one line, in a common coordinate. 
 For $a,b,c,d=0,1,2,3$, the result is $4/3$. Under Example 2.2's map, the positions become $0,2/3,1,6/5$; substitution still gives $4/3$.
 ```
 
+(lec02-interactive)=
+````{interactive-demo} homography
+Vary the perspective coefficient $p$ in $H=\begin{pmatrix}1&0&0\\0&1&0\\p&0&1\end{pmatrix}$. The destination coordinates are $(u/(1+pu),v/(1+pu))$; source coordinates are dimensionless. The square occupies $-1\le u,v\le1$. Restricting $-0.8\le p\le0.8$ keeps its denominators positive.
+
+**Predict, then compare:** at $p=0$ the square stays unchanged. At $p=0.5$, its corners become $(-2,-2)$, $(2/3,-2/3)$, $(2/3,2/3)$, and $(-2,2)$ in cyclic source order. Equal spacings change, but the grid lines remain straight.
+
+```{figure} ../../images/lecture02/perspective-explorer.*
+:name: fig-lec02-interactive
+:width: 100%
+:alt: A square grid and its p equals one half perspective warp, each with four numbered collinear points.
+
+Static view at $p=0.5$. Each panel is fitted separately to its view, so compare shape and spacing rather than displayed scale. The four source points are $(-0.75,0.3)$, $(-0.25,0.3)$, $(0.25,0.3)$, $(0.75,0.3)$; they lie on one line before and after the warp.
+```
+
+The mapped horizontal coordinates are $-1.2$, $-2/7$, $2/9$, and $6/11$. Substituting either ordered set into {eq}`eq-lec02-crossratio` gives **$4/3$**. This is what stays fixed while the shape changes.
+````
+
 ## What is missing from the court assignment?
 
 We need **correspondences and a target shape**. Select four floor corners in cyclic order, match them to a rectangle, then estimate $H$. Its width-to-height ratio must come from known court geometry if we want metric proportions. An arbitrary rectangle can look tidy while having the wrong scale ratio.

@@ -6,7 +6,7 @@ Complete **Lecture 1 → Lecture 2 → Lecture 3 → Lecture 4 → Lecture 5 →
 
 Follow [TEXTBOOK_PROMPT.md](TEXTBOOK_PROMPT.md) for editorial and technical requirements. Use [quizByLec.md](3dcvMid/lectures/quizByLec.md) for primary quiz placement and secondary overlaps, and [ExamToDo.md](ExamToDo.md) for emphasis, errata, and exam gaps. Relevance scores are not exam probabilities. Check the actual PDFs before finalizing topic boundaries or source references.
 
-**Current next action:** review Lecture 2 with the user before starting Lecture 3. Lectures 3–6 remain unwritten.
+**Current next action:** review completed Lecture 4 with the user before starting Lecture 5. Lectures 5–6 remain unwritten.
 
 ## 0. Prepare the shared foundation
 
@@ -23,6 +23,10 @@ Step 0 completed locally. See [BUILDING.md](BUILDING.md) for commands and [the f
 
 These are completion requirements for each lecture below, not a separate pass after all six drafts.
 
+- [ ] Include exactly one interactive demonstration at the most relevant teaching point, following `authoring/INTERACTIVES.md`. Supply its full static PDF/no-JavaScript explanation and results; verify calculations, controls, reset, and mobile behavior.
+- [ ] For spatial concepts, use a rotatable 3D scene where it clarifies the geometry, with linked numerical substitutions and image/reconstruction results. Distinguish inspecting the scene from changing the modeled camera.
+- [ ] Compare against earlier chapters before writing: teach each concept once, link to existing formulas/derivations, and add only new material or distinct worked applications. Check the TLDR and quiz for repeated earlier-chapter content too.
+
 - [ ] Read the entire lecture, including image-heavy slides. Record every substantive topic and formula; account for repeated or administrative slides explicitly.
 - [ ] Select the most interesting or relevant **actual slide examples**: favor examples that reveal the geometry, explain a difficult formula, illustrate failure, or connect to the assigned quizzes. Record verified slide/page references and why each was chosen.
 - [ ] Develop selected examples into textbook explanations with labeled figures, intermediate steps, and an interpreted result. Preserve attribution; distinguish lecture examples, adaptations, and newly authored examples.
@@ -30,6 +34,7 @@ These are completion requirements for each lecture below, not a separate pass af
 - [ ] Give each substantive formula a named, numbered box and companion application/interpretation procedure, including symbols, units/dimensions, assumptions, limitations, sanity checks, and a worked-example reference.
 - [ ] Place assigned quiz questions immediately beside the concepts they test. Independently solve and check each subquestion. Use duplicate PDFs as closed-notes retests rather than repeated exposition.
 - [ ] Add original worked problems for uncovered topics; label them as new. Include short understanding checks and exercises with explained solutions in both editions.
+- [ ] End with a final section called **TLDR**, summarizing that lecture's additions and providing a short quiz with explained answers. Answers must be accessible online and fully visible in print.
 - [ ] Add bold first-use keywords, glossary entries, source references, and links to relevant equations, figures, and examples. Update the formula reference, quiz index, and chapter checklist.
 - [ ] Build the website and cumulative LaTeX/PDF. Inspect mathematics, figures, captions, formula boxes, grayscale readability, page breaks, links, and cross-references. Ensure all web solutions and interactive explanations have print equivalents.
 - [ ] Record remaining issues and present the finished lecture's web/print artifacts for review. Incorporate feedback before advancing; update this checklist only when work is actually complete.
@@ -43,6 +48,7 @@ Source: `3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf`.
 - [x] Integrate **Fall 2025 Quiz 1**, `quizzesf25sol/cs532f25_quiz_1_solution.pdf`: shared-object relative camera pose and the plane through camera/object positions. State transform directions and degenerate cases. Place its probability questions beside RANSAC in Lecture 3, with a cross-reference from this quiz's index entry.
 - [x] Integrate the relevant geometry from **Fall 2017 Quiz 9**, `olderquizzes/cs532_f17_quiz9.pdf`: rotated vectors/normals where supported by the slides. Label depth-map fusion or other beyond-scope content as an extension, and defer prerequisite-dependent backprojection to Lecture 3/4 with cross-references.
 - [x] Choose the strongest slide illustrations to redraw or reuse with credits; add a fully worked coordinate/geometry example if the quizzes do not adequately teach the foundations.
+- [x] Add the camera-motion interactive after Example 1.15, with a static print/no-JavaScript equivalent. Upgraded to a rotatable 3D scene with point dragging, camera translation/yaw, focal-length controls, linked image, and world→camera→pixel calculations.
 - [x] Complete the authoring and technical checks, including the compiled PDF and internal layout review.
 - [x] Review Lecture 1 with the user and incorporate style/content feedback before starting Lecture 2. User approved progression after the TLDR addition.
 
@@ -55,23 +61,29 @@ Source: `3dcvMid/lectures/cs532_f25_Week2.pdf`.
 - [x] Retain the Lecture 2 source assignment for **Spring 2020 Quiz 1**, but place its worked solutions with Lecture 1 foundations to satisfy the user's unique-content requirement. Source: `olderquizzes/cs532s20_quiz1.pdf`: collinearity via dot/cross products, finite/ideal intersections, and projection-matrix dimensions. Identify degenerate configurations explicitly.
 - [x] Add new worked examples for slide topics absent from the quiz, especially rotation representations, quaternions, and transformation hierarchies where covered. State composition order and conventions.
 - [x] Cross-reference Lecture 1's relative-pose example and preview the camera formulation developed in Lecture 3.
+- [x] Add the perspective-warp/cross-ratio interactive, with a paired static figure and print/no-JavaScript explanation.
 - [x] Complete every item in the repeated lecture checklist.
 
-- [ ] Review Lecture 2 with the user and incorporate feedback before Lecture 3.
+- [x] Review Lecture 2 with the user and incorporate feedback before Lecture 3. User authorized progression to Lecture 3.
 
 ## 3. Lecture 3 — Camera projection, homographies, and RANSAC
 
 Source: `3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf`.
 
-- [ ] Select engaging actual slide examples of projection and planar image mappings. Develop a real-image warping example with a static before/after figure.
-- [ ] Integrate **Spring 2019 Quiz 2**, `olderquizzes/cs532s19_quiz2-2.pdf`: 640×480 image, 90° horizontal FOV, focal length, calibration matrix, projection dimensions, homogeneous scaling, and principal-point conventions.
-- [ ] Use **Spring 2020 Quiz 3**, `olderquizzes/cs532s20_quiz3.pdf`, as the near-duplicate camera-calibration retest; retain its mixed printed header in provenance notes.
-- [ ] Integrate **Spring 2020 Quiz 2**, `olderquizzes/cs532s20_quiz2.pdf`: pinhole projection and collinear viewing-ray vectors.
-- [ ] Integrate **filename “2015” Quiz 9**, `olderquizzes/cs532f15_quiz9.pdf` (printed Spring 2019): derive ray–plane depth, with parallel-ray and invalid-depth cases.
-- [ ] Integrate **Spring 2019 Quiz 3**, `olderquizzes/cs532s19-quiz3.pdf`: pentagon putative matches, inlier fraction, RANSAC iteration count, and regular-polygon ambiguity. Explain sampling assumptions.
-- [ ] Reuse Fall 2025 Quiz 1's probability questions here to motivate the complement-probability RANSAC derivation; cross-link its Lecture 1 examples.
-- [ ] Fill the DLT/SVD gap: derive two equations per match, assemble the `2n × 9` system, solve and reshape the nullspace vector, normalize coordinates, and recover the homography. Include a checked numerical example and explain inverse image warping.
-- [ ] Complete every item in the repeated lecture checklist; give this high-priority mathematics sufficient depth.
+- [x] Audit Lecture 3 against completed Lectures 1–2 and record the additions. Link to existing projection, homography, warping, DLT/normalization, and RANSAC explanations instead of repeating them.
+- [x] Select engaging actual slide examples of projection and planar image mappings. Reuse Lecture 2's court-warp example by reference; add a distinct real-image application only if it teaches something new.
+- [x] Integrate **Spring 2019 Quiz 2**, `olderquizzes/cs532s19_quiz2-2.pdf`: 640×480 image, 90° horizontal FOV, focal length, calibration matrix, projection dimensions, homogeneous scaling, and principal-point conventions.
+- [x] Use **Spring 2020 Quiz 3**, `olderquizzes/cs532s20_quiz3.pdf`, as the near-duplicate camera-calibration retest; retain its mixed printed header in provenance notes.
+- [x] Integrate **Spring 2020 Quiz 2**, `olderquizzes/cs532s20_quiz2.pdf`: pinhole projection and collinear viewing-ray vectors.
+- [x] Integrate **filename “2015” Quiz 9**, `olderquizzes/cs532f15_quiz9.pdf` (printed Spring 2019): derive ray–plane depth, with parallel-ray and invalid-depth cases.
+- [x] Integrate **Spring 2019 Quiz 3**, `olderquizzes/cs532s19-quiz3.pdf`: pentagon putative matches, inlier fraction, RANSAC iteration count, and regular-polygon ambiguity. Explain sampling assumptions.
+- [x] Integrate Fall 2025 Quiz 1's probability questions here as new worked applications of the complement-probability reasoning already introduced in Lecture 2; cross-link its Lecture 1 geometry examples.
+- [x] Check the DLT/SVD exam gap against Lecture 2's completed derivation and numerical example. Add only remaining gaps or distinct numerical practice; link back for the `2n × 9` system, nullspace/reshape, normalization/denormalization, and inverse warping. Update the coverage register rather than duplicating the treatment.
+- [x] Add the lecture's single **RANSAC sampling explorer** beside the probability application: vary inlier ratio and trial count, compare observed all-inlier samples with predicted success probability, and show the numerical substitutions. Include static results in print.
+- [x] Finish with a final **TLDR** and short quiz with explained answers, focused on Lecture 3's additions.
+- [x] Complete every item in the repeated lecture checklist; give this high-priority mathematics sufficient depth.
+
+- [x] Review Lecture 3 with the user and incorporate feedback before Lecture 4. User approved and requested Lecture 4.
 
 ## 4. Lecture 4 — Two-view geometry and stereo
 

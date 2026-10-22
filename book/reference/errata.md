@@ -33,3 +33,19 @@ Numerical companions are checked by `scripts/check_lecture01_math.py`. These qua
 - **Quiz degeneracy, Spring 2020 Quiz 1 P1:** repeated points make the cross-product line undefined, although the determinant still correctly indicates linear dependence and existence of a containing line. P3 requires $d>0$ for distinct vertical lines. See {ref}`lec01-quiz-practice`.
 
 Lecture 2's numerical examples are checked by `scripts/check_lecture02_math.py`.
+
+## Lecture 3 qualifications
+
+- **Spring 2020 Quiz 3:** the page carries mixed Spring 2019 Quiz 2 / Spring 2020 Quiz 3 headers and near-duplicate camera questions; it is retained as a retest.
+- **Camera quiz P2/P4:** horizontal FOV does not specify all of $K$ or a physical focal length. [The solutions](../lectures/lecture03/calibration.md) state the extra assumptions, image-center convention, and pixel-pitch requirement.
+- **Pentagon quiz:** “equilateral” alone does not imply regular. Ten equally supported corner alignments require the regular-polygon assumption. [The RANSAC solution](../lectures/lecture03/probability-ransac.md) also distinguishes standard independent-status trial counts from exact finite-pool counts and explicitly chooses 99% confidence.
+- **Repeated slide issues:** PDF page 11's projection-direction wording and page 60's radial-radius notation retain the corrections already explained in Lectures 1–2.
+
+## Lecture 4 verified corrections and conventions
+
+- **Fall 2025 Quiz 2 Q2:** $x'^TF$ is a line row, not a point. The condition is $x'^TFx=0$. The supplied matrix has determinant four, so it is rank three and cannot be a physical fundamental matrix. [Example 4.3](../lectures/lecture04/epipolar-practice.md) solves the given equation without relabeling it as valid camera geometry.
+- **Fall 2025 Quiz 3 Q1:** 0.8 cm is the first-order error magnitude. The exact signed errors are +0.8333 cm for disparity 24 and −0.7692 cm for disparity 26. [Stereo solutions](../lectures/lecture04/stereo.md) define estimated-minus-true signs.
+- **L4 PDF page 35, printed slide 39:** the shown seven-point RANSAC table uses approximately 95% confidence. A 99% budget at 80% inliers is 20 trials, rather than the table's 13.
+- **Spring 2020 Quiz 5:** the printed header overprints 2019/2020; its problem repeats Spring 2019 Quiz 5. Both filenames and headers remain documented.
+- **NCC, PDF page 68:** use a self-consistent centered-norm denominator and reject zero-variance patches. The [explicit formula](../lectures/lecture04/matching.md) avoids ambiguity about whether standard deviations include a sample-count factor.
+- **Repeated radial notation, PDF page 6:** the radius/squared-radius clarification remains at its canonical Lecture 2 location.

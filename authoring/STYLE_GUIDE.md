@@ -25,6 +25,12 @@ Use the registered `formula-box`, `application`, `worked-example`, and `understa
 
 The same directives become accessible HTML admonitions and breakable, grayscale-safe LaTeX boxes. Use a normal `admonition` with `:class: dropdown` for online solutions: its content is printed openly in LaTeX. Never put essential content only in raw HTML or JavaScript.
 
+## One interactive demonstration per lecture
+
+Place exactly one focused demonstration at the most relevant teaching point in each completed lecture. Use the plan in `INTERACTIVES.md`; verify the proposed placement while auditing later lectures. The same shared directive must include a full static explanation, representative results, and a figure where needed for PDF and no-JavaScript readers. It reinforces that lecture's additions without repeating earlier teaching.
+
+Use native labeled controls, keyboard operation, a reset button, responsive local graphics, and accessible numeric results. For spatial concepts, prefer a rotatable 3D scene with manipulable geometry, linked image/results, and numerical substitution steps so students can connect the math to its application. Distinguish an inspection camera from the teaching camera. Keep one widget per lecture. Avoid remote embeds, required accounts, runtime Python, and decorative motion. The extension checks the one-per-lecture maximum across all its topic pages; review completion also requires that one is present. Use the existing `interactive-demo` directive rather than adding isolated raw-HTML widgets.
+
 ## Figures
 
 Keep web assets in `book/images/lectureNN/` and editable sources in a `sources/` subfolder. Prefer SVG for web diagrams, PDF for vector print diagrams, and high-resolution PNG/JPEG for photos. Supply paired formats with matching basenames, reference `name.*` in a MyST figure directive, and verify the builder's chosen format in both outputs.

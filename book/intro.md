@@ -8,7 +8,7 @@ How can photographs reveal the shape of a scene and the motion of a camera? This
 Read in lecture order, beginning with the [notation guide](foundations/notation.md) and [prerequisite refresher](foundations/prerequisites.md). Worked examples will connect the lecture slides to the course quizzes. The [quiz index](reference/quiz-index.md) shows the planned placements.
 
 ```{note}
-Lectures 1 and 2 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 3–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
+Lectures 1–4 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 5–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
 ```
 
 ## How to study a section

@@ -1,24 +1,18 @@
 (lecture03)=
-# Lecture 3: Camera projection, homographies, and RANSAC
+# Lecture 3: Put camera geometry to work
 
-```{note}
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-```
+**Can you turn an image size into a camera matrix, or a pixel into a 3D point?** This chapter puts the earlier geometry to work on the assigned quizzes, then shows why even thousands of random trials cannot resolve an ambiguous match.
 
-## Planned scope
+The Lecture 3 deck repeats theory already taught in Lectures 1–2. Those explanations keep their original homes. Here we add **new applications**, a complete projective calculation, and a sampling experiment.
 
-Image formation; camera parameters; homographies; estimation and robust fitting.
+## Reading route
 
-**Source deck:** `wk3_cs532s26_ImageFormation+Homographies-1.pdf`. Full explanations will record verified printed slide labels and one-based PDF page numbers separately.
+1. [Calibration from field of view](calibration.md): solve the camera quiz and keep pixels separate from physical lengths.
+2. [Find depth on a known plane](ray-plane.md): intersect a viewing ray with geometry you know.
+3. [A complete projective DLT calculation](homography-practice.md): normalize, solve, undo normalization, and check a new point.
+4. [Probability and the pentagon puzzle](probability-ransac.md): count matches, choose a trial budget, and experiment with RANSAC sampling.
+5. [Review and source checklist](review.md), then the final [TLDR and short quiz](tldr.md).
 
-## Examples and practice
+**Prerequisites:** [camera projection](../lecture01/cameras.md), [homographies](../lecture02/homographies.md), [image warping](../lecture02/warping.md), and [DLT and RANSAC](../lecture02/estimation.md).
 
-Select the most useful examples from the actual slides and integrate the assigned questions from the [quiz index](../../reference/quiz-index.md). Missing quiz coverage will be filled with new, clearly labeled worked examples.
-
-## Completion checklist
-
-- [ ] Audit every substantive slide topic and formula.
-- [ ] Write explanations, derivations, and formula/application boxes.
-- [ ] Add selected slide illustrations and independently checked quiz examples.
-- [ ] Complete keywords, glossary entries, and source references.
-- [ ] Check both the website and cumulative printable edition.
+**Source:** `wk3_cs532s26_ImageFormation+Homographies-1.pdf`, 80 PDF pages. Visible printed slide numbers match PDF page numbers on pages 2–80; the title page is unnumbered. References below use one-based **PDF pages**. Its pages 2–80 repeat Lecture 2's PDF pages 51–129. The coverage register maps every page to its teaching location.

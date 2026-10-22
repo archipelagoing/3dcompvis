@@ -149,7 +149,8 @@ Use abundant **purposeful** illustrations. Every figure must answer a specific g
 - Create precise original vector diagrams for coordinate frames, homogeneous geometry, camera projection, homographies, epipolar geometry, stereo, and reconstruction ambiguity.
 - Include real-image demonstrations of corners, matching, warping, rectification, and reconstruction where suitable source imagery is available. Record provenance and permission/license information; do not invent attribution.
 - Use computed plots for depth sensitivity, RANSAC success, eigenvalue behavior, and optimization where useful.
-- Add selected interactive demonstrations only when they materially improve understanding. Each must have a complete static figure, explanation, and representative result in the PDF.
+- Where the concept involves 3D geometry, use an actual rotatable 3D scene with adjustable points/cameras, a linked image or reconstruction, and explicit live numerical substitutions. Clearly distinguish orbiting the inspection view from changing the modeled camera.
+- Add exactly one focused interactive demonstration per lecture at the most relevant teaching point, following `authoring/INTERACTIVES.md`. Each must have a complete static explanation, representative results, and an appropriate static figure in the PDF. Do not add further widgets to that lecture.
 - Give figures a consistent palette, typography, labels, dimensions, captions, and source credits. Ensure legibility at printed page size and in grayscale.
 - Prefer vector assets for mathematical diagrams, with web and LaTeX-compatible versions generated from the same source. Use adequate-resolution raster assets for photographs.
 - Reuse lecture figures selectively with original credits preserved. Avoid blurry screenshots containing large blocks of slide text.

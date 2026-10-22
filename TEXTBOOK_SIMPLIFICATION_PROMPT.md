@@ -68,6 +68,7 @@ Keep sign conventions, transform directions, zero denominators, and other condit
 - Bold key terms on first definition and a few important conclusions. Retain glossary links and index entries without highlighting entire paragraphs.
 - Use bullets for parallel ideas, numbered lists for procedures, and tables for comparisons. Keep lists shallow.
 - Prefer one well-explained figure to several near-duplicates. Captions should tell the reader what to notice.
+- Include exactly one purposeful interactive demonstration per completed lecture, at its most relevant teaching point. Follow `authoring/INTERACTIVES.md`; preserve full static explanations/results in print and avoid adding duplicate conceptual exposition.
 - Keep source citations precise but quiet: use short source notes or footnotes, with full filenames and verified page references in the source register/reference section. Retain necessary figure attribution without repeating long provenance paragraphs in the exposition.
 - Remove authoring/build details from student-facing prose. Keep them in authoring documentation.
 - Keep solutions accessible online and fully available in print. Avoid repetitive “what to remember” sections when they merely restate the preceding paragraph.

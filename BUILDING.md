@@ -67,3 +67,27 @@ The local textbook extension deduplicates extension scripts in HTML builds. The 
 Install the optional numerical/image dependencies with `uv pip install --python .venv/bin/python -r requirements-authoring.txt` (these also support Lecture 1's numerical checker). Run `.venv/bin/python scripts/check_lecture02_math.py` to verify the quiz calculations, quaternion conversions, DLT, sampling, RANSAC and epipolar examples.
 
 Regenerate Lecture 2's diagrams and computed court warp with `.venv/bin/python scripts/build_lecture02_figures.py`; this also requires XeLaTeX and Poppler. The source court photograph, approximate corner coordinates, and output dimensions are retained. No downloads are needed to regenerate these assets, and ordinary book builds use the bundled images without regeneration.
+
+## Interactive demonstrations
+
+See `authoring/INTERACTIVES.md` for the six-lecture plan and authoring rules. Current demos use the registered `interactive-demo` directive: Lecture 1 uses local Three.js/WebGL with a linked image view; Lectures 2 and 3 use SVG; Lecture 4 uses a local Three.js stereo scene. Their MyST fallback is included in the LaTeX export and is shown online when JavaScript is unavailable. The build rejects a second demo in the same lecture, even if it is on another topic page.
+
+Run `.venv/bin/python scripts/build_interactive_figures.py` to regenerate the static projection/perspective-explorer figures (same optional authoring dependencies and TeX/Poppler tools as above). Regular HTML/PDF builds use the bundled assets and need no extra interactive runtime.
+
+Browser verification is available with `scripts/check_interactives.py` (optional `playwright` package and its Chromium browser). With the built site served locally on port 8765, run `.venv/bin/python scripts/check_interactives.py`; use `--base-url` for another port and `--output-dir` to retain screenshots. It checks independent numerical cases, slider/reset/keyboard behavior, mobile width, no-JavaScript rendering, a blocked widget script, and browser-print fallbacks.
+
+The 3D module and Three.js/OrbitControls r180 are bundled under `_static` as `.mjs` files, with the retained MIT license; browser viewers do not need an install or external CDN. A browser without WebGL sees the full static scene and explanation. The optional browser check uses Chromium software WebGL for reproducible tests.
+
+## Lecture 3 authoring checks
+
+Run `.venv/bin/python scripts/check_lecture03_math.py` for calibration units, ray–plane depth, a complete normalized projective DLT solution, exact pentagon sample enumeration, minimal confidence budgets, and polygon symmetries. Rebuild the five original paired vector diagrams with `.venv/bin/python scripts/build_lecture03_figures.py` (XeLaTeX and Poppler). Ordinary builds use the included assets.
+
+With the built site served locally, run `.venv/bin/python scripts/check_lecture03_browser.py` (optional Playwright/Chromium). It checks all seven L3 pages, equations/images, six sampling states, seed/reset/keyboard controls, mobile/no-JS/blocked-script/print fallbacks, and initialization of both earlier widget kinds. Use `--base-url` and `--output-dir` as in the earlier browser checker.
+
+## Lecture 4 authoring checks
+
+Run `.venv/bin/python scripts/check_lecture04_math.py` for the assigned quizzes, invalid-matrix erratum, noisy normalized F fit and held-out errors, essential-matrix poses/cheirality, signed stereo errors/search limits, and dense matching scores/support. Its twelve training matches are retained in `authoring/lecture04-matches.csv`. The checker regenerates the complete synthetic camera/noise dataset.
+
+Regenerate the original diagrams and paired slide-photo panel with `.venv/bin/python scripts/build_lecture04_figures.py` (run from the repository root; XeLaTeX and Poppler required). Source photographs are retained without retouching, with their visible lecture credits and unknown individual creator/reuse terms documented. Ordinary builds use included assets.
+
+With the site served locally, `.venv/bin/python scripts/check_lecture04_browser.py` checks the eight L4 pages, ten independent stereo/ray cases, genuine 3D dragging/orbit/zoom isolation, reset/keyboard, phone layout, print and no-JS/WebGL/module fallbacks, and initialization of earlier chapter widgets. Optional Playwright/Chromium is required; `--base-url` and `--output-dir` are supported.

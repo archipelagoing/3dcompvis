@@ -78,6 +78,7 @@
 
 
 \usepackage[most]{tcolorbox}
+\usepackage{needspace}
 \tcbset{before skip=12pt,after skip=12pt}
 \newtcolorbox{TextbookBox}{breakable,colback=white,colframe=black!65,
   boxrule=0.6pt,arc=1mm,left=9pt,right=9pt,top=7pt,bottom=7pt}
@@ -127,7 +128,7 @@ Read in lecture order, beginning with the {\hyperref[\detokenize{foundations/not
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Lectures 1 and 2 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 3–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
+Lectures 1–4 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 5–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
 \end{sphinxadmonition}
 
 \begin{DUlineblock}{0em}
@@ -2734,6 +2735,157 @@ If the operations were meant cumulatively after the camera move, the rotated/tra
 \sphinxAtStartPar
 For a general forward camera displacement \(\Delta\), the normalized transverse displacement changes from \(X_c/Z_c\) to \(X_c/(Z_c-\Delta)\); visible points need \(Z_c-\Delta>0\). A point on the optical axis does not move away from the principal point. Translating the object farther away instead gives denominator \(Z_c+\Delta\) and moves its image inward. Camera motion and scene motion require inverse coordinate relationships, as PDF page 111 emphasizes.
 
+\phantomsection\label{\detokenize{lectures/lecture01/cameras:lec01-interactive}}
+\subsubsection*{Explore camera motion and projection — print edition}
+
+\sphinxAtStartPar
+The 3D explorer lets you move the point, move or turn the camera, and change focal length. Drag empty space to inspect the scene from another angle; that changes your viewing position, not the teaching camera’s pose. The calculation follows \sphinxstylestrong{world point → camera coordinates → image pixel}, using \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}. Turning the teaching camera by yaw \(\alpha\) changes the world\sphinxhyphen{}to\sphinxhyphen{}camera rotation to \(R_y(-\alpha)\) and the translation to \(-RC\); the plane and camera axes turn with it.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{projection-explorer}.pdf}
+\caption{Initial 3D scene: the orange ray from \(C\) through \(P\) crosses the blue virtual image plane at \(q\). Camera \(+Y_c\) points down and \(+Z_c\) points forward. This is a static view of the rotatable web scene; depth is encoded geometrically rather than by the page’s horizontal distance.}\label{\detokenize{lectures/lecture01/cameras:fig-lec01-interactive}}\end{figure}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Connect the scene to the numbers:} the sensor uses \(0.004\) world\sphinxhyphen{}length units per pixel, so \(f=500\) px places the virtual plane at distance \(f_{\rm plane}=2\). Its width and height are each \(500(0.004)=2\) units. The ray meets it at \(q=(2\cdot1/10,2\cdot0.5/10,2)=(0.2,0.1,2)\). Converting those plane coordinates to pixels gives \((u,v)=(250+0.2/0.004,250+0.1/0.004)=(300,275)\).
+
+\sphinxAtStartPar
+The table holds \(P=(1,0.5,10)\) fixed. The image is \(500\times500\) with principal point \((250,250)\); the camera has no rotation, \(f_x=f_y=f\), and skew is zero. Moving the point in the web scene changes its camera coordinates before this same projection is applied.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Predict, then compare:} moving the camera forward makes the projected point move away from the principal point. Increasing focal length does the same without changing depth. Can a point be in front of the camera yet outside the image?
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Camera \(C_z\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(f\) (px)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Depth
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Pixel \((u,v)\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Visibility
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+500
+&
+\sphinxAtStartPar
+10
+&
+\sphinxAtStartPar
+\((300,275)\)
+&
+\sphinxAtStartPar
+Inside
+\\
+\sphinxhline
+\sphinxAtStartPar
+2
+&
+\sphinxAtStartPar
+500
+&
+\sphinxAtStartPar
+8
+&
+\sphinxAtStartPar
+\((312.5,281.25)\)
+&
+\sphinxAtStartPar
+Inside
+\\
+\sphinxhline
+\sphinxAtStartPar
+2
+&
+\sphinxAtStartPar
+1000
+&
+\sphinxAtStartPar
+8
+&
+\sphinxAtStartPar
+\((375,312.5)\)
+&
+\sphinxAtStartPar
+Inside
+\\
+\sphinxhline
+\sphinxAtStartPar
+8.5
+&
+\sphinxAtStartPar
+500
+&
+\sphinxAtStartPar
+1.5
+&
+\sphinxAtStartPar
+\((583.333,416.667)\)
+&
+\sphinxAtStartPar
+In front; off\sphinxhyphen{}image
+\\
+\sphinxhline
+\sphinxAtStartPar
+10
+&
+\sphinxAtStartPar
+500
+&
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+No finite projection
+&
+\sphinxAtStartPar
+Undefined
+\\
+\sphinxhline
+\sphinxAtStartPar
+12
+&
+\sphinxAtStartPar
+500
+&
+\sphinxAtStartPar
+\(-2\)
+&
+\sphinxAtStartPar
+\((0,125)\) algebraically
+&
+\sphinxAtStartPar
+Behind; not visible
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The off\sphinxhyphen{}image row answers the question: positive depth is necessary but does not ensure sensor visibility. At zero depth division fails; negative\sphinxhyphen{}depth coordinates do not describe a visible point in this model. Values are rounded to three decimals.
+
+\par\medskip
+
 
 \subsection{A depth\sphinxhyphen{}map bridge to the assigned quiz}
 \label{\detokenize{lectures/lecture01/cameras:a-depth-map-bridge-to-the-assigned-quiz}}
@@ -3944,6 +4096,26 @@ Do not substitute ordinary image distances for directed line coordinates.
 For \(a,b,c,d=0,1,2,3\), the result is \(4/3\). Under Example 2.2’s map, the positions become \(0,2/3,1,6/5\); substitution still gives \(4/3\).
 
 \end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/homographies:lec02-interactive}}
+\subsubsection*{Explore a perspective warp — print edition}
+
+\sphinxAtStartPar
+Vary the perspective coefficient \(p\) in \(H=\begin{pmatrix}1&0&0\\0&1&0\\p&0&1\end{pmatrix}\). The destination coordinates are \((u/(1+pu),v/(1+pu))\); source coordinates are dimensionless. The square occupies \(-1\le u,v\le1\). Restricting \(-0.8\le p\le0.8\) keeps its denominators positive.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Predict, then compare:} at \(p=0\) the square stays unchanged. At \(p=0.5\), its corners become \((-2,-2)\), \((2/3,-2/3)\), \((2/3,2/3)\), and \((-2,2)\) in cyclic source order. Equal spacings change, but the grid lines remain straight.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{perspective-explorer}.pdf}
+\caption{Static view at \(p=0.5\). Each panel is fitted separately to its view, so compare shape and spacing rather than displayed scale. The four source points are \((-0.75,0.3)\), \((-0.25,0.3)\), \((0.25,0.3)\), \((0.75,0.3)\); they lie on one line before and after the warp.}\label{\detokenize{lectures/lecture02/homographies:fig-lec02-interactive}}\end{figure}
+
+\sphinxAtStartPar
+The mapped horizontal coordinates are \(-1.2\), \(-2/7\), \(2/9\), and \(6/11\). Substituting either ordered set into \eqref{equation:lectures/lecture02/homographies:eq-lec02-crossratio} gives \sphinxstylestrong{\(4/3\)}. This is what stays fixed while the shape changes.
+
+\par\medskip
 
 
 \subsection{What is missing from the court assignment?}
@@ -4095,7 +4267,7 @@ At source \((10,8)\). Using \(H\) instead of \(H^{-1}\) would sample \((30,8)\) 
 Four matches can determine a homography, but real matches are noisy and some are wrong. \sphinxstylestrong{DLT} solves for the matrix; \sphinxstylestrong{RANSAC} finds matches that agree with one matrix. They solve different problems.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source:} PDF pages 82–104, printed slides 83–105. These sections credit R. Hartley, A. Zisserman, and M. Pollefeys. Lecture 3 will add the assigned homography/probability quizzes and further numerical practice.
+\sphinxstylestrong{Source:} PDF pages 82–104, printed slides 83–105. These sections credit R. Hartley, A. Zisserman, and M. Pollefeys. {\hyperref[\detokenize{lectures/lecture03/index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 3}}}} adds the assigned homography/probability quizzes and a full projective numerical walkthrough.
 
 
 \subsection{DLT: turn matches into linear equations}
@@ -4791,7 +4963,7 @@ Map an image point to an epipolar line, then test a possible match.
 \sphinxstylestrong{Choose the right image model:} a homography maps planar points to points; a fundamental matrix maps a point to a correspondence line in another view.
 
 \sphinxAtStartPar
-Finish with the {\hyperref[\detokenize{lectures/lecture02/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}. Lecture 3 will expand camera calibration and homography practice; Lecture 4 will expand epipolar estimation and stereo. Those later quiz assignments remain in their planned chapters.
+Finish with the {\hyperref[\detokenize{lectures/lecture02/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}. {\hyperref[\detokenize{lectures/lecture03/index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 3}}}} adds camera calibration and projective homography practice. Lecture 4 will expand epipolar estimation and stereo; its quiz assignments remain planned.
 
 \sphinxstepscope
 
@@ -4924,102 +5096,3150 @@ If \(Fx=(0,-1,4)^T\), what must a matching ordinary point \((u',v')\) satisfy? I
 \sphinxstepscope
 
 
-\chapter{Lecture 3: Camera projection, homographies, and RANSAC}
-\label{\detokenize{lectures/lecture03/index:lecture-3-camera-projection-homographies-and-ransac}}\label{\detokenize{lectures/lecture03/index:lecture03}}\label{\detokenize{lectures/lecture03/index::doc}}
-\begin{sphinxadmonition}{note}{Note:}
+\chapter{Lecture 3: Put camera geometry to work}
+\label{\detokenize{lectures/lecture03/index:lecture-3-put-camera-geometry-to-work}}\label{\detokenize{lectures/lecture03/index:lecture03}}\label{\detokenize{lectures/lecture03/index::doc}}
 \sphinxAtStartPar
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-\end{sphinxadmonition}
-
-
-\section{Planned scope}
-\label{\detokenize{lectures/lecture03/index:planned-scope}}
-\sphinxAtStartPar
-Image formation; camera parameters; homographies; estimation and robust fitting.
+\sphinxstylestrong{Can you turn an image size into a camera matrix, or a pixel into a 3D point?} This chapter puts the earlier geometry to work on the assigned quizzes, then shows why even thousands of random trials cannot resolve an ambiguous match.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{wk3\_cs532s26\_ImageFormation+Homographies\sphinxhyphen{}1.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+The Lecture 3 deck repeats theory already taught in Lectures 1–2. Those explanations keep their original homes. Here we add \sphinxstylestrong{new applications}, a complete projective calculation, and a sampling experiment.
 
 
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture03/index:examples-and-practice}}
-\sphinxAtStartPar
-Select the most useful examples from the actual slides and integrate the assigned questions from the {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}}. Missing quiz coverage will be filled with new, clearly labeled worked examples.
-
-
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture03/index:completion-checklist}}\begin{itemize}
+\section{Reading route}
+\label{\detokenize{lectures/lecture03/index:reading-route}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {}
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
+{\hyperref[\detokenize{lectures/lecture03/calibration::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Calibration from field of view}}}}: solve the camera quiz and keep pixels separate from physical lengths.
 
 \item {}
 \sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+{\hyperref[\detokenize{lectures/lecture03/ray-plane::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Find depth on a known plane}}}}: intersect a viewing ray with geometry you know.
 
 \item {}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+{\hyperref[\detokenize{lectures/lecture03/homography-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{A complete projective DLT calculation}}}}: normalize, solve, undo normalization, and check a new point.
 
 \item {}
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
+{\hyperref[\detokenize{lectures/lecture03/probability-ransac::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Probability and the pentagon puzzle}}}}: count matches, choose a trial budget, and experiment with RANSAC sampling.
 
 \item {}
 \sphinxAtStartPar
- Check both the website and cumulative printable edition.
+{\hyperref[\detokenize{lectures/lecture03/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Review and source checklist}}}}, then the final {\hyperref[\detokenize{lectures/lecture03/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}.
 
-\end{itemize}
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Prerequisites:} {\hyperref[\detokenize{lectures/lecture01/cameras::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{camera projection}}}}, {\hyperref[\detokenize{lectures/lecture02/homographies::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{homographies}}}}, {\hyperref[\detokenize{lectures/lecture02/warping::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{image warping}}}}, and {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{DLT and RANSAC}}}}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{wk3\_cs532s26\_ImageFormation+Homographies\sphinxhyphen{}1.pdf}}, 80 PDF pages. Visible printed slide numbers match PDF page numbers on pages 2–80; the title page is unnumbered. References below use one\sphinxhyphen{}based \sphinxstylestrong{PDF pages}. Its pages 2–80 repeat Lecture 2’s PDF pages 51–129. The coverage register maps every page to its teaching location.
 
 \sphinxstepscope
 
 
-\chapter{Lecture 4: Two\sphinxhyphen{}view geometry and stereo}
-\label{\detokenize{lectures/lecture04/index:lecture-4-two-view-geometry-and-stereo}}\label{\detokenize{lectures/lecture04/index:lecture04}}\label{\detokenize{lectures/lecture04/index::doc}}
-\begin{sphinxadmonition}{note}{Note:}
+\section{From field of view to a camera matrix}
+\label{\detokenize{lectures/lecture03/calibration:from-field-of-view-to-a-camera-matrix}}\label{\detokenize{lectures/lecture03/calibration:lec03-calibration}}\label{\detokenize{lectures/lecture03/calibration::doc}}
 \sphinxAtStartPar
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-\end{sphinxadmonition}
-
-
-\section{Planned scope}
-\label{\detokenize{lectures/lecture04/index:planned-scope}}
-\sphinxAtStartPar
-Distortion; epipolar geometry; fundamental and essential matrices; stereo.
+A wider view fits more of the scene into the same image. That means a shorter focal length \sphinxstylestrong{in pixels}. A right triangle tells us exactly how much shorter.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{wk4\_cs532s26\_TwoViewGeometry.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+\sphinxstylestrong{Sources:} lecture PDF pages 3–12; Spring 2019 Quiz 2, \sphinxcode{\sphinxupquote{cs532s19\_quiz2\sphinxhyphen{}2.pdf}}, P1–P4, PDF page 1. Spring 2020 Quiz 3, \sphinxcode{\sphinxupquote{cs532s20\_quiz3.pdf}}, page 1, repeats these questions under a mixed Spring 2019/Spring 2020 header.
 
+\index{Field of view@\spxentry{Field of view}!Pixel pitch; Principal point@\spxentry{Pixel pitch; Principal point}}\ignorespaces
 
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture04/index:examples-and-practice}}
+\subsection{Fit the view into the image}
+\label{\detokenize{lectures/lecture03/calibration:fit-the-view-into-the-image}}\label{\detokenize{lectures/lecture03/calibration:index-0}}
 \sphinxAtStartPar
-Select the most useful examples from the actual slides and integrate the assigned questions from the {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}}. Missing quiz coverage will be filled with new, clearly labeled worked examples.
+The \sphinxstylestrong{horizontal field of view} \(\theta\) is the angle between the rays through the left and right image boundaries. For a centered, undistorted pinhole image, half the image width and the focal length form a right triangle.
 
+\begin{figure}[H]
+\centering
+\capstart
 
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture04/index:completion-checklist}}\begin{itemize}
+\noindent\sphinxincludegraphics[width=0.800\linewidth]{{fov}.pdf}
+\caption{Half the view makes a right triangle: opposite side \(W/2\), adjacent side \(f_x\). Both lengths must use the same units.}\label{\detokenize{lectures/lecture03/calibration:fig-lec03-fov}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{Formula — focal length from centered horizontal field of view}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture03/calibration:eq-lec03-fov}
+\begin{split}\tan\frac{\theta}{2}=\frac{W/2}{f_x},\qquad
+f_x=\frac{W}{2\tan(\theta/2)}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(W\) is image width in pixels, \(f_x\) is horizontal focal length in pixels, and \(0<\theta<180^\circ\). Use a centered principal point and a rectilinear pinhole model. An off\sphinxhyphen{}center principal point needs separate left/right angles; strong lens distortion needs its own model.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Build a calibration estimate}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {}
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
+\sphinxstylestrong{Input:} image width and horizontal FOV. Set the calculator’s angle units correctly.
 
 \item {}
 \sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+Compute \(f_x\) with the boxed equation.
 
 \item {}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+To form \(K\), supply the remaining assumptions: vertical focal length, skew, and principal point.
 
 \item {}
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
+\sphinxstylestrong{Check:} doubling image resolution at unchanged FOV doubles focal length in pixels. A wider FOV reduces it.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+FOV alone does not determine every entry of \(K\).
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture03/calibration:ex-lec03-calibration}}
+\begin{TextbookBox}
+\textbf{Worked example 3.1 — the 640 × 480 camera}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 2, P1–P2; near\sphinxhyphen{}duplicate Spring 2020 Quiz 3, P1–P2.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Given:} \(W=640\), height \(480\), horizontal FOV \(90^\circ\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Half\sphinxhyphen{}angle: \(45^\circ\), with \(\tan45^\circ=1\).
 
 \item {}
 \sphinxAtStartPar
- Check both the website and cumulative printable edition.
+Focal length: \(f_x=640/(2\times1)=320\) pixels.
+
+\item {}
+\sphinxAtStartPar
+Assume square pixels, zero skew, and a centered principal point. Then \(f_y=320\) and \((c_x,c_y)=(320,240)\):
+
+\end{enumerate}
+\begin{equation*}
+\begin{split}
+K=\begin{pmatrix}320&0&320\\0&320&240\\0&0&1\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} the boundary ray has horizontal offset \(320\) and axial distance \(320\) in pixel\sphinxhyphen{}scaled image\sphinxhyphen{}plane units, so its angle to the axis is \(45^\circ\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Convention:} this uses image boundaries at \(0\) and \(640\). If pixel centers are indexed \(0,\ldots,639\), a centered principal point can instead be written \((319.5,239.5)\). State the convention; do not mistake a half\sphinxhyphen{}pixel choice for a different camera.
+
+\end{TextbookBox}
+
+
+\subsection{A principal point has several descriptions}
+\label{\detokenize{lectures/lecture03/calibration:a-principal-point-has-several-descriptions}}
+\sphinxAtStartPar
+The \sphinxstylestrong{principal point} is where the optical axis meets the image plane. Its pixel coordinates, normalized coordinates, and physical 3D position describe related things in different units.
+
+\phantomsection\label{\detokenize{lectures/lecture03/calibration:ex-lec03-principal}}
+\begin{TextbookBox}
+\textbf{Worked example 3.2 — finish the calibration quiz}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 2, P3–P4; Spring 2020 Quiz 3, P3–P4.
+
+\sphinxAtStartPar
+\sphinxstylestrong{P3: dimensions and scale.} In \(x\sim K[R\mid t]X\), the sizes are \(K:3\times3\), \(R:3\times3\), \(t:3\times1\), \([R\mid t]:3\times4\), \(X:4\times1\), and \(x:3\times1\). Multiplying the right side by two gives the same image point after homogeneous division. The foundational worked treatment is {\hyperref[\detokenize{lectures/lecture01/quiz-practice:ex-lec02-projection}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.18}}}}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{P4: principal point in the camera frame.} With the positive virtual image plane:
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Description
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Coordinates
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Units
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Pixel location
+&
+\sphinxAtStartPar
+\((320,240)\)
+&
+\sphinxAtStartPar
+pixels
+\\
+\sphinxhline
+\sphinxAtStartPar
+Normalized image direction
+&
+\sphinxAtStartPar
+\((0,0,1)^T\)
+&
+\sphinxAtStartPar
+normalized coordinates
+\\
+\sphinxhline
+\sphinxAtStartPar
+3D point on the virtual image plane
+&
+\sphinxAtStartPar
+\((0,0,f_{\rm phys})^T\)
+&
+\sphinxAtStartPar
+physical length
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Here \(f_{\rm phys}\) is the focal length in millimeters, meters, or another physical unit. The quiz’s \(320\)\sphinxhyphen{}pixel focal length does \sphinxstylestrong{not} determine that length. You need the \sphinxstylestrong{pixel pitch} \(s_x\) (physical width of a pixel): \(f_{\rm phys}=s_x f_x\).
+
+\sphinxAtStartPar
+For example, \(s_x=0.005\,\mathrm{mm/pixel}\) gives \(f_{\rm phys}=1.6\,\mathrm{mm}\) and principal point \((0,0,1.6)\,\mathrm{mm}\). You may write \((0,0,320)\) only if you explicitly choose a pixel\sphinxhyphen{}scaled virtual image plane. A physical sensor behind the pinhole uses negative image\sphinxhyphen{}plane depth under this axis convention.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Retest without duplicating the lesson}\par\smallskip
+
+\sphinxAtStartPar
+Use Spring 2020 Quiz 3 as a closed\sphinxhyphen{}notes retest. Answer all four problems, then check Examples 3.1–3.2. Before writing any coordinate, label it \sphinxstylestrong{pixel}, \sphinxstylestrong{normalized}, or \sphinxstylestrong{physical 3D}.
+
+\end{TextbookBox}
+
+\sphinxstepscope
+
+
+\section{Find depth when the point lies on a known plane}
+\label{\detokenize{lectures/lecture03/ray-plane:find-depth-when-the-point-lies-on-a-known-plane}}\label{\detokenize{lectures/lecture03/ray-plane:lec03-ray-plane}}\label{\detokenize{lectures/lecture03/ray-plane::doc}}
+\sphinxAtStartPar
+One pixel supplies a ray, not a distance. A known plane supplies the missing condition: \sphinxstylestrong{keep moving along the ray until you reach the plane}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Sources:} lecture PDF pages 3–12; Spring 2020 Quiz 2, \sphinxcode{\sphinxupquote{cs532s20\_quiz2.pdf}}, P1–P2, PDF page 1; \sphinxcode{\sphinxupquote{cs532f15\_quiz9.pdf}}, P1, PDF page 1, printed \sphinxstylestrong{Spring 2019 Quiz 9} despite the filename.
+
+
+\subsection{First, keep the two kinds of coordinates straight}
+\label{\detokenize{lectures/lecture03/ray-plane:first-keep-the-two-kinds-of-coordinates-straight}}\phantomsection\label{\detokenize{lectures/lecture03/ray-plane:ex-lec03-ray}}
+\begin{TextbookBox}
+\textbf{Worked example 3.3 — two points on one viewing ray}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2020 Quiz 2, P1–P2.
+
+\sphinxAtStartPar
+The camera center is the origin. A scene point is \(A=(X,Y,Z)^T\) and the virtual image plane is at \(f=Z/10\), with \(Z>0\). Where does the ray meet that plane?
+
+\sphinxAtStartPar
+A point along the ray is \(a=\lambda A\). Its third coordinate must be \(f\), so
+\begin{equation*}
+\begin{split}
+\lambda Z=Z/10\quad\Rightarrow\quad\lambda=1/10,
+\qquad a=(X/10,Y/10,Z/10)^T.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+For \(A=(2,1,20)^T\) and \(f=2\), the intersection is \(a=(0.2,0.1,2)^T\). It is one tenth of the distance along the same ray.
+
+\sphinxAtStartPar
+The quiz also asks for \(A\times a\). Since \(a=A/10\),
+\(A\times a=(A\times A)/10=\mathbf0\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why zero is correct:} here \(A\) and \(a\) are ordinary \sphinxstylestrong{Euclidean 3D vectors} from the camera center. A zero cross product confirms parallel directions. They are not two homogeneous 2D image points being joined into a line. Same three\sphinxhyphen{}entry shape, different meaning.
+
+\end{TextbookBox}
+
+
+\subsection{Intersect the ray with a plane}
+\label{\detokenize{lectures/lecture03/ray-plane:intersect-the-ray-with-a-plane}}
+\index{Ray–plane intersection@\spxentry{Ray–plane intersection}!Axial depth@\spxentry{Axial depth}}\ignorespaces
+\sphinxAtStartPar
+Suppose the known plane is \(AX+BY+CZ+D=0\). Here \(A,B,C\) are plane coefficients, not the point named \(A\) in the previous example. Work entirely in the \sphinxstylestrong{camera frame}.
+
+\sphinxAtStartPar
+The image coordinate \((x',y')\) lies on a virtual plane at focal length \(f\). These three values use the same physical length unit. The ray direction with third component one is
+\(q=(x'/f,y'/f,1)^T\). If you start with a pixel \((u,v)\) instead, first obtain \(q=K^{-1}(u,v,1)^T\) under the pinhole model; correct distortion before this step when necessary.
+
+\sphinxAtStartPar
+A scene point at axial depth \(Z\) is \(P=Zq\). Substitute its coordinates into the plane:
+\begin{equation*}
+\begin{split}
+A\frac{Zx'}f+B\frac{Zy'}f+CZ+D=0
+\quad\Rightarrow\quad
+Z\left(A\frac{x'}f+B\frac{y'}f+C\right)=-D.
+\end{split}
+\end{equation*}
+\begin{TextbookBox}
+\textbf{Formula — depth from a ray and a plane}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane}
+\begin{split}\gamma=(A,B,C)\,q,\qquad
+Z=-\frac{D}{\gamma}
+ =-\frac{Df}{Ax'+By'+Cf},\qquad P=Zq.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Require \((A,B,C)\ne\mathbf0\) and \(\gamma\ne0\). \(Z\) is \sphinxstylestrong{axial depth}, not Euclidean range. For dimensionless normal coefficients and \(D\) in meters, \(Z\) is in meters. Rescaling the plane coefficients leaves the result unchanged.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Recover a 3D point on the known plane}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} a calibrated image coordinate and plane coefficients in the camera frame.
+
+\item {}
+\sphinxAtStartPar
+Form \(q\) with third component one. Compute \(\gamma=(A,B,C)q\).
+
+\item {}
+\sphinxAtStartPar
+If \(\gamma\ne0\), calculate \(Z=-D/\gamma\) and \(P=Zq\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} substitute \(P\) into the plane and reproject it. For a point visible in front of this camera, require \(Z>0\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Near\sphinxhyphen{}parallel rays amplify input errors. Judge this using the angle between the ray and plane, rather than an unnormalized denominator.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{ray-plane}.pdf}
+\caption{A side view of Example 3.4. The image\sphinxhyphen{}plane intersection fixes the ray; the scene\sphinxhyphen{}plane intersection fixes its depth. The \(Y\) coordinate is suppressed only in the drawing.}\label{\detokenize{lectures/lecture03/ray-plane:fig-lec03-ray-plane}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture03/ray-plane:ex-lec03-plane}}
+\begin{TextbookBox}
+\textbf{Worked example 3.4 — put numbers into the depth answer}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} printed Spring 2019 Quiz 9, P1, whose requested symbolic answer is \eqref{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane}. The following numbers are an original companion.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Given:} plane \(X+Z=10\), \(f=2\), \((x',y')=(0.5,0.25)\), all lengths in the same unit.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Plane coefficients: \((A,B,C,D)=(1,0,1,-10)\).
+
+\item {}
+\sphinxAtStartPar
+Ray: \(q=(0.25,0.125,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Denominator: \(\gamma=1(0.25)+0(0.125)+1=1.25\).
+
+\item {}
+\sphinxAtStartPar
+Depth: \(Z=10/1.25=8\); point \(P=(2,1,8)^T\).
+
+\item {}
+\sphinxAtStartPar
+Check the plane: \(2+8=10\). Check projection: \((fX/Z,fY/Z)=(0.5,0.25)\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The point is eight units forward along the optical axis. Its distance from the camera is \(\sqrt{2^2+1^2+8^2}=\sqrt{69}\), a little larger.
+
+\end{TextbookBox}
+
+
+\subsection{When there is no useful visible intersection}
+\label{\detokenize{lectures/lecture03/ray-plane:when-there-is-no-useful-visible-intersection}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Condition
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Meaning
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Action
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\(\gamma=0\), \(D\ne0\)
+&
+\sphinxAtStartPar
+Ray is parallel to the plane and never reaches it
+&
+\sphinxAtStartPar
+No finite solution
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(\gamma=0\), \(D=0\)
+&
+\sphinxAtStartPar
+The entire ray lies in the plane
+&
+\sphinxAtStartPar
+Depth is undetermined
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(\gamma\ne0\), \(D=0\)
+&
+\sphinxAtStartPar
+Only intersection is the camera center, \(Z=0\)
+&
+\sphinxAtStartPar
+Cannot project this point
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(Z<0\)
+&
+\sphinxAtStartPar
+Intersection is behind the camera
+&
+\sphinxAtStartPar
+Reject as a forward visible point
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Keep the units honest:} substituting raw pixel columns for \(x'\) while using a focal length in millimeters breaks the calculation before the algebra begins.
+
+\sphinxstepscope
+
+
+\section{Recover a genuinely projective homography}
+\label{\detokenize{lectures/lecture03/homography-practice:recover-a-genuinely-projective-homography}}\label{\detokenize{lectures/lecture03/homography-practice:lec03-dlt-practice}}\label{\detokenize{lectures/lecture03/homography-practice::doc}}
+\sphinxAtStartPar
+The earlier DLT example recovered a shifted, stretched rectangle. This one adds a \sphinxstylestrong{changing denominator}: a square becomes a trapezoid, and its center does not map to the average of the destination corners.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to lecture PDF pages 34–45, addressing the DLT/SVD priority in \sphinxcode{\sphinxupquote{ExamToDo.md}}. Use the canonical {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{DLT rows and SVD procedure}}}}; this section follows those steps with complete projective data.
+
+\phantomsection\label{\detokenize{lectures/lecture03/homography-practice:ex-lec03-dlt}}
+\begin{TextbookBox}
+\textbf{Worked example 3.5 — normalize, solve, and recover}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Given:} the following four exact correspondences, in the same order.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Source \((u,v)\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Destination \((u',v')\)
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\((0,0)\)
+&
+\sphinxAtStartPar
+\((0,0)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+\((1,0)\)
+&
+\sphinxAtStartPar
+\((2,0)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+\((1,1)\)
+&
+\sphinxAtStartPar
+\((2,1)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+\((0,1)\)
+&
+\sphinxAtStartPar
+\((0,2)\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+\sphinxstylestrong{1. Normalize each image independently.} For the source square, centroid \((0.5,0.5)\) and mean radius \(1/\sqrt2\) give scale \(2\). For the destination, centroid \((1,0.75)\) and mean radius \(1.28288937\) give scale \(1.10236596\). Thus
+\begin{equation*}
+\begin{split}
+T=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix},\qquad
+T'\approx\begin{pmatrix}1.102366&0&-1.102366\\0&1.102366&-0.826774\\0&0&1\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The destination mean radius is the average of \(1.25,1.25,\sqrt{1.0625},\sqrt{2.5625}\). This is \sphinxstylestrong{mean distance}, not root\sphinxhyphen{}mean\sphinxhyphen{}square distance.
+
+\sphinxAtStartPar
+\sphinxstylestrong{2. Fill the normalized DLT rows.} For the first pair,
+\(\widetilde x=(-1,-1,1)^T\) and \(\widetilde x'\approx(-1.102366,-0.826774,1)^T\).
+Its two rows, using \eqref{equation:lectures/lecture02/estimation:eq-lec02-dlt}, are approximately
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+(&-1,-1,1,0,0,0,-1.102366,-1.102366,1.102366),\\
+(&0,0,0,-1,-1,1,-0.826774,-0.826774,0.826774).
+\end{aligned}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The other three pairs supply six more rows. The stacked matrix \(\widetilde A\) is \(8\times9\) with rank eight.
+
+\sphinxAtStartPar
+\sphinxstylestrong{3. Read the full right null vector.} A full SVD returns a \(9\times9\) right\sphinxhyphen{}vector basis. One unit null vector, rounded here, is
+\begin{equation*}
+\begin{split}
+h\approx(0.627538,0,0.209179,-0.156884,0.418359,-0.052295,
+0.189755,0,0.569265)^T.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Its negative is equally valid. Reshape \sphinxstylestrong{row by row}, then rescale for display so the last entry is one:
+\begin{equation*}
+\begin{split}
+\widetilde H\approx\begin{pmatrix}
+1.102366&0&0.367455\\
+-0.275591&0.734911&-0.091864\\
+1/3&0&1
+\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Request the full basis: the eight singular values returned for an \(8\times9\) matrix do not themselves include a ninth listed zero. The extra right vector supplies its exact nullspace.
+
+\sphinxAtStartPar
+\sphinxstylestrong{4. Undo normalization.} Apply \eqref{equation:lectures/lecture02/estimation:eq-lec02-normalize}, using unrounded numbers in the calculation:
+\begin{equation*}
+\begin{split}
+H=(T')^{-1}\widetilde H T
+\ \sim\ \begin{pmatrix}4&0&0\\0&2&0\\1&0&1\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{5. Check a corner and a point you did not fit.} For \((1,1)\), the homogeneous result is \((4,2,2)^T\), hence \((2,1)\): correct. The unmeasured square center gives
+\begin{equation*}
+\begin{split}
+H(1/2,1/2,1)^T=(2,1,3/2)^T
+\quad\Rightarrow\quad (u',v')=(4/3,2/3).
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+That differs from the destination vertex average \((1,3/4)\). Perspective does not preserve ordinary averages. The nonzero \(h_{31}\) makes the denominator depend on \(u\).
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{projective-dlt}.pdf}
+\caption{The orange point is the mapped source center. The destination’s marked vertex average is elsewhere; averaging coordinates is not a projective operation.}\label{\detokenize{lectures/lecture03/homography-practice:fig-lec03-dlt}}\end{figure}
+
+
+\subsection{Use the matrix to make an image}
+\label{\detokenize{lectures/lecture03/homography-practice:use-the-matrix-to-make-an-image}}
+\sphinxAtStartPar
+The {\hyperref[\detokenize{lectures/lecture02/homographies::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{court\sphinxhyphen{}rectification example}}}} is the slide deck’s real\sphinxhyphen{}image application, repeated here on PDF page 22. Its {\hyperref[\detokenize{lectures/lecture02/warping::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{inverse\sphinxhyphen{}warping procedure}}}} tells you how to fill output pixels after estimating \(H\). Keep the directions separate: the matrix above sends source coordinates to destination coordinates; filling a destination pixel requires the reverse map.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Exam check:} can you explain where each of the nine entries came from, why four matches give eight independent equations, and why the coordinate transforms must be undone in that order? The answer should describe the calculation, not just name “SVD.”
+
+\sphinxstepscope
+
+
+\section{Probability and the pentagon puzzle}
+\label{\detokenize{lectures/lecture03/probability-ransac:probability-and-the-pentagon-puzzle}}\label{\detokenize{lectures/lecture03/probability-ransac:lec03-ransac-practice}}\label{\detokenize{lectures/lecture03/probability-ransac::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{How many random tries are enough?} First ask what counts as a successful try. RANSAC’s trial budget depends on that definition and on how samples are drawn.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Sources:} lecture PDF pages 46–55; Fall 2025 Quiz 1, \sphinxcode{\sphinxupquote{cs532f25\_quiz\_1\_solution.pdf}}, Q1–Q2, PDF page 1; Spring 2019 Quiz 3, \sphinxcode{\sphinxupquote{cs532s19\sphinxhyphen{}quiz3.pdf}}, P1’s four bullets, PDF page 1. The general RANSAC algorithm and trial\sphinxhyphen{}count formula remain in {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2}}}}.
+
+
+\subsection{Start with the coin quiz}
+\label{\detokenize{lectures/lecture03/probability-ransac:start-with-the-coin-quiz}}\phantomsection\label{\detokenize{lectures/lecture03/probability-ransac:ex-lec03-probability}}
+\begin{TextbookBox}
+\textbf{Worked example 3.6 — a winning streak, then repeated attempts}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Fall 2025 Quiz 1, Q1–Q2.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Q1:} You must win three independent fair coin flips in a row. Each flip has win probability \(1/2\), so one complete attempt succeeds with probability
+\begin{equation*}
+\begin{split}q=(1/2)^3=1/8.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{Q2:} Make one independent attempt each day for seven days. What is the probability of at least one successful day?
+
+\sphinxAtStartPar
+It is easier to count \sphinxstylestrong{no wins}. Each day fails with probability \(7/8\). All seven days fail with probability \((7/8)^7\). Subtract from one:
+\begin{equation*}
+\begin{split}P(\text{at least one win})=1-(7/8)^7\approx0.607304=60.73\%.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Seven attempts do not give probability \(7/8\): that addition counts overlapping success events repeatedly. The complement calculation handles all possible numbers of wins at once.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Connection:} a RANSAC hypothesis needs several good matches together, just as this attempt needs several wins together. Repeating hypotheses then uses the same “one minus all failures” reasoning. The quiz’s geometry questions are solved in {\hyperref[\detokenize{lectures/lecture01/frames-quizzes::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1}}}}.
+
+\end{TextbookBox}
+
+
+\subsection{Five corners, twenty\sphinxhyphen{}five possible matches}
+\label{\detokenize{lectures/lecture03/probability-ransac:five-corners-twenty-five-possible-matches}}
+\sphinxAtStartPar
+Assume two pictures show only a generic irregular pentagon. All five corners are detected, but their identities are unknown. The quiz asks you to try \sphinxstylestrong{every possible pairing}.
+
+\phantomsection\label{\detokenize{lectures/lecture03/probability-ransac:ex-lec03-pentagon}}
+\begin{TextbookBox}
+\textbf{Worked example 3.7 — count matches and budget the search}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 3, P1, first three bullets.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Putative matches:} each of five source corners can pair with any of five destination corners: \(5\times5=25\) candidate pairs.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Correct matches:} relative to the intended homography, one partner per source corner is correct: five pairs. The inlier fraction is \(w=5/25=0.2\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Minimal homography sample:} four nondegenerate correspondences. Under the usual independent\sphinxhyphen{}match approximation, a clean sample has probability \(q=w^4=0.0016\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Choose confidence:} the question does not give one. Taking \(p=0.99\) and applying \eqref{equation:lectures/lecture02/estimation:eq-lec02-ransac} gives
+
+\end{enumerate}
+\begin{equation*}
+\begin{split}
+N=\left\lceil\frac{\log(0.01)}{\log(1-0.0016)}\right\rceil
+=2876.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{Interpretation:} under this model, 2,876 trials give about a 99\% chance of drawing at least one all\sphinxhyphen{}inlier sample. This does not guarantee a correct final homography: samples must also be nondegenerate, and scoring must distinguish the intended model.
+
+\end{TextbookBox}
+
+
+\subsubsection{The small\sphinxhyphen{}pool qualification}
+\label{\detokenize{lectures/lecture03/probability-ransac:the-small-pool-qualification}}
+\sphinxAtStartPar
+Here the pool is unusually small. Four independent draws are an approximation to a real four\sphinxhyphen{}correspondence sampler. If asked for an \sphinxstylestrong{exact} count, specify the sampling rule.
+
+\sphinxAtStartPar
+Let \(q\) denote the probability that \sphinxstylestrong{one counted trial} is clean. Assuming independent trials and a generic pentagon with no three corners collinear:
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Sampling rule for one counted trial
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Clean\sphinxhyphen{}sample probability \(q\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Trials for 99\%
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Independent inlier\sphinxhyphen{}status approximation
+&
+\sphinxAtStartPar
+\((5/25)^4=0.0016\)
+&
+\sphinxAtStartPar
+2,876
+\\
+\sphinxhline
+\sphinxAtStartPar
+Four distinct pairs drawn uniformly from all 25; count even invalid samples
+&
+\sphinxAtStartPar
+\(\binom54/\binom{25}4=1/2530\)
+&
+\sphinxAtStartPar
+11,649
+\\
+\sphinxhline
+\sphinxAtStartPar
+Reject repeated source or destination corners; count only valid four\sphinxhyphen{}pair samples
+&
+\sphinxAtStartPar
+\(5/[\binom54^2\,4!]=1/120\)
+&
+\sphinxAtStartPar
+551
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Why the last denominator? Choose four of five source corners, four of five destination corners, then one of \(4!\) bijections: \(5\times5\times24=600\) valid sets. Only five are subsets of the intended five matches. These are different experiments, so their trial counts need not agree. If rejected draws consume runtime, include their cost separately.
+
+\sphinxAtStartPar
+\sphinxstylestrong{For an exam:} state the standard \(w^4\) assumption before giving 2,876. If the sampling procedure is specified more precisely, use its corresponding \(q\) in the same complement\sphinxhyphen{}probability calculation.
+
+
+\subsection{Try the sampling experiment}
+\label{\detokenize{lectures/lecture03/probability-ransac:try-the-sampling-experiment}}
+\sphinxAtStartPar
+Change the inlier percentage and trial count. Blue dots are good matches; orange dots are bad. Four blue dots make a clean hypothesis. The display compares the predicted chance of \sphinxstylestrong{at least one} clean sample with results from 200 simulated experiments.
+
+\subsubsection*{Explore RANSAC sampling probability — print edition}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Static experiment:} assume four independently drawn match statuses per hypothesis. Then \(q=w^4\) and \(P=1-(1-q)^N\). The simulator uses this approximation, not the exact finite\sphinxhyphen{}pool pentagon samplers above.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Inlier fraction \(w\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Trials \(N\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Chance of at least one clean sample
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+20\%
+&
+\sphinxAtStartPar
+100
+&
+\sphinxAtStartPar
+\(1-(1-0.2^4)^{100}=14.80\%\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+20\%
+&
+\sphinxAtStartPar
+2,876
+&
+\sphinxAtStartPar
+\(1-(1-0.2^4)^{2876}=99.0001\%\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+50\%
+&
+\sphinxAtStartPar
+72
+&
+\sphinxAtStartPar
+\(1-(1-0.5^4)^{72}=99.04\%\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+A single experiment can succeed or fail. Across many independent experiments, the observed success fraction tends toward the predicted probability; it need not equal it exactly. A clean sample is a sampling event, not proof of a correct model.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{ransac-probability}.pdf}
+\caption{More inliers can reduce the required trial count dramatically. The vertical axis measures sampling success, not geometric accuracy.}\label{\detokenize{lectures/lecture03/probability-ransac:fig-lec03-probability}}\end{figure}
+
+\par\medskip
+
+
+\subsection{More trials cannot solve a symmetry}
+\label{\detokenize{lectures/lecture03/probability-ransac:more-trials-cannot-solve-a-symmetry}}
+\index{Symmetry ambiguity@\spxentry{Symmetry ambiguity}}\ignorespaces \phantomsection\label{\detokenize{lectures/lecture03/probability-ransac:ex-lec03-symmetry}}
+\begin{TextbookBox}
+\textbf{Worked example 3.8 — replace the shape with a regular pentagon}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 3, P1, final bullet.
+
+\sphinxAtStartPar
+A regular pentagon has five rotations that map its corner set onto itself. It also has five reflections. Composing the true image homography with any of these symmetries gives another homography supported by all five corners.
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+With no orientation restriction, there are \sphinxstylestrong{ten equally supported corner alignments}.
+
+\item {}
+\sphinxAtStartPar
+If an external orientation constraint rules out reflections, \sphinxstylestrong{five rotations} remain.
+
+\item {}
+\sphinxAtStartPar
+A visible distinctive mark, corner identity, or other asymmetric evidence can break the tie. More random samples of the same unlabeled corners cannot.
 
 \end{itemize}
+
+\sphinxAtStartPar
+The 20\% inlier rate is measured relative to \sphinxstylestrong{one selected alignment}. Do not combine the ten alignments into one larger consensus: they are different models.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source wording:} the quiz calls a regular pentagon “equilateral.” Equal side lengths alone do not imply equal angles or these ten symmetries. This answer assumes a genuinely \sphinxstylestrong{regular} pentagon, as the question names it.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{pentagon-symmetry}.pdf}
+\caption{The numbers are explanatory labels, not visible features in the quiz images. The identical outlines cannot tell you which ordering is intended.}\label{\detokenize{lectures/lecture03/probability-ransac:fig-lec03-pentagon}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{What does your confidence actually mean?}\par\smallskip
+
+\sphinxAtStartPar
+Before quoting “99\%,” finish the sentence: “a 99\% chance of drawing at least one \_\_\_, under the sampling assumption \_\_\_.” If your answer says “a 99\% chance the reconstruction is right,” you have claimed more than the calculation supports.
+
+\end{TextbookBox}
+
+\sphinxstepscope
+
+
+\section{Review and source checklist}
+\label{\detokenize{lectures/lecture03/review:review-and-source-checklist}}\label{\detokenize{lectures/lecture03/review:lec03-review}}\label{\detokenize{lectures/lecture03/review::doc}}
+\sphinxAtStartPar
+This chapter adds applications to the theory already taught. Use this checklist to find the right calculation without reading repeated explanations.
+
+
+\subsection{New formula boxes}
+\label{\detokenize{lectures/lecture03/review:new-formula-boxes}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Task
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Canonical formula and application
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Turn centered horizontal FOV into pixel focal length
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture03/calibration:eq-lec03-fov}, {\hyperref[\detokenize{lectures/lecture03/calibration::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{calibration}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Intersect a calibrated ray with a known plane
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane}, {\hyperref[\detokenize{lectures/lecture03/ray-plane::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{ray–plane depth}}}}
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+For DLT rows, coordinate normalization, and RANSAC’s trial budget, use the original {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 boxes}}}}. This chapter’s projective numerical example and sampling cases apply those formulas to new data.
+
+
+\subsection{Worked examples and quiz coverage}
+\label{\detokenize{lectures/lecture03/review:worked-examples-and-quiz-coverage}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Example
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Skill
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Source
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/calibration:ex-lec03-calibration}]{\sphinxcrossref{\DUrole{std,std-ref}{3.1}}}}
+&
+\sphinxAtStartPar
+FOV and calibration matrix
+&
+\sphinxAtStartPar
+Spring 2019 Quiz 2 P1–P2; Spring 2020 Quiz 3 retest
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/calibration:ex-lec03-principal}]{\sphinxcrossref{\DUrole{std,std-ref}{3.2}}}}
+&
+\sphinxAtStartPar
+Dimensions, homogeneous scale, physical principal point
+&
+\sphinxAtStartPar
+Same quizzes P3–P4; foundation dimensions linked to L1
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/ray-plane:ex-lec03-ray}]{\sphinxcrossref{\DUrole{std,std-ref}{3.3}}}}
+&
+\sphinxAtStartPar
+Image\sphinxhyphen{}plane intersection and Euclidean cross product
+&
+\sphinxAtStartPar
+Spring 2020 Quiz 2 P1–P2
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/ray-plane:ex-lec03-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{3.4}}}}
+&
+\sphinxAtStartPar
+Ray–plane depth and visibility
+&
+\sphinxAtStartPar
+Printed Spring 2019 Quiz 9 P1; original numerical companion
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/homography-practice:ex-lec03-dlt}]{\sphinxcrossref{\DUrole{std,std-ref}{3.5}}}}
+&
+\sphinxAtStartPar
+Full normalized projective DLT and held\sphinxhyphen{}out check
+&
+\sphinxAtStartPar
+Original companion to slides 34–45
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-probability}]{\sphinxcrossref{\DUrole{std,std-ref}{3.6}}}}
+&
+\sphinxAtStartPar
+Independent events and repeated attempts
+&
+\sphinxAtStartPar
+Fall 2025 Quiz 1 Q1–Q2
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-pentagon}]{\sphinxcrossref{\DUrole{std,std-ref}{3.7}}}}
+&
+\sphinxAtStartPar
+Candidate counts, inliers, trial budget
+&
+\sphinxAtStartPar
+Spring 2019 Quiz 3 P1 bullets 1–3
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-symmetry}]{\sphinxcrossref{\DUrole{std,std-ref}{3.8}}}}
+&
+\sphinxAtStartPar
+Indistinguishable regular\sphinxhyphen{}polygon alignments
+&
+\sphinxAtStartPar
+Same quiz P1 bullet 4
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Repeated slide material: where it lives}
+\label{\detokenize{lectures/lecture03/review:repeated-slide-material-where-it-lives}}
+\sphinxAtStartPar
+The entire 80\sphinxhyphen{}page deck was checked, including diagrams and formulas. Page 1 is the title; pages 2–80 repeat Lecture 2’s PDF pages 51–129.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Lecture 3 PDF pages
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Teaching location
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+2–12: image formation and camera motion
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/cameras::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1 cameras}}}}, including the camera\sphinxhyphen{}motion slide exercise
+\\
+\sphinxhline
+\sphinxAtStartPar
+13–22: homographies and transformation hierarchy
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/transformations::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1 transformations}}}}, {\hyperref[\detokenize{lectures/lecture02/homographies::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 homographies and court task}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+23–32: forward/inverse warping and interpolation
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/warping::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 warping}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+33–45: estimation, DLT, normalization
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 estimation}}}}, plus the {\hyperref[\detokenize{lectures/lecture03/homography-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{new numerical walkthrough}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+46–55: RANSAC, consensus, matching pipeline
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 estimation}}}}, plus the {\hyperref[\detokenize{lectures/lecture03/probability-ransac::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{new quiz applications}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+56–80: radial distortion, epipolar geometry, fundamental matrix, rectification
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 distortion and two\sphinxhyphen{}view introduction}}}}; later two\sphinxhyphen{}view problems belong to Lecture 4
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Check before handing in a solution}
+\label{\detokenize{lectures/lecture03/review:check-before-handing-in-a-solution}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Coordinates:} are these pixels, physical image\sphinxhyphen{}plane coordinates, normalized rays, or homogeneous points?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Assumptions:} did you supply square pixels and a centered principal point before writing the full \(K\)?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Depth:} does the intersection satisfy both the plane and the image ray, with \(Z>0\)?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{DLT:} did you use the full right\sphinxhyphen{}vector basis and undo both normalizations?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Probability:} what does one counted trial sample, and what event does the confidence describe?
+
+\end{itemize}
+
+\sphinxAtStartPar
+Continue to the final {\hyperref[\detokenize{lectures/lecture03/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}.
+
+\sphinxstepscope
+
+\clearpage
+
+
+\section{TLDR}
+\label{\detokenize{lectures/lecture03/tldr:tldr}}\label{\detokenize{lectures/lecture03/tldr:lec03-tldr}}\label{\detokenize{lectures/lecture03/tldr::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture 3 in one sentence:} use camera geometry to solve concrete calibration and depth problems, then distinguish a probable clean sample from an identifiable correct model.
+
+
+\subsection{The important things}
+\label{\detokenize{lectures/lecture03/tldr:the-important-things}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{FOV determines horizontal focal length only after stating the model.} A centered 640\sphinxhyphen{}pixel\sphinxhyphen{}wide, 90° pinhole view gives \(f_x=320\) pixels. Square pixels, zero skew, and a centered principal point supply the remaining assumptions for the quiz’s \(K\). See {\hyperref[\detokenize{lectures/lecture03/calibration::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{calibration}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Pixel focal length is not physical focal length.} Multiply by physical pixel pitch to change units. The principal point is \((c_x,c_y)\) in pixels but \((0,0,f_{\rm phys})\) on the positive virtual image plane.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A scaled Euclidean 3D vector stays on the same camera ray.} The image\sphinxhyphen{}plane intersection is one tenth of the scene vector when \(f=Z/10\). Its cross product with that vector is zero. See {\hyperref[\detokenize{lectures/lecture03/ray-plane::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{the ray quiz}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A known plane can supply missing depth.} Use \eqref{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane}, then check plane incidence, reprojection, and positive depth. A parallel ray may have no intersection or lie entirely in the plane.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Projective mappings do not preserve coordinate averages.} The fitted trapezoid’s mapped center differs from the average of its corners. The {\hyperref[\detokenize{lectures/lecture03/homography-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{normalized DLT walkthrough}}}} shows all the numerical stages.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Count the complement when attempts repeat.} The coin quiz gives \(1/8\) per attempt and \(1-(7/8)^7\approx60.73\%\) across seven independent attempts. See {\hyperref[\detokenize{lectures/lecture03/probability-ransac::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{probability}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{State the sampler before quoting a RANSAC budget.} The pentagon has 25 candidate pairs and five correct pairs for one alignment. The standard independent\sphinxhyphen{}status approximation gives 2,876 trials for 99\%; exact finite\sphinxhyphen{}pool rules give different counts.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Symmetry is missing information.} An unlabeled regular pentagon permits ten corner alignments without orientation constraints. More trials cannot select the intended one; extra asymmetric evidence can.
+
+\end{enumerate}
+
+\newpage
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture03/tldr:short-quiz}}
+\sphinxAtStartPar
+These original questions test this chapter’s applications.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+A centered pinhole image is 800 pixels wide with 90° horizontal FOV. What is \(f_x\)? Does that alone determine \(f_y\)?
+
+\item {}
+\sphinxAtStartPar
+If \(f_x=400\) pixels and pixel pitch is \(0.004\,\mathrm{mm/pixel}\), where is the principal point on the positive virtual image plane in camera\sphinxhyphen{}frame millimeters?
+
+\item {}
+\sphinxAtStartPar
+For a scene vector \((3,2,30)^T\) and \(f=3\), what is its image\sphinxhyphen{}plane 3D intersection? What is the cross product of the two vectors?
+
+\item {}
+\sphinxAtStartPar
+A ray is \(P=Z(0.5,0,1)^T\) and the known plane is \(X+Z=12\). Find \(Z\) and \(P\).
+
+\item {}
+\sphinxAtStartPar
+What happens if a ray has \(\gamma=0\) for a plane with \(D\ne0\)?
+
+\item {}
+\sphinxAtStartPar
+For Example 3.5’s matrix, where does source point \((0.5,0.5)\) go? Is it the destination vertex average?
+
+\item {}
+\sphinxAtStartPar
+If one independent attempt succeeds with probability \(1/4\), what is the chance of at least one success in three attempts?
+
+\item {}
+\sphinxAtStartPar
+A regular pentagon gives several equally supported alignments. Will increasing RANSAC’s trial count identify the intended alignment? Name evidence that could.
+
+\end{enumerate}
+
+
+\subsection{Answers}
+\label{\detokenize{lectures/lecture03/tldr:answers}}
+\begin{sphinxadmonition}{note}{Show answers and short explanations}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{400 pixels.} Use \(800/(2\tan45^\circ)\). Vertical focal length needs an additional pixel\sphinxhyphen{}shape or calibration assumption.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((0,0,1.6)\,\mathrm{mm}\).} Multiply \(400\) by \(0.004\); pixel principal\sphinxhyphen{}point coordinates are a different description.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((0.3,0.2,3)^T\); zero cross product.} The intersection is one tenth of the scene vector.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(Z=8\), \(P=(4,0,8)^T\).} Substitute into the plane: \(0.5Z+Z=12\). The depth is positive.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{No finite intersection.} The ray is parallel to a plane that does not contain the camera center.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((4/3,2/3)\).} Divide \((2,1,3/2)^T\) by its last coordinate. It differs from the vertex average \((1,3/4)\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(1-(3/4)^3=37/64\approx57.81\%\).} Subtract the probability of three failures from one.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{No.} A distinctive visible mark, a labeled corner, or other asymmetric scene evidence can distinguish models that have identical corner support.
+
+\end{enumerate}
+\end{sphinxadmonition}
+
+\sphinxstepscope
+
+
+\chapter{Lecture 4: Two views reveal depth}
+\label{\detokenize{lectures/lecture04/index:lecture-4-two-views-reveal-depth}}\label{\detokenize{lectures/lecture04/index:lecture04}}\label{\detokenize{lectures/lecture04/index::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{A one\sphinxhyphen{}pixel mistake can move a reconstructed point by centimeters—or much more. Why?} Two views turn image matches into 3D geometry, but the result depends on finding the right match and measuring its position accurately.
+
+\sphinxAtStartPar
+This chapter adds the assigned epipolar quizzes, noisy matrix estimation, calibrated pose recovery, stereo depth/error calculations, and dense matching. The {\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{two\sphinxhyphen{}view introduction}}}} already owns distortion correction, epipoles, the fundamental constraint, and rectification; use those explanations as prerequisites.
+
+
+\section{Reading route}
+\label{\detokenize{lectures/lecture04/index:reading-route}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/epipolar-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Solve the epipolar quizzes}}}}: expand a constraint, intersect two predicted lines, and check a supplied matrix.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Estimate F from noisy matches}}}}: enforce rank two and measure error in pixels.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/essential::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Recover camera pose}}}}: use calibration, decompose the essential matrix, and test which solution faces the scene.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/stereo::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Stereo depth and its errors}}}}: derive the depth equation, solve both quiz sets, and explore the geometry in 3D.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/matching::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Find matches across an image}}}}: compare patches, aggregate evidence, and handle depth boundaries.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Review and source checklist}}}}, then the final {\hyperref[\detokenize{lectures/lecture04/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and answered quiz}}}}.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{wk4\_cs532s26\_TwoViewGeometry.pdf}}, 77 PDF pages. Printed numbers match PDF pages 1–34; from PDF page 35 onward, visible printed numbers are four greater. PDF page 54 has no visible number. References below use one\sphinxhyphen{}based \sphinxstylestrong{PDF pages}. The coverage register records repeated material and its original teaching location.
+
+\sphinxstepscope
+
+
+\section{Solve the epipolar quizzes}
+\label{\detokenize{lectures/lecture04/epipolar-practice:solve-the-epipolar-quizzes}}\label{\detokenize{lectures/lecture04/epipolar-practice:lec04-epipolar-practice}}\label{\detokenize{lectures/lecture04/epipolar-practice::doc}}
+\sphinxAtStartPar
+The {\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{fundamental\sphinxhyphen{}matrix box}}}} gives the rule. These questions test whether you can use it without confusing a \sphinxstylestrong{point}, a \sphinxstylestrong{line}, and a \sphinxstylestrong{scalar constraint}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Sources:} lecture PDF pages 18–21; \sphinxcode{\sphinxupquote{cs532f15\_quiz4.pdf}} and \sphinxcode{\sphinxupquote{cs532s19\_quiz4.pdf}}, P1–P2, PDF page 1, both printed Spring 2019 Quiz 4; Fall 2025 Quiz 2, \sphinxcode{\sphinxupquote{cs532f25\_quiz\_2\_solution.pdf}}, Q1–Q2, PDF page 1.
+
+
+\subsection{A symbolic matrix is still a calculation}
+\label{\detokenize{lectures/lecture04/epipolar-practice:a-symbolic-matrix-is-still-a-calculation}}\phantomsection\label{\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-symbolic}}
+\begin{TextbookBox}
+\textbf{Worked example 4.1 — expand the assigned constraint}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 4, P1–P2. The two filenames contain the same questions; use the second as a closed\sphinxhyphen{}notes retest.
+
+\sphinxAtStartPar
+\sphinxstylestrong{P1:} Let \(x_A=(x,y,w)^T\). Write the rows of \(F_{AB}\) as \(f_1^T,f_2^T,f_3^T\), where each \(f_i\) is a three\sphinxhyphen{}entry column vector. The line in image B is
+\begin{equation*}
+\begin{split}
+\ell_B=F_{AB}x_A=
+\begin{pmatrix}f_{11}x+f_{12}y+f_{13}w\\
+f_{21}x+f_{22}y+f_{23}w\\
+f_{31}x+f_{32}y+f_{33}w\end{pmatrix}
+=\begin{pmatrix}f_1^Tx_A\\f_2^Tx_A\\f_3^Tx_A\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Those are \sphinxstylestrong{line coefficients}. If \(\ell_B=(a,b,c)^T\), an ordinary candidate \((u_B,v_B)\) must satisfy \(au_B+bv_B+c=0\). There is generally a whole line of candidates. For the requested sketch, draw the known point in A and the predicted line in B, as in the existing schematic \hyperref[\detokenize{lectures/lecture02/two-view:fig-lec02-epipolar}]{Fig.\@ \ref{\detokenize{lectures/lecture02/two-view:fig-lec02-epipolar}}} (a rectified special case).
+
+\sphinxAtStartPar
+\sphinxstylestrong{P2:} Substitute \(x_A=(1,0,1)^T\) and \(x_B=(0,1,1)^T\). First multiply by \(x_A\): this adds columns 1 and 3 of \(F\). Left multiplication by \(x_B^T\) then adds entries 2 and 3:
+\begin{equation*}
+\begin{split}x_B^TF_{AB}x_A=f_{21}+f_{23}+f_{31}+f_{33}=0.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In vector\sphinxhyphen{}product form this is
+\(\bigl(f_2+f_3\bigr)^T x_A=0\), equivalently \(x_B\cdot(F_{AB}x_A)=0\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} the final result is one scalar, not a three\sphinxhyphen{}entry point.
+
+\end{TextbookBox}
+
+
+\subsection{Use two views to predict a point in a third}
+\label{\detokenize{lectures/lecture04/epipolar-practice:use-two-views-to-predict-a-point-in-a-third}}\phantomsection\label{\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-third-view}}
+\begin{TextbookBox}
+\textbf{Worked example 4.2 — two predicted lines meet}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Fall 2025 Quiz 2, Q1. The following numbers are an original companion.
+
+\sphinxAtStartPar
+Given \(x_A\leftrightarrow x_B\), generate two lines \sphinxstylestrong{in image C}:
+\(\ell_A^C=F_{AC}x_A\) and \(\ell_B^C=F_{BC}x_B\). Their homogeneous intersection is
+\(x_C\sim\ell_A^C\times\ell_B^C\).
+
+\sphinxAtStartPar
+For example, take normalized image coordinates
+\(x_A=(1/2,3/4,1)^T\), \(x_B=(1/4,3/4,1)^T\), and
+\begin{equation*}
+\begin{split}
+F_{AC}=\begin{pmatrix}0&0&-1\\0&0&0\\1&0&0\end{pmatrix},\qquad
+F_{BC}=\begin{pmatrix}0&0&-1\\0&0&-1\\1&1&0\end{pmatrix}.
+\end{split}
+\end{equation*}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Multiply: \(\ell_A^C=(-1,0,1/2)^T\), \(\ell_B^C=(-1,-1,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Intersect: their cross product is \((1/2,1/2,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Check: both line dot products are zero. Thus \((u_C,v_C)=(1/2,1/2)\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+These matrices are compatible: aligned cameras at \((0,0,0)\), \((1,0,0)\), \((0,1,0)\) observing point \((2,3,4)\) produce these image coordinates. The calculation predicts a location, but image evidence must still confirm that the point is visible there.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.750\linewidth]{{third-view}.pdf}
+\caption{Two independent line predictions locate the third\sphinxhyphen{}image point. This applies the incidence operations from Lecture 1 to a new three\sphinxhyphen{}view task.}\label{\detokenize{lectures/lecture04/epipolar-practice:fig-lec04-third-view}}\end{figure}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Check the intersection before dividing:} coincident lines give a zero cross product and no unique prediction. Distinct parallel lines meet at an ideal point, not a finite pixel. With noise, nearly parallel lines give an unstable location; incompatible matrices or an incorrect A–B match can also spoil the prediction.
+
+
+\subsection{Check the supplied matrix before trusting its name}
+\label{\detokenize{lectures/lecture04/epipolar-practice:check-the-supplied-matrix-before-trusting-its-name}}\phantomsection\label{\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-invalid-f}}
+\begin{TextbookBox}
+\textbf{Worked example 4.3 — correct the supplied solution}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Fall 2025 Quiz 2, Q2.
+
+\sphinxAtStartPar
+The question supplies \(x'=(1,2,1)^T\) and
+\(F=\begin{pmatrix}1&2&1\\0&1&2\\1&0&1\end{pmatrix}\).
+It asks for an epipolar\sphinxhyphen{}consistent \(x\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Multiply the row: \(x'^TF=(2,4,6)\).
+
+\item {}
+\sphinxAtStartPar
+The required condition is \sphinxstylestrong{\(x'^TFx=0\)}, hence \(2u+4v+6w=0\).
+
+\item {}
+\sphinxAtStartPar
+For a finite point with \(w=1\), choose \(v=0\), giving \(u=-3\). Thus \(x=(-3,0,1)^T\) works. Another choice is \((-5,1,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Check directly: \((2,4,6)(-3,0,1)^T=0\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Two source issues:} the solution writes \(x'^TF=x\), equating a line row with a point. Its final line equation is usable, but that equality is wrong. Also, \(\det F=4\), so the supplied matrix has rank three and cannot be a genuine fundamental matrix for two pinhole cameras.
+
+\sphinxAtStartPar
+These points satisfy the \sphinxstylestrong{given bilinear equation}; the matrix still cannot describe valid camera geometry.
+
+\end{TextbookBox}
+
+\sphinxstepscope
+
+
+\section{Estimate F from noisy matches}
+\label{\detokenize{lectures/lecture04/estimation:estimate-f-from-noisy-matches}}\label{\detokenize{lectures/lecture04/estimation:lec04-estimation}}\label{\detokenize{lectures/lecture04/estimation::doc}}
+\sphinxAtStartPar
+The {\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{eight\sphinxhyphen{}point route}}}} already supplies the linear rows and normalization order. Here we add what makes that route usable: a numerical noisy fit, an explicit rank constraint, and an error measured in pixels.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} lecture PDF pages 24–37; printed slides 24–34, then 39–41. The section develops the earlier Hartley–Zisserman–Pollefeys material.
+
+
+\subsection{Make the fitted matrix physically admissible}
+\label{\detokenize{lectures/lecture04/estimation:make-the-fitted-matrix-physically-admissible}}
+\sphinxAtStartPar
+Noise usually gives a full\sphinxhyphen{}rank linear estimate. A true fundamental matrix must have rank two.
+
+\begin{TextbookBox}
+\textbf{Formula — nearest rank\sphinxhyphen{}two correction}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/estimation:eq-lec04-ranktwo}
+\begin{split}\widehat F=U\operatorname{diag}(\sigma_1,\sigma_2,\sigma_3)V^T,
+\qquad
+F_2=U\operatorname{diag}(\sigma_1,\sigma_2,0)V^T.\end{split}
+\end{equation}
+\sphinxAtStartPar
+The \(3\times3\) SVD has \(\sigma_1\ge\sigma_2\ge\sigma_3\ge0\). This minimizes the Frobenius distance (the square root of the sum of squared entry differences) among matrices of rank at most two. Require \(\sigma_2>0\) for rank \sphinxstylestrong{exactly} two. It does not minimize image reprojection error.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Correct the normalized estimate}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} the matrix reshaped from the normalized linear system’s smallest right singular vector.
+
+\item {}
+\sphinxAtStartPar
+Compute its SVD and set only the smallest singular value to zero.
+
+\item {}
+\sphinxAtStartPar
+Undo point normalization using the existing rule \(F=T'^TF_2T\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} rank two, valid epipoles, and pixel\sphinxhyphen{}space errors on matches you did not fit.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Normalization improves numerical conditioning; it cannot repair outliers or degenerate geometry. The source’s image\sphinxhyphen{}size mapping to \([-1,1]^2\) is a scaling heuristic. The worked example uses independent centroid/mean\sphinxhyphen{}distance normalization from Lecture 2.
+
+\end{TextbookBox}
+
+\Needspace{15\baselineskip}
+
+
+\subsection{Measure how far a point misses its predicted line}
+\label{\detokenize{lectures/lecture04/estimation:measure-how-far-a-point-misses-its-predicted-line}}
+\sphinxAtStartPar
+An algebraic residual \(x'^TFx\) changes if you rescale \(F\). Pixel distance to the line does not.
+
+\begin{TextbookBox}
+\textbf{Formula — point\sphinxhyphen{}to\sphinxhyphen{}line and symmetric epipolar error}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/estimation:eq-lec04-epipolar-error}
+\begin{split}\begin{aligned}
+\operatorname{dist}(x',\ell')&=\frac{|au'+bv'+c|}{\sqrt{a^2+b^2}},\quad
+x'=(u',v',1)^T,\ \ell'=(a,b,c)^T,\\
+r&=x'^TFx,\quad \ell'=Fx,\quad \ell=F^Tx',\\
+e_{\rm sym}^2&=r^2\left[\frac1{\ell_1'^2+\ell_2'^2}
++\frac1{\ell_1^2+\ell_2^2}\right].
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Use undistorted pixel coordinates and finite lines with nonzero first\sphinxhyphen{}two\sphinxhyphen{}component norm. The symmetric error sums squared distances in both images; it is not the same as minimizing jointly corrected image positions. Near an epipole, a vanishing line makes this calculation undefined.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Score a hypothesis in image units}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Predict a line in each image and compute its perpendicular point distance.
+
+\item {}
+\sphinxAtStartPar
+Combine the two squared distances if using the symmetric criterion.
+
+\item {}
+\sphinxAtStartPar
+Set a threshold in units matching that criterion: pixels for distance, pixels squared for squared error.
+
+\item {}
+\sphinxAtStartPar
+Inspect held\sphinxhyphen{}out errors and spatial coverage, not just the number of fitted points.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For line \((0,-2,6)^T\) and point \((5,4,1)^T\), the distance is \(|-8+6|/2=1\) pixel. Scaling the line by ten leaves the answer unchanged.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/estimation:ex-lec04-eightpoint}}
+\begin{TextbookBox}
+\textbf{Worked example 4.4 — a complete noisy eight\sphinxhyphen{}point\sphinxhyphen{}route fit}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original numerical companion to:} PDF pages 25–33. Twelve matches make this an overdetermined fit using the eight\sphinxhyphen{}point algorithm, not a different “twelve\sphinxhyphen{}point” camera model. Coordinates are pixels, rounded to two decimals \sphinxstylestrong{before fitting}.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(u\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(v\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(u'\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(v'\)
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+160.14
+&
+\sphinxAtStartPar
+174.24
+&
+\sphinxAtStartPar
+192.03
+&
+\sphinxAtStartPar
+195.37
+\\
+\sphinxhline
+\sphinxAtStartPar
+506.19
+&
+\sphinxAtStartPar
+306.72
+&
+\sphinxAtStartPar
+505.53
+&
+\sphinxAtStartPar
+337.77
+\\
+\sphinxhline
+\sphinxAtStartPar
+115.57
+&
+\sphinxAtStartPar
+325.55
+&
+\sphinxAtStartPar
+134.85
+&
+\sphinxAtStartPar
+346.85
+\\
+\sphinxhline
+\sphinxAtStartPar
+344.14
+&
+\sphinxAtStartPar
+93.47
+&
+\sphinxAtStartPar
+305.48
+&
+\sphinxAtStartPar
+122.09
+\\
+\sphinxhline
+\sphinxAtStartPar
+186.44
+&
+\sphinxAtStartPar
+258.74
+&
+\sphinxAtStartPar
+208.55
+&
+\sphinxAtStartPar
+281.31
+\\
+\sphinxhline
+\sphinxAtStartPar
+211.28
+&
+\sphinxAtStartPar
+59.43
+&
+\sphinxAtStartPar
+209.20
+&
+\sphinxAtStartPar
+86.37
+\\
+\sphinxhline
+\sphinxAtStartPar
+555.25
+&
+\sphinxAtStartPar
+368.93
+&
+\sphinxAtStartPar
+556.98
+&
+\sphinxAtStartPar
+406.35
+\\
+\sphinxhline
+\sphinxAtStartPar
+168.42
+&
+\sphinxAtStartPar
+96.09
+&
+\sphinxAtStartPar
+116.58
+&
+\sphinxAtStartPar
+131.45
+\\
+\sphinxhline
+\sphinxAtStartPar
+445.56
+&
+\sphinxAtStartPar
+357.02
+&
+\sphinxAtStartPar
+477.41
+&
+\sphinxAtStartPar
+384.87
+\\
+\sphinxhline
+\sphinxAtStartPar
+17.61
+&
+\sphinxAtStartPar
+68.56
+&
+\sphinxAtStartPar
+10.62
+&
+\sphinxAtStartPar
+103.15
+\\
+\sphinxhline
+\sphinxAtStartPar
+108.56
+&
+\sphinxAtStartPar
+279.43
+&
+\sphinxAtStartPar
+127.33
+&
+\sphinxAtStartPar
+300.86
+\\
+\sphinxhline
+\sphinxAtStartPar
+499.77
+&
+\sphinxAtStartPar
+272.68
+&
+\sphinxAtStartPar
+543.72
+&
+\sphinxAtStartPar
+295.87
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+\sphinxstylestrong{1. Normalize both sets.} Centroid/mean\sphinxhyphen{}distance normalization gives
+\begin{equation*}
+\begin{split}
+T\approx\begin{pmatrix}.0071174&0&-1.968505\\0&.0071174&-1.578194\\0&0&1\end{pmatrix},\quad
+T'\approx\begin{pmatrix}.0070558&0&-1.992253\\0&.0070558&-1.759429\\0&0&1\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{2. Stack one row per match.} The first normalized row of \eqref{equation:lectures/lecture02/two-view:eq-lec02-eightpoint} is approximately
+\begin{equation*}
+\begin{split}
+(0.528172,0.215457,-0.637327,0.315694,0.128781,-0.380937,
+-0.828729,-0.338063,1).
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The matrix is \(12\times9\). Use its smallest right singular vector, reshaped row by row into \(\widehat{\widetilde F}\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{3. Enforce rank two.} This normalized matrix has singular values approximately
+\((0.718385,0.695646,0.000568)\). Set the last to zero using \eqref{equation:lectures/lecture04/estimation:eq-lec04-ranktwo}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{4. Undo normalization.} With full\sphinxhyphen{}precision intermediate values, \(F=T'^TF_2T\). Rescaling only for display so \(F_{33}=1\) gives
+\begin{equation*}
+\begin{split}
+F\approx\begin{pmatrix}
+6.85735\!\times\!10^{-7}&2.31624\!\times\!10^{-6}&-0.00429928\\
+2.63343\!\times\!10^{-6}&8.60518\!\times\!10^{-7}&-0.02609573\\
+0.00274885&0.02456939&1
+\end{pmatrix}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\sphinxstylestrong{5. Check what the fit predicts.} The training root\sphinxhyphen{}mean\sphinxhyphen{}square symmetric epipolar error is about \sphinxstylestrong{0.49 pixels}. Four unmeasured projections from the generating cameras give about \sphinxstylestrong{0.33 pixels}. Those points were not used for fitting. Rounded matrix entries can alter residuals; the check uses full precision.
+
+\sphinxAtStartPar
+For reproducibility, the original synthetic scene uses 16 noncoplanar points, a 9° camera rotation, translation \((-0.8,0.12,0.05)^T\), and independent approximately 0.25\sphinxhyphen{}pixel coordinate noise on the twelve training matches. This is a controlled example, not a guarantee that real correspondences will fit this well.
+
+\end{TextbookBox}
+
+
+\subsection{Robust fitting: change the model and sample size}
+\label{\detokenize{lectures/lecture04/estimation:robust-fitting-change-the-model-and-sample-size}}
+\sphinxAtStartPar
+Use the existing {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{RANSAC explanation}}}} and {\hyperref[\detokenize{lectures/lecture03/probability-ransac::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{sampling qualifications}}}}. The new detail is that a fundamental\sphinxhyphen{}matrix \sphinxstylestrong{seven\sphinxhyphen{}point solver} can generate multiple candidate matrices from one sample. Its two\sphinxhyphen{}dimensional linear nullspace becomes \(F(\lambda)=F_0+\lambda F_1\); imposing \(\det F(\lambda)=0\) gives a cubic, generically with one or three real candidate roots. Score each candidate.
+
+\sphinxAtStartPar
+An eight\sphinxhyphen{}point solver needs eight matches instead. At 80\% inliers and 99\% clean\sphinxhyphen{}sample confidence, the independent\sphinxhyphen{}status budgets are \sphinxstylestrong{20} trials for seven\sphinxhyphen{}point samples and \sphinxstylestrong{26} for eight\sphinxhyphen{}point samples. The slide’s table on PDF page 35 corresponds to about \sphinxstylestrong{95\%}, not 99\%; choose the confidence explicitly.
+
+\sphinxAtStartPar
+After scoring, refit on the inliers, search near predicted epipolar lines for additional matches, and refine geometric error. Under Gaussian image\sphinxhyphen{}coordinate noise, the slide’s maximum\sphinxhyphen{}likelihood recommendation minimizes squared displacements to jointly corrected corresponding image points; this is stronger than finding the nearest matrix in entry space. PDF page 36’s ±1.5\sphinxhyphen{}pixel band is an example tolerance, not a universal constant. Planar scenes and pure rotation remain {\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{degenerate cases}}}}; a plausible low residual alone does not prove a recoverable camera baseline.
+
+\sphinxstepscope
+
+
+\section{Recover camera pose with calibration}
+\label{\detokenize{lectures/lecture04/essential:recover-camera-pose-with-calibration}}\label{\detokenize{lectures/lecture04/essential:lec04-essential}}\label{\detokenize{lectures/lecture04/essential::doc}}
+\sphinxAtStartPar
+A fundamental matrix works with pixels. Calibration removes each camera’s internal coordinate scaling, leaving a relation between \sphinxstylestrong{viewing directions}. That relation can reveal rotation and translation direction.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} lecture PDF pages 22–23. The explicit SVD construction below is a computational companion to the slides’ essential\sphinxhyphen{}matrix and four\sphinxhyphen{}solution statements. OpenCV’s \sphinxhref{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}{official decomposition and pose\sphinxhyphen{}recovery documentation}%
+\begin{footnote}[1]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}
+%
+\end{footnote} provides an implementation cross\sphinxhyphen{}check: four pose candidates, a translation direction, and a positive\sphinxhyphen{}depth test.
+
+\index{Essential matrix@\spxentry{Essential matrix}!Cheirality; Translation scale@\spxentry{Cheirality; Translation scale}}\ignorespaces
+
+\subsection{Remove intrinsics before asking about motion}
+\label{\detokenize{lectures/lecture04/essential:remove-intrinsics-before-asking-about-motion}}\label{\detokenize{lectures/lecture04/essential:index-0}}
+\sphinxAtStartPar
+Use the first camera as the reference: \(P=[I\mid0]\), \(P'=[R\mid t]\) in calibrated coordinates. Here \(X'=RX+t\); \sphinxstylestrong{\(t\) is a coordinate\sphinxhyphen{}transform translation}, and the second camera center in the first frame is \(-R^Tt\).
+
+\begin{TextbookBox}
+\textbf{Formula — essential matrix and calibrated constraint}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/essential:eq-lec04-essential}
+\begin{split}\begin{aligned}
+\widehat x&=K^{-1}x,\quad \widehat x'=K'^{-1}x',\\
+E&=K'^TFK=[t]_\times R,\qquad \widehat x'^TE\widehat x=0,\\
+[t]_\times&=\begin{pmatrix}0&-t_z&t_y\\t_z&0&-t_x\\-t_y&t_x&0\end{pmatrix}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(K,K',F,E,R\) are \(3\times3\); \(t,\widehat x,\widehat x'\) are three\sphinxhyphen{}entry vectors. Use calibrated, undistorted coordinates and a nonzero baseline. \(E\) has five DOF: three for rotation and two for translation \sphinxstylestrong{direction}. A nonzero essential matrix has singular values \((a,a,0)\) with \(a>0\).
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+Why does the constraint work? A 3D correspondence satisfies \(\lambda'\widehat x'=R\lambda\widehat x+t\). The vector \([t]_\times R\widehat x\) is perpendicular to both \(t\) and \(R\widehat x\), hence also to their combination \(\widehat x'\). Dotting them gives zero. Conversely, substituting calibrated coordinates into \(x'^TFx=0\) gives \(E=K'^TFK\).
+
+\begin{TextbookBox}
+\textbf{Separate calibration from coordinate normalization}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} valid \(F\) and both intrinsic matrices. Form \(E=K'^TFK\).
+
+\item {}
+\sphinxAtStartPar
+Check two equal nonzero singular values and a third zero, allowing measurement noise.
+
+\item {}
+\sphinxAtStartPar
+With noisy \(E=U\operatorname{diag}(s_1,s_2,s_3)V^T\), replace its singular values by \((a,a,0)\), where \(a=(s_1+s_2)/2\); require \(a>0\). This is the nearest essential\sphinxhyphen{}form correction in Frobenius norm.
+
+\item {}
+\sphinxAtStartPar
+Continue to pose decomposition and test positive depth.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\(K^{-1}\) removes camera intrinsics. The earlier \(T\) normalization only improves numerical conditioning. They serve different purposes. Unlike a general rank\sphinxhyphen{}two \(F\), an \(E\) also requires its first two singular values to agree.
+
+\end{TextbookBox}
+
+
+\subsection{Four algebraic poses, usually one visible scene}
+\label{\detokenize{lectures/lecture04/essential:four-algebraic-poses-usually-one-visible-scene}}
+\begin{TextbookBox}
+\textbf{Formula — essential\sphinxhyphen{}matrix pose candidates}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/essential:eq-lec04-poses}
+\begin{split}\begin{aligned}
+E&\sim U\operatorname{diag}(1,1,0)V^T,\qquad
+W=\begin{pmatrix}0&-1&0\\1&0&0\\0&0&1\end{pmatrix},\\
+R_1&=UWV^T,\quad R_2=UW^TV^T,\qquad
+(R,t)\in\{(R_1,\pm u_3),(R_2,\pm u_3)\}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(u_3\) is the third column of \(U\). Choose SVD signs so \(\det U=\det V=+1\); flipping either third column leaves the zero\sphinxhyphen{}singular\sphinxhyphen{}value product unchanged. Then both \(R_i\) are proper rotations. The unit translation fixes an arbitrary scale, not a known physical baseline.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Choose a pose by cheirality}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Generate the four \((R,t)\) pairs and check \(R^TR=I\), \(\det R=1\).
+
+\item {}
+\sphinxAtStartPar
+For each pair, solve \(\lambda'\widehat x'=R\lambda\widehat x+t\) for several reliable correspondences.
+
+\item {}
+\sphinxAtStartPar
+Keep the pose with positive depth in \sphinxstylestrong{both} cameras. This is \sphinxstylestrong{cheirality}: reconstructed points must lie in front of their observing cameras.
+
+\item {}
+\sphinxAtStartPar
+Check reprojection errors. With noise, use many matches and inspect an ambiguous result rather than trusting one marginal point.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Pure rotation, negligible parallax, or degenerate data can defeat this selection. General linear triangulation is developed in Lecture 6; the next example solves the two ray depths directly.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/essential:ex-lec04-pose}}
+\begin{TextbookBox}
+\textbf{Worked example 4.5 — test all four poses}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original numerical companion to:} PDF pages 22–23.
+
+\sphinxAtStartPar
+Take
+\(E=\begin{pmatrix}0&0&0\\0&0&1\\0&-1&0\end{pmatrix}\),
+\(\widehat x=(0.2,0.1,1)^T\), and \(\widehat x'=(0,0.1,1)^T\).
+The singular values are \((1,1,0)\). Its candidates can be written as \(R=I\) or \(R_x(180^\circ)=\operatorname{diag}(1,-1,-1)\), each with \(t=\pm(1,0,0)^T\).
+
+\sphinxAtStartPar
+Solve \(\lambda'\widehat x'=R\lambda\widehat x+t\). Its first coordinate fixes \(0=0.2\lambda+t_x\); the other coordinates determine \(\lambda'\).
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(R\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(t_x\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+First depth \(\lambda\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Second depth \(\lambda'\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Visible in both?
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\(I\)
+&
+\sphinxAtStartPar
+\(-1\)
+&
+\sphinxAtStartPar
+\(5\)
+&
+\sphinxAtStartPar
+\(5\)
+&
+\sphinxAtStartPar
+Yes
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(I\)
+&
+\sphinxAtStartPar
+\(+1\)
+&
+\sphinxAtStartPar
+\(-5\)
+&
+\sphinxAtStartPar
+\(-5\)
+&
+\sphinxAtStartPar
+No
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(R_x(180^\circ)\)
+&
+\sphinxAtStartPar
+\(-1\)
+&
+\sphinxAtStartPar
+\(5\)
+&
+\sphinxAtStartPar
+\(-5\)
+&
+\sphinxAtStartPar
+No
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(R_x(180^\circ)\)
+&
+\sphinxAtStartPar
+\(+1\)
+&
+\sphinxAtStartPar
+\(-5\)
+&
+\sphinxAtStartPar
+\(5\)
+&
+\sphinxAtStartPar
+No
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The visible solution is \(R=I\), \(t=(-1,0,0)^T\). Its second camera center is \((1,0,0)^T\). The reconstructed point is \(5\widehat x=(1,0.5,5)^T\); in camera two it is \((0,0.5,5)^T\), which reprojects correctly.
+
+\sphinxAtStartPar
+All lengths here use the chosen unit baseline. Doubling the baseline and all point coordinates leaves the two images unchanged. Metric scale needs extra information, such as a measured baseline.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Two different singular\sphinxhyphen{}value rules}\par\smallskip
+
+\sphinxAtStartPar
+A fitted matrix has singular values \((3,2,0.1)\). A rank\sphinxhyphen{}two \(F\) correction keeps \((3,2,0)\). An essential\sphinxhyphen{}form correction uses \((2.5,2.5,0)\). The equal\sphinxhyphen{}pair condition is additional information supplied by calibration.
+
+\end{TextbookBox}
+
+\sphinxstepscope
+
+
+\section{Stereo depth and its errors}
+\label{\detokenize{lectures/lecture04/stereo:stereo-depth-and-its-errors}}\label{\detokenize{lectures/lecture04/stereo:lec04-stereo}}\label{\detokenize{lectures/lecture04/stereo::doc}}
+\sphinxAtStartPar
+Hold a finger in front of your face and close one eye at a time. Its apparent horizontal shift is larger when it is close. \sphinxstylestrong{Disparity} measures that shift in a rectified camera pair.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Sources:} lecture PDF pages 58–64; Fall 2025 Quiz 3, \sphinxcode{\sphinxupquote{cs532f25\_quiz\_3\_solution.pdf}}, Q1–Q2, page 1; Spring 2019 Quiz 5, \sphinxcode{\sphinxupquote{cs532s19\_quiz5\sphinxhyphen{}2.pdf}}, P1’s three bullets, page 1; Spring 2020 Quiz 5, \sphinxcode{\sphinxupquote{cs532s20\_quiz5.pdf}}, same questions under an overprinted 2019/2020 header.
+
+\index{Disparity@\spxentry{Disparity}!Stereo depth; Depth uncertainty@\spxentry{Stereo depth; Depth uncertainty}}\ignorespaces
+
+\subsection{Turn horizontal shift into axial depth}
+\label{\detokenize{lectures/lecture04/stereo:turn-horizontal-shift-into-axial-depth}}\label{\detokenize{lectures/lecture04/stereo:index-0}}
+\sphinxAtStartPar
+Assume aligned rectified cameras with a horizontal baseline \(b>0\), shared horizontal focal length \(f\) in pixels, and matched principal\sphinxhyphen{}point columns. Put the left center at \((0,0,0)\) and the right center at \((b,0,0)\).
+
+\sphinxAtStartPar
+For a scene point \((X,Y,Z)\), the two horizontal projections obey
+\(u_L-c_x=fX/Z\) and \(u_R-c_x=f(X-b)/Z\). Subtract them: \(u_L-u_R=fb/Z\).
+
+\begin{TextbookBox}
+\textbf{Formula — rectified stereo depth}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/stereo:eq-lec04-depth}
+\begin{split}d=u_L-u_R,\qquad Z=\frac{fb}{d}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(f\) and \(d\) use pixels; \(Z\) uses the same length unit as \(b\). \(Z\) is axial depth. Require \(d>0\) under this camera order and forward\sphinxhyphen{}view convention. If principal\sphinxhyphen{}point columns differ, use corrected disparity \(d=(u_L-c_{xL})-(u_R-c_{xR})\) instead. A zero disparity is the ideal infinite\sphinxhyphen{}depth limit, not a finite reconstruction.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Reconstruct with a known baseline}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} rectified correspondence, calibrated pixel focal length, and baseline length.
+
+\item {}
+\sphinxAtStartPar
+Check equal image rows and subtract horizontal coordinates in the stated order.
+
+\item {}
+\sphinxAtStartPar
+Compute \(Z=fb/d\). Then use {\hyperref[\detokenize{lectures/lecture01/cameras::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{calibrated backprojection}}}} if you also need \(X,Y\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} doubling disparity halves depth; doubling baseline at fixed disparity doubles depth. Keep centimeters and meters consistent.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The source’s BAD/GOOD rectification examples (PDF pages 59–60) illustrate that stereo needs compatible row alignment, not independently straightened pictures.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{stereo-rays}.pdf}
+\caption{A side view along the horizontal baseline: the difference between two projections fixes the ray intersection’s depth. Virtual image planes are drawn in front of the cameras.}\label{\detokenize{lectures/lecture04/stereo:fig-lec04-stereo-rays}}\end{figure}
+
+
+\subsection{A pixel error produces an asymmetric depth error}
+\label{\detokenize{lectures/lecture04/stereo:a-pixel-error-produces-an-asymmetric-depth-error}}
+\sphinxAtStartPar
+Let the true disparity be \(d\) and the measured disparity \(d+\delta\). Define \sphinxstylestrong{signed error} as estimated depth minus true depth. Subtract the two depth fractions before approximating.
+
+\begin{TextbookBox}
+\textbf{Formula — exact and first\sphinxhyphen{}order depth error}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/stereo:eq-lec04-depth-error}
+\begin{split}\begin{aligned}
+\Delta Z&=\frac{fb}{d+\delta}-\frac{fb}{d}
+=-\frac{fb\,\delta}{d(d+\delta)},\\
+\Delta Z&\approx-\frac{fb}{d^2}\delta\quad (|\delta|\ll d),\qquad
+\frac{|\Delta Z|}{Z}\approx\frac{|\delta|}{d}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Require \(d>0\) and \(d+\delta>0\) for two finite forward\sphinxhyphen{}depth estimates. The approximation is the derivative of \(fb/d\) times \(\delta\). Its magnitude is often quoted without the minus sign; retain the sign when explaining whether the point moves nearer or farther.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Report uncertainty honestly}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} \(f,b,d\) and a signed disparity error \(\delta\).
+
+\item {}
+\sphinxAtStartPar
+Compute the true and estimated depths; subtract for an exact error.
+
+\item {}
+\sphinxAtStartPar
+Use the derivative only when \(|\delta|/d\) is small; label it an approximation.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} overestimating positive disparity makes depth too small. Underestimating it makes depth too large, by a larger magnitude for equal\sphinxhyphen{}size errors.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For bounded error \(|\delta|\le\epsilon<d\), the possible depths lie between \(fb/(d+\epsilon)\) and \(fb/(d-\epsilon)\). If the interval reaches zero disparity, there is no finite upper depth bound under this model.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-fall}}
+\begin{TextbookBox}
+\textbf{Worked example 4.6 — the one\sphinxhyphen{}pixel Fall 2025 question}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Fall 2025 Quiz 3, Q1.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Given:} \(b=10\,\mathrm{cm}\), \(f=50\) pixels, true \(d=25\) pixels. Then \(fb=500\,\mathrm{cm\,pixels}\) and \(Z=500/25=20\,\mathrm{cm}\).
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Measured disparity
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Estimated depth
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Signed exact error
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\(24\) pixels (\(\delta=-1\))
+&
+\sphinxAtStartPar
+\(500/24=20.8333\,\mathrm{cm}\)
+&
+\sphinxAtStartPar
+\(+0.8333\,\mathrm{cm}\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(26\) pixels (\(\delta=+1\))
+&
+\sphinxAtStartPar
+\(500/26=19.2308\,\mathrm{cm}\)
+&
+\sphinxAtStartPar
+\(-0.7692\,\mathrm{cm}\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The first\sphinxhyphen{}order magnitude is \(500/25^2=0.8\,\mathrm{cm}\). The supplied solution reports this approximation. It is sensible here because \(1/25=4\%\), but it is not either exact signed error. “By one pixel” needs a direction or an explicit magnitude convention.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-spring}}
+\begin{TextbookBox}
+\textbf{Worked example 4.7 — why ±1 pixel is not symmetric}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Spring 2019 Quiz 5, P1, all three bullets. Spring 2020 Quiz 5 is the closed\sphinxhyphen{}notes retest.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Given:} \(b=10\,\mathrm{cm}\), \(f=5\) pixels, \(d=3\) pixels. True depth is \(50/3=16.6667\,\mathrm{cm}\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Underestimate by one:} measured \(d=2\), depth \(25\,\mathrm{cm}\), error \(25-50/3=25/3\approx+8.3333\,\mathrm{cm}\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Overestimate by one:} measured \(d=4\), depth \(12.5\,\mathrm{cm}\), error \(12.5-50/3=-25/6\approx-4.1667\,\mathrm{cm}\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Larger true disparities:} errors do not stay constant. Their magnitudes are \(fb/[d(d-1)]\) and \(fb/[d(d+1)]\) for one\sphinxhyphen{}pixel under/overestimation, respectively. Both decrease as \(d\) increases above one.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+At \(d=3\), a one\sphinxhyphen{}pixel error is one third of the true disparity. The linearized magnitude \(50/9\approx5.5556\,\mathrm{cm}\) misses the strong asymmetry, so use the exact fractions.
+
+\end{TextbookBox}
+
+
+\subsection{Explore the real 3D geometry}
+\label{\detokenize{lectures/lecture04/stereo:explore-the-real-3d-geometry}}
+\sphinxAtStartPar
+Move the true point in depth, change the camera baseline or focal length, and perturb the measured disparity. The orange point is the truth; the purple point is the estimate from the perturbed right\sphinxhyphen{}image match. Orbiting the scene changes only your inspection view.
+
+\subsubsection*{Explore stereo depth in 3D — print edition}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Print/no\sphinxhyphen{}JavaScript experiment:} use the two\sphinxhyphen{}camera ray diagram above with \(b=10\,\mathrm{cm}\), \(f=50\) pixels and true \(Z=20\,\mathrm{cm}\). The point is centered between the cameras at \(X=5\,\mathrm{cm}\). For a principal column \(c_x=125\), its projections are \(u_L=137.5\) and \(u_R=112.5\), giving \(d=25\) pixels.
+
+\sphinxAtStartPar
+Keep \(u_L\) fixed. A disparity error \(\delta\) means an observed right column \(\widehat u_R=u_R-\delta\). Intersect the left ray with the ray through that perturbed right observation:
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(\delta\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+\(\widehat u_R\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Estimated depth
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+What happens
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\(-1\) pixel
+&
+\sphinxAtStartPar
+\(113.5\)
+&
+\sphinxAtStartPar
+\(20.8333\,\mathrm{cm}\)
+&
+\sphinxAtStartPar
+Rays meet farther away
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(0\)
+&
+\sphinxAtStartPar
+\(112.5\)
+&
+\sphinxAtStartPar
+\(20\,\mathrm{cm}\)
+&
+\sphinxAtStartPar
+Estimate meets the truth
+\\
+\sphinxhline
+\sphinxAtStartPar
+\(+1\) pixel
+&
+\sphinxAtStartPar
+\(111.5\)
+&
+\sphinxAtStartPar
+\(19.2308\,\mathrm{cm}\)
+&
+\sphinxAtStartPar
+Rays meet nearer
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+At true depth \(100\,\mathrm{cm}\), disparity is only \(5\) pixels. The same ±1\sphinxhyphen{}pixel error gives depths \(125\) and \(83.3333\,\mathrm{cm}\). Small disparity makes depth fragile. Zero or negative measured disparity does not give a finite forward point in this convention.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{depth-sensitivity}.pdf}
+\caption{Equal\sphinxhyphen{}width disparity errors produce unequal depth errors, especially near zero disparity. This static curve carries the interactive’s main result into print.}\label{\detokenize{lectures/lecture04/stereo:fig-lec04-depth-sensitivity}}\end{figure}
+
+\par\medskip
+
+
+\subsection{Convert a permitted depth range into search limits}
+\label{\detokenize{lectures/lecture04/stereo:convert-a-permitted-depth-range-into-search-limits}}
+\begin{TextbookBox}
+\textbf{Formula — disparity search from a depth interval}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/stereo:eq-lec04-disparity-range}
+\begin{split}0<Z_{\min}\le Z\le Z_{\max}
+\quad\Rightarrow\quad
+\frac{fb}{Z_{\max}}\le d\le\frac{fb}{Z_{\min}}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+The inequalities reverse because depth and positive disparity are inversely related. Use consistent length units and the corrected disparity convention when principal points differ.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Limit the stereo search}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Convert \(b,Z_{\min},Z_{\max}\) to the same length unit.
+
+\item {}
+\sphinxAtStartPar
+Compute the continuous disparity endpoints.
+
+\item {}
+\sphinxAtStartPar
+For integer hypotheses inside that interval, use the ceiling of the lower endpoint and floor of the upper endpoint. If subpixel or calibration uncertainty matters, include an appropriate margin before discretizing.
+
+\item {}
+\sphinxAtStartPar
+Check that the larger disparity belongs to the nearer depth.
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/stereo:ex-lec04-search}}
+\begin{TextbookBox}
+\textbf{Worked example 4.8 — restrict the Fall 2025 search}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Adapted from:} Fall 2025 Quiz 3, Q2.
+
+\sphinxAtStartPar
+Use \(b=0.1\,\mathrm m\), \(f=50\) pixels, and depth range \([1,5]\,\mathrm m\). Then \(fb=5\,\mathrm{m\,pixels}\), so \(d_{\min}=5/5=1\) pixel and \(d_{\max}=5/1=5\) pixels. Search integer disparities \(1,2,3,4,5\), or subpixel values in that interval.
+
+\sphinxAtStartPar
+For a left column \(u_L\), candidates are at \(u_R=u_L-d\) on the matching row. Also clip the search to valid image coordinates; a geometrically permitted match can still fall outside the image.
+
+\end{TextbookBox}
+
+\sphinxstepscope
+
+
+\section{Find matches across an image}
+\label{\detokenize{lectures/lecture04/matching:find-matches-across-an-image}}\label{\detokenize{lectures/lecture04/matching:lec04-matching}}\label{\detokenize{lectures/lecture04/matching::doc}}
+\sphinxAtStartPar
+Geometry narrows the search to a row. \sphinxstylestrong{Appearance chooses a position along it.} That is still difficult: repeated textures can look identical, flat regions have little evidence, and some pixels are visible in only one camera.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} lecture PDF pages 42–77, printed slides 46–81 except unnumbered PDF page 54. Stereo contributors named on PDF page 42: Rick Szeliski, Pascal Fua, P. Mordohai, and E. Dunn.
+
+
+\subsection{Generate, evaluate, select}
+\label{\detokenize{lectures/lecture04/matching:generate-evaluate-select}}
+\sphinxAtStartPar
+The slide sequence on pages 45–53 follows one practical pipeline:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Generate hypotheses:} sample possible disparities or depths. Each projects the reference pixel to a candidate in another view.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Evaluate:} compare image appearance at the candidate, then combine neighboring evidence.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Select:} choose a supported hypothesis, or reject the pixel when evidence is unreliable.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+A \sphinxstylestrong{cost volume} stores one score for each image position and hypothesis: dimensions width × height × number of disparities. A depth map selects one hypothesis per reference pixel; it is view\sphinxhyphen{}dependent and need not contain occluded surfaces. The {\hyperref[\detokenize{lectures/lecture01/motivation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{earlier reconstruction pipeline}}}} explains how depth can feed other 3D representations.
+
+\index{Cost volume@\spxentry{Cost volume}!Photo\sphinxhyphen{}consistency; Occlusion@\spxentry{Photo\sphinxhyphen{}consistency; Occlusion}}\ignorespaces
+\begin{TextbookBox}
+\textbf{Formula — aggregate costs and select disparity}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/matching:eq-lec04-cost-volume}
+\begin{split}\overline C(p,d)=\frac1{|\Omega_p|}\sum_{q\in\Omega_p}C(q,d),
+\qquad \widehat d(p)\in\operatorname*{arg\,min}_{d\in D_p}\overline C(p,d).\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(p,q\) are pixel positions, \(D_p\) the allowed disparity set, and \(\Omega_p\) a support window. \(C(q,d)\) is a dissimilarity between left location \(q\) and right location \(q-(d,0)\). Require valid samples and nonempty support. An argmin can contain several disparities: a tie is evidence of ambiguity, not a unique measurement.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Build a simple dense stereo estimate}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Input:} rectified images and the permitted disparity range.
+
+\item {}
+\sphinxAtStartPar
+Evaluate a cost at every valid candidate. Stack these candidate costs into the volume.
+
+\item {}
+\sphinxAtStartPar
+Aggregate support and pick the smallest cost; retain a confidence measure such as separation from competing minima.
+
+\item {}
+\sphinxAtStartPar
+Reject inconsistent left–right matches and occlusions. Convert reliable disparities to depth.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+This is \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all} selection. The slides also name feature/edge matching followed by interpolation and joint optimization using iterative updates, dynamic programming, energy minimization, or graph methods. Those alternatives add spatial reasoning; they do not make missing image evidence appear.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{stereo-pair}.pdf}
+\caption{The actual reference/matching photographs from PDF page 46, printed slide 50. Look at the toy and leaf boundaries: viewpoints change which surfaces are visible. Extracted photographs with original project labels; individual photography credits and reuse terms are not identified on the slide.}\label{\detokenize{lectures/lecture04/matching:fig-lec04-pair}}\end{figure}
+
+
+\subsection{Compare patches, not isolated colors}
+\label{\detokenize{lectures/lecture04/matching:compare-patches-not-isolated-colors}}
+\sphinxAtStartPar
+\sphinxstylestrong{Photo\sphinxhyphen{}consistency} means that projections of the same scene point have compatible image appearance under the chosen model. For a patch, write its paired samples as \(L_i,R_i(d)\), \(i=1,\ldots,m\).
+
+\begin{TextbookBox}
+\textbf{Formula — SAD, SSD, and zero\sphinxhyphen{}mean NCC}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/matching:eq-lec04-patch-costs}
+\begin{split}\begin{aligned}
+\operatorname{SAD}(d)&=\sum_i|L_i-R_i(d)|,\qquad
+\operatorname{SSD}(d)=\sum_i(L_i-R_i(d))^2,\\
+\operatorname{NCC}(d)&=
+\frac{\sum_i(L_i-\overline L)(R_i(d)-\overline R(d))}
+{\sqrt{\sum_i(L_i-\overline L)^2\sum_i(R_i(d)-\overline R(d))^2}}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\overline L,\overline R\) are patch means. Minimize SAD/SSD; \sphinxstylestrong{maximize} NCC, or minimize a cost such as \(1-\operatorname{NCC}\). NCC lies in \([-1,1]\) for nonconstant patches and is undefined if either centered patch has zero norm. SAD uses intensity units, SSD squared intensity units, NCC is dimensionless.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Choose and check a patch score}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Use the same valid support and disparity convention for each candidate.
+
+\item {}
+\sphinxAtStartPar
+For SAD/SSD, compare aligned intensities directly. SSD penalizes large differences more strongly.
+
+\item {}
+\sphinxAtStartPar
+For NCC, subtract each patch’s own mean and divide by its centered norm. Reject near\sphinxhyphen{}zero\sphinxhyphen{}variance supports.
+
+\item {}
+\sphinxAtStartPar
+Inspect the full score curve: multiple similar peaks or minima indicate uncertainty.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Positive affine brightness changes preserve ideal NCC, but clipping, reflections, shadows, and nonuniform exposure can break that assumption. The source’s formula image leaves normalization factors dependent on its standard\sphinxhyphen{}deviation convention; the explicit sum\sphinxhyphen{}of\sphinxhyphen{}squares denominator above avoids that ambiguity.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/matching:ex-lec04-patches}}
+\begin{TextbookBox}
+\textbf{Worked example 4.9 — when raw intensity picks the wrong patch}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original companion to:} PDF pages 65–70.
+
+\sphinxAtStartPar
+Reference \(L=(10,20,30)\) has two candidate patches: true but brighter \(R_A=(30,40,50)\), and wrong \(R_B=(10,20,10)\).
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Candidate
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+SAD
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+SSD
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+NCC
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+A: brighter match
+&
+\sphinxAtStartPar
+\(20+20+20=60\)
+&
+\sphinxAtStartPar
+\(3\times400=1200\)
+&
+\sphinxAtStartPar
+\(1\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+B: wrong texture
+&
+\sphinxAtStartPar
+\(0+0+20=20\)
+&
+\sphinxAtStartPar
+\(400\)
+&
+\sphinxAtStartPar
+\(0\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Raw difference scores favor B. For NCC, A’s centered values equal the reference’s \((-10,0,10)\), giving correlation one. B’s centered values are \((-10/3,20/3,-10/3)\), perpendicular to the reference vector, giving zero. NCC favors A under the uniform brightness\sphinxhyphen{}offset model.
+
+\sphinxAtStartPar
+A flat patch such as \((20,20,20)\) instead has zero centered norm. It cannot supply a defined NCC score or a distinctive texture match.
+
+\end{TextbookBox}
+
+
+\subsection{Window size trades detail for support}
+\label{\detokenize{lectures/lecture04/matching:window-size-trades-detail-for-support}}
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{window-size}.png}
+\caption{The source’s \(w=3\) versus \(w=20\) results, left to right (PDF page 66, printed slide 70). Larger support suppresses isolated mistakes but can erase detail. Extracted source illustration; its individual creator and reuse terms are not identified on that slide.}\label{\detokenize{lectures/lecture04/matching:fig-lec04-window-size}}\end{figure}
+
+\sphinxAtStartPar
+A constant\sphinxhyphen{}disparity window assumes \sphinxstylestrong{fronto\sphinxhyphen{}parallel support}: one axial depth. Slanted surfaces violate this assumption; windows crossing foreground and background mix different depths.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{support-boundary}.pdf}
+\caption{A larger window can vote for two different depths. Adapting its position or weights changes which surface contributes evidence.}\label{\detokenize{lectures/lecture04/matching:fig-lec04-support}}\end{figure}
+
+\sphinxAtStartPar
+The slides offer several ways to adapt support:
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Shiftable windows:} choose among windows that contain the reference pixel; favor support that stays on one surface.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Rod\sphinxhyphen{}shaped supports:} test elongated directions that may follow an approximately constant\sphinxhyphen{}disparity contour.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Adaptive weights:} downweight neighbors far away in position or color.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Oriented\sphinxhyphen{}plane hypotheses:} allow disparity to vary across a slanted plane instead of assuming one constant value.
+
+\end{itemize}
+
+\sphinxAtStartPar
+All add assumptions. Similar colors can still occur at different depths, and an image edge need not be a depth edge.
+
+
+\subsection{Rank and Census use relative intensity order}
+\label{\detokenize{lectures/lecture04/matching:rank-and-census-use-relative-intensity-order}}
+\index{Census transform@\spxentry{Census transform}!Rank transform; Adaptive support@\spxentry{Rank transform; Adaptive support}}\ignorespaces
+\begin{TextbookBox}
+\textbf{Formula — rank, Census, and Hamming distance}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/matching:eq-lec04-census}
+\begin{split}\begin{aligned}
+r(p)&=\sum_{q\in\mathcal N_p}\mathbf1[I(q)<I(p)],\\
+\mathcal C(p)&=\bigl(\mathbf1[I(q_1)<I(p)],\ldots,
+\mathbf1[I(q_m)<I(p)]\bigr),\\
+H(\mathcal C_L,\mathcal C_R)&=\sum_{i=1}^{m}\mathbf1[\mathcal C_{L,i}\ne\mathcal C_{R,i}].
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\mathcal N_p\) contains \(m\) ordered neighbors excluding the center; \(\mathbf1[\cdot]\) is one when its condition is true and zero otherwise. Rank ranges from \(0\) to \(m\); Census keeps the complete ordered bit string. Use the same neighbor order and tie convention in both images. Both preserve strictly increasing intensity remappings within the compared support.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Match relative\sphinxhyphen{}intensity patterns}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compare each neighbor with the center using the fixed strict inequality.
+
+\item {}
+\sphinxAtStartPar
+Sum the comparisons for rank, or retain their order for Census.
+
+\item {}
+\sphinxAtStartPar
+Compare rank\sphinxhyphen{}transformed images with a difference cost; compare Census strings by Hamming distance.
+
+\item {}
+\sphinxAtStartPar
+Check for repeated patterns and ties. Relative order is robust to some brightness changes, not to all lighting or geometry changes.
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/matching:ex-lec04-census}}
+\begin{TextbookBox}
+\textbf{Worked example 4.10 — equal ranks can hide different patterns}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original companion to:} PDF page 74, printed slide 78.
+
+\sphinxAtStartPar
+Let the center intensity be 20. Ordered neighbors \((10,30,15,25)\) give Census \sphinxstylestrong{1010} and rank 2. A second patch with center 20 and neighbors \((5,10,30,40)\) gives \sphinxstylestrong{1100}, also rank 2. Their Census Hamming distance is \sphinxstylestrong{2}: bits 2 and 3 disagree.
+
+\sphinxAtStartPar
+The rank compresses spatial evidence into one count. Census retains which neighbors were darker. Adding the same brightness offset to every pixel of either patch preserves its comparisons, provided clipping does not change them.
+
+\end{TextbookBox}
+
+
+\subsection{Give nearby, similar neighbors more influence}
+\label{\detokenize{lectures/lecture04/matching:give-nearby-similar-neighbors-more-influence}}
+\begin{TextbookBox}
+\textbf{Formula — locally adaptive support}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture04/matching:eq-lec04-adaptive}
+\begin{split}\begin{aligned}
+\Delta_c(p,q)&=\|\operatorname{Lab}(p)-\operatorname{Lab}(q)\|_2,
+\quad \Delta_s(p,q)=\|p-q\|_2,\\
+w(p,q)&=\exp\left[-\frac{\Delta_c(p,q)}{\gamma_c}
+-\frac{\Delta_s(p,q)}{\gamma_s}\right],\\
+\overline C_w(p,d)&=\frac{\sum_{q\in\Omega_p}w(p,q)C(q,d)}
+{\sum_{q\in\Omega_p}w(p,q)}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\gamma_c,\gamma_s>0\) set color and spatial scales; \(\gamma_s\) uses pixels. The exponential arguments are dimensionless. This displayed version uses reference\sphinxhyphen{}image weights and requires a nonzero weight sum. Some methods also incorporate shifted right\sphinxhyphen{}image weights; state the convention rather than mixing implementations. A constant multiplier in every weight cancels in the normalized cost.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Aggregate without crossing every edge equally}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute color distance in CIE Lab and spatial distance within the support.
+
+\item {}
+\sphinxAtStartPar
+Calculate positive weights with the chosen scales.
+
+\item {}
+\sphinxAtStartPar
+Form a weighted average cost for each disparity and compare candidates.
+
+\item {}
+\sphinxAtStartPar
+Inspect whether the support follows actual surfaces. Color similarity helps; it does not prove shared depth.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+PDF pages 52/76 credit Yoon and Kweon (PAMI 2006); page 53 credits Lu et al. (CVPR 2013) for an oriented\sphinxhyphen{}plane extension. These descriptions explain their roles; they do not reproduce the full methods.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture04/matching:ex-lec04-adaptive}}
+\begin{TextbookBox}
+\textbf{Worked example 4.11 — a two\sphinxhyphen{}sample depth boundary}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original companion to:} PDF pages 75–76.
+
+\sphinxAtStartPar
+Two support samples are each one pixel away. One has the same color as the reference; the other differs by 40 Lab units. With \(\gamma_c=10\), \(\gamma_s=2\), their weights are \(e^{-0.5}\approx0.60653\) and \(e^{-4.5}\approx0.01111\).
+
+\sphinxAtStartPar
+At the true disparity, their costs are \((0,10)\); at a wrong disparity, \((10,0)\). Uniform averaging ties both at 5. Adaptive averaging gives about \sphinxstylestrong{0.180} for the true disparity and \sphinxstylestrong{9.820} for the wrong one. The same\sphinxhyphen{}color sample now contributes most of the evidence.
+
+\sphinxAtStartPar
+If that color boundary did not correspond to a depth boundary, this weighting preference could be misleading. The source’s result images compare such support choices, not a universal guarantee of correctness.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The slide list also names \sphinxstylestrong{mutual information} (statistical dependence between intensities) and \sphinxstylestrong{learning\sphinxhyphen{}based methods} (learned appearance features or costs). They change how hypotheses are scored. The same geometry, visibility limits, and need to recognize uncertain matches remain.
+
+\sphinxstepscope
+
+
+\section{Review and source checklist}
+\label{\detokenize{lectures/lecture04/review:review-and-source-checklist}}\label{\detokenize{lectures/lecture04/review:lec04-review}}\label{\detokenize{lectures/lecture04/review::doc}}
+\sphinxAtStartPar
+The chapter adds calculations and reconstruction methods to the earlier epipolar introduction. Work through the quiz examples before trying to memorize a pipeline.
+
+
+\subsection{Formula and application map}
+\label{\detokenize{lectures/lecture04/review:formula-and-application-map}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Task
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Formula box and procedure
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Correct a noisy fitted F to rank two
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/estimation:eq-lec04-ranktwo}, {\hyperref[\detokenize{lectures/lecture04/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{estimation}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Measure pixel distance from epipolar predictions
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/estimation:eq-lec04-epipolar-error}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Use calibration to isolate camera motion
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/essential:eq-lec04-essential}, {\hyperref[\detokenize{lectures/lecture04/essential::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{pose recovery}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Generate and test four pose candidates
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/essential:eq-lec04-poses}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Compute rectified stereo depth
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/stereo:eq-lec04-depth}, {\hyperref[\detokenize{lectures/lecture04/stereo::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{stereo}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Distinguish exact from first\sphinxhyphen{}order error
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/stereo:eq-lec04-depth-error}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Restrict disparity using a depth interval
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/stereo:eq-lec04-disparity-range}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Aggregate a cost volume and select a hypothesis
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/matching:eq-lec04-cost-volume}, {\hyperref[\detokenize{lectures/lecture04/matching::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{matching}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Compare patch appearance
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/matching:eq-lec04-patch-costs}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Encode relative brightness order
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/matching:eq-lec04-census}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Adapt support at boundaries
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture04/matching:eq-lec04-adaptive}
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The canonical fundamental constraint, linear eight\sphinxhyphen{}point rows, radial correction, and rectification formulas remain in {\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2}}}}. Normalized point\sphinxhyphen{}coordinate transforms remain in {\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 estimation}}}}.
+
+
+\subsection{Worked examples and assigned quizzes}
+\label{\detokenize{lectures/lecture04/review:worked-examples-and-assigned-quizzes}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Example
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Source or purpose
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-symbolic}]{\sphinxcrossref{\DUrole{std,std-ref}{4.1}}}}
+&
+\sphinxAtStartPar
+Both Spring 2019 Quiz 4 files: P1 line, P2 explicit constraint; duplicate retained for retest
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-third-view}]{\sphinxcrossref{\DUrole{std,std-ref}{4.2}}}}
+&
+\sphinxAtStartPar
+Fall 2025 Quiz 2 Q1: third\sphinxhyphen{}view intersection and degeneracies
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-invalid-f}]{\sphinxcrossref{\DUrole{std,std-ref}{4.3}}}}
+&
+\sphinxAtStartPar
+Same quiz Q2: consistent points, line/point correction, invalid rank\sphinxhyphen{}three F
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/estimation:ex-lec04-eightpoint}]{\sphinxcrossref{\DUrole{std,std-ref}{4.4}}}}
+&
+\sphinxAtStartPar
+Original noisy normalized fit and held\sphinxhyphen{}out numerical checks
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/essential:ex-lec04-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{4.5}}}}
+&
+\sphinxAtStartPar
+Original essential\sphinxhyphen{}matrix/four\sphinxhyphen{}pose calculation
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-fall}]{\sphinxcrossref{\DUrole{std,std-ref}{4.6}}}}
+&
+\sphinxAtStartPar
+Fall 2025 Quiz 3 Q1: both exact signs versus the supplied linearization
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-spring}]{\sphinxcrossref{\DUrole{std,std-ref}{4.7}}}}
+&
+\sphinxAtStartPar
+Spring 2019 Quiz 5, all three bullets; Spring 2020 duplicate retest
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-search}]{\sphinxcrossref{\DUrole{std,std-ref}{4.8}}}}
+&
+\sphinxAtStartPar
+Fall 2025 Quiz 3 Q2: depth range to disparity bounds
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/matching:ex-lec04-patches}]{\sphinxcrossref{\DUrole{std,std-ref}{4.9}}}}
+&
+\sphinxAtStartPar
+Original SAD/SSD/NCC calculation
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/matching:ex-lec04-census}]{\sphinxcrossref{\DUrole{std,std-ref}{4.10}}}}
+&
+\sphinxAtStartPar
+Original rank/Census distinction
+\\
+\sphinxhline
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture04/matching:ex-lec04-adaptive}]{\sphinxcrossref{\DUrole{std,std-ref}{4.11}}}}
+&
+\sphinxAtStartPar
+Original boundary\sphinxhyphen{}weighting calculation
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Slide coverage without repeated teaching}
+\label{\detokenize{lectures/lecture04/review:slide-coverage-without-repeated-teaching}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+PDF pages
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Disposition
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+1
+&
+\sphinxAtStartPar
+Title and source metadata
+\\
+\sphinxhline
+\sphinxAtStartPar
+2–21
+&
+\sphinxAtStartPar
+Distortion, epipolar planes/epipoles/F and linear rows already taught in L2; new quiz applications here
+\\
+\sphinxhline
+\sphinxAtStartPar
+22–23
+&
+\sphinxAtStartPar
+Essential\sphinxhyphen{}matrix constraints, four poses and cheirality
+\\
+\sphinxhline
+\sphinxAtStartPar
+24–37
+&
+\sphinxAtStartPar
+Noisy normalized F fitting, rank projection, residuals, seven\sphinxhyphen{}point robust sampling and model degeneracy
+\\
+\sphinxhline
+\sphinxAtStartPar
+38–41
+&
+\sphinxAtStartPar
+Search reduction and rectification already taught in L2; linked as prerequisites
+\\
+\sphinxhline
+\sphinxAtStartPar
+42–57
+&
+\sphinxAtStartPar
+Dense depth hypotheses, cost volumes, support choices, matching criteria and representation/algorithm overview
+\\
+\sphinxhline
+\sphinxAtStartPar
+58–64
+&
+\sphinxAtStartPar
+Rectification linked to L2; new stereo derivation and depth applications
+\\
+\sphinxhline
+\sphinxAtStartPar
+65–77
+&
+\sphinxAtStartPar
+Window size, cost curves, texture/occlusion ambiguity, rank/Census, shiftable/rod/adaptive support
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+\sphinxstylestrong{What to check in an exam answer:} image order, coordinate units, matrix rank, transform direction, positive depths in both cameras, signed versus absolute errors, and whether a score must be minimized or maximized.
+
+\sphinxAtStartPar
+Finish with the {\hyperref[\detokenize{lectures/lecture04/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}.
+
+\sphinxstepscope
+
+\clearpage
+
+
+\section{TLDR}
+\label{\detokenize{lectures/lecture04/tldr:tldr}}\label{\detokenize{lectures/lecture04/tldr:lec04-tldr}}\label{\detokenize{lectures/lecture04/tldr::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture 4 in one sentence:} estimate valid two\sphinxhyphen{}view geometry, choose a camera pose that sees the scene, and turn reliable stereo matches into depths with honest error estimates.
+
+
+\subsection{The important things}
+\label{\detokenize{lectures/lecture04/tldr:the-important-things}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Keep points, lines, and scalars distinct.} The assigned quizzes apply the existing epipolar rules to symbolic expansion and third\sphinxhyphen{}view prediction. Two lines in a third image can locate a point, unless their intersection is degenerate. See {\hyperref[\detokenize{lectures/lecture04/epipolar-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz practice}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check rank before trusting “F.”} Fall 2025 Quiz 2 supplies a rank\sphinxhyphen{}three matrix. Its bilinear equation can be solved, but it is not valid pinhole\sphinxhyphen{}camera geometry. A noisy estimate requires a rank\sphinxhyphen{}two correction and pixel\sphinxhyphen{}space residual checks. See {\hyperref[\detokenize{lectures/lecture04/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{estimation}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Calibration supplies an essential matrix.} \(E=K'^TFK=[t]_\times R\) has equal nonzero singular values and one zero. It recovers translation direction, not metric scale. Numerical conditioning transforms and camera calibration are different operations. See {\hyperref[\detokenize{lectures/lecture04/essential::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{essential geometry}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Test all four poses.} Two rotations and two translation signs produce four candidates. Positive reconstructed depths in both cameras select the visible configuration for suitable nondegenerate data. Translation \(t\) is not the second camera center.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Disparity is inverse depth.} In the specified rectified convention, \(Z=fb/d\). Use focal length and disparity in pixels, baseline and depth in one length unit. Account for unequal principal\sphinxhyphen{}point columns. See {\hyperref[\detokenize{lectures/lecture04/stereo::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{stereo}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A one\sphinxhyphen{}pixel depth error is not symmetric.} Underestimating disparity pushes the point farther by more than an equal overestimate pulls it nearer. Use the exact error when the disparity error is a substantial fraction of disparity. Small disparities are especially fragile.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Appearance chooses among geometric candidates.} Dense stereo generates hypotheses, evaluates costs, aggregates support, and selects or rejects. Minimize SAD/SSD; maximize NCC. Flat patches, repetitions, and occlusions can defeat a low\sphinxhyphen{}cost match. See {\hyperref[\detokenize{lectures/lecture04/matching::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{matching}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Support has assumptions.} A constant\sphinxhyphen{}disparity window favors fronto\sphinxhyphen{}parallel surfaces; large windows can mix depths. Shifted, elongated, weighted, or oriented\sphinxhyphen{}plane support can help. Rank retains a count; Census retains the ordered relative\sphinxhyphen{}intensity pattern. None removes ambiguity automatically.
+
+\end{enumerate}
+
+\newpage
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture04/tldr:short-quiz}}
+\sphinxAtStartPar
+These original questions test this chapter’s additions.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+For \(x_A=(0,1,1)^T\), \(x_B=(1,0,1)^T\), expand \(x_B^TFx_A\) in matrix entries.
+
+\item {}
+\sphinxAtStartPar
+Two predicted lines in image C are proportional. Does their cross product give a unique finite correspondence?
+
+\item {}
+\sphinxAtStartPar
+A noisy matrix has singular values \((4,2,0.2)\). What singular values do rank\sphinxhyphen{}two F correction and essential\sphinxhyphen{}form correction use?
+
+\item {}
+\sphinxAtStartPar
+A candidate pose reconstructs a point with depths \(+5\) and \(-5\) in the two cameras. Is that point a valid visible correspondence under that pose?
+
+\item {}
+\sphinxAtStartPar
+Rectified cameras have \(b=0.2\,\mathrm m\), \(f=600\) pixels, \(d=30\) pixels. What is the depth? If measured disparity becomes 31, is the point reconstructed nearer or farther?
+
+\item {}
+\sphinxAtStartPar
+For that setup, which disparity interval corresponds to depths from 2 to 6 meters?
+
+\item {}
+\sphinxAtStartPar
+Which direction do you optimize SAD and NCC? Can a constant\sphinxhyphen{}intensity patch supply a defined zero\sphinxhyphen{}mean NCC score?
+
+\item {}
+\sphinxAtStartPar
+With center intensity 10 and ordered neighbors \((8,12,7,11)\), what are the Census string and rank under the strict darker\sphinxhyphen{}than\sphinxhyphen{}center convention?
+
+\end{enumerate}
+
+
+\subsection{Answers}
+\label{\detokenize{lectures/lecture04/tldr:answers}}
+\begin{sphinxadmonition}{note}{Show answers and short explanations}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(f_{12}+f_{13}+f_{32}+f_{33}=0\).} The right vector selects columns 2 and 3; the left vector selects rows 1 and 3.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{No.} Proportional line vectors describe the same line. Their cross product is zero, so a unique point is undetermined.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{F: \((4,2,0)\); E: \((3,3,0)\).} E additionally requires its first two singular values to agree.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{No.} The point is behind the second camera. Positive depth is required in both observing cameras.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{4 meters; nearer.} The perturbed estimate is \(120/31\approx3.871\,\mathrm m\), giving signed error \(-4/31\approx-0.129\,\mathrm m\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\([20,60]\) pixels.} The far endpoint gives \(120/6\); the near endpoint gives \(120/2\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Minimize SAD, maximize NCC; no.} A flat patch has zero centered norm, making NCC’s denominator zero.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{1010; rank 2.} Neighbors 1 and 3 are darker. Census keeps their positions, while rank keeps only their count.
+
+\end{enumerate}
+\end{sphinxadmonition}
 
 \sphinxstepscope
 
@@ -5133,7 +8353,7 @@ Select the most useful examples from the actual slides and integrate the assigne
 \chapter{Formula reference}
 \label{\detokenize{reference/formulas:formula-reference}}\label{\detokenize{reference/formulas:id1}}\label{\detokenize{reference/formulas::doc}}
 \sphinxAtStartPar
-This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lectures 1 and 2 are populated; Lectures 3–6 remain pending.
+This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lectures 1–4 are populated; Lectures 5–6 remain pending.
 
 
 \begin{savenotes}\sphinxattablestart
@@ -5179,19 +8399,31 @@ See the {\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{
 \sphinxAtStartPar
 See the {\hyperref[\detokenize{lectures/lecture02/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 formula and source checklist}}}} for quaternion conversions, directional scaling, homographies, image sampling, DLT/normalization, RANSAC, radial correction, and epipolar constraints. Repeated Lecture 1 formulas retain their original canonical boxes.
 
+
+\section{Lecture 3}
+\label{\detokenize{reference/formulas:lecture-3}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture03/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 3 formula and source checklist}}}} for focal length from field of view and known\sphinxhyphen{}plane depth. The new projective DLT and RANSAC quiz applications link to their original Lecture 2 formula boxes.
+
+
+\section{Lecture 4}
+\label{\detokenize{reference/formulas:lecture-4}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture04/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 4 formula and application map}}}} for noisy rank\sphinxhyphen{}two estimation, epipolar pixel errors, essential matrices/poses, stereo depth and exact uncertainty, disparity bounds, and dense matching costs/support. Existing fundamental and rectification formulas keep their Lecture 2 teaching location.
+
 \sphinxstepscope
 
 
 \chapter{Quiz practice index}
 \label{\detokenize{reference/quiz-index:quiz-practice-index}}\label{\detokenize{reference/quiz-index:quiz-index}}\label{\detokenize{reference/quiz-index::doc}}
 \sphinxAtStartPar
-Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now includes independently checked worked examples and a supplementary depth\sphinxhyphen{}map bridge. Spring 2020 Quiz 1 retains its Lecture 2 assignment but its solutions are in Lecture 1 to avoid repeating foundations; Lectures 3–6 remain planned. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
+Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now includes independently checked worked examples and a supplementary depth\sphinxhyphen{}map bridge. Spring 2020 Quiz 1 retains its Lecture 2 assignment but its solutions are in Lecture 1 to avoid repeating foundations; Lecture 3 and Lecture 4 applications are complete; Lectures 5–6 remain planned. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
 
 
 \section{Lecture 1}
 \label{\detokenize{reference/quiz-index:lecture-1}}
 \sphinxAtStartPar
-\sphinxstylestrong{Completed reading links:} {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}} (relative camera pose), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.11}}}} (camera/object plane), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.12}}}} (face normals), and {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-rotated-normals}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.13}}}} (rotated normals). The {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{supplementary depth\sphinxhyphen{}map solution}}}} follows the camera explanation. Fall 2025 Quiz 1 Q1–Q2 remains deferred to Lecture 3.
+\sphinxstylestrong{Completed reading links:} {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}} (relative camera pose), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.11}}}} (camera/object plane), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.12}}}} (face normals), and {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-rotated-normals}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.13}}}} (rotated normals). The {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{supplementary depth\sphinxhyphen{}map solution}}}} follows the camera explanation. Fall 2025 Quiz 1 Q1–Q2 are solved in {\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-probability}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.6}}}}.
 
 
 \subsection{Fall 2025 Quiz 1}
@@ -5236,7 +8468,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s19\sphinxhyphen{}quiz3.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Pentagon matches; homography; RANSAC; symmetry.
+\sphinxstylestrong{Worked solutions:} {\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-pentagon}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.7}}}} (P1 bullets 1–3; sampling assumptions and exact alternatives), {\hyperref[\detokenize{lectures/lecture03/probability-ransac:ex-lec03-symmetry}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.8}}}} (P1 bullet 4; regular\sphinxhyphen{}polygon ambiguity).
 
 
 \subsection{Spring 2019 Quiz 2}
@@ -5245,7 +8477,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s19\_quiz2\sphinxhyphen{}2.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} FOV; intrinsics; projection; principal point.
+\sphinxstylestrong{Worked solutions:} {\hyperref[\detokenize{lectures/lecture03/calibration:ex-lec03-calibration}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.1}}}} (P1–P2), {\hyperref[\detokenize{lectures/lecture03/calibration:ex-lec03-principal}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.2}}}} (P3–P4; dimensions linked to L1, principal\sphinxhyphen{}point units qualified).
 
 
 \subsection{Spring 2020 Quiz 3 (mixed printed header)}
@@ -5254,7 +8486,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz3.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Camera calibration retest.
+\sphinxstylestrong{Completed retest:} P1–P4 share the independently checked solutions in {\hyperref[\detokenize{lectures/lecture03/calibration:lec03-calibration}]{\sphinxcrossref{\DUrole{std,std-ref}{From field of view to a camera matrix}}}}; keep the mixed printed header as provenance.
 
 \sphinxAtStartPar
 \sphinxstylestrong{Retest:} near\sphinxhyphen{}duplicate of cs532s19\_quiz2\sphinxhyphen{}2.pdf.
@@ -5266,7 +8498,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz2.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Pinhole projection; ray cross product.
+\sphinxstylestrong{Worked solution:} {\hyperref[\detokenize{lectures/lecture03/ray-plane:ex-lec03-ray}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.3}}}} (P1–P2).
 
 
 \subsection{Filename 2015 Quiz 9; printed Spring 2019}
@@ -5275,7 +8507,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532f15\_quiz9.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Ray\sphinxhyphen{}plane depth.
+\sphinxstylestrong{Worked solution:} \eqref{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane} supplies P1’s symbolic answer; {\hyperref[\detokenize{lectures/lecture03/ray-plane:ex-lec03-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 3.4}}}} adds a checked numerical application and intersection cases.
 
 
 \section{Lecture 4}
@@ -5287,7 +8519,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532f15\_quiz4.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Fundamental matrix; epipolar constraint.
+\sphinxstylestrong{Worked solution:} {\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-symbolic}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.1}}}}, P1–P2, with the requested line schematic linked to its canonical explanation.
 
 
 \subsection{Spring 2019 Quiz 4}
@@ -5296,7 +8528,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s19\_quiz4.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Epipolar geometry retest.
+\sphinxstylestrong{Completed retest:} P1–P2 share {\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-symbolic}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.1}}}}. The printed Spring 2019 title is retained for both files.
 
 \sphinxAtStartPar
 \sphinxstylestrong{Retest:} duplicate of cs532f15\_quiz4.pdf per study notes.
@@ -5308,7 +8540,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532f25\_quiz\_2\_solution.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Three\sphinxhyphen{}view lines; epipolar\sphinxhyphen{}consistent points; source erratum.
+\sphinxstylestrong{Worked solutions:} {\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-third-view}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.2}}}} (Q1), {\hyperref[\detokenize{lectures/lecture04/epipolar-practice:ex-lec04-invalid-f}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.3}}}} (Q2). The source line/point equality is corrected; its supplied matrix has determinant four and is not a valid F.
 
 
 \subsection{Fall 2025 Quiz 3}
@@ -5317,7 +8549,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532f25\_quiz\_3\_solution.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Stereo depth; error; disparity bounds.
+\sphinxstylestrong{Worked solutions:} {\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-fall}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.6}}}} (Q1: exact signs versus first\sphinxhyphen{}order magnitude), {\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-search}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.8}}}} (Q2: search interval).
 
 
 \subsection{Spring 2019 Quiz 5}
@@ -5326,7 +8558,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s19\_quiz5\sphinxhyphen{}2.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Exact positive/negative disparity error.
+\sphinxstylestrong{Worked solution:} {\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-spring}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.7}}}} covers all three P1 bullets: underestimation, overestimation, and larger disparities.
 
 
 \subsection{Spring 2020 Quiz 5}
@@ -5335,7 +8567,7 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz5.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Disparity error retest.
+\sphinxstylestrong{Completed retest:} all three P1 bullets share {\hyperref[\detokenize{lectures/lecture04/stereo:ex-lec04-stereo-spring}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 4.7}}}}. The displayed title contains overprinted 2019/2020 years.
 
 \sphinxAtStartPar
 \sphinxstylestrong{Retest:} duplicate of cs532s19\_quiz5\sphinxhyphen{}2.pdf per study notes.
@@ -5508,7 +8740,7 @@ An ideal central\sphinxhyphen{}projection model in which rays pass through one c
 
 \sphinxlineitem{Principal point\index{Principal point@\spxentry{Principal point}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Principal-point}}}
 \sphinxAtStartPar
-The pixel location where the optical axis intersects the ideal image plane. It is not automatically the pixel origin. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}.
+The pixel location where the optical axis intersects the ideal image plane. It is not automatically the pixel origin. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}; physical versus normalized representations are clarified in {\hyperref[\detokenize{lectures/lecture03/calibration:lec03-calibration}]{\sphinxcrossref{\DUrole{std,std-ref}{From field of view to a camera matrix}}}}.
 
 \sphinxlineitem{Intrinsic parameters\index{Intrinsic parameters@\spxentry{Intrinsic parameters}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Intrinsic-parameters}}}
 \sphinxAtStartPar
@@ -5584,6 +8816,54 @@ A rank\sphinxhyphen{}two \(3\times3\) matrix mapping image points to epipolar li
 \sphinxAtStartPar
 Warping a pair of images so corresponding epipolar lines lie on matching horizontal rows. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-rectify}.
 
+\sphinxlineitem{Field of view\index{Field of view@\spxentry{Field of view}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Field-of-view}}}
+\sphinxAtStartPar
+Angle between boundary rays of an image. Centered horizontal FOV relates width to pixel focal length through \eqref{equation:lectures/lecture03/calibration:eq-lec03-fov}.
+
+\sphinxlineitem{Pixel pitch\index{Pixel pitch@\spxentry{Pixel pitch}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Pixel-pitch}}}
+\sphinxAtStartPar
+Physical size of a sensor pixel along an axis; multiplying pixel focal length by that pitch gives physical focal length. See {\hyperref[\detokenize{lectures/lecture03/calibration:lec03-calibration}]{\sphinxcrossref{\DUrole{std,std-ref}{From field of view to a camera matrix}}}}.
+
+\sphinxlineitem{Ray–plane intersection\index{Ray–plane intersection@\spxentry{Ray–plane intersection}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Rayplane-intersection}}}
+\sphinxAtStartPar
+Finding the point shared by a viewing ray and a known plane; special cases include parallel rays and rays lying in the plane. See \eqref{equation:lectures/lecture03/ray-plane:eq-lec03-ray-plane}.
+
+\sphinxlineitem{Symmetry ambiguity\index{Symmetry ambiguity@\spxentry{Symmetry ambiguity}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Symmetry-ambiguity}}}
+\sphinxAtStartPar
+Multiple alignments supported by identical visible evidence. Regular\sphinxhyphen{}pentagon corner matches illustrate why extra trials cannot recover missing identity information. See {\hyperref[\detokenize{lectures/lecture03/probability-ransac:lec03-ransac-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Probability and the pentagon puzzle}}}}.
+
+\sphinxlineitem{Essential matrix\index{Essential matrix@\spxentry{Essential matrix}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Essential-matrix}}}
+\sphinxAtStartPar
+Calibrated two\sphinxhyphen{}view relation E={[}t{]}×R, with two equal nonzero singular values and one zero. See \eqref{equation:lectures/lecture04/essential:eq-lec04-essential}.
+
+\sphinxlineitem{Cheirality\index{Cheirality@\spxentry{Cheirality}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Cheirality}}}
+\sphinxAtStartPar
+The requirement that reconstructed visible points have positive depth in both observing cameras. Used to choose pose candidates; see {\hyperref[\detokenize{lectures/lecture04/essential:lec04-essential}]{\sphinxcrossref{\DUrole{std,std-ref}{Recover camera pose with calibration}}}}.
+
+\sphinxlineitem{Disparity\index{Disparity@\spxentry{Disparity}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Disparity}}}
+\sphinxAtStartPar
+Corrected horizontal coordinate difference in a rectified stereo pair; inversely proportional to depth under the stated convention. See \eqref{equation:lectures/lecture04/stereo:eq-lec04-depth}.
+
+\sphinxlineitem{Cost volume\index{Cost volume@\spxentry{Cost volume}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Cost-volume}}}
+\sphinxAtStartPar
+Scores for every reference pixel and disparity/depth hypothesis, before selecting a depth map. See \eqref{equation:lectures/lecture04/matching:eq-lec04-cost-volume}.
+
+\sphinxlineitem{Photo\sphinxhyphen{}consistency\index{Photo\sphinxhyphen{}consistency@\spxentry{Photo\sphinxhyphen{}consistency}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Photo-consistency}}}
+\sphinxAtStartPar
+Agreement of projected image appearance under a specified comparison model. See {\hyperref[\detokenize{lectures/lecture04/matching:lec04-matching}]{\sphinxcrossref{\DUrole{std,std-ref}{Find matches across an image}}}}.
+
+\sphinxlineitem{Census transform\index{Census transform@\spxentry{Census transform}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Census-transform}}}
+\sphinxAtStartPar
+Ordered bit string comparing each neighbor’s intensity with its center; compare strings by Hamming distance. See \eqref{equation:lectures/lecture04/matching:eq-lec04-census}.
+
+\sphinxlineitem{Rank transform\index{Rank transform@\spxentry{Rank transform}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Rank-transform}}}
+\sphinxAtStartPar
+Count of neighbors darker than the center under a fixed comparison convention. See \eqref{equation:lectures/lecture04/matching:eq-lec04-census}.
+
+\sphinxlineitem{Adaptive support\index{Adaptive support@\spxentry{Adaptive support}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Adaptive-support}}}
+\sphinxAtStartPar
+Neighborhood contributions weighted by similarity and proximity rather than uniformly. See \eqref{equation:lectures/lecture04/matching:eq-lec04-adaptive}.
+
 \end{description}
 
 \sphinxstepscope
@@ -5617,6 +8897,40 @@ The deck’s PDF pages 9–10 name Richard Szeliski’s \sphinxstyleemphasis{Com
 
 \sphinxAtStartPar
 The basketball\sphinxhyphen{}court photograph is extracted from PDF page 71, printed slide 72. Its individual photographer and reuse terms are not identified there. The annotated source/rectangular\sphinxhyphen{}warp comparison is computed locally from four disclosed approximate corner coordinates. The chosen output aspect ratio is illustrative. Four additional original vector diagrams explain quiz intersections, warp sampling, consensus, and rectified epipolar lines. Editable sources and paired print/web assets are retained in the figure register.
+
+\sphinxAtStartPar
+The interactive camera\sphinxhyphen{}motion and perspective\sphinxhyphen{}warp diagrams are original local SVG visualizations of the chapter models. The perspective explorer also has a paired static SVG/PDF figure for print and no\sphinxhyphen{}JavaScript readers, with an editable TikZ source. Its four numbered collinear points have cross\sphinxhyphen{}ratio 4/3 before and after the warp.
+
+\sphinxAtStartPar
+Lecture 1’s rotatable 3D projection scene uses locally bundled Three.js and OrbitControls r180 (MIT license retained with the library). The scene design, math linkage, and static projection diagram are original project work; the library provides rendering and inspection controls.
+
+
+\section{Lecture 3}
+\label{\detokenize{reference/credits:lecture-3}}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{wk3\_cs532s26\_ImageFormation+Homographies\sphinxhyphen{}1.pdf}} credits John Oliensis for image formation (PDF page 2), Steve Seitz for warping (23), and R. Hartley, A. Zisserman, and M. Pollefeys for estimation, robust fitting, distortion, and two\sphinxhyphen{}view geometry (33, 46, 56, 62). Repeated source illustrations link to their existing teaching locations rather than being copied again.
+
+\sphinxAtStartPar
+Five original vector diagrams cover FOV, ray–plane depth, the numerical projective map, pentagon symmetries, and RANSAC sampling probability. Paired SVG/PDF assets and editable TikZ sources are in \sphinxcode{\sphinxupquote{images/lecture03/}}. The local SVG sampling simulator is original project code and uses explicitly stated independent match statuses; its complete static explanation and numerical results appear in print. Quiz filenames, printed\sphinxhyphen{}title discrepancies, and adapted versus original numerical examples are identified beside the work.
+
+
+\section{Lecture 4}
+\label{\detokenize{reference/credits:lecture-4}}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{wk4\_cs532s26\_TwoViewGeometry.pdf}} names Enrique Dunn on its title slide; the radial/two\sphinxhyphen{}view sections credit R. Hartley, A. Zisserman, and M. Pollefeys (PDF pages 2 and 8). The stereo section credits Rick Szeliski, Pascal Fua, P. Mordohai, and E. Dunn (PDF page 42, printed slide 46). Author metadata embedded in a PDF is not substituted for these visible credits.
+
+\sphinxAtStartPar
+The actual toy/plant photographs are extracted unchanged from PDF page 46 (printed slide 50), then paired with original project labels. The window\sphinxhyphen{}size result illustration is extracted unchanged from PDF page 66 (printed slide 70). Individual image creators and reuse terms are not identified on these slides; that uncertainty is retained. Original extracted files and editable panel source are preserved.
+
+\sphinxAtStartPar
+Four original paired SVG/PDF diagrams explain the third\sphinxhyphen{}view intersection, stereo rays, depth sensitivity, and a window crossing a depth boundary. The 3D stereo explorer uses the existing locally bundled Three.js r180/OrbitControls with the retained MIT license. Its scene, mathematical linkage, and static experiment are original project work. No new remote rendering dependency was introduced.
+
+\sphinxAtStartPar
+The essential\sphinxhyphen{}matrix decomposition was cross\sphinxhyphen{}checked against \sphinxhref{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}{OpenCV’s official camera\sphinxhyphen{}geometry documentation}%
+\begin{footnote}[2]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}
+%
+\end{footnote}. Its role here is implementation verification of four candidates, translation direction, and cheirality; the supplied lecture and independently worked examples remain the teaching sources.
 
 \sphinxstepscope
 
@@ -5754,6 +9068,56 @@ Numerical companions are checked by \sphinxcode{\sphinxupquote{scripts/check\_le
 
 \sphinxAtStartPar
 Lecture 2’s numerical examples are checked by \sphinxcode{\sphinxupquote{scripts/check\_lecture02\_math.py}}.
+
+
+\section{Lecture 3 qualifications}
+\label{\detokenize{reference/errata:lecture-3-qualifications}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Spring 2020 Quiz 3:} the page carries mixed Spring 2019 Quiz 2 / Spring 2020 Quiz 3 headers and near\sphinxhyphen{}duplicate camera questions; it is retained as a retest.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Camera quiz P2/P4:} horizontal FOV does not specify all of \(K\) or a physical focal length. {\hyperref[\detokenize{lectures/lecture03/calibration::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{The solutions}}}} state the extra assumptions, image\sphinxhyphen{}center convention, and pixel\sphinxhyphen{}pitch requirement.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Pentagon quiz:} “equilateral” alone does not imply regular. Ten equally supported corner alignments require the regular\sphinxhyphen{}polygon assumption. {\hyperref[\detokenize{lectures/lecture03/probability-ransac::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{The RANSAC solution}}}} also distinguishes standard independent\sphinxhyphen{}status trial counts from exact finite\sphinxhyphen{}pool counts and explicitly chooses 99\% confidence.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Repeated slide issues:} PDF page 11’s projection\sphinxhyphen{}direction wording and page 60’s radial\sphinxhyphen{}radius notation retain the corrections already explained in Lectures 1–2.
+
+\end{itemize}
+
+
+\section{Lecture 4 verified corrections and conventions}
+\label{\detokenize{reference/errata:lecture-4-verified-corrections-and-conventions}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Fall 2025 Quiz 2 Q2:} \(x'^TF\) is a line row, not a point. The condition is \(x'^TFx=0\). The supplied matrix has determinant four, so it is rank three and cannot be a physical fundamental matrix. {\hyperref[\detokenize{lectures/lecture04/epipolar-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Example 4.3}}}} solves the given equation without relabeling it as valid camera geometry.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Fall 2025 Quiz 3 Q1:} 0.8 cm is the first\sphinxhyphen{}order error magnitude. The exact signed errors are +0.8333 cm for disparity 24 and −0.7692 cm for disparity 26. {\hyperref[\detokenize{lectures/lecture04/stereo::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Stereo solutions}}}} define estimated\sphinxhyphen{}minus\sphinxhyphen{}true signs.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L4 PDF page 35, printed slide 39:} the shown seven\sphinxhyphen{}point RANSAC table uses approximately 95\% confidence. A 99\% budget at 80\% inliers is 20 trials, rather than the table’s 13.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Spring 2020 Quiz 5:} the printed header overprints 2019/2020; its problem repeats Spring 2019 Quiz 5. Both filenames and headers remain documented.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{NCC, PDF page 68:} use a self\sphinxhyphen{}consistent centered\sphinxhyphen{}norm denominator and reject zero\sphinxhyphen{}variance patches. The {\hyperref[\detokenize{lectures/lecture04/matching::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{explicit formula}}}} avoids ambiguity about whether standard deviations include a sample\sphinxhyphen{}count factor.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Repeated radial notation, PDF page 6:} the radius/squared\sphinxhyphen{}radius clarification remains at its canonical Lecture 2 location.
+
+\end{itemize}
 
 
 

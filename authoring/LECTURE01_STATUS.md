@@ -8,7 +8,7 @@
 - Nineteen numbered worked examples, eight short understanding checks, and one end-of-chapter transfer exercise, with explained solutions in both editions.
 - Twenty-five canonical formula boxes with application procedures and 26 labeled equations including the relative-pose worked specialization.
 - A final TLDR with eight key rules and eight original quiz questions, with concise answers collapsible online and included in print.
-- Sixteen chapter figures: thirteen original vector diagrams and three source-supplied image assets, including the foundation quiz diagram relocated from Lecture 2. Editable diagram sources and credits are retained.
+- Seventeen chapter figures: fourteen original vector diagrams and three source-supplied image assets, including the foundation quiz diagram relocated from Lecture 2. Editable diagram sources and credits are retained.
 - Integrated Fall 2025 Quiz 1 Q3–Q4 and Fall 2017 Quiz 9 P2(a–b), plus a supplementary solution of the latter's depth-map problem P1. Fall 2025 probability Q1–Q2 remains assigned to Lecture 3.
 - Updated source-page coverage, formula/quiz registers, keyword glossary/index, formula reference, source credits, and verified errata/convention notes.
 
@@ -37,3 +37,9 @@ The PDF is generated from MyST through Sphinx and contains its typesetting macro
 Please review pacing, explanatory depth, formula/application formatting, figure size, and the source-caption detail before expanding the remaining lectures.
 
 Spring 2020 Quiz 1 foundation solutions were relocated here under the user's later unique-content requirement. The original Lecture 2 quiz assignment and stable legacy labels are preserved. See `lecture01-02-overlap-audit.md`.
+
+## Interactive addition
+
+Exactly one interactive explorer is placed at the relevant teaching point: camera motion/projection after Example 1.15. The same MyST content supplies complete static explanation and results for print and no-JavaScript readers. See `INTERACTIVES.md` for the remaining lecture plan and validation.
+
+The projection explorer now uses an actual WebGL 3D scene with orbit/zoom, draggable point, point/camera/focal/yaw controls, linked pixel view and world→camera→pixel calculation cards. Its static 3D scene diagram and physical-plane-to-pixel calculation are retained in print. One widget remains.

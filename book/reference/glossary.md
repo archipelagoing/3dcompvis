@@ -88,7 +88,7 @@ Pinhole camera
   An ideal central-projection model in which rays pass through one camera center. See {eq}`eq-lec01-pinhole`.
 
 Principal point
-  The pixel location where the optical axis intersects the ideal image plane. It is not automatically the pixel origin. See {eq}`eq-lec01-camera`.
+  The pixel location where the optical axis intersects the ideal image plane. It is not automatically the pixel origin. See {eq}`eq-lec01-camera`; physical versus normalized representations are clarified in {ref}`lec03-calibration`.
 
 Intrinsic parameters
   Camera calibration parameters that map normalized camera coordinates to pixels, including focal entries, skew, and principal point. See {eq}`eq-lec01-camera`.
@@ -145,4 +145,40 @@ Fundamental matrix
 
 Rectification
   Warping a pair of images so corresponding epipolar lines lie on matching horizontal rows. See {eq}`eq-lec02-rectify`.
+
+Field of view
+  Angle between boundary rays of an image. Centered horizontal FOV relates width to pixel focal length through {eq}`eq-lec03-fov`.
+
+Pixel pitch
+  Physical size of a sensor pixel along an axis; multiplying pixel focal length by that pitch gives physical focal length. See {ref}`lec03-calibration`.
+
+Ray–plane intersection
+  Finding the point shared by a viewing ray and a known plane; special cases include parallel rays and rays lying in the plane. See {eq}`eq-lec03-ray-plane`.
+
+Symmetry ambiguity
+  Multiple alignments supported by identical visible evidence. Regular-pentagon corner matches illustrate why extra trials cannot recover missing identity information. See {ref}`lec03-ransac-practice`.
+
+Essential matrix
+  Calibrated two-view relation E=[t]×R, with two equal nonzero singular values and one zero. See {eq}`eq-lec04-essential`.
+
+Cheirality
+  The requirement that reconstructed visible points have positive depth in both observing cameras. Used to choose pose candidates; see {ref}`lec04-essential`.
+
+Disparity
+  Corrected horizontal coordinate difference in a rectified stereo pair; inversely proportional to depth under the stated convention. See {eq}`eq-lec04-depth`.
+
+Cost volume
+  Scores for every reference pixel and disparity/depth hypothesis, before selecting a depth map. See {eq}`eq-lec04-cost-volume`.
+
+Photo-consistency
+  Agreement of projected image appearance under a specified comparison model. See {ref}`lec04-matching`.
+
+Census transform
+  Ordered bit string comparing each neighbor's intensity with its center; compare strings by Hamming distance. See {eq}`eq-lec04-census`.
+
+Rank transform
+  Count of neighbors darker than the center under a fixed comparison convention. See {eq}`eq-lec04-census`.
+
+Adaptive support
+  Neighborhood contributions weighted by similarity and proximity rather than uniformly. See {eq}`eq-lec04-adaptive`.
 ```

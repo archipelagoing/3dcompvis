@@ -29,4 +29,4 @@ Check the new tools below. Foundation explanations and Spring 2020 Quiz 1 soluti
 
 **Choose the right image model:** a homography maps planar points to points; a fundamental matrix maps a point to a correspondence line in another view.
 
-Finish with the [TLDR and short quiz](tldr.md). Lecture 3 will expand camera calibration and homography practice; Lecture 4 will expand epipolar estimation and stereo. Those later quiz assignments remain in their planned chapters.
+Finish with the [TLDR and short quiz](tldr.md). [Lecture 3](../lecture03/index.md) adds camera calibration and projective homography practice. Lecture 4 will expand epipolar estimation and stereo; its quiz assignments remain planned.

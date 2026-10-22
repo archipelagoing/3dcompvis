@@ -129,6 +129,36 @@ If the operations were meant cumulatively after the camera move, the rotated/tra
 
 For a general forward camera displacement $\Delta$, the normalized transverse displacement changes from $X_c/Z_c$ to $X_c/(Z_c-\Delta)$; visible points need $Z_c-\Delta>0$. A point on the optical axis does not move away from the principal point. Translating the object farther away instead gives denominator $Z_c+\Delta$ and moves its image inward. Camera motion and scene motion require inverse coordinate relationships, as PDF page 111 emphasizes.
 
+(lec01-interactive)=
+````{interactive-demo} projection
+The 3D explorer lets you move the point, move or turn the camera, and change focal length. Drag empty space to inspect the scene from another angle; that changes your viewing position, not the teaching camera's pose. The calculation follows **world point → camera coordinates → image pixel**, using {eq}`eq-lec01-camera`. Turning the teaching camera by yaw $\alpha$ changes the world-to-camera rotation to $R_y(-\alpha)$ and the translation to $-RC$; the plane and camera axes turn with it.
+
+```{figure} ../../images/lecture01/projection-explorer.*
+:name: fig-lec01-interactive
+:width: 100%
+:alt: A perspective 3D view of the camera axes, virtual image rectangle, world point, and ray intersection q.
+
+Initial 3D scene: the orange ray from $C$ through $P$ crosses the blue virtual image plane at $q$. Camera $+Y_c$ points down and $+Z_c$ points forward. This is a static view of the rotatable web scene; depth is encoded geometrically rather than by the page's horizontal distance.
+```
+
+**Connect the scene to the numbers:** the sensor uses $0.004$ world-length units per pixel, so $f=500$ px places the virtual plane at distance $f_{\rm plane}=2$. Its width and height are each $500(0.004)=2$ units. The ray meets it at $q=(2\cdot1/10,2\cdot0.5/10,2)=(0.2,0.1,2)$. Converting those plane coordinates to pixels gives $(u,v)=(250+0.2/0.004,250+0.1/0.004)=(300,275)$.
+
+The table holds $P=(1,0.5,10)$ fixed. The image is $500\times500$ with principal point $(250,250)$; the camera has no rotation, $f_x=f_y=f$, and skew is zero. Moving the point in the web scene changes its camera coordinates before this same projection is applied.
+
+**Predict, then compare:** moving the camera forward makes the projected point move away from the principal point. Increasing focal length does the same without changing depth. Can a point be in front of the camera yet outside the image?
+
+| Camera $C_z$ | $f$ (px) | Depth | Pixel $(u,v)$ | Visibility |
+| --- | --- | --- | --- | --- |
+| 0 | 500 | 10 | $(300,275)$ | Inside |
+| 2 | 500 | 8 | $(312.5,281.25)$ | Inside |
+| 2 | 1000 | 8 | $(375,312.5)$ | Inside |
+| 8.5 | 500 | 1.5 | $(583.333,416.667)$ | In front; off-image |
+| 10 | 500 | 0 | No finite projection | Undefined |
+| 12 | 500 | $-2$ | $(0,125)$ algebraically | Behind; not visible |
+
+The off-image row answers the question: positive depth is necessary but does not ensure sensor visibility. At zero depth division fails; negative-depth coordinates do not describe a visible point in this model. Values are rounded to three decimals.
+````
+
 ## A depth-map bridge to the assigned quiz
 
 **Source:** Fall 2017 Quiz 9, problem 1, `cs532_f17_quiz9.pdf`, PDF page 1. The quiz asks how two depth maps can become one common-frame point cloud. This is a supplementary preview; depth estimation and fusion algorithms are beyond Lecture 1.

@@ -1,0 +1,6 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec03-fov,centered horizontal FOV to pixel focal length,Spring 2019 Quiz 2 P1–P2; L3 PDF 3–12,book/lectures/lecture03/calibration.md,canonical formula/application; assumptions and units checked numerically
+eq-lec03-ray-plane,known-plane axial depth,printed Spring 2019 Quiz 9 P1; camera-ray application,book/lectures/lecture03/ray-plane.md,canonical derivation/application; reprojection and intersection cases checked
+eq-lec02-dlt,DLT canonical reference,L3 PDF 34–42 repeats L2,book/lectures/lecture02/estimation.md,existing canonical box retained; L3 Example 3.5 adds full projective numerical solution
+eq-lec02-normalize,normalization canonical reference,L3 PDF 43–45 repeats L2,book/lectures/lecture02/estimation.md,existing canonical box retained; independent source/destination transforms numerically checked
+eq-lec02-ransac,RANSAC count canonical reference,L3 PDF 46–55; Spring 2019 Quiz 3; Fall 2025 Quiz 1 Q1–Q2,book/lectures/lecture02/estimation.md,existing canonical box retained; L3 adds independent and exact sampler applications

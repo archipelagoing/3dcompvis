@@ -30,7 +30,22 @@ parts:
     - file: lectures/lecture02/review
     - file: lectures/lecture02/tldr
   - file: lectures/lecture03/index
+    sections:
+    - file: lectures/lecture03/calibration
+    - file: lectures/lecture03/ray-plane
+    - file: lectures/lecture03/homography-practice
+    - file: lectures/lecture03/probability-ransac
+    - file: lectures/lecture03/review
+    - file: lectures/lecture03/tldr
   - file: lectures/lecture04/index
+    sections:
+    - file: lectures/lecture04/epipolar-practice
+    - file: lectures/lecture04/estimation
+    - file: lectures/lecture04/essential
+    - file: lectures/lecture04/stereo
+    - file: lectures/lecture04/matching
+    - file: lectures/lecture04/review
+    - file: lectures/lecture04/tldr
   - file: lectures/lecture05/index
   - file: lectures/lecture06/index
 - caption: Study and reference

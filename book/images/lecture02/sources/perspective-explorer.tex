@@ -1,0 +1,43 @@
+\documentclass[tikz,border=9pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\begin{document}
+\begin{tikzpicture}[font=\small,arr/.style={-{Stealth},thick},box/.style={draw=blue!55!black,rounded corners,fill=blue!4,align=center,text width=2.9cm,minimum height=1.05cm}]
+\node at (0.0,2.2) {Source plane};
+\draw[gray!65] (-1.500000,-1.500000)--(1.500000,-1.500000);
+\draw[gray!65] (-1.500000,-1.500000)--(-1.500000,1.500000);
+\draw[gray!65] (-1.500000,-0.750000)--(1.500000,-0.750000);
+\draw[gray!65] (-0.750000,-1.500000)--(-0.750000,1.500000);
+\draw[gray!65] (-1.500000,0.000000)--(1.500000,0.000000);
+\draw[gray!65] (0.000000,-1.500000)--(0.000000,1.500000);
+\draw[gray!65] (-1.500000,0.750000)--(1.500000,0.750000);
+\draw[gray!65] (0.750000,-1.500000)--(0.750000,1.500000);
+\draw[gray!65] (-1.500000,1.500000)--(1.500000,1.500000);
+\draw[gray!65] (1.500000,-1.500000)--(1.500000,1.500000);
+\draw[thick,blue!70!black] (-1.500000,-1.500000)--(1.500000,-1.500000)--(1.500000,1.500000)--(-1.500000,1.500000)--cycle;
+\draw[thick,orange!80!black] (-1.500000,0.450000)--(1.500000,0.450000);
+\fill[orange!80!black] (-1.125000,0.450000) circle(2pt) node[above=3pt]{1};
+\fill[orange!80!black] (-0.375000,0.450000) circle(2pt) node[above=3pt]{2};
+\fill[orange!80!black] (0.375000,0.450000) circle(2pt) node[above=3pt]{3};
+\fill[orange!80!black] (1.125000,0.450000) circle(2pt) node[above=3pt]{4};
+\node at (0.0,-2) {Cross-ratio $=4/3$};
+\node at (5.5,2.2) {Destination: $p=0.5$};
+\draw[gray!65] (4.000000,-1.500000)--(6.000000,-0.500000);
+\draw[gray!65] (4.000000,-1.500000)--(4.000000,1.500000);
+\draw[gray!65] (4.000000,-0.750000)--(6.000000,-0.250000);
+\draw[gray!65] (5.000000,-1.000000)--(5.000000,1.000000);
+\draw[gray!65] (4.000000,0.000000)--(6.000000,0.000000);
+\draw[gray!65] (5.500000,-0.750000)--(5.500000,0.750000);
+\draw[gray!65] (4.000000,0.750000)--(6.000000,0.250000);
+\draw[gray!65] (5.800000,-0.600000)--(5.800000,0.600000);
+\draw[gray!65] (4.000000,1.500000)--(6.000000,0.500000);
+\draw[gray!65] (6.000000,-0.500000)--(6.000000,0.500000);
+\draw[thick,blue!70!black] (4.000000,-1.500000)--(6.000000,-0.500000)--(6.000000,0.500000)--(4.000000,1.500000)--cycle;
+\draw[thick,orange!80!black] (4.000000,0.450000)--(6.000000,0.150000);
+\fill[orange!80!black] (4.600000,0.360000) circle(2pt) node[above=3pt]{1};
+\fill[orange!80!black] (5.285714,0.257143) circle(2pt) node[above=3pt]{2};
+\fill[orange!80!black] (5.666667,0.200000) circle(2pt) node[above=3pt]{3};
+\fill[orange!80!black] (5.909091,0.163636) circle(2pt) node[above=3pt]{4};
+\node at (5.5,-2) {Cross-ratio $=4/3$};
+\end{tikzpicture}
+\end{document}

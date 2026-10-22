@@ -1,0 +1,12 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec04-depth,depth,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-depth-error,depth-error,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-disparity-range,disparity-range,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-essential,essential,see named box and chapter source notes,book/lectures/lecture04/essential.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-poses,poses,see named box and chapter source notes,book/lectures/lecture04/essential.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-cost-volume,cost-volume,see named box and chapter source notes,book/lectures/lecture04/matching.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-patch-costs,patch-costs,see named box and chapter source notes,book/lectures/lecture04/matching.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-census,census,see named box and chapter source notes,book/lectures/lecture04/matching.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-adaptive,adaptive,see named box and chapter source notes,book/lectures/lecture04/matching.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-ranktwo,ranktwo,see named box and chapter source notes,book/lectures/lecture04/estimation.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-epipolar-error,epipolar-error,see named box and chapter source notes,book/lectures/lecture04/estimation.md,canonical numbered box/application; numerical checks passed; web/print review

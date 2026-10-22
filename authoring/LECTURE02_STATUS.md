@@ -1,13 +1,13 @@
 # Lecture 2 review status
 
-**Ready for user review.** Lecture 3 has not been started.
+**Reviewed with the user; progression to Lecture 3 authorized.**
 
 ## Delivered
 
 - Chapter introduction plus seven ordered sections, ending with TLDR and eight-question quiz with explained answers.
 - Spring 2020 Quiz 1: all five problem/subquestion units retained in three worked examples relocated to Lecture 1, alongside their foundation concepts; original L2 assignment preserved.
 - Six numbered worked examples within Lecture 2; three short understanding checks; sixteen canonical formula/application pairs.
-- Three original vector diagrams within Lecture 2, plus the quiz diagram relocated with its L1 practice; with editable TikZ and paired SVG/PDF assets; actual lecture court photograph with disclosed corner annotations and a computed inverse-sampled rectangular warp.
+- Four original vector diagrams within Lecture 2, including the perspective explorer's static view, plus the quiz diagram relocated with its L1 practice; with editable TikZ and paired SVG/PDF assets; actual lecture court photograph with disclosed corner annotations and a computed inverse-sampled rectangular warp.
 - Entire 129-page lecture audited. Repeated Lecture 1 geometry is cross-referenced; new rotation conversion, homography/warping, estimation and two-view material is taught here without filling the later chapters.
 - Missing +1 in matrix-to-quaternion formula corrected; active/passive conventions, radial radius notation, and camera direction qualified.
 - Updated coverage, formulas, quiz/figure registers, errata, glossary, keyword index and public references.
@@ -30,10 +30,14 @@
 
 ## Scope
 
-Lectures 3–6 remain planning outlines. Their assigned quizzes remain pending. No updates have been pushed or published. The portable source uses ordinary XeLaTeX plus bundled Sphinx support; Overleaf itself has not been accessed.
+At the original L2 handoff, Lectures 3–6 were planning outlines. The user has now authorized Lecture 3; its current state is tracked separately. No updates have been pushed or published. The portable source uses ordinary XeLaTeX plus bundled Sphinx support; Overleaf itself has not been accessed.
 
 ## Unique-content pass
 
 Removed repeated foundations and hierarchy exposition, moved foundation quiz solutions to L1, replaced the repeated quaternion quarter-turn, and rewrote the TLDR/quiz around L2 additions. See `lecture01-02-overlap-audit.md`. Final consolidated builds and relocated references are checked after the revision.
 
 Final consolidated checks passed: HTML and LaTeX warnings-as-errors builds, XeLaTeX PDF/index, updated numerical checker, Chromium on all eight remaining L2 pages plus relocated L1 practice, visible print solutions, and current manuscript in the portable ZIP. The chapter now has six worked examples and sixteen formula/application pairs.
+
+## Interactive addition
+
+Exactly one interactive explorer is placed at the relevant teaching point: perspective warp/cross-ratio in the homography section. The same MyST content supplies complete static explanation and results for print and no-JavaScript readers. See `INTERACTIVES.md` for the remaining lecture plan and validation.

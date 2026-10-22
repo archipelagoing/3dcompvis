@@ -1,13 +1,13 @@
 # Lecture boundaries and overlap decisions
 
-Status: **Lectures 1 and 2 fully audited and drafted; later full audits pending**. PDF pages below are one-based. Printed slide labels differ in places and must be verified independently.
+Status: **Lectures 1–4 fully audited and drafted; later full audits pending**. PDF pages below are one-based. Printed slide labels differ in places and must be verified independently.
 
 | Deck | Observed PDF page ranges | Teaching ownership |
 | --- | --- | --- |
 | Lecture 1 | 2–61 motivation/applications; 62–103 geometry, transformations, rotations/quaternions; 104–114 camera introduction | Teach actual foundations here and retain the motivating applications; introduce projection to the depth of the deck |
 | Lecture 2 | 2–41 repeated geometry; 42–50 expanded axis-angle/quaternions; 51–61 camera introduction; 62–104 projectivities, warping, DLT, RANSAC; 105–129 distortion/two-view introduction | Cross-reference Lecture 1; teach conversions, planar warping, normalized DLT/RANSAC, distortion and epipolar introductions here. Lectures 3/4 retain their assigned quizzes and expanded practice. |
-| Lecture 3 | Image formation and homographies; full audit pending | Main camera, homography, RANSAC derivations and assigned quizzes |
-| Lecture 4 | Two-view geometry and stereo; full audit pending | Main epipolar, essential-matrix, stereo treatments and assigned quizzes |
+| Lecture 3 | All 80 pages audited; pages 2–80 repeat L2 PDF 51–129 | Retain canonical L1/L2 teaching; add FOV calibration, ray–plane depth, complete projective normalized DLT, probability/pentagon quiz applications and sampling explorer |
+| Lecture 4 | All 77 pages audited; repeated distortion/epipolar/rectification mapped to L2 | New quiz applications, noisy F fitting/residuals, essential poses/cheirality, stereo depth/error and dense costs/support |
 | Lecture 5 | Corners, tracking, descriptors; full audit pending | Detection, tracking, matching and assigned quizzes |
 | Lecture 6 | Structure from motion; full audit pending | Reconstruction, factorization, triangulation, optimization and assigned quizzes |
 
@@ -20,3 +20,7 @@ Lecture 1 completion details and verified source dispositions are recorded in `l
 Lecture 2 page-level decisions, selected examples and corrections are recorded in `lecture02-audit.md`; its 129 pages are accounted for in `coverage.csv`.
 
 The user subsequently required unique content across chapters. Repeated L2 teaching is now assigned only to L1; its distinct foundation quiz solutions moved to L1 while original L2 source placement remains recorded. See `lecture01-02-overlap-audit.md`.
+
+Lecture 3 overlap and page-level source dispositions are recorded in `lecture03-audit.md` and `coverage.csv`. No repeated theoretical derivations were added.
+
+Lecture 4 ownership, actual slide-image selections, printed-number discontinuity, and source corrections are recorded in `lecture04-audit.md` and `coverage.csv`.

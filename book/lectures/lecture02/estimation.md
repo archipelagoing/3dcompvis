@@ -3,7 +3,7 @@
 
 Four matches can determine a homography, but real matches are noisy and some are wrong. **DLT** solves for the matrix; **RANSAC** finds matches that agree with one matrix. They solve different problems.
 
-**Source:** PDF pages 82–104, printed slides 83–105. These sections credit R. Hartley, A. Zisserman, and M. Pollefeys. Lecture 3 will add the assigned homography/probability quizzes and further numerical practice.
+**Source:** PDF pages 82–104, printed slides 83–105. These sections credit R. Hartley, A. Zisserman, and M. Pollefeys. [Lecture 3](../lecture03/index.md) adds the assigned homography/probability quizzes and a full projective numerical walkthrough.
 
 ## DLT: turn matches into linear equations
 
