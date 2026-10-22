@@ -55,3 +55,9 @@ files under `print/_support/`. Do not infer asset rights from the book's license
 
 When adding a chapter, update the public formula/glossary/quiz/errata references
 as well as the registers. Compile both editions before marking it complete.
+
+## Lecture 1 authoring checks
+
+Run `.venv/bin/python scripts/check_lecture01_math.py` for the independently checked numerical examples. Rebuild the original vector diagrams with `.venv/bin/python scripts/build_lecture01_figures.py`; this requires XeLaTeX and Poppler's `pdftocairo`. The generated assets are already included, so ordinary book builds do not need to regenerate figures.
+
+The local textbook extension deduplicates extension scripts in HTML builds. The optional Favourites MathJax loader patch is disabled to keep one standard MathJax loader and avoid duplicate startup. A forced full HTML rebuild is available with `teachbooks build book --builder html --all --warningiserror` after changing renderer configuration.

@@ -95,7 +95,7 @@
             psdextra
         }
         % End of preamble defined in sphinx-jupyterbook-latex %
-        
+
 
 \title{3D Computer Vision}
 \date{Oct 22, 2026}
@@ -127,7 +127,7 @@ Read in lecture order, beginning with the {\hyperref[\detokenize{foundations/not
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-This edition establishes the book’s structure and authoring conventions. Lecture chapters are planning outlines; their explanations and examples are not yet written. Completed material will be added one lecture at a time.
+Lecture 1 now contains explanations, diagrams, derivations, worked quiz examples, and practice. Lectures 2–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
 \end{sphinxadmonition}
 
 \begin{DUlineblock}{0em}
@@ -135,19 +135,19 @@ This edition establishes the book’s structure and authoring conventions. Lectu
 \end{DUlineblock}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
+\item {}
 \sphinxAtStartPar
 Start with the visual question and explain the intuition in your own words.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 Read the formula’s assumptions and symbol definitions before following the derivation.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 Work through the application procedure, then attempt the example without its solution.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 Use the chapter checklist and formula reference to identify what still needs practice.
 
@@ -176,13 +176,13 @@ These conventions apply throughout the book. A source using another convention w
 \centering
 \begin{tabulary}{\linewidth}[t]{TTT}
 \sphinxtoprule
-\sphinxstyletheadfamily 
+\sphinxstyletheadfamily
 \sphinxAtStartPar
 Symbol
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Meaning
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Shape / units
 \\
@@ -314,7 +314,7 @@ Write \(\mathbf{T}_{B\leftarrow A}\) for a transform that maps coordinates from 
 \sphinxAtStartPar
 \sphinxstylestrong{Homogeneous coordinates} represent a point by a nonzero vector up to nonzero scale; see {\hyperref[\detokenize{reference/glossary:term-Homogeneous-coordinates}]{\sphinxtermref{\DUrole{xref,std,std-term}{homogeneous coordinates}}}}. Use \(=\) for equality of vectors and \(\sim\) for equality up to scale. A zero vector is never a projective point.
 
-\index{homogeneous coordinates@\spxentry{homogeneous coordinates}!scale equivalence@\spxentry{scale equivalence}}\ignorespaces 
+\index{homogeneous coordinates@\spxentry{homogeneous coordinates}!scale equivalence@\spxentry{scale equivalence}}\ignorespaces
 \begin{TextbookBox}
 \textbf{Formula — homogeneous scale equivalence}\par\smallskip
 \begin{equation}\label{equation:foundations/notation:eq-homogeneous-scale}
@@ -332,15 +332,15 @@ When the third coordinate \(w\) is nonzero, the corresponding Euclidean point is
 \textbf{Application — compare two representations}\par\smallskip
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
+\item {}
 \sphinxAtStartPar
 Check that neither vector is zero.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 Determine whether one nonzero scalar multiplies every component of the first vector to produce the second.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 For finite points, divide by the last coordinate and compare the resulting Euclidean coordinates.
 
@@ -368,23 +368,23 @@ You should be comfortable with algebra, trigonometry, basic probability, matrix 
 
 \section{A quick readiness check}
 \label{\detokenize{foundations/prerequisites:a-quick-readiness-check}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Vectors:} interpret a dot product, a cross product, and vector length geometrically.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Matrices:} check multiplication dimensions, distinguish an inverse from a transpose, and solve a small linear system.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Calculus:} interpret a derivative as local sensitivity and a first\sphinxhyphen{}order Taylor expansion as a local approximation.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Linear algebra:} distinguish eigenvectors from singular vectors and understand a nullspace as the set of solutions to a homogeneous linear system.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Probability:} calculate the complement of repeated independent failures.
 
@@ -394,7 +394,7 @@ You should be comfortable with algebra, trigonometry, basic probability, matrix 
 Attempt the check below. Further numerical refreshers will be added when the corresponding lectures are written.
 
 \begin{TextbookBox}
-{Check — can these matrices be multiplied?}
+\textbf{Check — can these matrices be multiplied?}\par\smallskip
 
 \sphinxAtStartPar
 A matrix \(A\) has shape \(3\times4\) and a vector \(X\) has shape \(4\times1\). What is the shape of \(AX\)? Can \(XA\) be formed?
@@ -405,6 +405,47 @@ A matrix \(A\) has shape \(3\times4\) and a vector \(X\) has shape \(4\times1\).
 
 \sphinxAtStartPar
 The inner dimensions of \(AX\) agree, so its shape is \(3\times1\). The product \(XA\) cannot be formed: its inner dimensions would be \(1\) and \(3\). This is the dimension check used later in camera projection.
+\end{sphinxadmonition}
+
+
+\section{Matrix and vector tools used in Lecture 1}
+\label{\detokenize{foundations/prerequisites:matrix-and-vector-tools-used-in-lecture-1}}
+\sphinxAtStartPar
+A \sphinxstylestrong{basis} is a set of independent directions that can build every vector in the space. In 2D, \((1,0)\) and \((0,1)\) are the standard basis. The columns of a transformation matrix tell you where these basis vectors go. This is the derivation behind the rotation matrix in {\hyperref[\detokenize{lectures/lecture01/transformations:lec01-transformations}]{\sphinxcrossref{\DUrole{std,std-ref}{Move points without losing the geometry}}}}.
+
+\sphinxAtStartPar
+A \sphinxstylestrong{dot product} multiplies matching entries and adds them. For perpendicular vectors it is zero. In geometry it can test whether a point satisfies line or plane coefficients; the roles of the input vectors matter. A \sphinxstylestrong{cross product} of two 3\sphinxhyphen{}vectors is perpendicular to both, with magnitude equal to the area of their spanned parallelogram. Parallel inputs give zero. See \eqref{equation:lectures/lecture01/projective:eq-lec01-cross} for its components and a geometric application.
+
+\sphinxAtStartPar
+The \sphinxstylestrong{transpose} swaps rows and columns; it does not generally invert a matrix. An \sphinxstylestrong{inverse} undoes the transformation and exists only for an invertible square matrix. Rotation matrices are special: their inverse equals their transpose. A \sphinxstylestrong{determinant} is a signed area/volume scale for a square linear map. Zero means collapse of at least one independent direction; a proper rotation has determinant \(+1\).
+
+
+\section{Rank, nullspaces, and SVD}
+\label{\detokenize{foundations/prerequisites:rank-nullspaces-and-svd}}
+\sphinxAtStartPar
+\sphinxstylestrong{Rank} counts independent output directions. If a matrix sends a nonzero vector to zero, that vector belongs to its \sphinxstylestrong{nullspace}. A \(3\times4\) matrix of rank three has a one\sphinxhyphen{}dimensional nullspace: every solution is a scalar multiple of one nonzero vector. This is precisely the scale ambiguity of a homogeneous plane or point.
+
+\sphinxAtStartPar
+A \sphinxstylestrong{singular value decomposition (SVD)} writes a real matrix as \(A=U\Sigma V^T\), where \(U,V\) have orthonormal columns in their full forms and \(\Sigma\) contains nonnegative singular values. Geometrically, the map changes orthonormal coordinates, scales directions, then changes coordinates again. A right singular vector belonging to zero singular value is mapped to zero.
+
+\sphinxAtStartPar
+For the \(3\times4\) incidence systems in {\hyperref[\detokenize{lectures/lecture01/planes-lines:lec01-planes}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, planes, and lines in 3D}}}}, a full SVD supplies a \(4\times4\) \(V\): its last column spans the nullspace when rank is three. A reduced decomposition may omit that column. This implementation detail matters even when the geometric derivation is correct.
+
+\sphinxAtStartPar
+An \sphinxstylestrong{eigenvector} satisfies \(Av=\lambda v\): its direction is preserved, though its scale may change. A rotation axis has eigenvalue one. Eigenvectors and singular vectors solve different questions and should not be interchanged.
+
+\begin{TextbookBox}
+\textbf{Refresher — a null vector is not the zero answer}\par\smallskip
+
+\sphinxAtStartPar
+For \(A=\begin{pmatrix}1&0&-2\\0&1&-3\end{pmatrix}\), verify a nonzero null vector and explain what “up to scale” means.
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+\(A(2,3,1)^T=(0,0)^T\). Every nonzero multiple of \((2,3,1)^T\) is another valid null vector. The zero vector is also an algebraic solution, but it cannot represent a projective point. The matrix has rank two and one free scale direction.
 \end{sphinxadmonition}
 
 \sphinxstepscope
@@ -418,50 +459,2798 @@ The inner dimensions of \(AX\) agree, so its shape is \(3\times1\). The product 
 
 \chapter{Lecture 1: Foundations and 3D geometry}
 \label{\detokenize{lectures/lecture01/index:lecture-1-foundations-and-3d-geometry}}\label{\detokenize{lectures/lecture01/index:lecture01}}\label{\detokenize{lectures/lecture01/index::doc}}
-\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
+Can photographs taken from different viewpoints reveal a shared 3D world? Lecture 1 introduces that problem and builds the geometric language used to solve it.
+
+\sphinxAtStartPar
+This chapter follows the actual supplied deck, including its early introduction to camera projection. Later lectures revisit these foundations and develop their estimation algorithms. Read the sections in order; use the final checklist to return to a specific formula or quiz example.
+
+\sphinxAtStartPar
+\sphinxstylestrong{What you will learn}
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+Explain why a pixel alone does not determine scene depth.
+
+\item {}
+\sphinxAtStartPar
+Join points, intersect lines, and recognize ideal points in homogeneous coordinates.
+
+\item {}
+\sphinxAtStartPar
+Distinguish point transformations from line/plane transformations.
+
+\item {}
+\sphinxAtStartPar
+Construct planes and spatial lines, and recognize degenerate inputs.
+
+\item {}
+\sphinxAtStartPar
+Apply and compare rotation matrices, ordered angles, axis–angle, and quaternions.
+
+\item {}
+\sphinxAtStartPar
+Compose rigid frame transforms with explicit directions.
+
+\item {}
+\sphinxAtStartPar
+Project a world point into a camera and reason about camera motion.
+
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Reading route}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/motivation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Why reconstruct a world from photographs?}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/projective::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Points, lines, and infinity}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/transformations::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{2D transformations and invariants}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/planes-lines::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Planes and lines in 3D}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/rotations::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Rotation representations}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/frames-quizzes::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Frames and integrated quiz problems}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/cameras::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Camera projection and the hands\sphinxhyphen{}on exercise}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Review and source\sphinxhyphen{}coverage checklist}}}}
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{How the quizzes fit}
+
+\sphinxAtStartPar
+Fall 2025 Quiz 1, questions 3–4, develops relative camera pose and a camera/object plane. Fall 2017 Quiz 9 supplies the tetrahedron normals/rotation problem and a supplementary depth\sphinxhyphen{}backprojection bridge. The supplied lecture mapping classifies both quiz sets as supplementary; the core geometric ideas are still prerequisites for the higher\sphinxhyphen{}priority camera and two\sphinxhyphen{}view topics.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, all 114 PDF pages audited. Repeated visual builds are consolidated. Course logistics are excluded from the mathematics; research applications are summarized rather than treated as extra algorithms. Geometry slide sections credit M. Pollefeys and D. Cappelleri; image\sphinxhyphen{}formation sections credit John Oliensis. All newly added numerical values and diagrams are labeled as original or adapted.
+
+\sphinxstepscope
+
+
+\section{Why reconstruct a world from photographs?}
+\label{\detokenize{lectures/lecture01/motivation:why-reconstruct-a-world-from-photographs}}\label{\detokenize{lectures/lecture01/motivation:lec01-motivation}}\label{\detokenize{lectures/lecture01/motivation::doc}}
+\sphinxAtStartPar
+Imagine collecting photographs of the same building from people who never met. They used different cameras, stood in different places, and photographed it at different times. Could those disconnected pictures become one 3D model?
+
+\sphinxAtStartPar
+That is the opening challenge of Lecture 1: \sphinxstylestrong{“the Internet as a camera.”} Here the phrase describes a collection of viewpoints, not one physical camera or a claim that arbitrary pictures can always be reconstructed. The reconstruction must discover which images overlap, which pixels refer to the same scene features, and where the cameras were.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 2–61. Printed slide labels match PDF pages through page 24; from PDF page 25 onward labels are offset by one. The application descriptions below summarize the supplied lecture, not the current state of a research project.
+
+
+\subsection{Work backward from an image}
+\label{\detokenize{lectures/lecture01/motivation:work-backward-from-an-image}}
+\sphinxAtStartPar
+\sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Computer-vision}]{\sphinxtermref{\DUrole{xref,std,std-term}{Computer vision}}}}} infers properties of a scene from measured images. Computer graphics usually starts with scene geometry, materials, lighting, and a viewpoint to produce an image. Vision faces the inverse question: given the image, what could have produced it?
+
+\sphinxAtStartPar
+This distinction matters because the inverse need not be unique. A small nearby object and a larger distant object may occupy the same pixels. Surface color and illumination can also trade off: a dark pixel might belong to a dark material or a shadow. The ambiguous figures and lighting illusions on PDF pages 30–42 are reminders that an image is evidence, not a complete description of the world.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.750\linewidth]{{ambiguity}.pdf}
+\caption{One image point specifies a viewing ray, not a unique depth. Original diagram explaining the projection ambiguity illustrated on Lecture 1 PDF pages 37 and 105–107.}\label{\detokenize{lectures/lecture01/motivation:fig-lec01-ambiguity}}\end{figure}
+
+\sphinxAtStartPar
+The picture gives us a useful distinction between \sphinxstylestrong{geometric information}—positions, shapes, and camera motion—and \sphinxstylestrong{semantic information}, such as whether a region depicts a building or vegetation. Both can help a vision system, but this book concentrates on geometry. A geometric reconstruction can have accurate surface positions without knowing the names of the objects.
+
+\index{computer vision@\spxentry{computer vision}!inverse problem@\spxentry{inverse problem}}\ignorespaces
+\index{geometric reconstruction@\spxentry{geometric reconstruction}}\ignorespaces
+\index{semantic information@\spxentry{semantic information}}\ignorespaces
+
+\subsection{A reconstruction is a chain of linked problems}
+\label{\detokenize{lectures/lecture01/motivation:a-reconstruction-is-a-chain-of-linked-problems}}\label{\detokenize{lectures/lecture01/motivation:index-2}}\label{\detokenize{lectures/lecture01/motivation:index-1}}\label{\detokenize{lectures/lecture01/motivation:index-0}}
+\sphinxAtStartPar
+The Colosseum sequence on PDF pages 19–24 motivates the following pipeline. The arrows are logical dependencies; practical systems may revisit earlier stages.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{pipeline}.pdf}
+\caption{From independent photographs to a geometric representation. Original redrawing of the lecture’s reconstruction workflow, PDF pages 18–26. The underlying lecture figures use the Colosseum as an example.}\label{\detokenize{lectures/lecture01/motivation:fig-lec01-pipeline}}\end{figure}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Associate:} identify measurements of the same scene feature across images. A similar\sphinxhyphen{}looking window is not automatically the same physical window.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Register:} estimate camera positions/orientations and a sparse set of 3D points. \sphinxstylestrong{Structure from motion (SfM)} estimates scene structure and camera motion together from image correspondences.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Estimate dense depth:} recover geometry for many pixels, not just a few distinctive corners.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Represent:} organize the recovered geometry as a point cloud, surface, or another useful model. Dense depth, point\sphinxhyphen{}cloud fusion, and meshes are previews here; their full algorithms lie beyond these six lectures.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Depth-map}]{\sphinxtermref{\DUrole{xref,std,std-term}{depth map}}}}} stores a depth value at each valid image location. A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Point-cloud}]{\sphinxtermref{\DUrole{xref,std,std-term}{point cloud}}}}} stores 3D point positions. They are different representations: a depth map still depends on its camera coordinates; a point cloud can express all points in one common frame.
+
+
+\subsection{Follow the fountain from pixels toward shape}
+\label{\detokenize{lectures/lecture01/motivation:follow-the-fountain-from-pixels-toward-shape}}
+\sphinxAtStartPar
+PDF pages 50–51 show photographs, depth estimates, fusion, and colored geometry of a fountain. This is particularly useful because its decorative details are visible in both the photograph and geometric output.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.620\linewidth]{{fountain-input}.png}
+\caption{An input view from the fountain example, extracted from Lecture 1 PDF page 50, printed slide 51. Source: supplied Enrique Dunn lecture deck; the original photograph’s creator is not identified on that slide.}\label{\detokenize{lectures/lecture01/motivation:fig-lec01-fountain-photo}}\end{figure}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.620\linewidth]{{fountain-depth}.png}
+\caption{A depth output from the same example, extracted from PDF page 51, printed slide 52. The slide compares raw and fused estimates. Grayscale is an encoding of the source’s depth data; its numerical scale is not specified, so do not infer metric depths from brightness alone. Source: supplied lecture deck; original figure creator not specified there.}\label{\detokenize{lectures/lecture01/motivation:fig-lec01-fountain-depth}}\end{figure}
+
+\sphinxAtStartPar
+Notice three things. First, matching must identify the same ornament or basin location in different views. Second, a depth estimate is a geometric hypothesis and can contain holes, noise, or mistakes near occlusion boundaries. Third, fusion must place estimates in a common reference frame; simply stacking pixel arrays would not align their 3D points.
+
+\sphinxAtStartPar
+The slides also show urban capture in Chapel Hill (PDF 47–49), large photo\sphinxhyphen{}collection reconstructions (52–54), visual SLAM (55), dynamic reconstruction (56), and remote sensing, autonomous systems, augmented reality, and geolocalization (57–61). These illustrate different data conditions, not extra algorithms to memorize in Lecture 1. \sphinxstylestrong{Visual SLAM} emphasizes estimating a moving camera’s pose while building a map. A dynamic scene introduces an additional challenge: the same object may move between images.
+
+
+\subsection{Why the geometry is difficult}
+\label{\detokenize{lectures/lecture01/motivation:why-the-geometry-is-difficult}}
+\sphinxAtStartPar
+The lecture’s examples identify several different obstacles:
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Projection loses depth:} many 3D points can lie on one image ray.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Appearance is not geometry:} shadows, reflections, materials, and exposure change pixel intensities.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Measurements are imperfect:} noise, quantization, blur, occlusion, and camera\sphinxhyphen{}model errors affect the observations.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Association is ambiguous:} repeated textures and locally similar patches can produce incorrect matches.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{More data creates more work:} a large photo collection can improve coverage but also increases matching and optimization costs.
+
+\end{itemize}
+
+\sphinxAtStartPar
+The answer is not to abandon images. It is to state the model and assumptions clearly, use multiple sources of evidence, and check the resulting estimates.
+
+\begin{TextbookBox}
+\textbf{Check 1.1 — is a correspondence already a 3D point?}\par\smallskip
+
+\sphinxAtStartPar
+Two images contain matching pixels on the same fountain ornament. Do those two pixel coordinates alone provide its position in meters?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+No. We still need suitable camera geometry and a scale reference for metric units. Matching establishes data association. Reconstruction uses the image measurements and cameras to infer geometry. Even a valid monocular reconstruction generally has an unknown global scale unless additional information fixes it.
 \end{sphinxadmonition}
 
 
-\section{Planned scope}
-\label{\detokenize{lectures/lecture01/index:planned-scope}}
+\subsection{What to remember}
+\label{\detokenize{lectures/lecture01/motivation:what-to-remember}}
 \sphinxAtStartPar
-Motivation and applications; 2D/3D geometry; transformations and rotations; camera introduction.
+The rest of Lecture 1 builds the language needed to describe this pipeline: homogeneous points and lines, transformations, planes, rotations, reference frames, and camera projection. The goal is to understand how a calculation relates to a geometric question, not to mistake a visually convincing output for a verified reconstruction.
+
+\sphinxstepscope
+
+
+\section{Points, lines, and the meaning of infinity}
+\label{\detokenize{lectures/lecture01/projective:points-lines-and-the-meaning-of-infinity}}\label{\detokenize{lectures/lecture01/projective:lec01-projective}}\label{\detokenize{lectures/lecture01/projective::doc}}
+\sphinxAtStartPar
+Railway tracks are parallel in the world, yet their image traces appear to converge. Is that a contradiction? No: the world plane and the image plane are related by perspective, which does not preserve parallelism.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 64–71 (printed slides 65–72).
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.320\linewidth]{{railway}.png}
+\caption{The railway example from PDF page 68, printed slide 69. Source: supplied lecture deck; original photographer unspecified. The source image has limited resolution, so it is intentionally displayed at a modest size.}\label{\detokenize{lectures/lecture01/projective:fig-lec01-railway}}\end{figure}
 
 
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture01/index:examples-and-practice}}
+\subsection{Add a coordinate, not an extra physical dimension}
+\label{\detokenize{lectures/lecture01/projective:add-a-coordinate-not-an-extra-physical-dimension}}
 \sphinxAtStartPar
-Select the most useful examples from the actual slides and integrate the assigned questions from the {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}}. Missing quiz coverage will be filled with new, clearly labeled worked examples.
+An ordinary point \((u,v)\) can be represented by \(\mathbf{x}=(u,v,1)^T\). Multiplying all three components by a nonzero scalar gives the same projective point. The added coordinate makes certain geometric operations easier; it does not give a 2D point an extra physical dimension.
 
-
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture01/index:completion-checklist}}\begin{itemize}
-\item {} 
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
+Recall from {\hyperref[\detokenize{foundations/notation:notation}]{\sphinxcrossref{\DUrole{std,std-ref}{Notation and coordinate conventions}}}} that \(\sim\) means equality up to nonzero scale. A finite point \((x_1,x_2,w)^T\) becomes \((x_1/w,x_2/w)\) when \(w
+e0\). For example, \((6,9,3)^T\) represents \((2,3)\).
 
-\item {} 
 \sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+The \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Projective-plane}]{\sphinxtermref{\DUrole{xref,std,std-term}{projective plane}}}}} \(\mathbb P^2\) is the set of nonzero vectors in \(\mathbb R^3\) \sphinxstylestrong{identified under scale}. This last clause matters: the slide’s shorthand \(\mathbb R^3\setminus\{0\}\) must be understood with this identification. Three homogeneous entries have only two degrees of freedom because one overall scale is redundant.
 
-\item {} 
+\index{projective plane@\spxentry{projective plane}}\ignorespaces
+\index{incidence@\spxentry{incidence}}\ignorespaces
+\index{point at infinity@\spxentry{point at infinity}}\ignorespaces
+\index{line at infinity@\spxentry{line at infinity}}\ignorespaces
+\begin{TextbookBox}
+\textbf{Formula — point–line incidence}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/projective:eq-lec01-incidence}
+\begin{split}\boldsymbol\ell^T\mathbf{x}=a x_1+b x_2+c w=0.\end{split}
+\end{equation}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+Here \(\boldsymbol\ell=(a,b,c)^T\ne0\) is a homogeneous line and \(\mathbf{x}=(x_1,x_2,w)^T\ne0\) is a point. For \(w=1\), this is the familiar \(au+bv+c=0\). The scalar zero tests \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Incidence}]{\sphinxtermref{\DUrole{xref,std,std-term}{incidence}}}}}: whether the point lies on the line.
 
-\item {} 
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
+\sphinxstylestrong{Conditions and limits:} This is exact. Both line and point coefficients may be rescaled. It tests incidence, not Euclidean distance; a nonzero residual has no scale\sphinxhyphen{}independent magnitude unless you normalize it. At least one of \(a,b\) must be nonzero for an ordinary finite line.
 
-\item {} 
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — point–line incidence}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
 \sphinxAtStartPar
- Check both the website and cumulative printable edition.
+Express the point and line in the same coordinates.
+
+\item {}
+\sphinxAtStartPar
+Multiply corresponding entries and add them.
+
+\item {}
+\sphinxAtStartPar
+Check whether the result is zero (or numerically small under a specified normalization).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/projective:ex-lec01-intersections}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.1}}}}.
+
+\end{TextbookBox}
+
+
+\subsubsection{Why a cross product appears}
+\label{\detokenize{lectures/lecture01/projective:why-a-cross-product-appears}}
+\sphinxAtStartPar
+The cross product of two 3\sphinxhyphen{}vectors is perpendicular to both. Therefore, if two vectors encode points, their cross product supplies line coefficients orthogonal to both points. If the vectors encode lines, their cross product supplies a point incident to both lines. The algebra is the same; the geometric interpretation changes.
+
+\begin{TextbookBox}
+\textbf{Formula — join two points or intersect two lines}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/projective:eq-lec01-cross}
+\begin{split}\begin{aligned}
+\boldsymbol\ell&\sim\mathbf{x}\times\mathbf{y},&
+\mathbf{p}&\sim\boldsymbol\ell_1\times\boldsymbol\ell_2,\\
+\mathbf{a}\times\mathbf{b}
+&=\begin{pmatrix}a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{pmatrix}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Each input and output is a \(3\times1\) homogeneous vector. Joining two distinct points gives a line; intersecting two distinct lines gives a point. The components have coefficient\sphinxhyphen{}dependent units, so interpret the result after the appropriate homogeneous normalization.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} The result must be nonzero. Equal points up to scale do not define a unique line; equal lines do not define a unique intersection. Reversing the order changes the sign and therefore preserves the represented object.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — join two points or intersect two lines}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Decide whether the inputs represent points or lines.
+
+\item {}
+\sphinxAtStartPar
+Evaluate the three cross\sphinxhyphen{}product components.
+
+\item {}
+\sphinxAtStartPar
+If the result is zero, diagnose coincident/degenerate inputs.
+
+\item {}
+\sphinxAtStartPar
+For a point, divide by the last component only if it is nonzero. Verify incidence by dot products.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/projective:ex-lec01-intersections}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.1}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/projective:ex-lec01-intersections}}
+\begin{TextbookBox}
+\textbf{Worked example 1.1 — parallel lines have a projective intersection}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical expansion of the railway/ideal\sphinxhyphen{}point example, PDF pages 67–71. The related Spring 2020 Quiz 1 is reserved for Lecture 2.
+
+\sphinxAtStartPar
+Take \(y=1\) and \(y=2\), represented by \(\ell_1=(0,1,-1)^T\) and \(\ell_2=(0,1,-2)^T\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Their cross product is \((-1,0,0)^T\sim(1,0,0)^T\).
+
+\item {}
+\sphinxAtStartPar
+The last coordinate is zero, so this is an \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Ideal-point}]{\sphinxtermref{\DUrole{xref,std,std-term}{ideal point}}}}}, not a finite Euclidean position.
+
+\item {}
+\sphinxAtStartPar
+Check incidence: both \(\ell_1^T(1,0,0)\) and \(\ell_2^T(1,0,0)\) are zero.
+
+\item {}
+\sphinxAtStartPar
+Its first two coordinates identify the horizontal direction. Division by the last coordinate is neither required nor allowed.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For comparison, intersecting \(x=2\), or \((1,0,-2)^T\), with \(y=3\), or \((0,1,-3)^T\), gives \((2,3,1)^T\), a finite point.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Formula — ideal points and the line at infinity}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/projective:eq-lec01-ideal}
+\begin{split}\begin{aligned}
+\boldsymbol\ell_1\times\boldsymbol\ell_2
+&=(c_2-c_1)(b,-a,0)^T,\\
+\boldsymbol\ell_\infty&=(0,0,1)^T,\qquad
+\boldsymbol\ell_\infty^T(d_x,d_y,0)^T=0.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+The parallel finite lines are \(\ell_1=(a,b,c_1)^T\) and \(\ell_2=(a,b,c_2)^T\). Their ideal intersection records direction \((b,-a)\). All points with last coordinate zero lie on the \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Line-at-infinity}]{\sphinxtermref{\DUrole{xref,std,std-term}{line at infinity}}}}}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} Require \((a,b)\ne(0,0)\) and \(c_1\ne c_2\). The factor \(c_2-c_1\) may be dropped up to scale, but not when it is zero. “At infinity” is a projective classification, not a very large finite coordinate.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — ideal points and the line at infinity}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Put distinct parallel lines into a shared \((a,b)\) normalization.
+
+\item {}
+\sphinxAtStartPar
+Cross them and recognize the zero last component.
+
+\item {}
+\sphinxAtStartPar
+Read the direction from the first two components and check it is perpendicular to \((a,b)\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/projective:ex-lec01-intersections}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.1}}}}.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{projective-lines}.pdf}
+\caption{An ideal point in one plane may map to a finite vanishing point in another. Original diagram developing PDF pages 68–71. The world and image panels are different coordinate spaces, not two claims about the same pair of coordinate lines.}\label{\detokenize{lectures/lecture01/projective:fig-lec01-projective}}\end{figure}
+
+
+\subsection{A vanishing point is not automatically an ideal image point}
+\label{\detokenize{lectures/lecture01/projective:a-vanishing-point-is-not-automatically-an-ideal-image-point}}
+\sphinxAtStartPar
+A scene’s parallel rails share a direction. Under a perspective mapping, that direction can project to a finite pixel location: the \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Vanishing-point}]{\sphinxtermref{\DUrole{xref,std,std-term}{vanishing point}}}}} in the photograph. The \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Horizon}]{\sphinxtermref{\DUrole{xref,std,std-term}{horizon}}}}} of a scene plane is the image of that plane’s line at infinity. It need not coincide with the image’s own line at infinity.
+
+\sphinxAtStartPar
+This distinction explains the opening puzzle. The world lines remain parallel in world coordinates, while their images can intersect at an ordinary finite pixel. We will derive the camera mapping later in {\hyperref[\detokenize{lectures/lecture01/cameras:lec01-cameras}]{\sphinxcrossref{\DUrole{std,std-ref}{Image formation: where does a 3D point appear?}}}}.
+
+\begin{TextbookBox}
+\textbf{Check 1.2 — does changing scale change the line?}\par\smallskip
+
+\sphinxAtStartPar
+Do \((2,-2,4)^T\) and \((-1,1,-2)^T\) describe different lines? Does \((0,0,0)^T\) describe every line?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+The first two vectors differ by a factor of \(-2\), so they describe the same line. The zero vector is invalid: its equation places no restriction on points and cannot identify a unique line.
+\end{sphinxadmonition}
+
+
+\subsection{What to remember}
+\label{\detokenize{lectures/lecture01/projective:what-to-remember}}
+\sphinxAtStartPar
+Use dot products for incidence and cross products for joins/intersections. Normalize a finite point only after checking its last coordinate. Track which space a point belongs to before calling it a vanishing point or a point at infinity.
+
+\sphinxstepscope
+
+
+\section{Move points without losing the geometry}
+\label{\detokenize{lectures/lecture01/transformations:move-points-without-losing-the-geometry}}\label{\detokenize{lectures/lecture01/transformations:lec01-transformations}}\label{\detokenize{lectures/lecture01/transformations::doc}}
+\sphinxAtStartPar
+Suppose a point is one unit to the right of a pivot. A quarter\sphinxhyphen{}turn should put it one unit above that pivot. Rotating around the coordinate origin instead gives the wrong answer unless the pivot happens to be the origin. A small coordinate diagram makes this distinction easier than memorizing a large matrix.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 72–79 (printed slides 73–80).
+
+\sphinxAtStartPar
+Throughout the 2D rotation examples, \(x\) points right and \(y\) points \sphinxstylestrong{up} in a Cartesian diagram. This differs from the downward pixel \(v\) axis in the notation guide. We use active rotations of points and the right\sphinxhyphen{}hand rule; do not transfer a screen\sphinxhyphen{}clockwise interpretation without checking the axes.
+
+
+\subsection{Derive rotation from the basis vectors}
+\label{\detokenize{lectures/lecture01/transformations:derive-rotation-from-the-basis-vectors}}
+\sphinxAtStartPar
+A counterclockwise rotation by \(	heta\) sends \((1,0)^T\) to \((\cos	heta,\sin	heta)^T\). It sends \((0,1)^T\) to \((-\sin	heta,\cos	heta)^T\). A point \((x,y)^T\) is \(x\) times the first basis vector plus \(y\) times the second. Rotating both basis vectors and combining them gives the columns of the rotation matrix.
+
+\begin{TextbookBox}
+\textbf{Formula — 2D rotation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/transformations:eq-lec01-rotation2}
+\begin{split}\mathbf{p}'=R(\theta)\mathbf{p},\qquad
+R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\mathbf{p}\) and \(\mathbf{p}'\) are \(2\times1\) positions relative to the rotation center; \(R\) is \(2\times2\) and unitless. Thus \(x'=x\cos\theta-y\sin\theta\) and \(y'=x\sin\theta+y\cos\theta\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} Exact for a planar rotation. State angle units before evaluating trigonometric functions. This rotates around the origin and preserves lengths and angles; translation is a separate operation.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — 2D rotation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Choose a Cartesian axis convention and rotation center.
+
+\item {}
+\sphinxAtStartPar
+Convert the angle to the units expected by the computation.
+
+\item {}
+\sphinxAtStartPar
+Multiply the matrix by the point; check that its distance from the center is unchanged.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/transformations:ex-lec01-pivot}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.2}}}}.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Formula — translation and rotation about a pivot}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/transformations:eq-lec01-rigid2}
+\begin{split}\begin{aligned}
+\begin{pmatrix}\mathbf{p}'\\1\end{pmatrix}
+&=\begin{pmatrix}R&\mathbf{t}\\0&1\end{pmatrix}
+\begin{pmatrix}\mathbf{p}\\1\end{pmatrix},\\
+\mathbf{p}'&=\mathbf{c}+R(\mathbf{p}-\mathbf{c}),\qquad
+H_c=T(\mathbf{c})\operatorname{diag}(R,1)T(-\mathbf{c}).
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\mathbf{p},\mathbf{c},\mathbf{t}\) are \(2\times1\) vectors in the same length unit. \(T(\mathbf{t})\) is the \(3\times3\) homogeneous translation matrix with identity upper\sphinxhyphen{}left block and last column \((t_x,t_y,1)^T\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} Exact rigid geometry; the rightmost matrix acts first. A direction has homogeneous last coordinate zero, so a translation does not change it. A position has last coordinate one.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — translation and rotation about a pivot}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Subtract the pivot to express the point relative to it.
+
+\item {}
+\sphinxAtStartPar
+Apply the rotation.
+
+\item {}
+\sphinxAtStartPar
+Add the pivot back. In homogeneous form multiply in that same right\sphinxhyphen{}to\sphinxhyphen{}left order.
+
+\item {}
+\sphinxAtStartPar
+Check that the pivot itself stays fixed.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/transformations:ex-lec01-pivot}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.2}}}}.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{rotation-center}.pdf}
+\caption{Translate to the pivot, rotate the offset, then translate back. Original solution diagram for the hands\sphinxhyphen{}on question on PDF page 77, printed slide 78.}\label{\detokenize{lectures/lecture01/transformations:fig-lec01-pivot}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/transformations:ex-lec01-pivot}}
+\begin{TextbookBox}
+\textbf{Worked example 1.2 — a quarter\sphinxhyphen{}turn around a chosen center}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} numerical adaptation of the hands\sphinxhyphen{}on tasks on PDF page 77.
+
+\sphinxAtStartPar
+Let \(p=(3,1)^T\), \(c=(2,1)^T\), and \(\theta=90^\circ\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+The offset is \(p-c=(1,0)^T\).
+
+\item {}
+\sphinxAtStartPar
+A quarter\sphinxhyphen{}turn sends that offset to \((0,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Adding the center gives \(p'=(2,2)^T\).
+
+\item {}
+\sphinxAtStartPar
+Both offsets have length one, and applying the same operation to \(c\) gives \(c\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Rotating \(p\) directly around the origin would give \((-1,3)^T\), demonstrating why the chosen center matters.
+
+\end{TextbookBox}
+
+
+\subsection{Transformation families: what stays unchanged?}
+\label{\detokenize{lectures/lecture01/transformations:transformation-families-what-stays-unchanged}}
+\sphinxAtStartPar
+The \sphinxstylestrong{degrees of freedom (DOF)} count independent parameters, not the number of printed matrix entries. A general invertible \(3\times3\) homogeneous matrix has nine entries, but its overall nonzero scale is irrelevant, leaving eight DOF.
+
+\begin{TextbookBox}
+\textbf{Formula — 2D transformation hierarchy}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/transformations:eq-lec01-hierarchy}
+\begin{split}H_E=\begin{pmatrix}R&t\\0^T&1\end{pmatrix},\quad
+H_S=\begin{pmatrix}sR&t\\0^T&1\end{pmatrix},\quad
+H_A=\begin{pmatrix}A&t\\0^T&1\end{pmatrix},\quad
+H_P=\begin{pmatrix}A&t\\v^T&\alpha\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Blocks \(R,A\) are \(2\times2\); \(t,v\) are \(2\times1\) and \(\alpha,s\) are scalars. Euclidean, similarity, affine, and projective maps have respectively 3, 4, 6, and 8 DOF in 2D. Here \(s>0\) and \(R\) is a proper rotation.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} Each full mapping must be invertible; affine \(A\) must be invertible. Projective division is required after multiplication and can map finite points to infinity. The Euclidean form here excludes reflections; allowing reflections adds a discrete choice, not another continuous DOF.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — 2D transformation hierarchy}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Ask what the data require: rigid motion, uniform scale, shear, or perspective.
+
+\item {}
+\sphinxAtStartPar
+Identify the smallest valid transformation family.
+
+\item {}
+\sphinxAtStartPar
+Check its invariants using the table below and normalize transformed finite points.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/transformations:ex-lec01-family}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.3}}}}.
+
+\end{TextbookBox}
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Family
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+What it preserves
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+What it can change
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Euclidean
+&
+\sphinxAtStartPar
+Lengths, angles, incidence, parallelism
+&
+\sphinxAtStartPar
+Position and orientation
+\\
+\sphinxhline
+\sphinxAtStartPar
+Similarity
+&
+\sphinxAtStartPar
+Angles and ratios of lengths
+&
+\sphinxAtStartPar
+Overall scale
+\\
+\sphinxhline
+\sphinxAtStartPar
+Affine
+&
+\sphinxAtStartPar
+Incidence, parallelism, ratios along a line, ratios of areas
+&
+\sphinxAtStartPar
+Angles and unequal directional scales
+\\
+\sphinxhline
+\sphinxAtStartPar
+Projective
+&
+\sphinxAtStartPar
+Incidence, straightness, cross\sphinxhyphen{}ratio where defined
+&
+\sphinxAtStartPar
+Parallelism, lengths, angles, ordinary area ratios
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The table summarizes PDF page 78. “Preserves ratios” for an affine map means the relevant ratio within the same transformation, not that every arbitrary pair of vector lengths is preserved. A projectivity also preserves tangency where defined; it need not preserve a visible square’s appearance.
+
+\phantomsection\label{\detokenize{lectures/lecture01/transformations:ex-lec01-family}}
+\begin{TextbookBox}
+\textbf{Worked example 1.3 — shear is not a rotation}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original computation developing the transformation hierarchy on PDF page 78.
+
+\sphinxAtStartPar
+Take \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\). It sends the basis vectors to \((1,0)^T\) and \((1,1)^T\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Their original dot product is zero; their new dot product is one. The right angle changed.
+
+\item {}
+\sphinxAtStartPar
+Horizontal parallel lines remain horizontal and parallel.
+
+\item {}
+\sphinxAtStartPar
+The determinant is one, so oriented area is unchanged for this particular shear.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+This is affine, but not Euclidean or similarity. General affine maps multiply every area by the same determinant magnitude, which explains why area ratios are preserved even when areas themselves change.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The hierarchy slide also names the \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Circular-points}]{\sphinxtermref{\DUrole{xref,std,std-term}{circular points}}}}}: two complex points at infinity shared by all Euclidean circles in a plane. Their invariance under similarities is a projective way of encoding angle information; they are not finite pixels you could photograph. In 3D, the analogous \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Absolute-conic}]{\sphinxtermref{\DUrole{xref,std,std-term}{absolute conic}}}}} is a complex conic on the plane at infinity that encodes the Euclidean metric. These are vocabulary previews for reconstruction upgrades in Lecture 6, not additional numerical tasks for Lecture 1.
+
+
+\subsection{Lines transform differently from points}
+\label{\detokenize{lectures/lecture01/transformations:lines-transform-differently-from-points}}
+\sphinxAtStartPar
+A line is a set of points satisfying \(\ell^Tx=0\). If \(x'=Hx\), then \(x=H^{-1}x'\). Substituting gives \(\ell^TH^{-1}x'=0\). Transpose the coefficient product: \((H^{-T}\ell)^Tx'=0\). That is why multiplying a line by \(H\) generally gives the wrong result.
+
+\begin{TextbookBox}
+\textbf{Formula — transform line and plane coefficients}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/transformations:eq-lec01-dual}
+\begin{split}\mathbf{x}'\sim H\mathbf{x},\qquad
+\boldsymbol\ell'\sim H^{-T}\boldsymbol\ell;
+\qquad
+\mathbf{X}'\sim G\mathbf{X},\quad\boldsymbol\pi'\sim G^{-T}\boldsymbol\pi.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(H\) is an invertible \(3\times3\) planar projectivity; \(G\) is an invertible \(4\times4\) spatial projectivity. Lines and planes are \sphinxstylestrong{dual} coefficients of incidence equations, so they transform with the inverse transpose.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions and limits:} Exact projective incidence. The inverse does not exist for a singular transformation; such a map is not a projectivity. Coefficient normalization does not change the represented line or plane.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — transform line and plane coefficients}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Confirm whether the object is a point/direction or an incidence coefficient vector.
+
+\item {}
+\sphinxAtStartPar
+Use the forward matrix for points and its inverse transpose for lines/planes.
+
+\item {}
+\sphinxAtStartPar
+Transform a known incident point and verify that its new incidence residual is zero.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked connection:} {\hyperref[\detokenize{lectures/lecture01/transformations:ex-lec01-line-transform}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.4}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/transformations:ex-lec01-line-transform}}
+\begin{TextbookBox}
+\textbf{Worked example 1.4 — translate a line}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original verification of PDF page 79’s line\sphinxhyphen{}transformation rule.
+
+\sphinxAtStartPar
+Translate every point by \((2,0)^T\). The line \(x=0\) should become \(x'=2\).
+
+\sphinxAtStartPar
+Its coefficients are \(\ell=(1,0,0)^T\). With \(H=\begin{pmatrix}1&0&2\\0&1&0\\0&0&1\end{pmatrix}\), the correct result is \(H^{-T}\ell=(1,0,-2)^T\), or \(x'-2=0\). Applying \(H\) directly to \(\ell\) would leave the line at \(x'=0\), which fails the geometric check.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 1.3 — reverse the operation}\par\smallskip
+
+\sphinxAtStartPar
+After the pivot rotation in Example 1.2, how do you recover the original point?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+Subtract the same pivot, rotate by \(-90^\circ\), then add the pivot back. The inverse reverses the operation order: \((ABC)^{-1}=C^{-1}B^{-1}A^{-1}\). For this pivot sandwich the result is \(T(c)R(-90^\circ)T(-c)\).
+\end{sphinxadmonition}
+
+\sphinxstepscope
+
+
+\section{Points, planes, and lines in 3D}
+\label{\detokenize{lectures/lecture01/planes-lines:points-planes-and-lines-in-3d}}\label{\detokenize{lectures/lecture01/planes-lines:lec01-planes}}\label{\detokenize{lectures/lecture01/planes-lines::doc}}
+\sphinxAtStartPar
+A 2D line is described by one linear equation. In 3D, one linear equation describes a plane instead. A spatial line therefore needs more structure: it is the intersection of two planes, or a point together with a direction.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 80–87, printed slides 81–88.
+
+
+\subsection{Homogeneous 3D points}
+\label{\detokenize{lectures/lecture01/planes-lines:homogeneous-3d-points}}
+\sphinxAtStartPar
+Represent a finite point \((X,Y,Z)\) by \((X,Y,Z,1)^T\). Divide a general homogeneous point \((X_1,X_2,X_3,X_4)^T\) by \(X_4\) when \(X_4\ne0\). When \(X_4=0\), it represents an ideal direction. The zero vector is invalid.
+
+\sphinxAtStartPar
+An invertible \(4\times4\) matrix \(G\) acts by \(\mathbf{X}'\sim G\mathbf{X}\). It has \(16-1=15\) projective DOF because one overall scale is redundant. A plane transforms by \(G^{-T}\); the incidence derivation in {\hyperref[\detokenize{lectures/lecture01/transformations:lec01-transformations}]{\sphinxcrossref{\DUrole{std,std-ref}{Move points without losing the geometry}}}} applies without change.
+
+
+\subsection{A plane is a normal and an offset}
+\label{\detokenize{lectures/lecture01/planes-lines:a-plane-is-a-normal-and-an-offset}}
+\sphinxAtStartPar
+A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Surface-normal}]{\sphinxtermref{\DUrole{xref,std,std-term}{surface normal}}}}} is perpendicular to the surface’s local tangent directions. For a plane it is constant everywhere. If \(n=(a,b,c)^T\), the equation \(n^Tq+d=0\) describes points whose displacement from a point on the plane is perpendicular to \(n\).
+
+\index{plane@\spxentry{plane}!normal@\spxentry{normal}}\ignorespaces
+\index{surface normal@\spxentry{surface normal}}\ignorespaces
+\index{nullspace@\spxentry{nullspace}}\ignorespaces
+\index{Plücker coordinates@\spxentry{Plücker coordinates}}\ignorespaces
+\begin{TextbookBox}
+\textbf{Formula — plane incidence and Euclidean distance}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-plane}
+\begin{split}\pi^T X=0,\quad \pi=(a,b,c,d)^T,\qquad
+D(q,\pi)=\frac{|n^Tq+d|}{\|n\|}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(X=(q^T,1)^T\) is \(4\times1\); \(q,n\) are \(3\times1\). \(D\) is unsigned point\sphinxhyphen{}to\sphinxhyphen{}plane distance in the coordinate length unit. The signed version omits the absolute value and depends on normal orientation.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} \(n\ne0\) for a finite Euclidean plane. The plane at infinity \((0,0,0,1)^T\) is projectively valid but has no finite distance formula. Exact geometry; normal scale is arbitrary.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — test incidence or measure distance}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Put the point and plane in the same frame.
+
+\item {}
+\sphinxAtStartPar
+Evaluate \(n^Tq+d\); zero means incidence.
+
+\item {}
+\sphinxAtStartPar
+Divide its magnitude by \(\|n\|\) for distance.
+
+\item {}
+\sphinxAtStartPar
+Check that rescaling all four coefficients leaves the distance unchanged.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See Example 1.5 below.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Formula — plane through three noncollinear points}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-plane-points}
+\begin{split}n=(B-A)\times(D-A),\qquad d=-n^TA,\qquad \pi=(n^T,d)^T.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(A,B,D\) are \(3\times1\) Euclidean positions. Their differences lie in the plane, so their cross product is perpendicular to it. Substituting \(A\) fixes \(d\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} the points must be noncollinear. A zero cross product means no unique plane. Reversing its order reverses the normal but preserves the unoriented plane. If coordinates have length units, the unnormalized normal has squared\sphinxhyphen{}length units; normalize before metric interpretation.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — construct and verify a plane}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Subtract the same anchor point to form two directions.
+
+\item {}
+\sphinxAtStartPar
+Cross them and check for a nonzero result.
+
+\item {}
+\sphinxAtStartPar
+Compute \(d\) and substitute all three points into the plane equation.
+
+\item {}
+\sphinxAtStartPar
+Normalize \(n\) only when a unit normal or signed metric distance is needed.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/planes-lines:ex-lec01-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.5}}}} and the camera/object quiz in {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}}.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{planes}.pdf}
+\caption{A normal comes from two in\sphinxhyphen{}plane directions. Original schematic developing PDF pages 82–84. Apparent angles in this drawing are not measurements of the 3D angles.}\label{\detokenize{lectures/lecture01/planes-lines:fig-lec01-plane}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/planes-lines:ex-lec01-plane}}
+\begin{TextbookBox}
+\textbf{Worked example 1.5 — find a plane, then check a distance}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical development of PDF pages 82–84.
+
+\sphinxAtStartPar
+Let \(A=(1,0,0)\), \(B=(0,1,0)\), and \(D=(0,0,1)\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\(B-A=(-1,1,0)\) and \(D-A=(-1,0,1)\).
+
+\item {}
+\sphinxAtStartPar
+Their cross product is \((1,1,1)\), so \(d=-1\).
+
+\item {}
+\sphinxAtStartPar
+The plane is \(x+y+z-1=0\). All three input points satisfy it.
+
+\item {}
+\sphinxAtStartPar
+The origin’s distance is \(1/\sqrt3\) units, not one: the normal is not unit length.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+
+\subsection{The same geometry from a nullspace}
+\label{\detokenize{lectures/lecture01/planes-lines:the-same-geometry-from-a-nullspace}}
+\sphinxAtStartPar
+A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Nullspace}]{\sphinxtermref{\DUrole{xref,std,std-term}{nullspace}}}}} consists of vectors a matrix sends to zero. Stacking homogeneous input points as rows makes a plane coefficient vector orthogonal to every row. Conversely, stacking planes gives the point incident to all of them.
+
+\begin{TextbookBox}
+\textbf{Formula — point/plane incidence systems}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-plane-null}
+\begin{split}\underbrace{\begin{pmatrix}X_A^T\\X_B^T\\X_D^T\end{pmatrix}}_{M\;:\;3\times4}\pi=0,
+\qquad
+\underbrace{\begin{pmatrix}\pi_1^T\\\pi_2^T\\\pi_3^T\end{pmatrix}}_{N\;:\;3\times4}X=0.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Each unknown is a nonzero \(4\times1\) vector, unique up to scale when the coefficient matrix has rank three. An SVD \(M=U\Sigma V^T\) supplies the null vector as the last column of the full \(4\times4\) matrix \(V\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} exact rank\sphinxhyphen{}three incidence. Lower rank means nonuniqueness. A reduced SVD of a \(3\times4\) matrix can omit the null vector: request the full right\sphinxhyphen{}singular basis. An intersection with last coordinate zero is ideal, not finite.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — solve homogeneous incidence}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Put point or plane coefficients in rows.
+
+\item {}
+\sphinxAtStartPar
+Check rank and solve for a nonzero right\sphinxhyphen{}null vector.
+
+\item {}
+\sphinxAtStartPar
+Normalize only when valid; substitute back into every equation.
+
+\item {}
+\sphinxAtStartPar
+For numerical data state a rank tolerance and inspect the residual.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/planes-lines:ex-lec01-null}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.6}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The determinant construction on PDF page 84 is another way to express the same plane. Four coplanar homogeneous point columns are linearly dependent, so their \(4\times4\) determinant vanishes. Expanding along the variable point column yields the plane coefficients.
+
+\begin{TextbookBox}
+\textbf{Formula — plane coefficients by cofactors}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-cofactor}
+\begin{split}\det\begin{pmatrix}X&X_A&X_B&X_D\end{pmatrix}=0,
+\qquad \pi=(D_{234},-D_{134},D_{124},-D_{123})^T.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(D_{ijk}\) is the \(3\times3\) determinant formed from rows \(i,j,k\) of the last three columns. Expansion gives \(X_1D_{234}-X_2D_{134}+X_3D_{124}-X_4D_{123}=0\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} independent input point columns. This exact construction equals the nullspace result; near degeneracy can make direct cofactor evaluation poorly conditioned.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — evaluate plane cofactors}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Form the \(4\times3\) matrix of the input point columns.
+
+\item {}
+\sphinxAtStartPar
+Delete each row and calculate the remaining determinant.
+
+\item {}
+\sphinxAtStartPar
+Apply alternating signs and verify incidence at each input point.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/planes-lines:ex-lec01-null}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.6}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/planes-lines:ex-lec01-null}}
+\begin{TextbookBox}
+\textbf{Worked example 1.6 — duality in numbers}\par\smallskip
+
+\sphinxAtStartPar
+For Example 1.5 the point rows are \((1,0,0,1)\), \((0,1,0,1)\), and \((0,0,1,1)\). Multiplying by \((1,1,1,-1)^T\) gives zero. The cofactors are \(1,-1,1,1\) in the order above, giving the same plane after alternating signs.
+
+\sphinxAtStartPar
+Conversely, the planes \(x=1\), \(y=2\), and \(z=3\) have rows \((1,0,0,-1)\), \((0,1,0,-2)\), and \((0,0,1,-3)\). Their null vector is \((1,2,3,1)^T\), so their intersection is \((1,2,3)\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical expansions of PDF pages 83–85.
+
+\end{TextbookBox}
+
+
+\subsection{Plücker coordinates: a line is a direction and a moment}
+\label{\detokenize{lectures/lecture01/planes-lines:plucker-coordinates-a-line-is-a-direction-and-a-moment}}
+\sphinxAtStartPar
+\sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Plucker-coordinates}]{\sphinxtermref{\DUrole{xref,std,std-term}{Plücker coordinates}}}}} encode a nonzero direction \(d\) and a moment \(m=p\times d\), where \(p\) is any point on the line. Choosing a different point along the line should not change its representation.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{plucker}.pdf}
+\caption{The chosen point may move along the line without changing its moment. Original diagram developing PDF pages 86–87.}\label{\detokenize{lectures/lecture01/planes-lines:fig-lec01-plucker}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{Formula — finite\sphinxhyphen{}line Plücker coordinates}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-plucker}
+\begin{split}L=(d,m),\qquad m=p\times d,\qquad d^Tm=0,\qquad
+p_\perp=\frac{d\times m}{\|d\|^2}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+All component vectors are \(3\times1\). \(p_\perp\) is the closest point on the line to the origin. With unitless \(d\), \(p,m,p_\perp\) have length units. A common nonzero scale on \((d,m)\) represents the same line.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} \(d\ne0\). Six entries minus one scale and one orthogonality constraint leave four line DOF. Not every six\sphinxhyphen{}vector is valid. Lines entirely at infinity require a more general treatment than this finite\sphinxhyphen{}line form.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — encode or recover a spatial line}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Choose a point and a nonzero direction; calculate \(m=p\times d\).
+
+\item {}
+\sphinxAtStartPar
+Check \(d^Tm=0\).
+
+\item {}
+\sphinxAtStartPar
+Recover \(p_\perp\) if useful and check it belongs to the same line.
+
+\item {}
+\sphinxAtStartPar
+Keep the direction/moment order and cross\sphinxhyphen{}product sign consistent.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/planes-lines:ex-lec01-plucker}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.7}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+Replacing \(p\) by \(p+\alpha d\) leaves the moment unchanged because \(d\times d=0\). The closest\sphinxhyphen{}point formula follows from
+\begin{equation*}
+\begin{split}d\times(p\times d)=\|d\|^2p-(d^Tp)d.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+After division by \(\|d\|^2\), the component along the line is removed, leaving the perpendicular displacement from the origin.
+
+\begin{TextbookBox}
+\textbf{Formula — reciprocal product and line distance}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/planes-lines:eq-lec01-line-distance}
+\begin{split}\begin{aligned}
+\rho&=d_1^Tm_2+d_2^Tm_1,\\
+D&=\frac{|\rho|}{\|d_1\times d_2\|}\quad(d_1\times d_2\ne0),\\
+D_\parallel&=\frac{\|(p_2-p_1)\times d_1\|}{\|d_1\|}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(L_i=(d_i,m_i)\) denotes each valid finite line; \(p_i\) is any point on it. The \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Reciprocal-product}]{\sphinxtermref{\DUrole{xref,std,std-term}{reciprocal product}}}}} \(\rho\) is zero for coplanar lines, including both intersecting and parallel lines. \(D\) is their shortest distance in the coordinate length unit.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} nonzero directions. Use the parallel expression when directions are parallel; the nonparallel formula is unstable near parallelism. A zero reciprocal product alone does not distinguish intersection from parallelism.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — measure separation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Check the direction cross product to classify the case.
+
+\item {}
+\sphinxAtStartPar
+For nonparallel lines, divide the reciprocal\sphinxhyphen{}product magnitude by the cross\sphinxhyphen{}product norm.
+
+\item {}
+\sphinxAtStartPar
+For parallel lines, measure the perpendicular part of the displacement between two points.
+
+\item {}
+\sphinxAtStartPar
+Check nonnegativity, units, and invariance under common rescaling of a line’s coordinates.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/planes-lines:ex-lec01-plucker}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.7}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The nonparallel formula measures displacement along a common perpendicular. Substituting \(m_i=p_i\times d_i\) gives \(\rho=(p_1-p_2)^T(d_1\times d_2)\). The denominator turns the common perpendicular into a unit vector.
+
+\phantomsection\label{\detokenize{lectures/lecture01/planes-lines:ex-lec01-plucker}}
+\begin{TextbookBox}
+\textbf{Worked example 1.7 — two skew lines are two units apart}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to PDF page 87; supplementary relative to the exam priorities.
+
+\sphinxAtStartPar
+Let \(p_1=(0,1,0)\), \(d_1=(1,0,0)\), \(p_2=(0,0,2)\), and \(d_2=(0,1,0)\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\(m_1=(0,0,-1)\) and \(m_2=(-2,0,0)\); each satisfies \(d_i^Tm_i=0\).
+
+\item {}
+\sphinxAtStartPar
+\(d_1\times d_2=(0,0,1)\) has norm one.
+
+\item {}
+\sphinxAtStartPar
+\(\rho=-2\), so \(D=2\).
+
+\item {}
+\sphinxAtStartPar
+The first line lies at \(z=0\) and the second at \(z=2\). Their closest points have equal \(x,y\), confirming the result.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 1.4 — does any triplet determine a plane?}\par\smallskip
+
+\sphinxAtStartPar
+What happens for \((0,0,0)\), \((1,0,0)\), and \((2,0,0)\)?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+The points are collinear. Their displacement cross product is zero, so infinitely many planes contain the common line. Do not normalize the zero vector or claim a unique solution.
+\end{sphinxadmonition}
+
+\sphinxstepscope
+
+
+\section{Rotations: several descriptions of the same motion}
+\label{\detokenize{lectures/lecture01/rotations:rotations-several-descriptions-of-the-same-motion}}\label{\detokenize{lectures/lecture01/rotations:lec01-rotations}}\label{\detokenize{lectures/lecture01/rotations::doc}}
+\sphinxAtStartPar
+A 3D orientation can be stored as a matrix, an axis and angle, three ordered angles, or a quaternion. These representations are not interchangeable lists of numbers. Ask \sphinxstylestrong{what rotates, about which axes, and in which order?} before using any of them.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 88–100, printed slides 89–101.
+
+
+\subsection{Rotation matrices preserve the dot product}
+\label{\detokenize{lectures/lecture01/rotations:rotation-matrices-preserve-the-dot-product}}
+\sphinxAtStartPar
+We use active right\sphinxhyphen{}handed rotations of column vectors. Each elementary rotation keeps its named axis fixed and performs a 2D rotation in the perpendicular plane.
+
+\begin{TextbookBox}
+\textbf{Formula — elementary 3D rotations}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-rotation3}
+\begin{split}\begin{aligned}
+R_x(\theta)&=\begin{pmatrix}1&0&0\\0&c&-s\\0&s&c\end{pmatrix},\quad
+R_y(\theta)=\begin{pmatrix}c&0&s\\0&1&0\\-s&0&c\end{pmatrix},\\
+R_z(\theta)&=\begin{pmatrix}c&-s&0\\s&c&0\\0&0&1\end{pmatrix},\qquad
+c=\cos\theta,\quad s=\sin\theta.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Each matrix is unitless and \(3\times3\); the point it multiplies is \(3\times1\). Angles follow the right\sphinxhyphen{}hand rule in a right\sphinxhyphen{}handed Cartesian frame.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} exact rotations about axes through the origin. A displaced axis needs translations as well. A passive change of coordinates uses the inverse. Specify degrees or radians explicitly.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — rotate around a named axis}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Name the axis and state whether points or coordinates are rotating.
+
+\item {}
+\sphinxAtStartPar
+Substitute sine/cosine in consistent angle units.
+
+\item {}
+\sphinxAtStartPar
+Multiply by the point.
+
+\item {}
+\sphinxAtStartPar
+Check the fixed coordinate and preserved length.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-order}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.8}}}} and the tetrahedron quiz in {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}}.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Formula — validate and invert a rotation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-orthogonal}
+\begin{split}R^TR=I,\qquad \det R=+1,\qquad R^{-1}=R^T.\end{split}
+\end{equation}
+\sphinxAtStartPar
+The columns of a proper rotation are orthonormal basis vectors. Dot products are preserved because \((Ra)^T(Rb)=a^T(R^TR)b=a^Tb\); therefore lengths and angles are preserved. Nine entries with six independent orthonormality constraints leave three continuous DOF.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} a proper rotation, not an arbitrary matrix. An orthogonal matrix with determinant \(-1\) includes a reflection. Floating\sphinxhyphen{}point checks need tolerances; transposing a noisy nonrotation is not generally its inverse.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — check a claimed rotation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compare \(R^TR\) with identity and \(\det R\) with \(+1\).
+
+\item {}
+\sphinxAtStartPar
+Use \(R^T\) as the inverse only when those conditions hold.
+
+\item {}
+\sphinxAtStartPar
+Rotate a test vector forward and backward and compare with the original.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-order}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.8}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The slide example on PDF page 89 sends \((1,0,1)^T\) to \((0,1,1)^T\) with a positive quarter\sphinxhyphen{}turn about \(z\). The unchanged last coordinate and equal lengths give two independent sanity checks.
+
+
+\subsection{Composition: order is part of the answer}
+\label{\detokenize{lectures/lecture01/rotations:composition-order-is-part-of-the-answer}}
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{rotation-order}.pdf}
+\caption{The same two rotations in different orders give different results. Original numerical diagram developing PDF pages 93–100.}\label{\detokenize{lectures/lecture01/rotations:fig-lec01-order}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/rotations:ex-lec01-order}}
+\begin{TextbookBox}
+\textbf{Worked example 1.8 — prove that rotation order matters}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical expansion of the compositional\sphinxhyphen{}rotation slides, PDF pages 93–100.
+
+\sphinxAtStartPar
+Start with \(v=(1,0,0)^T\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Apply \(R_z(90^\circ)\): \(v\) becomes \((0,1,0)^T\).
+
+\item {}
+\sphinxAtStartPar
+Apply \(R_x(90^\circ)\) next: it becomes \((0,0,1)^T\).
+
+\item {}
+\sphinxAtStartPar
+Reverse the order: the first \(x\) rotation leaves \(v\) unchanged, then the \(z\) rotation gives \((0,1,0)^T\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Thus \(R_xR_z\ne R_zR_x\). The rightmost matrix in each product acts first on the column vector.
+
+\end{TextbookBox}
+
+
+\subsection{Body axes versus fixed axes}
+\label{\detokenize{lectures/lecture01/rotations:body-axes-versus-fixed-axes}}
+\sphinxAtStartPar
+An \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Intrinsic-rotation}]{\sphinxtermref{\DUrole{xref,std,std-term}{intrinsic rotation}}}}} sequence uses axes attached to the moving body. An \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Extrinsic-rotation}]{\sphinxtermref{\DUrole{xref,std,std-term}{extrinsic rotation}}}}} sequence uses fixed reference axes. Euler terminology varies: some sources reserve “Euler angles” for a repeated first/third axis, while others also include three\sphinxhyphen{}distinct\sphinxhyphen{}axis sequences. Write the axes and matrix product explicitly.
+
+\sphinxAtStartPar
+The lecture’s body\sphinxhyphen{}axis sequence uses \(x\), then the new \(y\), then the new \(z\) (PDF 95–98). The fixed\sphinxhyphen{}axis sequence uses premultiplication (PDF 99–100). Equal angle values in these two sequences do not generally give equal orientations.
+
+\begin{TextbookBox}
+\textbf{Formula — ordered\sphinxhyphen{}angle composition}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-ordered-angles}
+\begin{split}R_{\mathrm{body}\,xyz}=R_x(a)R_y(b)R_z(c),\qquad
+R_{\mathrm{fixed}\,xyz}=R_z(c)R_y(b)R_x(a).\end{split}
+\end{equation}
+\sphinxAtStartPar
+Angles \(a,b,c\) name successive \(x,y,z\) rotations. For an orientation matrix mapping body coordinates to world coordinates, a body\sphinxhyphen{}axis increment postmultiplies it; a world\sphinxhyphen{}axis increment premultiplies it. All factors are \(3\times3\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} the sequence and frame interpretation are essential. At \(b=\pm90^\circ\) these three\sphinxhyphen{}angle parameterizations become singular: two angle directions lose independent effect, called \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Gimbal-lock}]{\sphinxtermref{\DUrole{xref,std,std-term}{gimbal lock}}}}}. The physical orientation remains valid; its angle description becomes ambiguous.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — assemble an orientation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Specify body versus fixed axes and the full sequence.
+
+\item {}
+\sphinxAtStartPar
+Associate each angle with its named axis.
+
+\item {}
+\sphinxAtStartPar
+Multiply the elementary matrices in the stated order.
+
+\item {}
+\sphinxAtStartPar
+Test a basis vector instead of trusting roll/pitch/yaw names alone.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-order}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.8}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For reference, multiplying the body\sphinxhyphen{}\(xyz\) factors gives
+\begin{equation*}
+\begin{split}
+\begin{pmatrix}
+c_bc_c&-c_bs_c&s_b\\
+s_as_bc_c+c_as_c&-s_as_bs_c+c_ac_c&-s_ac_b\\
+-c_as_bc_c+s_as_c&c_as_bs_c+s_ac_c&c_ac_b
+\end{pmatrix},
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+with \(c_a=\cos a\), \(s_a=\sin a\), and similarly for \(b,c\). This is an expansion of the boxed product, not a different rule. Recover it by multiplying two factors first and checking row–column dot products. Roll/pitch/yaw labels depend on axis convention; the lecture’s fixed\sphinxhyphen{}axis figure uses its own assignment. An explicit product avoids that ambiguity.
+
+
+\subsection{Axis–angle: turn about one direction}
+\label{\detokenize{lectures/lecture01/rotations:axisangle-turn-about-one-direction}}
+\sphinxAtStartPar
+An \sphinxstylestrong{axis–angle representation} uses a unit axis \(a\) and a turn angle \(\theta\). Components along the axis stay fixed. Components perpendicular to it undergo the familiar planar rotation.
+
+\begin{TextbookBox}
+\textbf{Formula — extract axis and angle}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-axis-angle}
+\begin{split}\theta=\arccos\!\left(\frac{\operatorname{tr}(R)-1}{2}\right),\qquad
+ a=\frac{1}{2\sin\theta}\begin{pmatrix}R_{32}-R_{23}\\R_{13}-R_{31}\\R_{21}-R_{12}\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(R\) is a proper \(3\times3\) rotation and \(\theta\in[0,\pi]\) is its principal angle. \(a\) is a unit \(3\times1\) direction. The trace is the diagonal sum: one unchanged axial component contributes one, while the perpendicular rotation contributes \(2\cos\theta\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} the axis expression requires \(\sin\theta\ne0\). At zero angle the axis is arbitrary. At \(\pi\), recover the axis with a stable method, such as a unit eigenvector satisfying \(Ra=a\). After validating \(R\), clamp small numerical arccos overshoots to \([-1,1]\).
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — recover a geometric rotation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Validate \(R\), calculate its trace, and recover the angle.
+
+\item {}
+\sphinxAtStartPar
+Handle near\sphinxhyphen{}zero and near\sphinxhyphen{}\(\pi\) cases separately.
+
+\item {}
+\sphinxAtStartPar
+Otherwise compute and normalize the axis.
+
+\item {}
+\sphinxAtStartPar
+Check \(Ra=a\) and reconstruct a test rotation.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-quaternion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.9}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+An original derivation companion makes this representation computational. Split \(p\) into \(p_\parallel=a(a^Tp)\) and \(p_\perp=p-p_\parallel\). Keep the first part, rotate the second by sine/cosine, and use \(a\times p\) as its quarter\sphinxhyphen{}turn direction. Collecting terms yields \sphinxstylestrong{Rodrigues’ formula}:
+
+\begin{TextbookBox}
+\textbf{Formula — build a rotation from axis and angle}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-rodrigues}
+\begin{split}R=I\cos\theta+(1-\cos\theta)aa^T+\sin\theta[a]_\times,
+\qquad [a]_\times p=a\times p.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Here \([a]_\times=\begin{pmatrix}0&-a_3&a_2\\a_3&0&-a_1\\-a_2&a_1&0\end{pmatrix}\). Every matrix is \(3\times3\) and unitless.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} \(\|a\|=1\), active right\sphinxhyphen{}handed rotation, and consistent angle units. This exact formula is an explanatory supplement to PDF page 91; it is not claimed to be printed on that slide.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — construct a rotation matrix}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Normalize the axis and evaluate sine/cosine.
+
+\item {}
+\sphinxAtStartPar
+Form the outer product \(aa^T\) and cross\sphinxhyphen{}product matrix.
+
+\item {}
+\sphinxAtStartPar
+Add the three terms.
+
+\item {}
+\sphinxAtStartPar
+Check the axis stays fixed and the result is a proper rotation.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-quaternion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.9}}}}.
+
+\end{TextbookBox}
+
+
+\subsection{Quaternions: four entries for a three\sphinxhyphen{}DOF rotation}
+\label{\detokenize{lectures/lecture01/rotations:quaternions-four-entries-for-a-three-dof-rotation}}
+\sphinxAtStartPar
+A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Quaternion}]{\sphinxtermref{\DUrole{xref,std,std-term}{quaternion}}}}} is a scalar–vector pair \(q=(w,v)\) with a special multiplication rule. We use scalar\sphinxhyphen{}first Hamilton multiplication and active rotations. Unit length removes one DOF from four entries. The pair \(q,-q\) represents the same rotation; this is a discrete ambiguity.
+
+\begin{TextbookBox}
+\textbf{Formula — unit quaternion and active point rotation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/rotations:eq-lec01-quaternion}
+\begin{split}\begin{aligned}
+q&=\left(\cos\frac\theta2,\;a\sin\frac\theta2\right),\qquad P=(0,p),\\
+(w_1,v_1)(w_2,v_2)&=(w_1w_2-v_1^Tv_2,\;w_1v_2+w_2v_1+v_1\times v_2),\\
+q^{-1}&=(w,-v)\quad(\|q\|=1),\qquad P'=qPq^{-1}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(a,p,v\) are \(3\times1\); \(a\) is unit length. The vector part of pure quaternion \(P'\) is the rotated point. Unit quaternion entries are dimensionless; point coordinates retain their length unit.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} exact under the stated convention. For a nonunit quaternion the inverse is \((w,-v)/(w^2+v^Tv)\), not just its conjugate. PDF page 92 prints \(q^{-1}Pq\): that gives the inverse/passive rotation relative to our active convention. Do not mix sandwich orders.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — rotate a point with a quaternion}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Build or normalize the scalar\sphinxhyphen{}first quaternion.
+
+\item {}
+\sphinxAtStartPar
+Embed the point as \((0,p)\).
+
+\item {}
+\sphinxAtStartPar
+Apply Hamilton multiplication twice in the stated order.
+
+\item {}
+\sphinxAtStartPar
+Extract the vector part; check zero scalar part and preserved vector length.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/rotations:ex-lec01-quaternion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.9}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/rotations:ex-lec01-quaternion}}
+\begin{TextbookBox}
+\textbf{Worked example 1.9 — a quarter\sphinxhyphen{}turn in three representations}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to PDF pages 88–92.
+
+\sphinxAtStartPar
+For \(90^\circ\) about \(a=(0,0,1)^T\), use \(R_z(90^\circ)\) and \(q=(\sqrt2/2,0,0,\sqrt2/2)\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+The matrix trace is one: \(\theta=\arccos(0)=90^\circ\).
+
+\item {}
+\sphinxAtStartPar
+The skew\sphinxhyphen{}entry formula returns \(a=(0,0,1)\).
+
+\item {}
+\sphinxAtStartPar
+With \(P=(0,1,0,0)\), the first Hamilton product is \(qP=(0,\sqrt2/2,\sqrt2/2,0)\).
+
+\item {}
+\sphinxAtStartPar
+Multiplying by \(q^{-1}\) gives \(P'=(0,0,1,0)\), so the rotated point is \((0,1,0)^T\).
+
+\item {}
+\sphinxAtStartPar
+Rodrigues’ formula and the elementary matrix agree. The opposite sandwich \(q^{-1}Pq\) instead gives \((0,-1,0)^T\).
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 1.5 — is negative identity a 3D rotation?}\par\smallskip
+
+\sphinxAtStartPar
+The matrix \(-I_3\) preserves lengths. Is it a proper rotation?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+No: its determinant is \(-1\). It is orthogonal but reverses orientation. Proper rotations require both orthogonality and determinant \(+1\).
+\end{sphinxadmonition}
+
+\index{rotation matrix@\spxentry{rotation matrix}}\ignorespaces
+\index{axis–angle@\spxentry{axis–angle}}\ignorespaces
+\index{quaternion@\spxentry{quaternion}}\ignorespaces
+\index{gimbal lock@\spxentry{gimbal lock}}\ignorespaces
+\index{intrinsic rotation@\spxentry{intrinsic rotation}}\ignorespaces
+\index{extrinsic rotation@\spxentry{extrinsic rotation}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Reference frames and two worked quiz problems}
+\label{\detokenize{lectures/lecture01/frames-quizzes:reference-frames-and-two-worked-quiz-problems}}\label{\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}}\label{\detokenize{lectures/lecture01/frames-quizzes::doc}}
+\sphinxAtStartPar
+A camera pose answers a question only after its coordinate frames are named. “The translation is \((2,0,0)\)” is incomplete: from which frame to which other frame? This section makes the direction explicit, then uses it to solve the lecture’s most relevant quiz problems.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 101–103, printed slides 102–104; supporting plane/rotation material on PDF pages 82–89.
+
+
+\subsection{Rigid motion is rotation plus translation}
+\label{\detokenize{lectures/lecture01/frames-quizzes:rigid-motion-is-rotation-plus-translation}}
+\sphinxAtStartPar
+A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Rigid-transformation}]{\sphinxtermref{\DUrole{xref,std,std-term}{rigid transformation}}}}} preserves distances and angles. With column vectors, rotate a position into the target axes, then add the source origin’s position expressed in the target frame.
+
+\begin{TextbookBox}
+\textbf{Formula — rigid coordinate transform and inverse}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/frames-quizzes:eq-lec01-rigid3}
+\begin{split}\begin{aligned}
+p_B&=R_{B\leftarrow A}p_A+t_{B\leftarrow A},\\
+T_{B\leftarrow A}&=\begin{pmatrix}R&t\\0^T&1\end{pmatrix},\qquad
+T_{A\leftarrow B}=\begin{pmatrix}R^T&-R^Tt\\0^T&1\end{pmatrix}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(p_A,p_B,t\) are \(3\times1\) and use one length unit; \(R\) is a proper \(3\times3\) rotation; \(T\) is \(4\times4\). The inverse follows by subtracting \(t\) from \(p_B\) and multiplying by \(R^T\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} exact rigid transform. The inverse translation is \(-R^Tt\), not generally \(-t\). Directions and normals under a rigid transform rotate without translation; positions translate as well.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — move a coordinate description}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Label the source and target frames on the matrix.
+
+\item {}
+\sphinxAtStartPar
+Rotate the source\sphinxhyphen{}frame position and add the translation in target coordinates.
+
+\item {}
+\sphinxAtStartPar
+To reverse, apply the inverse with rotated negative translation.
+
+\item {}
+\sphinxAtStartPar
+Check that a source\sphinxhyphen{}frame origin maps to \(t\) and that forward/inverse composition is identity.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}}.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Formula — compose compatible frame transforms}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/frames-quizzes:eq-lec01-compose}
+\begin{split}T_{C\leftarrow A}=T_{C\leftarrow B}T_{B\leftarrow A},\qquad
+R_{CA}=R_{CB}R_{BA},\quad t_{CA}=R_{CB}t_{BA}+t_{CB}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+All \(T\) matrices are \(4\times4\); all \(R\) blocks are \(3\times3\) and translations \(3\times1\). Intermediate frame \(B\) matches between adjacent factors. The subscripts without arrows abbreviate the same target/source ordering.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} frames, time, object convention, and length units must agree. A product of numerically compatible matrices can still be geometrically meaningless if the frame path does not connect.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — follow the frame path}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Write the desired coordinate journey, for example \(A\to B\to C\).
+
+\item {}
+\sphinxAtStartPar
+Place the first operation on the right.
+
+\item {}
+\sphinxAtStartPar
+Invert any supplied transform whose direction opposes the journey.
+
+\item {}
+\sphinxAtStartPar
+Multiply and test the result on a known point.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}}.
+
+\end{TextbookBox}
+
+
+\subsection{Quiz: recover camera pose through a shared object}
+\label{\detokenize{lectures/lecture01/frames-quizzes:quiz-recover-camera-pose-through-a-shared-object}}
+\sphinxAtStartPar
+\sphinxstylestrong{Assigned source:} Fall 2025 Quiz 1, questions 3–4, \sphinxcode{\sphinxupquote{cs532f25\_quiz\_1\_solution.pdf}}, PDF page 2. Its printed title is “RANSAC and Two\sphinxhyphen{}view Geometry.” The probability questions 1–2 belong beside RANSAC in Lecture 3; the geometry questions belong here according to \sphinxcode{\sphinxupquote{quizByLec.md}}.
+
+\sphinxAtStartPar
+Each static camera estimates the object’s pose in its own coordinates. Assume both estimates describe the same rigid object frame at the same instant and in the same physical units.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{shared-object}.pdf}
+\caption{Follow the transform directions through the shared object. This is a frame graph, not a drawing of physical camera positions. Original diagram for Fall 2025 Quiz 1, question 3.}\label{\detokenize{lectures/lecture01/frames-quizzes:fig-lec01-shared-object}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}}
+\begin{TextbookBox}
+\textbf{Worked example 1.10 — Fall 2025 Quiz 1, question 3}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Question:} can a simultaneous pair of object\sphinxhyphen{}pose estimates determine the relative camera pose?
+
+\sphinxAtStartPar
+\sphinxstylestrong{Answer:} yes, under the shared\sphinxhyphen{}frame, time, and scale assumptions above.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+The supplied maps are \(T_{C_1\leftarrow O}\) and \(T_{C_2\leftarrow O}\).
+
+\item {}
+\sphinxAtStartPar
+To express a camera\sphinxhyphen{}2 point in camera 1, first go from \(C_2\) back to \(O\) by inverting the second map.
+
+\item {}
+\sphinxAtStartPar
+Then go from \(O\) to \(C_1\) with the first map.
+
+\end{enumerate}
+\begin{equation}\label{equation:lectures/lecture01/frames-quizzes:eq-lec01-relative-pose}
+\begin{split}T_{C_1\leftarrow C_2}
+=T_{C_1\leftarrow O}\bigl(T_{C_2\leftarrow O}\bigr)^{-1}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Writing each supplied pose as \((R_i,t_i)\) gives \(R_{12}=R_1R_2^T\) and \(t_{12}=t_1-R_1R_2^Tt_2\). These are the composition and inverse rules above, not new assumptions.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Numerical illustration added here:} take \(R_1=R_2=I\), \(t_1=(1,1,4)^T\), and \(t_2=(-1,1,4)^T\). Then \(R_{12}=I\) and \(t_{12}=(2,0,0)^T\). The object origin in camera 2 is \(t_2\); transforming it gives \(t_2+t_{12}=t_1\), which checks the direction.
+
+\sphinxAtStartPar
+If each pose estimate has an independent unknown scale, or uses a different ambiguous object orientation, this simple metric composition is not justified.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The boxed general composition formula is the canonical rule; the displayed quiz equation is its concrete specialization. Its \(4\times4\) inputs and output have the same frame/unit conditions. Use the graph as the algorithm: invert the camera\sphinxhyphen{}2 object pose, multiply on the left by the camera\sphinxhyphen{}1 object pose, and verify on the object origin.
+
+\phantomsection\label{\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}}
+\begin{TextbookBox}
+\textbf{Worked example 1.11 — Fall 2025 Quiz 1, question 4}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Question:} can we estimate the plane through the object and both cameras?
+
+\sphinxAtStartPar
+Interpret “the object” as the origin of its estimated object frame, and choose camera 1 as the working coordinate frame.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Its center is \(C_1=(0,0,0)^T\).
+
+\item {}
+\sphinxAtStartPar
+Camera 2’s center is \(C_2=t_{12}\). This works because the origin of frame \(C_2\) maps to the translation column of \(T_{C_1\leftarrow C_2}\).
+
+\item {}
+\sphinxAtStartPar
+The object origin is \(O=t_1\).
+
+\item {}
+\sphinxAtStartPar
+Form \(n=(O-C_1)\times(C_2-C_1)\), then \(d=-n^TC_1=0\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For the numerical illustration above, \(n=(1,1,4)\times(2,0,0)=(0,8,-2)\sim(0,4,-1)\). The plane is \(4y-z=0\). It contains both camera centers and the object origin, since each gives zero on substitution.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Qualification to the supplied solution:} this gives a unique plane only if the three positions are noncollinear. If the object origin lies on the camera baseline, the cross product is zero and there is no unique plane. An extended object is not necessarily wholly contained in this plane.
+
+\end{TextbookBox}
+
+
+\subsection{Quiz: tetrahedron face normals and a rotated object}
+\label{\detokenize{lectures/lecture01/frames-quizzes:quiz-tetrahedron-face-normals-and-a-rotated-object}}
+\sphinxAtStartPar
+\sphinxstylestrong{Assigned source:} Fall 2017 Quiz 9, problem 2(a–b), \sphinxcode{\sphinxupquote{cs532\_f17\_quiz9.pdf}}, PDF page 2. This is supplementary practice for Lecture 1; it is not a high\sphinxhyphen{}probability exam prediction. Its depth\sphinxhyphen{}map problem 1 is previewed in the camera section and retained for deeper treatment in Lectures 3–4.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.700\linewidth]{{tetrahedron}.pdf}
+\caption{The quiz tetrahedron. Coordinates are shown relative to the corner \(v_1\) for drawing convenience; vertex labels give the actual quiz coordinates. Original schematic, not a metric perspective rendering.}\label{\detokenize{lectures/lecture01/frames-quizzes:fig-lec01-tetrahedron}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}}
+\begin{TextbookBox}
+\textbf{Worked example 1.12 — Fall 2017 Quiz 9, problem 2(a)}\par\smallskip
+
+\sphinxAtStartPar
+The vertices are \(v_1=(1,1,0)\), \(v_2=(1,2,0)\), \(v_3=(1,1,1)\), and \(v_4=(2,1,0)\).
+
+\sphinxAtStartPar
+We choose \sphinxstylestrong{outward unit normals}. The problem does not specify orientation or normalization; declare them rather than silently mixing signed answers.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+For face \(123\), \((v_2-v_1)\times(v_3-v_1)=(0,1,0)\times(0,0,1)=(1,0,0)\). This points toward the opposite vertex \(v_4\), so flip it: \(n_{123}=(-1,0,0)\).
+
+\item {}
+\sphinxAtStartPar
+Face \(124\) lies on \(z=0\), with the interior at positive \(z\). Its outward normal is \((0,0,-1)\).
+
+\item {}
+\sphinxAtStartPar
+Face \(134\) lies on \(y=1\), with the interior at larger \(y\). Its outward normal is \((0,-1,0)\).
+
+\item {}
+\sphinxAtStartPar
+For face \(234\), use \(v_3-v_2=(0,-1,1)\) and \(v_4-v_2=(1,-1,0)\). Their cross product is \((1,1,1)\). The opposite vertex lies on its negative side, so it already points outward. Normalize to \((1,1,1)/\sqrt3\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+A general orientation check is \(n^T(v_{\rm opposite}-v_{\rm face})<0\) for an outward normal. Each normal must also have zero dot product with its face’s two edge directions.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-rotated-normals}}
+\begin{TextbookBox}
+\textbf{Worked example 1.13 — Fall 2017 Quiz 9, problem 2(b)}\par\smallskip
+
+\sphinxAtStartPar
+Rotate the object actively by \(+90^\circ\) about the global \(z\) axis. Because this is a rigid rotation, normals rotate with \(R_z\) and do not translate.
+
+\sphinxAtStartPar
+The coordinate rule is \((x,y,z)\mapsto(-y,x,z)\). Applying it to every vertex gives \((-1,1,0)\), \((-2,1,0)\), \((-1,1,1)\), and \((-1,2,0)\).
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Face
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Original outward unit normal
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Rotated outward unit normal
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+123
+&
+\sphinxAtStartPar
+\((-1,0,0)\)
+&
+\sphinxAtStartPar
+\((0,-1,0)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+124
+&
+\sphinxAtStartPar
+\((0,0,-1)\)
+&
+\sphinxAtStartPar
+\((0,0,-1)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+134
+&
+\sphinxAtStartPar
+\((0,-1,0)\)
+&
+\sphinxAtStartPar
+\((1,0,0)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+234
+&
+\sphinxAtStartPar
+\((1,1,1)/\sqrt3\)
+&
+\sphinxAtStartPar
+\((-1,1,1)/\sqrt3\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Check:} recomputing each cross product from the rotated vertices gives the same oriented normal after normalization. Unit lengths and outward orientation are preserved. For a general affine deformation, use an inverse transpose for normals instead; multiplying by the forward matrix is special to rigid rotations (and needs normalization under uniform scale).
+
+\end{TextbookBox}
+
+
+\subsection{Where rigid transformations sit in the 3D hierarchy}
+\label{\detokenize{lectures/lecture01/frames-quizzes:where-rigid-transformations-sit-in-the-3d-hierarchy}}
+\sphinxAtStartPar
+The last geometry slide, PDF page 103, extends the 2D hierarchy to 3D. The homogeneous forms in \eqref{equation:lectures/lecture01/transformations:eq-lec01-hierarchy} extend by making \(R,A\) \(3\times3\) and \(t,v\) \(3\times1\).
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Family
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+3D continuous DOF
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Important preserved properties
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Proper rigid/Euclidean
+&
+\sphinxAtStartPar
+6
+&
+\sphinxAtStartPar
+Distances, angles, volume
+\\
+\sphinxhline
+\sphinxAtStartPar
+Similarity
+&
+\sphinxAtStartPar
+7
+&
+\sphinxAtStartPar
+Angles and ratios of lengths
+\\
+\sphinxhline
+\sphinxAtStartPar
+Affine
+&
+\sphinxAtStartPar
+12
+&
+\sphinxAtStartPar
+Parallelism, collinear ratios, volume ratios
+\\
+\sphinxhline
+\sphinxAtStartPar
+Projective
+&
+\sphinxAtStartPar
+15
+&
+\sphinxAtStartPar
+Incidence and tangency where defined
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+A rigid motion has three rotation and three translation parameters. Adding uniform scale gives seven. An affine map has nine linear and three translation parameters. A projectivity has sixteen entries minus one common scale. Its matrix must be invertible. Projective notions such as the absolute conic, named in the hierarchy figures, motivate metric invariants but are developed with reconstruction upgrades in Lecture 6.
+
+\begin{TextbookBox}
+\textbf{Check 1.6 — why not add translation to a normal?}\par\smallskip
+
+\sphinxAtStartPar
+A plane is moved three meters sideways without rotation. Does its normal acquire that translation?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+No. A normal describes orientation, not position. The plane’s offset changes, while its direction remains fixed. The homogeneous plane coefficients change through the inverse transpose, which accounts for the offset correctly.
+\end{sphinxadmonition}
+
+\index{rigid transformation@\spxentry{rigid transformation}}\ignorespaces
+\index{reference frame@\spxentry{reference frame}}\ignorespaces
+\index{transform composition@\spxentry{transform composition}}\ignorespaces
+\index{normal@\spxentry{normal}!outward orientation@\spxentry{outward orientation}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Image formation: where does a 3D point appear?}
+\label{\detokenize{lectures/lecture01/cameras:image-formation-where-does-a-3d-point-appear}}\label{\detokenize{lectures/lecture01/cameras:lec01-cameras}}\label{\detokenize{lectures/lecture01/cameras::doc}}
+\sphinxAtStartPar
+You move a camera toward a stationary object. Does the object’s image move toward the principal point, or away from it? This is the lecture’s final hands\sphinxhyphen{}on question, and it ties projection to reference frames.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, PDF pages 104–114, printed slides 105–115. The introductory image\sphinxhyphen{}formation slides credit John Oliensis.
+
+
+\subsection{Start with a pinhole and similar triangles}
+\label{\detokenize{lectures/lecture01/cameras:start-with-a-pinhole-and-similar-triangles}}
+\sphinxAtStartPar
+An ideal \sphinxstylestrong{pinhole camera} sends each visible scene point along a ray through the camera center to an image plane. The physical sensor behind the pinhole receives an inverted image. We instead use a \sphinxstylestrong{virtual image plane} in front of it, which gives a positive focal\sphinxhyphen{}length convention and avoids carrying that inversion into every equation.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{pinhole}.pdf}
+\caption{A side\sphinxhyphen{}view similar\sphinxhyphen{}triangle construction. Original diagram developing PDF pages 105–107; those slide sections credit John Oliensis. The drawing’s page orientation is schematic; the coordinate signs follow the labeled camera/image axes.}\label{\detokenize{lectures/lecture01/cameras:fig-lec01-pinhole}}\end{figure}
+
+\sphinxAtStartPar
+The small image triangle and large scene triangle share the ray angle. Their corresponding side lengths are proportional. The vertical ratio is \(y/Y_c=f/Z_c\); the horizontal argument gives the same ratio for \(x\).
+
+\begin{TextbookBox}
+\textbf{Formula — perspective projection in camera coordinates}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/cameras:eq-lec01-pinhole}
+\begin{split}x=f\frac{X_c}{Z_c},\qquad y=f\frac{Y_c}{Z_c},\qquad
+\begin{pmatrix}x\\y\\f\end{pmatrix}
+=\frac{f}{Z_c}\begin{pmatrix}X_c\\Y_c\\Z_c\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\((X_c,Y_c,Z_c)\) is the point in camera coordinates. \(x,y,f\) are coordinates and focal length on the virtual image plane in the same length unit; the ratios are dimensionless. Normalized image coordinates are \((X_c/Z_c,Y_c/Z_c)\).
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} exact ideal central projection, \(f>0\), and \(Z_c\ne0\). Visible points for this forward\sphinxhyphen{}facing model need \(Z_c>0\). Pixel coordinates require calibration; do not confuse physical focal length with focal length measured in pixels.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — project a point}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Express the point in camera coordinates.
+
+\item {}
+\sphinxAtStartPar
+Check it is in front of the camera.
+
+\item {}
+\sphinxAtStartPar
+Divide the transverse coordinates by depth and multiply by focal length.
+
+\item {}
+\sphinxAtStartPar
+Check that points on one ray have the same image and that doubling depth at fixed transverse position halves the image displacement.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-projection}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.14}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/cameras:ex-lec01-projection}}
+\begin{TextbookBox}
+\textbf{Worked example 1.14 — perspective loses depth}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical development of PDF pages 107–110.
+
+\sphinxAtStartPar
+Use a virtual\sphinxhyphen{}plane focal length of \(2\) length units and a point \((1,0.5,10)\) in camera coordinates.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\(x=2(1/10)=0.2\) and \(y=2(0.5/10)=0.1\) in image\sphinxhyphen{}plane length units.
+
+\item {}
+\sphinxAtStartPar
+The point \((2,1,20)\) gives the same \((0.2,0.1)\) because every scene coordinate was scaled equally.
+
+\item {}
+\sphinxAtStartPar
+The point \((1,0.5,20)\) instead gives \((0.1,0.05)\): it moved deeper without increasing its transverse displacement.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+One image coordinate does not uniquely determine a 3D point. The inverse is a ray unless depth or another geometric constraint is supplied.
+
+\end{TextbookBox}
+
+
+\subsection{Projection properties and their exceptions}
+\label{\detokenize{lectures/lecture01/cameras:projection-properties-and-their-exceptions}}
+\sphinxAtStartPar
+The lecture says that lines project to lines and polyhedra project to polygons (PDF 108–109). The underlying reason is that a 3D line together with the camera center defines a plane; that plane intersects the image plane in an image line.
+
+\sphinxAtStartPar
+There is a degenerate case: a 3D line through the camera center projects to a single image point, wherever its visible projection is defined. A point at the camera center has no valid projection at all. Occlusion also determines which projected edges are visible. These qualifications prevent an ideal geometric statement from being mistaken for a guarantee about every photograph.
+
+\sphinxAtStartPar
+The “distant objects are smaller” example on PDF page 110 is about equal physical objects at different depths: their projected sizes vary inversely with depth under the same camera. Changing focal length at the same time changes that comparison.
+
+
+\subsection{Separate camera intrinsics from camera pose}
+\label{\detokenize{lectures/lecture01/cameras:separate-camera-intrinsics-from-camera-pose}}
+\sphinxAtStartPar
+\sphinxstylestrong{Intrinsics} turn normalized camera coordinates into pixel coordinates. \sphinxstylestrong{Extrinsics} turn world coordinates into camera coordinates. They answer different questions and have different units.
+
+\begin{TextbookBox}
+\textbf{Formula — calibrated pixel projection}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/cameras:eq-lec01-camera}
+\begin{split}\begin{aligned}
+K&=\begin{pmatrix}f_x&s&c_x\\0&f_y&c_y\\0&0&1\end{pmatrix},\qquad
+P=K\begin{pmatrix}R&t\end{pmatrix},\\
+\lambda\begin{pmatrix}u\\v\\1\end{pmatrix}
+&=PX_w,\qquad X_c=RX_{w,\mathrm{E}}+t,\qquad C=-R^Tt.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(K\) is \(3\times3\); \(f_x,f_y\) and skew \(s\) are in pixels, and \((c_x,c_y)\) is the \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Principal-point}]{\sphinxtermref{\DUrole{xref,std,std-term}{principal point}}}}} in pixels. \(X_w\) is a homogeneous \(4\times1\) world point; \(X_{w,\mathrm{E}}\) is its Euclidean \(3\times1\) form. \(R,t\) map world to camera, so \(P\) is \(3\times4\). \(C\) is the camera center in world coordinates.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} ideal undistorted camera, finite valid point, and a declared world\sphinxhyphen{}to\sphinxhyphen{}camera convention. With a world point normalized to last coordinate one, this calibration gives \(\lambda=Z_c\). \(P\) is defined up to nonzero scale. A calibrated finite camera has rank three; its nullspace is the homogeneous camera center.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — world point to pixel}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute \(X_c=RX_{w,\mathrm{E}}+t\) and check \(Z_c>0\).
+
+\item {}
+\sphinxAtStartPar
+Multiply by \(K\), or multiply \(PX_w\) directly.
+
+\item {}
+\sphinxAtStartPar
+Divide the first two output entries by the third.
+
+\item {}
+\sphinxAtStartPar
+Check image bounds separately: a point in front can still project outside the sensor.
+
+\item {}
+\sphinxAtStartPar
+Verify the center relation by \(RC+t=0\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-camera-motion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.15}}}}.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+Expanding the first two rows makes the meaning explicit:
+\begin{equation*}
+\begin{split}u=f_xX_c/Z_c+sY_c/Z_c+c_x,\qquad v=f_yY_c/Z_c+c_y.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The offsets place the optical\sphinxhyphen{}axis intersection at \((c_x,c_y)\), not necessarily at image coordinate zero. Pixel focal length is a physical focal length divided by pixel pitch; different pixel scales can give different \(f_x,f_y\). Detailed calibration and homography estimation follow in Lecture 3.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Convention translation for PDF page 113:} the slide writes \(K[R^T\mid -R^Tt]\) when \(R,t\) describe the camera’s pose in world coordinates. In our notation call those \(R_{w\leftarrow c},C\). Then the world\sphinxhyphen{}to\sphinxhyphen{}camera map is \([R_{w\leftarrow c}^T\mid-R_{w\leftarrow c}^TC]\). It is the same geometry, expressed with a different meaning for the symbol \(R\). The slide’s “2\sphinxhyphen{}D to 3\sphinxhyphen{}D” description should not suggest that \(P\) uniquely inverts projection: \(P\) maps 3D homogeneous points to 2D homogeneous image points.
+
+
+\subsection{Work the actual camera\sphinxhyphen{}motion exercise}
+\label{\detokenize{lectures/lecture01/cameras:work-the-actual-camera-motion-exercise}}
+\sphinxAtStartPar
+PDF page 114 asks us to choose visible points for a camera with focal length 500 and a \(500\times500\) image, move the camera forward by two units, and then consider rotating/translating points. The slide leaves the points, principal point, and precise sequencing open. We must declare them.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{camera-motion}.pdf}
+\caption{Move the camera, not the object: the world point stays fixed, but its camera\sphinxhyphen{}relative depth decreases. Original solution diagram for PDF page 114, printed slide 115.}\label{\detokenize{lectures/lecture01/cameras:fig-lec01-camera-motion}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/cameras:ex-lec01-camera-motion}}
+\begin{TextbookBox}
+\textbf{Worked example 1.15 — the lecture’s camera\sphinxhyphen{}motion problem}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} numerical solution adapted from PDF page 114. All values added to complete the setup are stated here.
+
+\sphinxAtStartPar
+Assume square pixels, zero skew, \(f_x=f_y=500\) pixels, and principal point \((250,250)\). Initially the camera is at the world origin with \(R=I\). Choose \(X_w=(1,0.5,10)\) in an arbitrary consistent length unit. Its image is inside the \(500\times500\) sensor.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Initially, \((u,v)=(250+500/10,250+250/10)=(300,275)\) pixels.
+
+\item {}
+\sphinxAtStartPar
+Move the camera center to \(C'=(0,0,2)\) without rotating it. The stationary point now has camera coordinates \((1,0.5,8)\).
+
+\item {}
+\sphinxAtStartPar
+The new pixel is \((312.5,281.25)\). Its displacement from the principal point increases because the point is closer.
+
+\item {}
+\sphinxAtStartPar
+For a separate branch starting again from the original setup, rotate the \sphinxstylestrong{point} by \(45^\circ\) about the camera’s \(z\) axis and then translate it five units farther along \(z\).
+
+\item {}
+\sphinxAtStartPar
+The new point is \((0.5/\sqrt2,1.5/\sqrt2,15)\). Projection gives \((261.785,285.355)\) pixels after rounding.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+If the operations were meant cumulatively after the camera move, the rotated/transformed point would have depth \(8+5=13\) in that moved camera, giving approximately \((263.598,290.795)\) instead. A complete answer must specify the sequence.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For a general forward camera displacement \(\Delta\), the normalized transverse displacement changes from \(X_c/Z_c\) to \(X_c/(Z_c-\Delta)\); visible points need \(Z_c-\Delta>0\). A point on the optical axis does not move away from the principal point. Translating the object farther away instead gives denominator \(Z_c+\Delta\) and moves its image inward. Camera motion and scene motion require inverse coordinate relationships, as PDF page 111 emphasizes.
+
+
+\subsection{A depth\sphinxhyphen{}map bridge to the assigned quiz}
+\label{\detokenize{lectures/lecture01/cameras:a-depth-map-bridge-to-the-assigned-quiz}}
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} Fall 2017 Quiz 9, problem 1, \sphinxcode{\sphinxupquote{cs532\_f17\_quiz9.pdf}}, PDF page 1. The quiz asks how two depth maps can become one common\sphinxhyphen{}frame point cloud. This is a supplementary preview; depth estimation and fusion algorithms are beyond Lecture 1.
+
+\begin{TextbookBox}
+\textbf{Formula — axial\sphinxhyphen{}depth backprojection and frame conversion}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/cameras:eq-lec01-backproject}
+\begin{split}q=K^{-1}\begin{pmatrix}u\\v\\1\end{pmatrix},\qquad
+X_c=\frac{Z_c}{q_3}q,\qquad
+X_w=R^T(X_c-t).\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(K\) is \(3\times3\), \(q,X_c,X_w,t\) are \(3\times1\), and \(Z_c\) is \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Axial-depth}]{\sphinxtermref{\DUrole{xref,std,std-term}{axial depth}}}}} in the camera’s forward direction. For the standard intrinsic matrix \(q_3=1\). The final equation assumes \(R,t\) map world to camera.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Conditions:} known calibration and camera poses in a common metric frame, invertible \(K\), valid positive depth, and distortion handled. If depth means Euclidean range \(r\) along the ray, use \(X_c=rq/\|q\|\) instead. Mixing range and axial depth produces incorrect geometry.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{How to use it — turn depth maps into common\sphinxhyphen{}frame points}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+For each valid depth pixel, use that camera’s calibration to recover a viewing direction.
+
+\item {}
+\sphinxAtStartPar
+Scale it according to the depth convention.
+
+\item {}
+\sphinxAtStartPar
+Transform the camera\sphinxhyphen{}coordinate point into the shared world frame.
+
+\item {}
+\sphinxAtStartPar
+Repeat for both cameras and combine the points. Combining does not automatically denoise or resolve occlusion.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.16}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/cameras:ex-lec01-depth}}
+\begin{TextbookBox}
+\textbf{Worked example 1.16 — Fall 2017 Quiz 9, problem 1: preview solution}\par\smallskip
+
+\sphinxAtStartPar
+The required information is each camera’s intrinsics, distortion model or undistorted pixels, a defined depth convention and scale, and extrinsics expressed relative to one common frame. The boxed procedure supplies the construction.
+
+\sphinxAtStartPar
+For a small numerical illustration added here, let both cameras use the \(K\) from Example 1.15. Camera 1 is at the origin and camera 2 at \((2,0,0)\), both with identity orientation.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Camera 1’s pixel \((300,250)\) with axial depth 10 backprojects to \((1,0,10)\) in camera 1 and world coordinates.
+
+\item {}
+\sphinxAtStartPar
+Camera 2’s pixel \((200,250)\) at depth 10 backprojects to \((-1,0,10)\) in camera 2.
+
+\item {}
+\sphinxAtStartPar
+Camera 2 has world\sphinxhyphen{}to\sphinxhyphen{}camera translation \(t=(-2,0,0)\). Applying \(X_w=X_c-t\) gives \((1,0,10)\), the same world point.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The two camera centers and their rays to this common point form the illustrative geometry: draw the centers at \((0,0,0)\) and \((2,0,0)\) and connect both to \((1,0,10)\). The shared\sphinxhyphen{}object frame graph and the projection\sphinxhyphen{}ray figures show the two ingredients separately. A dedicated ray sketch follows.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.700\linewidth]{{depth-rays}.pdf}
+\caption{Both backprojected points coincide after conversion to world coordinates. Original schematic for Fall 2017 Quiz 9, problem 1; the optical\sphinxhyphen{}axis depth and coordinates come from Example 1.16.}\label{\detokenize{lectures/lecture01/cameras:fig-lec01-depth-rays}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{Check 1.7 — is an off\sphinxhyphen{}image point behind the camera?}\par\smallskip
+
+\sphinxAtStartPar
+A point has positive camera depth but projects to \(u=700\) in a 500\sphinxhyphen{}pixel\sphinxhyphen{}wide image. Which condition failed?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+
+\sphinxAtStartPar
+It is in front of the camera but outside the image bounds. Positive depth and sensor visibility are separate tests. A valid homogeneous projection alone does not establish that the camera actually measured the point.
+\end{sphinxadmonition}
+
+\index{pinhole camera@\spxentry{pinhole camera}}\ignorespaces
+\index{perspective projection@\spxentry{perspective projection}}\ignorespaces
+\index{intrinsic parameters@\spxentry{intrinsic parameters}}\ignorespaces
+\index{extrinsic parameters@\spxentry{extrinsic parameters}}\ignorespaces
+\index{principal point@\spxentry{principal point}}\ignorespaces
+\index{backprojection@\spxentry{backprojection}}\ignorespaces
+\index{axial depth@\spxentry{axial depth}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Review: choose the right geometric operation}
+\label{\detokenize{lectures/lecture01/review:review-choose-the-right-geometric-operation}}\label{\detokenize{lectures/lecture01/review:lec01-review}}\label{\detokenize{lectures/lecture01/review::doc}}
+\sphinxAtStartPar
+The most useful formula is the one whose inputs, coordinate conventions, and assumptions match the problem. Before calculating, say what geometric object you have and what you want to recover.
+
+
+\subsection{Formula and source checklist}
+\label{\detokenize{lectures/lecture01/review:formula-and-source-checklist}}
+\sphinxAtStartPar
+The PDF\sphinxhyphen{}page ranges refer to \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}. Equation links lead to the canonical formula boxes and application procedures.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Topic / operation
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Formula or explanation
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Source PDF pages
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Motivation, reconstruction pipeline, ambiguity, application examples
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/motivation:lec01-motivation}]{\sphinxcrossref{\DUrole{std,std-ref}{Why reconstruct a world from photographs?}}}}
+&
+\sphinxAtStartPar
+2–61
+\\
+\sphinxhline
+\sphinxAtStartPar
+Homogeneous scale, finite/ideal points
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}} and \eqref{equation:foundations/notation:eq-homogeneous-scale}
+&
+\sphinxAtStartPar
+65–71
+\\
+\sphinxhline
+\sphinxAtStartPar
+Point–line incidence
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/projective:eq-lec01-incidence}
+&
+\sphinxAtStartPar
+65
+\\
+\sphinxhline
+\sphinxAtStartPar
+Joins and intersections
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/projective:eq-lec01-cross}
+&
+\sphinxAtStartPar
+67
+\\
+\sphinxhline
+\sphinxAtStartPar
+Parallel lines and infinity
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/projective:eq-lec01-ideal}
+&
+\sphinxAtStartPar
+68–71
+\\
+\sphinxhline
+\sphinxAtStartPar
+2D rotation and pivot transforms
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/transformations:eq-lec01-rotation2}, \eqref{equation:lectures/lecture01/transformations:eq-lec01-rigid2}
+&
+\sphinxAtStartPar
+72–77
+\\
+\sphinxhline
+\sphinxAtStartPar
+Transformation families and invariants
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/transformations:eq-lec01-hierarchy}
+&
+\sphinxAtStartPar
+78, 103
+\\
+\sphinxhline
+\sphinxAtStartPar
+Point, line, and plane transforms
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/transformations:eq-lec01-dual}
+&
+\sphinxAtStartPar
+79, 81–82
+\\
+\sphinxhline
+\sphinxAtStartPar
+Planes, distance, three\sphinxhyphen{}point construction
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plane}, \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plane-points}
+&
+\sphinxAtStartPar
+82–84
+\\
+\sphinxhline
+\sphinxAtStartPar
+Point/plane nullspaces and cofactors
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plane-null}, \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-cofactor}
+&
+\sphinxAtStartPar
+83–85
+\\
+\sphinxhline
+\sphinxAtStartPar
+Plücker representation and line distances
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plucker}, \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-line-distance}
+&
+\sphinxAtStartPar
+86–87
+\\
+\sphinxhline
+\sphinxAtStartPar
+Axis rotations and inverse
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/rotations:eq-lec01-rotation3}, \eqref{equation:lectures/lecture01/rotations:eq-lec01-orthogonal}
+&
+\sphinxAtStartPar
+88–90
+\\
+\sphinxhline
+\sphinxAtStartPar
+Ordered angles and fixed/body axes
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/rotations:eq-lec01-ordered-angles}
+&
+\sphinxAtStartPar
+93–100
+\\
+\sphinxhline
+\sphinxAtStartPar
+Axis–angle and computational supplement
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/rotations:eq-lec01-axis-angle}, \eqref{equation:lectures/lecture01/rotations:eq-lec01-rodrigues}
+&
+\sphinxAtStartPar
+91
+\\
+\sphinxhline
+\sphinxAtStartPar
+Quaternion operations and conventions
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/rotations:eq-lec01-quaternion}
+&
+\sphinxAtStartPar
+92
+\\
+\sphinxhline
+\sphinxAtStartPar
+Rigid transforms and frame composition
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/frames-quizzes:eq-lec01-rigid3}, \eqref{equation:lectures/lecture01/frames-quizzes:eq-lec01-compose}
+&
+\sphinxAtStartPar
+101–102
+\\
+\sphinxhline
+\sphinxAtStartPar
+Virtual\sphinxhyphen{}plane projection
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/cameras:eq-lec01-pinhole}
+&
+\sphinxAtStartPar
+105–110
+\\
+\sphinxhline
+\sphinxAtStartPar
+Extrinsics, intrinsics, projection matrix
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}
+&
+\sphinxAtStartPar
+111–113
+\\
+\sphinxhline
+\sphinxAtStartPar
+Camera\sphinxhyphen{}motion hands\sphinxhyphen{}on task
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-camera-motion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.15}}}}
+&
+\sphinxAtStartPar
+114
+\\
+\sphinxhline
+\sphinxAtStartPar
+Depth\sphinxhyphen{}map backprojection: quiz extension
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture01/cameras:eq-lec01-backproject}
+&
+\sphinxAtStartPar
+Quiz, not a slide formula
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The epipolar constraint and disparity formula embedded in the workflow previews on PDF pages 25–26 are explicitly deferred to Lecture 4, where their variables and assumptions will be developed.
+
+\sphinxAtStartPar
+The administrative title, policies, logistics, and reading\sphinxhyphen{}list slides are recorded in the coverage ledger but do not become mathematical exercises. The rank/SVD and Rodrigues explanations fill explanatory steps needed to understand the lecture; they are identified as supplements where they go beyond its printed formulas.
+
+
+\subsection{Rework the assigned quizzes without the solutions}
+\label{\detokenize{lectures/lecture01/review:rework-the-assigned-quizzes-without-the-solutions}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Source
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Location
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+What to check
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Fall 2025 Quiz 1, Q3
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}}
+&
+\sphinxAtStartPar
+Frame path, inversion, shared object frame/scale/time
+\\
+\sphinxhline
+\sphinxAtStartPar
+Fall 2025 Quiz 1, Q4
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.11}}}}
+&
+\sphinxAtStartPar
+Camera centers in one frame; noncollinearity
+\\
+\sphinxhline
+\sphinxAtStartPar
+Fall 2017 Quiz 9, P2(a)
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.12}}}}
+&
+\sphinxAtStartPar
+Cross products, orientation, unit normalization
+\\
+\sphinxhline
+\sphinxAtStartPar
+Fall 2017 Quiz 9, P2(b)
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-rotated-normals}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.13}}}}
+&
+\sphinxAtStartPar
+Declared active rotation; normals remain perpendicular
+\\
+\sphinxhline
+\sphinxAtStartPar
+Fall 2017 Quiz 9, P1
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.16}}}}
+&
+\sphinxAtStartPar
+Supplement: calibration, axial depth/range, common frame
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Fall 2025 Quiz 1, Q1–Q2, remains assigned to Lecture 3’s RANSAC/probability explanation. The Spring 2020 homogeneous\sphinxhyphen{}geometry quiz remains in Lecture 2; use its questions later as a transfer test rather than counting them as newly introduced Lecture 1 quiz material.
+
+
+\subsection{Common mistakes to catch before you calculate}
+\label{\detokenize{lectures/lecture01/review:common-mistakes-to-catch-before-you-calculate}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+Dividing a homogeneous coordinate by zero or treating the zero vector as a point.
+
+\item {}
+\sphinxAtStartPar
+Calling an image vanishing point an ideal image point without checking its coordinates.
+
+\item {}
+\sphinxAtStartPar
+Rotating about the origin when a different pivot was specified.
+
+\item {}
+\sphinxAtStartPar
+Applying the point matrix directly to line/plane coefficients.
+
+\item {}
+\sphinxAtStartPar
+Inferring a unique plane from collinear points.
+
+\item {}
+\sphinxAtStartPar
+Treating every length\sphinxhyphen{}preserving matrix as a proper rotation.
+
+\item {}
+\sphinxAtStartPar
+Using ordered\sphinxhyphen{}angle names without declaring axes and multiplication order.
+
+\item {}
+\sphinxAtStartPar
+Mixing active/passive quaternion sandwiches.
+
+\item {}
+\sphinxAtStartPar
+Negating a translation without rotating it when inverting a rigid transform.
+
+\item {}
+\sphinxAtStartPar
+Treating camera pose and world\sphinxhyphen{}to\sphinxhyphen{}camera extrinsics as identical arrays.
+
+\item {}
+\sphinxAtStartPar
+Assuming image\sphinxhyphen{}plane length, pixel coordinates, axial depth, and range use interchangeable units.
 
 \end{itemize}
+
+
+\subsection{A short transfer problem}
+\label{\detokenize{lectures/lecture01/review:a-short-transfer-problem}}\phantomsection\label{\detokenize{lectures/lecture01/review:ex-lec01-transfer}}
+\begin{TextbookBox}
+\textbf{Exercise 1.1 — combine frames, planes, and projection}\par\smallskip
+
+\sphinxAtStartPar
+A world point is \(X=(2,1,6)^T\). A camera has center \(C=(1,0,2)^T\), identity orientation, \(f_x=f_y=400\) pixels, zero skew, and principal point \((200,150)\).
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Write the world\sphinxhyphen{}to\sphinxhyphen{}camera translation and camera coordinates of \(X\).
+
+\item {}
+\sphinxAtStartPar
+Project \(X\) to pixels.
+
+\item {}
+\sphinxAtStartPar
+Find a plane through the camera center, the world origin, and \(X\).
+
+\item {}
+\sphinxAtStartPar
+State when the plane\sphinxhyphen{}construction step would fail.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Solution}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\(t=-C=(-1,0,-2)^T\), so \(X_c=(1,1,4)^T\).
+
+\item {}
+\sphinxAtStartPar
+\(u=200+400(1/4)=300\) and \(v=150+400(1/4)=250\) pixels.
+
+\item {}
+\sphinxAtStartPar
+Use the world origin as anchor: \(C\times X=(-2,-2,1)^T\). Thus \(-2x-2y+z=0\). Both \(C\) and \(X\) satisfy it; the origin does too.
+
+\item {}
+\sphinxAtStartPar
+It fails to determine a unique plane if the origin, camera center, and point are collinear, or if repeated points remove an independent direction.
+
+\end{enumerate}
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+You are ready to move on when you can explain the geometry before choosing a formula, solve these examples without copying their steps, and state each answer’s assumptions and degeneracies. Lecture 2 will revisit the projective and rotation language and extend it toward image transformations and estimation.
 
 \sphinxstepscope
 
@@ -491,23 +3280,23 @@ Select the most useful examples from the actual slides and integrate the assigne
 
 \section{Completion checklist}
 \label{\detokenize{lectures/lecture02/index:completion-checklist}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
  Audit every substantive slide topic and formula.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Write explanations, derivations, and formula/application boxes.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Add selected slide illustrations and independently checked quiz examples.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Complete keywords, glossary entries, and source references.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Check both the website and cumulative printable edition.
 
@@ -541,23 +3330,23 @@ Select the most useful examples from the actual slides and integrate the assigne
 
 \section{Completion checklist}
 \label{\detokenize{lectures/lecture03/index:completion-checklist}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
  Audit every substantive slide topic and formula.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Write explanations, derivations, and formula/application boxes.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Add selected slide illustrations and independently checked quiz examples.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Complete keywords, glossary entries, and source references.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Check both the website and cumulative printable edition.
 
@@ -591,23 +3380,23 @@ Select the most useful examples from the actual slides and integrate the assigne
 
 \section{Completion checklist}
 \label{\detokenize{lectures/lecture04/index:completion-checklist}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
  Audit every substantive slide topic and formula.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Write explanations, derivations, and formula/application boxes.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Add selected slide illustrations and independently checked quiz examples.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Complete keywords, glossary entries, and source references.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Check both the website and cumulative printable edition.
 
@@ -641,23 +3430,23 @@ Select the most useful examples from the actual slides and integrate the assigne
 
 \section{Completion checklist}
 \label{\detokenize{lectures/lecture05/index:completion-checklist}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
  Audit every substantive slide topic and formula.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Write explanations, derivations, and formula/application boxes.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Add selected slide illustrations and independently checked quiz examples.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Complete keywords, glossary entries, and source references.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Check both the website and cumulative printable edition.
 
@@ -691,23 +3480,23 @@ Select the most useful examples from the actual slides and integrate the assigne
 
 \section{Completion checklist}
 \label{\detokenize{lectures/lecture06/index:completion-checklist}}\begin{itemize}
-\item {} 
+\item {}
 \sphinxAtStartPar
  Audit every substantive slide topic and formula.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Write explanations, derivations, and formula/application boxes.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Add selected slide illustrations and independently checked quiz examples.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Complete keywords, glossary entries, and source references.
 
-\item {} 
+\item {}
 \sphinxAtStartPar
  Check both the website and cumulative printable edition.
 
@@ -725,7 +3514,7 @@ Select the most useful examples from the actual slides and integrate the assigne
 \chapter{Formula reference}
 \label{\detokenize{reference/formulas:formula-reference}}\label{\detokenize{reference/formulas:id1}}\label{\detokenize{reference/formulas::doc}}
 \sphinxAtStartPar
-This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lecture formulas have not yet been populated.
+This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lecture 1 is now populated; later lectures remain pending.
 
 
 \begin{savenotes}\sphinxattablestart
@@ -733,13 +3522,13 @@ This reference will grow one lecture at a time. Every entry points to a named fo
 \centering
 \begin{tabulary}{\linewidth}[t]{TTT}
 \sphinxtoprule
-\sphinxstyletheadfamily 
+\sphinxstyletheadfamily
 \sphinxAtStartPar
 Foundation
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Formula
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Explanation and application
 \\
@@ -759,17 +3548,26 @@ Homogeneous scale
 \sphinxtableafterendhook\par
 \sphinxattableend\end{savenotes}
 
+
+\section{Lecture 1}
+\label{\detokenize{reference/formulas:lecture-1}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1 formula and source checklist}}}} for the full inventory. Each entry links to its formula box, assumptions, and companion application procedure.
+
 \sphinxstepscope
 
 
 \chapter{Quiz practice index}
 \label{\detokenize{reference/quiz-index:quiz-practice-index}}\label{\detokenize{reference/quiz-index:quiz-index}}\label{\detokenize{reference/quiz-index::doc}}
 \sphinxAtStartPar
-These are planned placements from \sphinxcode{\sphinxupquote{quizByLec.md}}. Questions and solutions have not yet been adapted or independently verified. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
+Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now includes independently checked worked examples and a supplementary depth\sphinxhyphen{}map bridge. Later lectures remain planned. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
 
 
 \section{Lecture 1}
 \label{\detokenize{reference/quiz-index:lecture-1}}
+\sphinxAtStartPar
+\sphinxstylestrong{Completed reading links:} {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-relative-pose}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.10}}}} (relative camera pose), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.11}}}} (camera/object plane), {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.12}}}} (face normals), and {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-rotated-normals}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.13}}}} (rotated normals). The {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{supplementary depth\sphinxhyphen{}map solution}}}} follows the camera explanation. Fall 2025 Quiz 1 Q1–Q2 remains deferred to Lecture 3.
+
 
 \subsection{Fall 2025 Quiz 1}
 \label{\detokenize{reference/quiz-index:fall-2025-quiz-1}}
@@ -976,7 +3774,129 @@ Coordinates representing a projective point by a nonzero vector up to nonzero sc
 
 \sphinxlineitem{Coordinate frame\index{Coordinate frame@\spxentry{Coordinate frame}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Coordinate-frame}}}
 \sphinxAtStartPar
-A reference origin and axes used to express coordinates. Transform directions are specified in {\hyperref[\detokenize{foundations/notation:notation}]{\sphinxcrossref{\DUrole{std,std-ref}{Notation and coordinate conventions}}}}; detailed geometry will follow in Lecture 1.
+A reference origin and axes used to express coordinates. Transform directions are specified in {\hyperref[\detokenize{foundations/notation:notation}]{\sphinxcrossref{\DUrole{std,std-ref}{Notation and coordinate conventions}}}}; detailed geometry is developed in {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}}.
+
+\end{description}
+\begin{description}
+\sphinxlineitem{Computer vision\index{Computer vision@\spxentry{Computer vision}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Computer-vision}}}
+\sphinxAtStartPar
+Inferring scene properties from images. See {\hyperref[\detokenize{lectures/lecture01/motivation:lec01-motivation}]{\sphinxcrossref{\DUrole{std,std-ref}{Why reconstruct a world from photographs?}}}} for the inverse\sphinxhyphen{}problem viewpoint.
+
+\sphinxlineitem{Structure from motion\index{Structure from motion@\spxentry{Structure from motion}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Structure-from-motion}}}
+\sphinxAtStartPar
+Joint recovery of camera motion and scene structure from corresponding image measurements. See {\hyperref[\detokenize{lectures/lecture01/motivation:lec01-motivation}]{\sphinxcrossref{\DUrole{std,std-ref}{Why reconstruct a world from photographs?}}}}; full estimation follows in Lecture 6.
+
+\sphinxlineitem{Depth map\index{Depth map@\spxentry{Depth map}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Depth-map}}}
+\sphinxAtStartPar
+An image\sphinxhyphen{}indexed array of depth measurements or estimates. Its depth convention and camera model must be specified. See {\hyperref[\detokenize{lectures/lecture01/cameras:lec01-cameras}]{\sphinxcrossref{\DUrole{std,std-ref}{Image formation: where does a 3D point appear?}}}}.
+
+\sphinxlineitem{Point cloud\index{Point cloud@\spxentry{Point cloud}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Point-cloud}}}
+\sphinxAtStartPar
+A collection of 3D point positions, often expressed in one common frame. See {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-depth}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.16}}}}.
+
+\sphinxlineitem{Projective plane\index{Projective plane@\spxentry{Projective plane}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Projective-plane}}}
+\sphinxAtStartPar
+Nonzero 3\sphinxhyphen{}vectors identified under nonzero scale, representing finite and ideal 2D points. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\sphinxlineitem{Incidence\index{Incidence@\spxentry{Incidence}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Incidence}}}
+\sphinxAtStartPar
+A point lying on a line or plane, tested through a zero dot product of homogeneous coordinates and coefficients. See \eqref{equation:lectures/lecture01/projective:eq-lec01-incidence}.
+
+\sphinxlineitem{Ideal point\index{Ideal point@\spxentry{Ideal point}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Ideal-point}}}
+\sphinxAtStartPar
+A projective point with last homogeneous coordinate zero; also called a point at infinity. See \eqref{equation:lectures/lecture01/projective:eq-lec01-ideal}.
+
+\sphinxlineitem{Line at infinity\index{Line at infinity@\spxentry{Line at infinity}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Line-at-infinity}}}
+\sphinxAtStartPar
+The projective line containing all ideal points of a plane. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\sphinxlineitem{Vanishing point\index{Vanishing point@\spxentry{Vanishing point}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Vanishing-point}}}
+\sphinxAtStartPar
+An image location corresponding to a scene direction, often where projected parallel scene lines intersect. It need not be an ideal point of the image plane. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\sphinxlineitem{Horizon\index{Horizon@\spxentry{Horizon}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Horizon}}}
+\sphinxAtStartPar
+The image of a scene plane’s line at infinity. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\sphinxlineitem{Degrees of freedom\index{Degrees of freedom@\spxentry{Degrees of freedom}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Degrees-of-freedom}}}
+\sphinxAtStartPar
+The number of independent continuous parameters. Matrix entries can be constrained or equivalent under scale. See \eqref{equation:lectures/lecture01/transformations:eq-lec01-hierarchy} and {\hyperref[\detokenize{lectures/lecture01/rotations:lec01-rotations}]{\sphinxcrossref{\DUrole{std,std-ref}{Rotations: several descriptions of the same motion}}}}.
+
+\sphinxlineitem{Nullspace\index{Nullspace@\spxentry{Nullspace}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Nullspace}}}
+\sphinxAtStartPar
+The vectors mapped to zero by a matrix. Homogeneous geometry seeks a nonzero solution, often unique up to scale. See \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plane-null}.
+
+\sphinxlineitem{Plücker coordinates\index{Plücker coordinates@\spxentry{Plücker coordinates}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Plucker-coordinates}}}
+\sphinxAtStartPar
+A homogeneous representation of a spatial line; for a finite line the direction/moment pair is \((d,p\times d)\) with \(d^Tm=0\). See \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-plucker}.
+
+\sphinxlineitem{Reciprocal product\index{Reciprocal product@\spxentry{Reciprocal product}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Reciprocal-product}}}
+\sphinxAtStartPar
+A scalar formed from two valid direction/moment line representations; it tests their coplanarity and supports a shortest\sphinxhyphen{}distance formula. See \eqref{equation:lectures/lecture01/planes-lines:eq-lec01-line-distance}.
+
+\sphinxlineitem{Surface normal\index{Surface normal@\spxentry{Surface normal}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Surface-normal}}}
+\sphinxAtStartPar
+A direction perpendicular to local surface tangent directions. An oriented face normal requires a winding or outward convention. See {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-tetrahedron}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.12}}}}.
+
+\sphinxlineitem{Rotation matrix\index{Rotation matrix@\spxentry{Rotation matrix}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Rotation-matrix}}}
+\sphinxAtStartPar
+A real orthogonal matrix with determinant \(+1\) representing a proper rotation. See \eqref{equation:lectures/lecture01/rotations:eq-lec01-orthogonal}.
+
+\sphinxlineitem{Axis–angle\index{Axis–angle@\spxentry{Axis–angle}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Axisangle}}}
+\sphinxAtStartPar
+A rotation representation consisting of a unit axis and an angle. Extraction needs special handling near zero and a half\sphinxhyphen{}turn. See \eqref{equation:lectures/lecture01/rotations:eq-lec01-axis-angle}.
+
+\sphinxlineitem{Quaternion\index{Quaternion@\spxentry{Quaternion}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Quaternion}}}
+\sphinxAtStartPar
+A scalar–vector algebraic object; unit quaternions represent rotations under a declared multiplication and active/passive convention. See \eqref{equation:lectures/lecture01/rotations:eq-lec01-quaternion}.
+
+\sphinxlineitem{Intrinsic rotation\index{Intrinsic rotation@\spxentry{Intrinsic rotation}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Intrinsic-rotation}}}
+\sphinxAtStartPar
+A rotation about an axis attached to the moving body. It is unrelated to camera intrinsic calibration despite the shared word. See \eqref{equation:lectures/lecture01/rotations:eq-lec01-ordered-angles}.
+
+\sphinxlineitem{Extrinsic rotation\index{Extrinsic rotation@\spxentry{Extrinsic rotation}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Extrinsic-rotation}}}
+\sphinxAtStartPar
+A rotation about a fixed reference axis. See \eqref{equation:lectures/lecture01/rotations:eq-lec01-ordered-angles}.
+
+\sphinxlineitem{Gimbal lock\index{Gimbal lock@\spxentry{Gimbal lock}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Gimbal-lock}}}
+\sphinxAtStartPar
+A singular three\sphinxhyphen{}angle description in which independent parameter effects coincide. The physical orientation still exists. See {\hyperref[\detokenize{lectures/lecture01/rotations:lec01-rotations}]{\sphinxcrossref{\DUrole{std,std-ref}{Rotations: several descriptions of the same motion}}}}.
+
+\sphinxlineitem{Rigid transformation\index{Rigid transformation@\spxentry{Rigid transformation}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Rigid-transformation}}}
+\sphinxAtStartPar
+A proper rotation and translation preserving distances and angles. See \eqref{equation:lectures/lecture01/frames-quizzes:eq-lec01-rigid3}.
+
+\sphinxlineitem{Circular points\index{Circular points@\spxentry{Circular points}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Circular-points}}}
+\sphinxAtStartPar
+Two complex ideal points shared by all Euclidean circles in a plane, encoding metric structure projectively. These are a vocabulary preview in {\hyperref[\detokenize{lectures/lecture01/transformations:lec01-transformations}]{\sphinxcrossref{\DUrole{std,std-ref}{Move points without losing the geometry}}}}.
+
+\sphinxlineitem{Absolute conic\index{Absolute conic@\spxentry{Absolute conic}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Absolute-conic}}}
+\sphinxAtStartPar
+A complex conic on the plane at infinity encoding the 3D Euclidean metric. Its role in metric upgrades is deferred to Lecture 6; see {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}} for the hierarchy context.
+
+\sphinxlineitem{Pinhole camera\index{Pinhole camera@\spxentry{Pinhole camera}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Pinhole-camera}}}
+\sphinxAtStartPar
+An ideal central\sphinxhyphen{}projection model in which rays pass through one camera center. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-pinhole}.
+
+\sphinxlineitem{Principal point\index{Principal point@\spxentry{Principal point}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Principal-point}}}
+\sphinxAtStartPar
+The pixel location where the optical axis intersects the ideal image plane. It is not automatically the pixel origin. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}.
+
+\sphinxlineitem{Intrinsic parameters\index{Intrinsic parameters@\spxentry{Intrinsic parameters}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Intrinsic-parameters}}}
+\sphinxAtStartPar
+Camera calibration parameters that map normalized camera coordinates to pixels, including focal entries, skew, and principal point. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}.
+
+\sphinxlineitem{Extrinsic parameters\index{Extrinsic parameters@\spxentry{Extrinsic parameters}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Extrinsic-parameters}}}
+\sphinxAtStartPar
+Rotation and translation linking world and camera frames, with a declared transform direction. See {\hyperref[\detokenize{lectures/lecture01/cameras:lec01-cameras}]{\sphinxcrossref{\DUrole{std,std-ref}{Image formation: where does a 3D point appear?}}}}.
+
+\sphinxlineitem{Backprojection\index{Backprojection@\spxentry{Backprojection}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Backprojection}}}
+\sphinxAtStartPar
+Mapping a pixel to a camera ray, then using specified depth to recover a 3D point. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-backproject}.
+
+\sphinxlineitem{Axial depth\index{Axial depth@\spxentry{Axial depth}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Axial-depth}}}
+\sphinxAtStartPar
+The point’s coordinate along the camera’s forward axis; it differs from Euclidean range along the ray. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-backproject}.
 
 \end{description}
 
@@ -989,13 +3909,19 @@ A reference origin and axes used to express coordinates. Transform directions ar
 The planned text follows the six supplied CS 532 lecture PDFs and the quiz\sphinxhyphen{}to\sphinxhyphen{}lecture mapping in \sphinxcode{\sphinxupquote{quizByLec.md}}. The lecture decks identify Enrique Dunn and credit additional contributors on individual sections. Preserve those specific credits when adapting their material; do not infer authorship or reuse permission from filenames alone.
 
 \sphinxAtStartPar
-Specific lecture citations and image credits will be added when material is selected and adapted. The notation and matrix\sphinxhyphen{}dimension examples in this foundation edition are original explanatory examples.
+Lecture 1 gives verified source ranges and identifies original versus adapted examples. The geometry section credits M. Pollefeys and D. Cappelleri (PDF page 62); image formation credits John Oliensis (PDF page 104). The notation and matrix\sphinxhyphen{}dimension examples in this foundation edition are original explanatory examples.
 
 \sphinxAtStartPar
 The pixel\sphinxhyphen{}axis diagram in the notation guide is an original project illustration with an editable TikZ source and paired SVG/PDF assets.
 
 \sphinxAtStartPar
-No third\sphinxhyphen{}party lecture images have been imported in this foundation edition. A repository’s text license does not automatically establish the reuse permissions of every embedded source figure.
+Lecture 1 includes three embedded image assets extracted without retouching from the supplied deck: the railway photograph (PDF page 68), fountain input (page 50), and fountain depth output (page 51). Their original individual creators are not identified on those slides; this source uncertainty is retained in the captions and figure register. The source deck is preserved. Twelve additional geometric/workflow diagrams are original project drawings, with paired SVG/PDF and editable TikZ sources. A repository’s text license does not automatically establish the reuse permissions of every embedded source figure.
+
+
+\section{Reading list named in the lecture}
+\label{\detokenize{reference/credits:reading-list-named-in-the-lecture}}
+\sphinxAtStartPar
+The deck’s PDF pages 9–10 name Richard Szeliski’s \sphinxstyleemphasis{Computer Vision: Algorithms and Applications} (2010), David M. Mount’s CMSC 754 computational\sphinxhyphen{}geometry lecture notes (2012), and Xiang Gao and Tao Zhang’s \sphinxstyleemphasis{Introduction to Visual SLAM: From Theory to Practice}. These are source\sphinxhyphen{}listed further reading; the present chapter was developed from the supplied slides and quizzes rather than claiming those books were consulted in full.
 
 \sphinxstepscope
 
@@ -1011,13 +3937,13 @@ These source issues are flagged by the supplied study notes. Detailed correction
 \centering
 \begin{tabulary}{\linewidth}[t]{TTT}
 \sphinxtoprule
-\sphinxstyletheadfamily 
+\sphinxstyletheadfamily
 \sphinxAtStartPar
 Source
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Issue
-&\sphinxstyletheadfamily 
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
 Planned treatment
 \\
@@ -1069,6 +3995,34 @@ Record the filename and printed wording
 
 \sphinxAtStartPar
 All source\sphinxhyphen{}solution computations remain subject to independent checking. Relevance scores describe slide relevance, not exam probabilities.
+
+
+\section{Lecture 1: verified qualifications and convention translations}
+\label{\detokenize{reference/errata:lecture-1-verified-qualifications-and-convention-translations}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Projective\sphinxhyphen{}plane shorthand (PDF page 71):} nonzero homogeneous vectors must be identified under common scale; they are not distinct projective points. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Quaternion convention (PDF page 92):} the source sandwich is \(q^{-1}Pq\). This book uses active Hamilton rotation \(qPq^{-1}\) and demonstrates the inverse relationship explicitly. Conjugation alone gives the inverse only for unit quaternions. See {\hyperref[\detokenize{lectures/lecture01/rotations:lec01-rotations}]{\sphinxcrossref{\DUrole{std,std-ref}{Rotations: several descriptions of the same motion}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Camera symbols (PDF pages 111–113):} camera\sphinxhyphen{}to\sphinxhyphen{}world pose and world\sphinxhyphen{}to\sphinxhyphen{}camera extrinsics use inverse transformations. The book translates the slide’s notation and clarifies that projection maps 3D to 2D; its inverse without depth is a ray. See {\hyperref[\detokenize{lectures/lecture01/cameras:lec01-cameras}]{\sphinxcrossref{\DUrole{std,std-ref}{Image formation: where does a 3D point appear?}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Plane uniqueness (Fall 2025 Quiz 1 Q4):} camera centers and the chosen object\sphinxhyphen{}frame origin determine a unique plane only when noncollinear. See {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:ex-lec01-object-plane}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.11}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Nullspace wording (PDF pages 83–85):} solve the right nullspace of the stacked incidence matrix, not “the nullspace of” the unknown point/plane. See {\hyperref[\detokenize{lectures/lecture01/planes-lines:lec01-planes}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, planes, and lines in 3D}}}}.
+
+\end{itemize}
+
+\sphinxAtStartPar
+Numerical companions are checked by \sphinxcode{\sphinxupquote{scripts/check\_lecture01\_math.py}}. These qualifications do not imply that every flagged issue in later lectures has already been checked.
 
 
 

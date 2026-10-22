@@ -1,24 +1,33 @@
 (lecture01)=
 # Lecture 1: Foundations and 3D geometry
 
-```{note}
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-```
+Can photographs taken from different viewpoints reveal a shared 3D world? Lecture 1 introduces that problem and builds the geometric language used to solve it.
 
-## Planned scope
+This chapter follows the actual supplied deck, including its early introduction to camera projection. Later lectures revisit these foundations and develop their estimation algorithms. Read the sections in order; use the final checklist to return to a specific formula or quiz example.
 
-Motivation and applications; 2D/3D geometry; transformations and rotations; camera introduction.
+**What you will learn**
 
-**Source deck:** `wk1_2_cs532s26_IntroToGeometry.pdf`. Full explanations will record verified printed slide labels and one-based PDF page numbers separately.
+- Explain why a pixel alone does not determine scene depth.
+- Join points, intersect lines, and recognize ideal points in homogeneous coordinates.
+- Distinguish point transformations from line/plane transformations.
+- Construct planes and spatial lines, and recognize degenerate inputs.
+- Apply and compare rotation matrices, ordered angles, axis–angle, and quaternions.
+- Compose rigid frame transforms with explicit directions.
+- Project a world point into a camera and reason about camera motion.
 
-## Examples and practice
+**Reading route**
 
-Select the most useful examples from the actual slides and integrate the assigned questions from the [quiz index](../../reference/quiz-index.md). Missing quiz coverage will be filled with new, clearly labeled worked examples.
+1. [Why reconstruct a world from photographs?](motivation.md)
+2. [Points, lines, and infinity](projective.md)
+3. [2D transformations and invariants](transformations.md)
+4. [Planes and lines in 3D](planes-lines.md)
+5. [Rotation representations](rotations.md)
+6. [Frames and integrated quiz problems](frames-quizzes.md)
+7. [Camera projection and the hands-on exercise](cameras.md)
+8. [Review and source-coverage checklist](review.md)
 
-## Completion checklist
+**How the quizzes fit**
 
-- [ ] Audit every substantive slide topic and formula.
-- [ ] Write explanations, derivations, and formula/application boxes.
-- [ ] Add selected slide illustrations and independently checked quiz examples.
-- [ ] Complete keywords, glossary entries, and source references.
-- [ ] Check both the website and cumulative printable edition.
+Fall 2025 Quiz 1, questions 3–4, develops relative camera pose and a camera/object plane. Fall 2017 Quiz 9 supplies the tetrahedron normals/rotation problem and a supplementary depth-backprojection bridge. The supplied lecture mapping classifies both quiz sets as supplementary; the core geometric ideas are still prerequisites for the higher-priority camera and two-view topics.
+
+**Source:** `wk1_2_cs532s26_IntroToGeometry.pdf`, all 114 PDF pages audited. Repeated visual builds are consolidated. Course logistics are excluded from the mathematics; research applications are summarized rather than treated as extra algorithms. Geometry slide sections credit M. Pollefeys and D. Cappelleri; image-formation sections credit John Oliensis. All newly added numerical values and diagrams are labeled as original or adapted.

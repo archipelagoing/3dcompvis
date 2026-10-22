@@ -1,23 +1,32 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Before you begin
-    chapters:
-      - file: foundations/notation
-      - file: foundations/prerequisites
-  - caption: Lectures 1–6
-    numbered: true
-    chapters:
-      - file: lectures/lecture01/index
-      - file: lectures/lecture02/index
-      - file: lectures/lecture03/index
-      - file: lectures/lecture04/index
-      - file: lectures/lecture05/index
-      - file: lectures/lecture06/index
-  - caption: Study and reference
-    chapters:
-      - file: reference/formulas
-      - file: reference/quiz-index
-      - file: reference/glossary
-      - file: reference/credits
-      - file: reference/errata
+- caption: Before you begin
+  chapters:
+  - file: foundations/notation
+  - file: foundations/prerequisites
+- caption: Lectures 1–6
+  numbered: true
+  chapters:
+  - file: lectures/lecture01/index
+    sections:
+    - file: lectures/lecture01/motivation
+    - file: lectures/lecture01/projective
+    - file: lectures/lecture01/transformations
+    - file: lectures/lecture01/planes-lines
+    - file: lectures/lecture01/rotations
+    - file: lectures/lecture01/frames-quizzes
+    - file: lectures/lecture01/cameras
+    - file: lectures/lecture01/review
+  - file: lectures/lecture02/index
+  - file: lectures/lecture03/index
+  - file: lectures/lecture04/index
+  - file: lectures/lecture05/index
+  - file: lectures/lecture06/index
+- caption: Study and reference
+  chapters:
+  - file: reference/formulas
+  - file: reference/quiz-index
+  - file: reference/glossary
+  - file: reference/credits
+  - file: reference/errata

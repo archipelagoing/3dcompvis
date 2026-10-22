@@ -1,6 +1,6 @@
 # Lecture boundaries and overlap decisions
 
-Status: **page headings inspected; full mathematical/visual audit pending per lecture**. PDF pages below are one-based. Printed slide labels differ in places and must be verified independently.
+Status: **Lecture 1 fully audited and drafted; Lecture 2 headings inspected; later full audits pending**. PDF pages below are one-based. Printed slide labels differ in places and must be verified independently.
 
 | Deck | Observed PDF page ranges | Teaching ownership |
 | --- | --- | --- |
@@ -14,3 +14,5 @@ Status: **page headings inspected; full mathematical/visual audit pending per le
 Primary quiz placement follows `quizByLec.md`, not the first slide mentioning a concept. Spring 2020 Quiz 1 remains in Lecture 2 and links back to Lecture 1 foundations. Fall 2025 Quiz 1's geometry belongs to Lecture 1 and its probability questions to Lecture 3. Defer advanced questions until their prerequisites are taught.
 
 The first two chapter titles describe emphasis rather than exclusive boundaries. A topic may be introduced, revisited, and applied later but has one canonical full explanation and formula box.
+
+Lecture 1 completion details and verified source dispositions are recorded in `lecture01-audit.md` and `coverage.csv`. Its chapter covers the actual full deck; later chapters should cross-reference repeated foundations.

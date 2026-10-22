@@ -1,6 +1,6 @@
 id,source_file,printed_title_or_note,primary_lecture,subquestion,topics,duplicate_or_retest,destination,verification_status
-Q01,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,pending audit,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture01/index.md,not yet checked
-Q02,3dcvMid/olderquizzes/cs532_f17_quiz9.pdf,Fall 2017 Quiz 9,1,pending audit,Rotated normals; depth backprojection (extension after L3/4),,book/lectures/lecture01/index.md,not yet checked
+Q01,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,pending audit,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture01/index.md,Q3–Q4 independently solved in L1; Q1–Q2 deferred to L3
+Q02,3dcvMid/olderquizzes/cs532_f17_quiz9.pdf,Fall 2017 Quiz 9,1,pending audit,Rotated normals; depth backprojection (extension after L3/4),,book/lectures/lecture01/index.md,P2(a–b) solved in L1; P1 explicit supplementary preview solution
 Q03,3dcvMid/olderquizzes/cs532s20_quiz1.pdf,Spring 2020 Quiz 1,2,pending audit,Collinearity; intersections; projection dimensions,,book/lectures/lecture02/index.md,not yet checked
 Q04,3dcvMid/olderquizzes/cs532s19-quiz3.pdf,Spring 2019 Quiz 3,3,pending audit,Pentagon matches; homography; RANSAC; symmetry,,book/lectures/lecture03/index.md,not yet checked
 Q05,3dcvMid/olderquizzes/cs532s19_quiz2-2.pdf,Spring 2019 Quiz 2,3,pending audit,FOV; intrinsics; projection; principal point,,book/lectures/lecture03/index.md,not yet checked
@@ -19,3 +19,10 @@ Q17,3dcvMid/quizzesf25sol/cs532f25_quiz_5_solution-1.pdf,Fall 2025 Quiz 5,6,pend
 Q18,3dcvMid/quizzesf25sol/cs532f25_quiz_6_solution.pdf,Fall 2025 Quiz 6,6,pending audit,Large-scale SfM; contaminated matches; advanced transfer,,book/lectures/lecture06/index.md,not yet checked
 Q19,3dcvMid/quizzesf25sol/cs532f25_quiz_7_solution.pdf,Fall 2025 Quiz 7,0,pending audit,ICP; outside core scope,,excluded,outside scope
 Q20,3dcvMid/quizzesf25sol/cs532f25_quiz_8_solution.pdf,Fall 2025 Quiz 8,0,pending audit,Meshes; outside core scope,,excluded,outside scope
+Q01-1,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,Q1,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture03/index.md,deferred to L3; not claimed complete
+Q01-2,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,Q2,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture03/index.md,deferred to L3; not claimed complete
+Q01-3,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,Q3,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture01/frames-quizzes.md#ex-lec01-relative-pose,independently solved and numerical transform check passed
+Q01-4,3dcvMid/quizzesf25sol/cs532f25_quiz_1_solution.pdf,Fall 2025 Quiz 1,1,Q4,Relative poses; plane construction; probability (secondary L3),,book/lectures/lecture01/frames-quizzes.md#ex-lec01-object-plane,independently solved; collinearity qualification added
+Q02-1,3dcvMid/olderquizzes/cs532_f17_quiz9.pdf,Fall 2017 Quiz 9,1,P1,Rotated normals; depth backprojection (extension after L3/4),,book/lectures/lecture01/cameras.md#ex-lec01-depth,supplementary algorithm and numerical common-frame check passed; deeper calibration/fusion deferred
+Q02-2a,3dcvMid/olderquizzes/cs532_f17_quiz9.pdf,Fall 2017 Quiz 9,1,P2(a),Rotated normals; depth backprojection (extension after L3/4),,book/lectures/lecture01/frames-quizzes.md#ex-lec01-tetrahedron,all outward unit normals independently checked
+Q02-2b,3dcvMid/olderquizzes/cs532_f17_quiz9.pdf,Fall 2017 Quiz 9,1,P2(b),Rotated normals; depth backprojection (extension after L3/4),,book/lectures/lecture01/frames-quizzes.md#ex-lec01-rotated-normals,rotated normals checked against rotated-vertex cross products

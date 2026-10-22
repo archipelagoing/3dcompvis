@@ -6,7 +6,7 @@ Complete **Lecture 1 → Lecture 2 → Lecture 3 → Lecture 4 → Lecture 5 →
 
 Follow [TEXTBOOK_PROMPT.md](TEXTBOOK_PROMPT.md) for editorial and technical requirements. Use [quizByLec.md](3dcvMid/lectures/quizByLec.md) for primary quiz placement and secondary overlaps, and [ExamToDo.md](ExamToDo.md) for emphasis, errata, and exam gaps. Relevance scores are not exam probabilities. Check the actual PDFs before finalizing topic boundaries or source references.
 
-**Current next action:** audit Lecture 1 and select its strongest slide examples. This checklist does not mark any chapter as already written or validated.
+**Current next action:** review the completed Lecture 1 web/PDF draft and its style before starting Lecture 2. Lectures 2–6 remain unwritten.
 
 ## 0. Prepare the shared foundation
 
@@ -38,12 +38,13 @@ These are completion requirements for each lecture below, not a separate pass af
 
 Source: `3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf`.
 
-- [ ] Audit actual lecture coverage and distinguish its material from Lecture 2. Select a compelling application/image sequence from the slides to introduce the course's geometric questions.
-- [ ] Explain the lecture's foundational geometry and coordinate reasoning, with simple diagrams before dense notation. Introduce later concepts only to the depth justified by the lecture.
-- [ ] Integrate **Fall 2025 Quiz 1**, `quizzesf25sol/cs532f25_quiz_1_solution.pdf`: shared-object relative camera pose and the plane through camera/object positions. State transform directions and degenerate cases. Place its probability questions beside RANSAC in Lecture 3, with a cross-reference from this quiz's index entry.
-- [ ] Integrate the relevant geometry from **Fall 2017 Quiz 9**, `olderquizzes/cs532_f17_quiz9.pdf`: rotated vectors/normals where supported by the slides. Label depth-map fusion or other beyond-scope content as an extension, and defer prerequisite-dependent backprojection to Lecture 3/4 with cross-references.
-- [ ] Choose the strongest slide illustrations to redraw or reuse with credits; add a fully worked coordinate/geometry example if the quizzes do not adequately teach the foundations.
-- [ ] Complete every item in the repeated lecture checklist, including the first compiled PDF and a style review.
+- [x] Audit actual lecture coverage and distinguish its material from Lecture 2. Select a compelling application/image sequence from the slides to introduce the course's geometric questions.
+- [x] Explain the lecture's foundational geometry and coordinate reasoning, with simple diagrams before dense notation. Introduce later concepts only to the depth justified by the lecture.
+- [x] Integrate **Fall 2025 Quiz 1**, `quizzesf25sol/cs532f25_quiz_1_solution.pdf`: shared-object relative camera pose and the plane through camera/object positions. State transform directions and degenerate cases. Place its probability questions beside RANSAC in Lecture 3, with a cross-reference from this quiz's index entry.
+- [x] Integrate the relevant geometry from **Fall 2017 Quiz 9**, `olderquizzes/cs532_f17_quiz9.pdf`: rotated vectors/normals where supported by the slides. Label depth-map fusion or other beyond-scope content as an extension, and defer prerequisite-dependent backprojection to Lecture 3/4 with cross-references.
+- [x] Choose the strongest slide illustrations to redraw or reuse with credits; add a fully worked coordinate/geometry example if the quizzes do not adequately teach the foundations.
+- [x] Complete the authoring and technical checks, including the compiled PDF and internal layout review.
+- [ ] Review Lecture 1 with the user and incorporate style/content feedback before starting Lecture 2.
 
 ## 2. Lecture 2 — Projective geometry and linear algebra
 

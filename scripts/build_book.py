@@ -70,7 +70,7 @@ def export_latex():
                         "\\part{Lectures 1–6}")
     text = text.replace("\\begin{document}",
                         "\\graphicspath{{images/}{_support/}}\n\\begin{document}", 1)
-    (PRINT / f"{NAME}.tex").write_text(text)
+    (PRINT / f"{NAME}.tex").write_text("\n".join(line.rstrip() for line in text.splitlines()) + "\n")
     print(f"Exported one continuous manuscript: print/{NAME}.tex")
 
 

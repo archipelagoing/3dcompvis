@@ -1,9 +1,11 @@
 (quiz-index)=
 # Quiz practice index
 
-These are planned placements from `quizByLec.md`. Questions and solutions have not yet been adapted or independently verified. Duplicate sources are retained for later closed-notes retests.
+Placements follow `quizByLec.md`. Lecture 1 now includes independently checked worked examples and a supplementary depth-map bridge. Later lectures remain planned. Duplicate sources are retained for later closed-notes retests.
 
 ## Lecture 1
+
+**Completed reading links:** {ref}`Example 1.10 <ex-lec01-relative-pose>` (relative camera pose), {ref}`Example 1.11 <ex-lec01-object-plane>` (camera/object plane), {ref}`Example 1.12 <ex-lec01-tetrahedron>` (face normals), and {ref}`Example 1.13 <ex-lec01-rotated-normals>` (rotated normals). The {ref}`supplementary depth-map solution <ex-lec01-depth>` follows the camera explanation. Fall 2025 Quiz 1 Q1–Q2 remains deferred to Lecture 3.
 
 ### Fall 2025 Quiz 1
 

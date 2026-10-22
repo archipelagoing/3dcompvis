@@ -1,5 +1,7 @@
 # Implementation prompt: CS 532 illustrated textbook and printable LaTeX edition
 
+**Current style requirement:** follow [TEXTBOOK_SIMPLIFICATION_PROMPT.md](TEXTBOOK_SIMPLIFICATION_PROMPT.md) for concise, beginner-friendly explanations. It supersedes verbosity-producing presentation requirements below while preserving required coverage, mathematical correctness, quiz integration, and both editions.
+
 ## Objective
 
 Turn the existing TeachBook in `book/` into a coherent, professional, illustrated textbook covering the six lecture PDFs in `3dcvMid/lectures/`. Use the lectures as the syllabus and the quizzes as the backbone of integrated worked examples. Write connected explanations, derivations, and transitions rather than transcribing slide bullets or embedding entire slide decks.

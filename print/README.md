@@ -1,7 +1,7 @@
 # Compile the printable textbook
 
 This folder is a generated print edition of the MyST pages in `book/`.
-It currently contains the foundation and clearly labeled unwritten lecture outlines.
+It currently contains the Lecture 1 draft, the shared foundation, and clearly labeled planning outlines for Lectures 2–6.
 
 ## Overleaf
 

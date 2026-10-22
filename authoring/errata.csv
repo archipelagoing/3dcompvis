@@ -3,3 +3,8 @@ E01,cs532f25_quiz_2_solution.pdf,Line/point confusion and matrix rank,4,flagged 
 E02,cs532f25_quiz_5_solution-1.pdf,Planar versus full-scene metric upgrade assumptions,6,flagged by study notes; verify during audit,,book/reference/errata.md
 E03,cs532f15_quiz4.pdf; cs532f15_quiz9.pdf,Filename/printed year mismatch,4,flagged by study notes; verify during audit,,book/reference/errata.md
 E04,cs532s20_quiz3.pdf,Mixed printed year/header,3,flagged by study notes; verify during audit,,book/reference/errata.md
+E05,L1 PDF 71,Projective-plane shorthand omits scale quotient,1,verified against source and derivation,"Explain nonzero vectors modulo nonzero scale, not distinct vectors",book/lectures/lecture01/projective.md
+E06,L1 PDF 92,Quaternion sandwich/inverse convention,1,verified against source and derivation,Active Hamilton qPq^-1 chosen; source opposite sandwich identified as inverse/passive; conjugate inverse restricted to unit norm,book/lectures/lecture01/rotations.md
+E07,L1 PDF 111–113,Camera pose versus world-to-camera symbols; mapping direction,1,verified against source and derivation,"Translate the pose convention explicitly and explain that P maps 3D to 2D, with inverse a ray",book/lectures/lecture01/cameras.md
+E08,Fall 2025 Quiz 1 Q4,Supplied yes answer does not state noncollinearity,1,verified against source and derivation,Unique plane only for noncollinear camera/object origins; extended object need not lie in plane,book/lectures/lecture01/frames-quizzes.md
+E09,L1 PDF 83–85,Nullspace described as belonging to unknown rather than coefficient matrix,1,verified against source and derivation,Compute the right nullspace of the stacked incidence matrix; request full V for a 3x4 system,book/lectures/lecture01/planes-lines.md

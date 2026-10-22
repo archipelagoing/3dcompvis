@@ -19,6 +19,10 @@ sphinx:                                              # Options passed on to the 
     - teachbooks_favourites                          # Gives you a starter package of extensions to use in your book, replace with individual extensions if you prefer some extensions not to be included (https://github.com/TeachBooks/TeachBooks-Favourites)
   config:
     html_css_files: [textbook.css]
+    # Use Sphinx's single MathJax loader. The optional Favourites patch adds
+    # duplicate dynamic loaders and can leave startup promises unresolved.
+    patch_config:
+      disabled-patches: [mathjax]
     numfig: true
     numfig_secnum_depth: 1
     math_numfig: true

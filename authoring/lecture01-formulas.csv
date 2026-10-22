@@ -1,0 +1,26 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec01-pinhole,Formula — perspective projection in camera coordinates,105–110,book/lectures/lecture01/cameras.md,derived and checked; see numerical checks for worked examples
+eq-lec01-camera,Formula — calibrated pixel projection,111–113,book/lectures/lecture01/cameras.md,derived and checked; see numerical checks for worked examples
+eq-lec01-backproject,Formula — axial-depth backprojection and frame conversion,Fall 2017 Quiz 9 P1 (supplement),book/lectures/lecture01/cameras.md,derived and checked; see numerical checks for worked examples
+eq-lec01-rotation2,Formula — 2D rotation,72–76,book/lectures/lecture01/transformations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-rigid2,Formula — translation and rotation about a pivot,77,book/lectures/lecture01/transformations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-hierarchy,Formula — 2D transformation hierarchy,78; 103,book/lectures/lecture01/transformations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-dual,Formula — transform line and plane coefficients,79; 82,book/lectures/lecture01/transformations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-plane,Formula — plane incidence and Euclidean distance,82,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-plane-points,Formula — plane through three noncollinear points,83–84,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-plane-null,Formula — point/plane incidence systems,83; 85,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-cofactor,Formula — plane coefficients by cofactors,84,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-plucker,Formula — finite-line Plücker coordinates,86,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-line-distance,Formula — reciprocal product and line distance,87,book/lectures/lecture01/planes-lines.md,derived and checked; see numerical checks for worked examples
+eq-lec01-rotation3,Formula — elementary 3D rotations,88–89,book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-orthogonal,Formula — validate and invert a rotation,88; 90,book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-ordered-angles,Formula — ordered-angle composition,93–100,book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-axis-angle,Formula — extract axis and angle,91,book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-rodrigues,Formula — build a rotation from axis and angle,91 (original supplement),book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-quaternion,Formula — unit quaternion and active point rotation,92,book/lectures/lecture01/rotations.md,derived and checked; see numerical checks for worked examples
+eq-lec01-incidence,Formula — point–line incidence,65,book/lectures/lecture01/projective.md,derived and checked; see numerical checks for worked examples
+eq-lec01-cross,Formula — join two points or intersect two lines,67,book/lectures/lecture01/projective.md,derived and checked; see numerical checks for worked examples
+eq-lec01-ideal,Formula — ideal points and the line at infinity,68–71,book/lectures/lecture01/projective.md,derived and checked; see numerical checks for worked examples
+eq-lec01-rigid3,Formula — rigid coordinate transform and inverse,101–102,book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples
+eq-lec01-compose,Formula — compose compatible frame transforms,102 (expanded explanation),book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples
+eq-lec01-relative-pose,Relative camera pose — specialization of rigid-transform composition,Fall 2025 Quiz 1 Q3 (specialization),book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples

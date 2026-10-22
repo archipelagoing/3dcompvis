@@ -49,7 +49,35 @@ def depart_box_title(self, node):
     self.body.append("}\\par\\smallskip\n")
 
 
+def unique_scripts(scripts):
+    """Deduplicate scripts, including equivalent inline declarations."""
+    unique = []
+    seen = set()
+    for script in scripts:
+        filename = getattr(script, "filename", script)
+        attributes = getattr(script, "attributes", {})
+        key = (("inline", attributes.get("body", "")) if not filename else
+               (str(filename), repr(sorted(attributes.items()))))
+        if key not in seen:
+            unique.append(script)
+            seen.add(key)
+    return unique
+
+
+def deduplicate_scripts(app, pagename, templatename, context, doctree):
+    # Preserve the list shared with the builder: later callbacks add per-page JS.
+    context["script_files"][:] = unique_scripts(context.get("script_files", []))
+
+
+def clean_builder_scripts(app):
+    if app.builder.format == "html":
+        scripts = app.builder._js_files
+        scripts[:] = unique_scripts(scripts)
+
+
 def setup(app):
+    app.connect("builder-inited", clean_builder_scripts, priority=999)
+    app.connect("html-page-context", deduplicate_scripts, priority=-1000)
     app.add_node(BoxTitle,
                  html=(lambda self, node: self.visit_title(node),
                        lambda self, node: self.depart_title(node)),
