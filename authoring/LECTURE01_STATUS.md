@@ -1,13 +1,14 @@
 # Lecture 1 review status
 
-**Ready for user review.** Lecture 2 has not been started.
+**Reviewed with the user.** The requested final TLDR/quiz was added, and the user authorized Lecture 2.
 
 ## Delivered
 
-- A chapter introduction and eight ordered topic/review sections, covering the actual Lecture 1 deck rather than the earlier provisional outline.
-- Sixteen numbered worked examples, seven short understanding checks, and one end-of-chapter transfer exercise, with explained solutions in both editions.
-- Twenty-four canonical formula boxes with application procedures and 25 labeled equations including the relative-pose worked specialization.
-- Fifteen chapter figures: twelve original vector diagrams and three source-supplied image assets. Editable diagram sources and credits are retained.
+- A chapter introduction and ten ordered topic/review sections, covering the actual Lecture 1 deck rather than the earlier provisional outline.
+- Nineteen numbered worked examples, eight short understanding checks, and one end-of-chapter transfer exercise, with explained solutions in both editions.
+- Twenty-five canonical formula boxes with application procedures and 26 labeled equations including the relative-pose worked specialization.
+- A final TLDR with eight key rules and eight original quiz questions, with concise answers collapsible online and included in print.
+- Sixteen chapter figures: thirteen original vector diagrams and three source-supplied image assets, including the foundation quiz diagram relocated from Lecture 2. Editable diagram sources and credits are retained.
 - Integrated Fall 2025 Quiz 1 Q3–Q4 and Fall 2017 Quiz 9 P2(a–b), plus a supplementary solution of the latter's depth-map problem P1. Fall 2025 probability Q1–Q2 remains assigned to Lecture 3.
 - Updated source-page coverage, formula/quiz registers, keyword glossary/index, formula reference, source credits, and verified errata/convention notes.
 
@@ -34,3 +35,5 @@ Source preview equations for epipolar geometry/stereo remain assigned to Lecture
 The PDF is generated from MyST through Sphinx and contains its typesetting macros; the bundle includes the support files needed for ordinary XeLaTeX compilation. Overleaf itself was not accessed. No changes were pushed or published; the live site remains unchanged.
 
 Please review pacing, explanatory depth, formula/application formatting, figure size, and the source-caption detail before expanding the remaining lectures.
+
+Spring 2020 Quiz 1 foundation solutions were relocated here under the user's later unique-content requirement. The original Lecture 2 quiz assignment and stable legacy labels are preserved. See `lecture01-02-overlap-audit.md`.

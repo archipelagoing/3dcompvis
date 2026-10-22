@@ -17,8 +17,18 @@ parts:
     - file: lectures/lecture01/rotations
     - file: lectures/lecture01/frames-quizzes
     - file: lectures/lecture01/cameras
+    - file: lectures/lecture01/quiz-practice
     - file: lectures/lecture01/review
+    - file: lectures/lecture01/tldr
   - file: lectures/lecture02/index
+    sections:
+    - file: lectures/lecture02/quaternions
+    - file: lectures/lecture02/homographies
+    - file: lectures/lecture02/warping
+    - file: lectures/lecture02/estimation
+    - file: lectures/lecture02/two-view
+    - file: lectures/lecture02/review
+    - file: lectures/lecture02/tldr
   - file: lectures/lecture03/index
   - file: lectures/lecture04/index
   - file: lectures/lecture05/index

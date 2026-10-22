@@ -127,7 +127,7 @@ Read in lecture order, beginning with the {\hyperref[\detokenize{foundations/not
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Lecture 1 now contains explanations, diagrams, derivations, worked quiz examples, and practice. Lectures 2–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
+Lectures 1 and 2 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 3–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
 \end{sphinxadmonition}
 
 \begin{DUlineblock}{0em}
@@ -463,7 +463,7 @@ For \(A=\begin{pmatrix}1&0&-2\\0&1&-3\end{pmatrix}\), verify a nonzero null vect
 Can photographs taken from different viewpoints reveal a shared 3D world? Lecture 1 introduces that problem and builds the geometric language used to solve it.
 
 \sphinxAtStartPar
-This chapter follows the actual supplied deck, including its early introduction to camera projection. Later lectures revisit these foundations and develop their estimation algorithms. Read the sections in order; use the final checklist to return to a specific formula or quiz example.
+This chapter follows the actual supplied deck, including its early introduction to camera projection. Later lectures revisit these foundations and develop their estimation algorithms. Read the sections in order; use the review checklist to find a formula or the final TLDR for a quick recap and quiz.
 
 \sphinxAtStartPar
 \sphinxstylestrong{What you will learn}
@@ -532,7 +532,15 @@ Project a world point into a camera and reason about camera motion.
 
 \item {}
 \sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/quiz-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Foundation quiz practice}}}}
+
+\item {}
+\sphinxAtStartPar
 {\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Review and source\sphinxhyphen{}coverage checklist}}}}
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture01/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR: key takeaways and a short quiz}}}}
 
 \end{enumerate}
 
@@ -541,6 +549,9 @@ Project a world point into a camera and reason about camera motion.
 
 \sphinxAtStartPar
 Fall 2025 Quiz 1, questions 3–4, develops relative camera pose and a camera/object plane. Fall 2017 Quiz 9 supplies the tetrahedron normals/rotation problem and a supplementary depth\sphinxhyphen{}backprojection bridge. The supplied lecture mapping classifies both quiz sets as supplementary; the core geometric ideas are still prerequisites for the higher\sphinxhyphen{}priority camera and two\sphinxhyphen{}view topics.
+
+\sphinxAtStartPar
+Spring 2020 Quiz 1 is also solved here: its original Lecture 2 assignment is preserved in the quiz index, but its foundation topics are taught only in this chapter.
 
 \sphinxAtStartPar
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{wk1\_2\_cs532s26\_IntroToGeometry.pdf}}, all 114 PDF pages audited. Repeated visual builds are consolidated. Course logistics are excluded from the mathematics; research applications are summarized rather than treated as extra algorithms. Geometry slide sections credit M. Pollefeys and D. Cappelleri; image\sphinxhyphen{}formation sections credit John Oliensis. All newly added numerical values and diagrams are labeled as original or adapted.
@@ -819,7 +830,7 @@ For a point, divide by the last component only if it is nonzero. Verify incidenc
 \textbf{Worked example 1.1 — parallel lines have a projective intersection}\par\smallskip
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source:} original numerical expansion of the railway/ideal\sphinxhyphen{}point example, PDF pages 67–71. The related Spring 2020 Quiz 1 is reserved for Lecture 2.
+\sphinxstylestrong{Source:} original numerical expansion of the railway/ideal\sphinxhyphen{}point example, PDF pages 67–71. The related Spring 2020 Quiz 1 is solved in {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}.
 
 \sphinxAtStartPar
 Take \(y=1\) and \(y=2\), represented by \(\ell_1=(0,1,-1)^T\) and \(\ell_2=(0,1,-2)^T\).
@@ -2831,6 +2842,157 @@ It is in front of the camera but outside the image bounds. Positive depth and se
 \sphinxstepscope
 
 
+\section{Foundation quiz practice}
+\label{\detokenize{lectures/lecture01/quiz-practice:foundation-quiz-practice}}\label{\detokenize{lectures/lecture01/quiz-practice:lec02-geometry}}\label{\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}}\label{\detokenize{lectures/lecture01/quiz-practice::doc}}
+\sphinxAtStartPar
+Apply the geometry and camera formulas from this chapter to \sphinxstylestrong{Spring 2020 Quiz 1}. The supplied quiz map assigns it to Lecture 2; its solutions live here because they test Lecture 1 concepts.
+
+\sphinxAtStartPar
+Use \eqref{equation:lectures/lecture01/projective:eq-lec01-incidence} and \eqref{equation:lectures/lecture01/projective:eq-lec01-cross} for Problems 1 and 3, and \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera} for Problem 2.
+
+
+\subsection{Quiz Problem 1: are three points collinear?}
+\label{\detokenize{lectures/lecture01/quiz-practice:quiz-problem-1-are-three-points-collinear}}
+\sphinxAtStartPar
+Combining the two referenced rules gives the quiz’s compact three\sphinxhyphen{}point test.
+
+\begin{TextbookBox}
+\textbf{Formula — collinearity test}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture01/quiz-practice:eq-lec02-collinear}
+\begin{split}s=c^T(a\times b),\qquad s=0\quad\text{for collinear points}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(a,b,c\) are nonzero homogeneous \(3\times1\) point vectors. The zero/nonzero result is unchanged by rescaling them. This is an exact determinant test. For measured points, a small unnormalized \(s\) is not a meaningful distance threshold.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check collinearity without accepting an invalid line}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Check that all point vectors are nonzero.
+
+\item {}
+\sphinxAtStartPar
+Form \(a\times b\). If it vanishes, choose another distinct pair.
+
+\item {}
+\sphinxAtStartPar
+Dot that line with the third point; zero means incidence.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+If all three represent the same point, no unique joining line exists. Any line through that point contains the repeated inputs. See Example 1.17.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture01/quiz-practice:ex-lec02-collinear}}
+\begin{TextbookBox}
+\textbf{Worked example 1.17 — the dot/cross quiz}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz1.pdf}}, Problem 1; numerical illustration is original.
+
+\sphinxAtStartPar
+Take \(a=(0,0,1)^T\), \(b=(2,0,1)^T\), and \(c=(5,0,1)^T\). Then \(a\times b=(0,2,0)^T\) and \(c^T(a\times b)=0\): all lie on \(y=0\).
+
+\sphinxAtStartPar
+The quiz asks when the test fails. If \(b=2a\), the cross product is zero and cannot define a line. Its dot product with \sphinxstylestrong{any} \(c\) is zero. This fails to construct a unique line. Mathematically the determinant still correctly reports linear dependence, and a line through the repeated point and \(c\) exists. Distinguish \sphinxstylestrong{collinearity as existence} from \sphinxstylestrong{construction of a unique line}.
+
+\end{TextbookBox}
+
+
+\subsection{Quiz Problem 2: what size is a camera matrix?}
+\label{\detokenize{lectures/lecture01/quiz-practice:quiz-problem-2-what-size-is-a-camera-matrix}}\phantomsection\label{\detokenize{lectures/lecture01/quiz-practice:ex-lec02-projection}}
+\begin{TextbookBox}
+\textbf{Worked example 1.18 — dimensions before arithmetic}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz1.pdf}}, Problem 2, both parts.
+
+\sphinxAtStartPar
+A homogeneous 3D point has four entries; an image point has three. Therefore \(M\) is \sphinxstylestrong{\(3\times4\)}, since \((3\times4)(4\times1)=3\times1\). See the general mapping in \eqref{equation:lectures/lecture01/cameras:eq-lec01-camera}.
+
+\sphinxAtStartPar
+For \(X=(X_1,X_2,X_3,X_4)^T\), the ordinary coordinates are
+\begin{equation*}
+\begin{split}
+u=\frac{m_{11}X_1+m_{12}X_2+m_{13}X_3+m_{14}X_4}
+{m_{31}X_1+m_{32}X_2+m_{33}X_3+m_{34}X_4},
+\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}
+v=\frac{m_{21}X_1+m_{22}X_2+m_{23}X_3+m_{24}X_4}
+{m_{31}X_1+m_{32}X_2+m_{33}X_3+m_{34}X_4}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+For a finite world point choose \(X_4=1\). Both fractions require a nonzero denominator. If \(MX\) is nonzero with last entry zero, the image point is ideal; if \(MX=0\), projection is undefined, as at the camera center. Nonzero rescaling of \(X\) or \(M\) changes neither fraction.
+
+\end{TextbookBox}
+
+
+\subsection{Quiz Problem 3: how many intersections?}
+\label{\detokenize{lectures/lecture01/quiz-practice:quiz-problem-3-how-many-intersections}}
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{quiz-lines}.pdf}
+\caption{The third intersection is at infinity. It has no ordinary position on this finite drawing. Original diagram of Quiz Problem 3.}\label{\detokenize{lectures/lecture01/quiz-practice:fig-lec02-lines}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture01/quiz-practice:ex-lec02-intersections}}
+\begin{TextbookBox}
+\textbf{Worked example 1.19 — count in the projective plane}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz1.pdf}}, Problem 3, both parts.
+
+\sphinxAtStartPar
+Assume \(d>0\) for two distinct vertical lines each distance \(d\) from the origin. Choose \(\ell_1=(1,0,-d)^T\) for \(x=d\), \(\ell_2=(1,0,d)^T\) for \(x=-d\), and \(\ell_3=(0,1,0)^T\) for \(y=0\).
+
+\sphinxAtStartPar
+Use \eqref{equation:lectures/lecture01/projective:eq-lec01-cross} for each pair:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\(\ell_1\times\ell_3=(d,0,1)^T\) gives \((d,0)\).
+
+\item {}
+\sphinxAtStartPar
+\(\ell_2\times\ell_3=(-d,0,1)^T\) gives \((-d,0)\).
+
+\item {}
+\sphinxAtStartPar
+\(\ell_1\times\ell_2=(0,-2d,0)^T\sim(0,1,0)^T\) is the vertical ideal point.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+There are \sphinxstylestrong{three distinct projective intersections}, of which \sphinxstylestrong{two are finite}. The ideal point happens to have the same entries as the horizontal line’s coefficients; its geometric type comes from how it is used. Setting \(d=0\) violates the distinct\sphinxhyphen{}line assumption.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 1.8 — test a point off the line}\par\smallskip
+
+\sphinxAtStartPar
+Replace \(c\) in Example 1.17 by \((5,1,1)^T\). What changes?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Answer}
+
+\sphinxAtStartPar
+The dot product is \(2\): the three points are not collinear.
+\end{sphinxadmonition}
+
+\index{collinearity@\spxentry{collinearity}}\ignorespaces
+\sphinxstepscope
+
+
 \section{Review: choose the right geometric operation}
 \label{\detokenize{lectures/lecture01/review:review-choose-the-right-geometric-operation}}\label{\detokenize{lectures/lecture01/review:lec01-review}}\label{\detokenize{lectures/lecture01/review::doc}}
 \sphinxAtStartPar
@@ -3252,55 +3414,1512 @@ It fails to determine a unique plane if the origin, camera center, and point are
 \sphinxAtStartPar
 You are ready to move on when you can explain the geometry before choosing a formula, solve these examples without copying their steps, and state each answer’s assumptions and degeneracies. Lecture 2 will revisit the projective and rotation language and extend it toward image transformations and estimation.
 
+\sphinxAtStartPar
+Finish with the {\hyperref[\detokenize{lectures/lecture01/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}} for a quick self\sphinxhyphen{}check.
+
 \sphinxstepscope
 
 
-\chapter{Lecture 2: Projective geometry and transformations}
-\label{\detokenize{lectures/lecture02/index:lecture-2-projective-geometry-and-transformations}}\label{\detokenize{lectures/lecture02/index:lecture02}}\label{\detokenize{lectures/lecture02/index::doc}}
-\begin{sphinxadmonition}{note}{Note:}
+\section{TLDR}
+\label{\detokenize{lectures/lecture01/tldr:tldr}}\label{\detokenize{lectures/lecture01/tldr:lec01-tldr}}\label{\detokenize{lectures/lecture01/tldr::doc}}
 \sphinxAtStartPar
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
+\sphinxstylestrong{Lecture 1 in one sentence:} images lose depth, so reconstructing a scene requires geometry, coordinate frames, and careful use of multiple measurements.
+
+
+\subsection{The big picture}
+\label{\detokenize{lectures/lecture01/tldr:the-big-picture}}
+\sphinxAtStartPar
+The reconstruction pipeline is \sphinxstylestrong{match features → estimate cameras and 3D points → estimate dense depth → build a representation}. A convincing picture is not proof of correct geometry: lighting, occlusion, repeated patterns, and noise can mislead us.
+
+
+\subsection{The rules worth remembering}
+\label{\detokenize{lectures/lecture01/tldr:the-rules-worth-remembering}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Homogeneous coordinates ignore overall scale.} \((2,4,2)^T\) and \((1,2,1)^T\) represent the same point. Divide by the last coordinate to get ordinary coordinates only when it is nonzero. A zero last coordinate means an ideal point; the all\sphinxhyphen{}zero vector is invalid. A scene direction can project to a finite image vanishing point. See {\hyperref[\detokenize{lectures/lecture01/projective:lec01-projective}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, lines, and the meaning of infinity}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Dot products test incidence; cross products construct geometry.} A point lies on a line when \(\ell^Tx=0\). Join two distinct image points with \(x\times y\); intersect two distinct image lines with \(\ell_1\times\ell_2\). Parallel lines meet at an ideal point. See \eqref{equation:lectures/lecture01/projective:eq-lec01-cross}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Choose the transformation you actually need.} Rigid motion preserves distances and angles; similarity adds uniform scale; affine maps preserve parallelism; projective maps preserve incidence but can change parallelism. Points transform with \(H\); line and plane coefficients use its inverse transpose. To rotate about a pivot, \sphinxstylestrong{subtract the pivot → rotate → add it back}. See {\hyperref[\detokenize{lectures/lecture01/transformations:lec01-transformations}]{\sphinxcrossref{\DUrole{std,std-ref}{Move points without losing the geometry}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Three noncollinear points determine a plane.} Use \(n=(B-A)\times(D-A)\) and \(d=-n^TA\) in \(n^Tp+d=0\) for a point \(p\). Collinear points give no unique plane. A unit normal gives orientation; its sign depends on your chosen inward/outward convention. Under a rigid rotation, normals rotate without translation. See {\hyperref[\detokenize{lectures/lecture01/planes-lines:lec01-planes}]{\sphinxcrossref{\DUrole{std,std-ref}{Points, planes, and lines in 3D}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A rotation is more than a square matrix.} A proper rotation satisfies \(R^TR=I\) and \(\det R=+1\), so \(R^{-1}=R^T\). Rotation order matters. Matrices, ordered angles, axis–angle, and unit quaternions describe rotations, but their conventions must agree. Here active quaternion rotation is \(qPq^{-1}\). See {\hyperref[\detokenize{lectures/lecture01/rotations:lec01-rotations}]{\sphinxcrossref{\DUrole{std,std-ref}{Rotations: several descriptions of the same motion}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Label every coordinate frame.} For \(p_B=Rp_A+t\), undo the motion with \(p_A=R^T(p_B-t)\). In a matrix product the rightmost transform acts first. To go from camera 2 through a shared object to camera 1, use \(T_{C_1\leftarrow O}(T_{C_2\leftarrow O})^{-1}\). See {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Projection divides by depth.} In camera coordinates, normalized image coordinates are \((X_c/Z_c,Y_c/Z_c)\). Intrinsics convert these to pixels; extrinsics convert world coordinates to camera coordinates. Together, \(x\sim K[R\mid t]X_w\). Require positive depth for a point in front, then check image bounds separately. See {\hyperref[\detokenize{lectures/lecture01/cameras:lec01-cameras}]{\sphinxcrossref{\DUrole{std,std-ref}{Image formation: where does a 3D point appear?}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Camera motion changes the point’s camera coordinates.} Moving the camera forward by \(\Delta\) changes a stationary point’s depth to \(Z_c-\Delta\). Off\sphinxhyphen{}axis points move farther from the principal point while they remain in front. Moving the object farther away does the opposite. Backprojection needs calibration and a specified depth convention: axial depth and distance along the ray are different. See {\hyperref[\detokenize{lectures/lecture01/cameras:ex-lec01-camera-motion}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.15}}}}.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Also recognize:} a nullspace solves homogeneous incidence equations; a finite Plücker line stores direction \(d\) and moment \(p\times d\). The {\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{formula checklist}}}} links to these less frequently used constructions and their conditions.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Before calculating:} name the frames, check units, choose the formula, and test whether the answer makes geometric sense.
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture01/tldr:short-quiz}}
+\sphinxAtStartPar
+Try these without looking at the answers. These are original practice questions based on Lecture 1; the assigned course quizzes are worked through in {\hyperref[\detokenize{lectures/lecture01/frames-quizzes:lec01-frames}]{\sphinxcrossref{\DUrole{std,std-ref}{Reference frames and two worked quiz problems}}}}.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Depth:} why can one image pixel correspond to many 3D points?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Coordinates:} what ordinary point does \((6,9,3)^T\) represent? Can you similarly normalize \((1,0,0)^T\)?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Intersection:} find the homogeneous intersection of \(x=2\) and \(y=3\), using line vectors \((1,0,-2)^T\) and \((0,1,-3)^T\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Pivot:} rotate \((3,1)\) by \(+90^\circ\) about \((2,1)\) in Cartesian axes with \(y\) upward. Where does it land?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Plane:} find a normal and plane equation through \((0,0,0)\), \((1,0,0)\), and \((0,1,0)\). When would the three\sphinxhyphen{}point method fail?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Rotation:} a matrix satisfies \(R^TR=I\) but has determinant \(-1\). Is it a proper rotation?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Frames:} two object\sphinxhyphen{}to\sphinxhyphen{}camera poses have identity rotations and translations \(t_1=(1,1,4)^T\), \(t_2=(-1,1,4)^T\). What is the translation from camera 2 to camera 1?
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Camera:} use zero skew, \(f_x=f_y=100\) pixels, and principal point \((0,0)\). Project camera\sphinxhyphen{}coordinate point \((2,1,5)^T\). Then move the camera one unit forward without rotating it while the point stays fixed. What is the new pixel?
+
+\end{enumerate}
+
+
+\subsection{Answers}
+\label{\detokenize{lectures/lecture01/tldr:answers}}
+\begin{sphinxadmonition}{note}{Show answers and short explanations}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A pixel identifies a ray, not a depth.} Different positive depths along that ray produce the same image point.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((2,3)\).} Divide the first two entries by three. \((1,0,0)^T\) is an ideal point; dividing by its last coordinate is invalid.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((2,3,1)^T\).} The cross product gives this vector. Substitution into both line equations gives zero.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((2,2)\).} The offset from the pivot is \((1,0)\). Rotate it to \((0,1)\), then add the pivot back.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(n=(0,0,1)^T\), so \(z=0\).} Cross the two edge vectors. Its negative is equally valid for the unoriented plane. Collinear or repeated inputs cannot determine a unique plane.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{No.} It is orthogonal but includes a reflection. A proper rotation needs determinant \(+1\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\((2,0,0)^T\).} With both rotations equal to identity, the relative translation is \(t_1-t_2\). Check: camera 2’s object coordinates plus this translation equal camera 1’s.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Initially \((40,20)\) pixels; afterward \((50,25)\).} First compute \((100\cdot2/5,100\cdot1/5)\). Moving the camera forward reduces depth from five to four, so the image moves away from the principal point.
+
+\end{enumerate}
 \end{sphinxadmonition}
 
+\sphinxstepscope
 
-\section{Planned scope}
-\label{\detokenize{lectures/lecture02/index:planned-scope}}
+
+\chapter{Lecture 2: Projective geometry and image warping}
+\label{\detokenize{lectures/lecture02/index:lecture-2-projective-geometry-and-image-warping}}\label{\detokenize{lectures/lecture02/index:lecture02}}\label{\detokenize{lectures/lecture02/index::doc}}
 \sphinxAtStartPar
-Geometry review; rotation representations; projectivities and warping; DLT/RANSAC; two\sphinxhyphen{}view introduction.
+\sphinxstylestrong{How can a tilted photograph become a view from above?} The basketball\sphinxhyphen{}court task turns geometry into a practical tool: find a mapping, then use it to create a new image.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{cs532\_f25\_Week2.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+This chapter teaches the material added beyond Lecture 1: quaternion conversions and interpolation, planar rectification, image sampling, robust estimation, lens correction, and two\sphinxhyphen{}view constraints.
 
-
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture02/index:examples-and-practice}}
 \sphinxAtStartPar
-Select the most useful examples from the actual slides and integrate the assigned questions from the {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}}. Missing quiz coverage will be filled with new, clearly labeled worked examples.
+\sphinxstylestrong{Prerequisites:} {\hyperref[\detokenize{lectures/lecture01/index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1}}}} owns homogeneous geometry, transformation families, rotations, frames, and camera projection. The source slides repeat those topics; the textbook links to their original explanations. Spring 2020 Quiz 1 remains attributed to Lecture 2 in the {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}}, with its foundation solutions collected in {\hyperref[\detokenize{lectures/lecture01/quiz-practice::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1}}}}.
 
 
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture02/index:completion-checklist}}\begin{itemize}
+\section{Reading route}
+\label{\detokenize{lectures/lecture02/index:reading-route}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {}
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
-
-\item {}
-\sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+{\hyperref[\detokenize{lectures/lecture02/quaternions::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Quaternion conversions}}}}: convert rotation descriptions and interpolate orientations.
 
 \item {}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+{\hyperref[\detokenize{lectures/lecture02/homographies::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Homographies}}}}: straighten a photographed plane and calculate cross\sphinxhyphen{}ratios.
 
 \item {}
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
+{\hyperref[\detokenize{lectures/lecture02/warping::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Image warping}}}}: sample the source image to fill a destination grid.
 
 \item {}
 \sphinxAtStartPar
- Check both the website and cumulative printable edition.
+{\hyperref[\detokenize{lectures/lecture02/estimation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Estimate a reliable mapping}}}}: DLT, normalization, and RANSAC.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/two-view::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Distortion and two\sphinxhyphen{}view geometry}}}}: handle lens bending and constrain matches across views.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Review and formula checklist}}}}, then the final {\hyperref[\detokenize{lectures/lecture02/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532\_f25\_Week2.pdf}}, 129 PDF pages. Printed labels equal PDF pages through page 43; pages 44–49 have no visible label; from PDF page 50 onward, printed labels are one greater. Notes below use \sphinxstylestrong{PDF pages} unless stated otherwise. The authoring coverage register records which repeated slides are already covered in Lecture 1.
+
+\sphinxstepscope
+
+
+\section{Quaternions: convert without changing the rotation}
+\label{\detokenize{lectures/lecture02/quaternions:quaternions-convert-without-changing-the-rotation}}\label{\detokenize{lectures/lecture02/quaternions:lec02-quaternions}}\label{\detokenize{lectures/lecture02/quaternions::doc}}
+\sphinxAtStartPar
+Prerequisite: \eqref{equation:lectures/lecture01/rotations:eq-lec01-quaternion} defines the quaternion convention. This section adds conversion and interpolation.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 42–49. Page 48 uses the transpose/passive matrix relative to our convention. Page 49 omits a necessary \(+1\) inside a square root. The formulas below use one consistent convention; see the {\hyperref[\detokenize{reference/errata:errata}]{\sphinxcrossref{\DUrole{std,std-ref}{Errata and assumptions to verify}}}}.
+
+
+\subsection{From a quaternion to a matrix}
+\label{\detokenize{lectures/lecture02/quaternions:from-a-quaternion-to-a-matrix}}
+\sphinxAtStartPar
+Write the scalar\sphinxhyphen{}first unit quaternion as \(q=(w,x,y,z)\). Collecting the point\sphinxhyphen{}coordinate coefficients in Lecture 1’s quaternion rotation gives the matrix below. Here \(x,y,z\) name quaternion components.
+
+\begin{TextbookBox}
+\textbf{Formula — quaternion to active rotation matrix}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/quaternions:eq-lec02-qmatrix}
+\begin{split}R(q)=\begin{pmatrix}
+1-2(y^2+z^2)&2(xy-wz)&2(xz+wy)\\
+2(xy+wz)&1-2(x^2+z^2)&2(yz-wx)\\
+2(xz-wy)&2(yz+wx)&1-2(x^2+y^2)
+\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(q\) has four unitless entries; \(R\) is \(3\times3\). This form assumes \sphinxstylestrong{unit length}.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Turn an orientation into a matrix}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Reject a zero quaternion; otherwise normalize it.
+
+\item {}
+\sphinxAtStartPar
+Substitute its scalar\sphinxhyphen{}first components.
+
+\item {}
+\sphinxAtStartPar
+Check \(R^TR=I\), \(\det R=1\), and a familiar vector.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Use Example 2.1 to check the signs.
+
+\end{TextbookBox}
+
+
+\subsection{From a matrix back to a quaternion}
+\label{\detokenize{lectures/lecture02/quaternions:from-a-matrix-back-to-a-quaternion}}
+\sphinxAtStartPar
+Taking the trace gives \(\operatorname{tr}R=4w^2-1\). That explains the square root and the missing \(+1\) in the slide.
+
+\begin{TextbookBox}
+\textbf{Formula — matrix to quaternion, trace branch}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/quaternions:eq-lec02-matrixq}
+\begin{split}\begin{aligned}
+w&=\tfrac12\sqrt{1+\operatorname{tr}R},\\
+(x,y,z)&=\frac{(R_{32}-R_{23},\ R_{13}-R_{31},\ R_{21}-R_{12})}{4w}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Indices are one\sphinxhyphen{}based. \(R\) must be a proper active rotation. This branch chooses \(w\ge0\) and requires \(w\) safely away from zero. Near a half\sphinxhyphen{}turn, division by \(w\) is unstable.
+
+\sphinxAtStartPar
+Use the largest vector component instead. For example, when \(x\) is largest,
+\begin{equation*}
+\begin{split}
+x=\tfrac12\sqrt{1+R_{11}-R_{22}-R_{33}},\quad
+(w,y,z)=\frac{(R_{32}-R_{23},\ R_{12}+R_{21},\ R_{13}+R_{31})}{4x}.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The \(y\) and \(z\) branches follow by cyclic permutation. Normalize the result; the overall sign is arbitrary.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Recover an orientation safely}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Validate the matrix as a proper rotation.
+
+\item {}
+\sphinxAtStartPar
+Use the trace branch away from a half\sphinxhyphen{}turn; near a half\sphinxhyphen{}turn, use the largest vector\sphinxhyphen{}component branch.
+
+\item {}
+\sphinxAtStartPar
+Normalize and rebuild \(R(q)\); compare matrices rather than quaternion signs.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+See Example 2.1. Clamp small rounding errors only after validating the input.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/quaternions:ex-lec02-conversions}}
+\begin{TextbookBox}
+\textbf{Worked example 2.1 — cycle the axes, then test a half\sphinxhyphen{}turn}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companions to PDF pages 48–49.
+
+\sphinxAtStartPar
+For \(120^\circ\) about \(a=(1,1,1)^T/\sqrt3\), the quaternion is \(q=(1/2,1/2,1/2,1/2)\). Substitution gives \(R=\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}\). It cycles the coordinate axes: \(e_x\to e_y\to e_z\to e_x\).
+
+\sphinxAtStartPar
+The trace is zero. Recover \(w=1/2\) and \(x=y=z=1/(4w)=1/2\). Omitting \(+1\) would give \(w=0\) and make the remaining divisions fail. This tests a different rotation from Lecture 1’s quarter\sphinxhyphen{}turn.
+
+\sphinxAtStartPar
+For \(R=\operatorname{diag}(1,-1,-1)\), the trace branch gives \(w=0\), so do not divide by it. The largest\sphinxhyphen{}component branch gives \(x=1\), \(w=y=z=0\): a \(180^\circ\) turn about \(x\).
+
+\end{TextbookBox}
+
+
+\subsection{Interpolation}
+\label{\detokenize{lectures/lecture02/quaternions:interpolation}}
+\sphinxAtStartPar
+The slides mention smooth interpolation. \sphinxstylestrong{SLERP} (spherical linear interpolation) follows the unit\sphinxhyphen{}quaternion sphere instead of independently changing Euler angles:
+
+\begin{TextbookBox}
+\textbf{Formula — interpolate two orientations}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/quaternions:eq-lec02-slerp}
+\begin{split}q(t)=\frac{\sin((1-t)\Omega)}{\sin\Omega}q_a+
+\frac{\sin(t\Omega)}{\sin\Omega}q_b,
+\qquad \cos\Omega=q_a^Tq_b,\quad 0\le t\le1.\end{split}
+\end{equation}
+\sphinxAtStartPar
+This is an explanatory companion to PDF page 45, not a printed formula. Both endpoints are unit 4\sphinxhyphen{}vectors. If their dot product is negative, negate one endpoint first to select a shortest rotation path. Constant change in \(t\) gives constant angular speed. For nearly equal endpoints, use normalized linear interpolation to avoid a small \(\sin\Omega\) denominator.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Find an in\sphinxhyphen{}between orientation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Normalize endpoints, align signs, and clamp their computed dot product to \([-1,1]\).
+
+\item {}
+\sphinxAtStartPar
+Calculate \(\Omega\) and the weights, or use the near\sphinxhyphen{}equal fallback.
+
+\item {}
+\sphinxAtStartPar
+Normalize and check the endpoints at \(t=0,1\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Between identity \((1,0,0,0)\) and a \(90^\circ\) \(z\) rotation, \(t=1/2\) gives \((\cos22.5^\circ,0,0,\sin22.5^\circ)\): a \(45^\circ\) rotation.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 2.1 — do opposite quaternions cancel?}\par\smallskip
+
+\sphinxAtStartPar
+What happens if you average \(q\) and \(-q\) directly?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Answer}
+
+\sphinxAtStartPar
+You get the zero vector, which cannot represent an orientation. Align signs first; both endpoints describe the same rotation.
+\end{sphinxadmonition}
+
+\index{SLERP@\spxentry{SLERP}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Homographies: straighten a photographed plane}
+\label{\detokenize{lectures/lecture02/homographies:homographies-straighten-a-photographed-plane}}\label{\detokenize{lectures/lecture02/homographies:lec02-homographies}}\label{\detokenize{lectures/lecture02/homographies::doc}}
+\sphinxAtStartPar
+A basketball court is rectangular, but its photograph is not. A \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Homography}]{\sphinxtermref{\DUrole{xref,std,std-term}{homography}}}}} maps one projective plane to another, letting us turn the photographed floor into a rectangle. It also preserves straight lines, so the court markings stay straight.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 62–71, printed slides 63–72. The example below develops the actual court\sphinxhyphen{}warping assignment.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{court-demo}.png}
+\caption{Left: the lecture’s court photograph, with four approximate floor corners added. Right: a computed rectangular warp of that region. The floor straightens; raised baskets and seating do not become a true overhead view. Source photograph: PDF page 71, printed slide 72; individual photographer uncredited. Warp and annotations are original.}\label{\detokenize{lectures/lecture02/homographies:fig-lec02-court}}\end{figure}
+
+
+\subsection{One matrix, followed by a division}
+\label{\detokenize{lectures/lecture02/homographies:one-matrix-followed-by-a-division}}
+\begin{TextbookBox}
+\textbf{Formula — planar projective mapping}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/homographies:eq-lec02-homography}
+\begin{split}\begin{aligned}
+x'&\sim Hx,\qquad H\in\mathbb R^{3\times3},\quad\det H\ne0,\\
+u'&=\frac{h_{11}u+h_{12}v+h_{13}}{h_{31}u+h_{32}v+h_{33}},\qquad
+v'=\frac{h_{21}u+h_{22}v+h_{23}}{h_{31}u+h_{32}v+h_{33}}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(x=(u,v,1)^T\) and \(x'=(u',v',1)^T\) are image or plane coordinates. Use consistent units within each plane. The matrix scale follows the convention in \eqref{equation:lectures/lecture01/transformations:eq-lec01-hierarchy}.
+
+\sphinxAtStartPar
+The ordinary\sphinxhyphen{}coordinate fractions require a nonzero denominator. Zero means an ideal destination point. A single \(H\) models corresponding images of one plane, or a camera rotating about a fixed center. General camera translation with objects at different depths requires more than one homography.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Map a point or rectify a plane}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Specify the direction: here \(H\) maps source coordinates to destination coordinates.
+
+\item {}
+\sphinxAtStartPar
+Multiply \(H(u,v,1)^T\) and divide by its last entry.
+
+\item {}
+\sphinxAtStartPar
+Check the result against known correspondences and image bounds.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+To recover \(H\), use at least four corresponding points in general position: no three collinear in either four\sphinxhyphen{}point set. See {\hyperref[\detokenize{lectures/lecture02/estimation:lec02-estimation}]{\sphinxcrossref{\DUrole{std,std-ref}{estimation}}}} and {\hyperref[\detokenize{lectures/lecture02/warping:lec02-warping}]{\sphinxcrossref{\DUrole{std,std-ref}{pixel sampling}}}}.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/homographies:ex-lec02-homography}}
+\begin{TextbookBox}
+\textbf{Worked example 2.2 — perspective changes spacing}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original small calculation for PDF pages 62–64.
+
+\sphinxAtStartPar
+Let \(H=\begin{pmatrix}1&0&0\\0&1&0\\1/2&0&1\end{pmatrix}\). The source points \((0,0)\), \((1,0)\), \((2,0)\) map to \((0,0)\), \((2/3,0)\), \((1,0)\).
+
+\sphinxAtStartPar
+They stay on a line, but equal source intervals become unequal destination intervals: \(2/3\) and \(1/3\). The denominator depends on position. This is what an affine map cannot do along a line.
+
+\sphinxAtStartPar
+The finite point \((-2,1)\) maps to \((-2,1,0)^T\), an ideal point. The homography remains invertible; only ordinary coordinates fail there.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The transformation families and their invariants are taught in {\hyperref[\detokenize{lectures/lecture01/transformations:lec01-transformations}]{\sphinxcrossref{\DUrole{std,std-ref}{Move points without losing the geometry}}}}. Here we use their projective case for an actual plane\sphinxhyphen{}to\sphinxhyphen{}image mapping.
+
+
+\subsection{A new detail: separate an affine map into rotations and scales}
+\label{\detokenize{lectures/lecture02/homographies:a-new-detail-separate-an-affine-map-into-rotations-and-scales}}
+\sphinxAtStartPar
+PDF page 68 adds a factorization of the affine linear part. It reveals the directions in which the map stretches the image.
+
+\begin{TextbookBox}
+\textbf{Formula — directional scaling inside an affine map}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/homographies:eq-lec02-affine-factors}
+\begin{split}A=R(\theta)R(-\phi)D R(\phi),\qquad
+D=\operatorname{diag}(s_1,s_2).\end{split}
+\end{equation}
+\sphinxAtStartPar
+All matrices are \(2\times2\); \(R\) is the planar rotation from \eqref{equation:lectures/lecture01/transformations:eq-lec01-rotation2}. The angles orient the scaling axes and the final rotation. Nonzero signed scales allow any invertible real \(A\), including orientation reversal. Translation is handled by the existing affine form in \eqref{equation:lectures/lecture01/transformations:eq-lec01-hierarchy}.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Read a directional stretch}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Apply the rightmost rotation to express a vector in the scaling axes.
+
+\item {}
+\sphinxAtStartPar
+Scale the two components by \(s_1,s_2\), then rotate back by \(-\phi\).
+
+\item {}
+\sphinxAtStartPar
+Apply the final rotation by \(\theta\).
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For \(\theta=0\), \(\phi=45^\circ\), and \(D=\operatorname{diag}(2,1)\), multiplication gives \(A=\begin{pmatrix}3/2&-1/2\\-1/2&3/2\end{pmatrix}\). It doubles the component along \((1,-1)^T\) and leaves the component along \((1,1)^T\) unchanged. This is an original calculation of the slide’s added factorization.
+
+\end{TextbookBox}
+
+
+\subsection{Cross\sphinxhyphen{}ratio: a ratio perspective cannot change}
+\label{\detokenize{lectures/lecture02/homographies:cross-ratio-a-ratio-perspective-cannot-change}}
+\sphinxAtStartPar
+Ordinary distances change in perspective, but a particular combination of four collinear locations survives.
+
+\begin{TextbookBox}
+\textbf{Formula — cross\sphinxhyphen{}ratio of four collinear points}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/homographies:eq-lec02-crossratio}
+\begin{split}\operatorname{CR}(a,b;c,d)=
+\frac{(c-a)(d-b)}{(c-b)(d-a)}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(a,b,c,d\) are distinct scalar positions along one line, in a common coordinate. The result is unitless and depends on the chosen ordering. This finite\sphinxhyphen{}coordinate expression assumes nonzero denominators; ideal points are handled by limits or homogeneous coordinates. An invertible projective mapping of the line preserves the result.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check a projective invariant}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Keep the same ordering of four distinct collinear points before and after mapping.
+
+\item {}
+\sphinxAtStartPar
+Compute the two cross\sphinxhyphen{}ratios and compare.
+
+\item {}
+\sphinxAtStartPar
+Do not substitute ordinary image distances for directed line coordinates.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For \(a,b,c,d=0,1,2,3\), the result is \(4/3\). Under Example 2.2’s map, the positions become \(0,2/3,1,6/5\); substitution still gives \(4/3\).
+
+\end{TextbookBox}
+
+
+\subsection{What is missing from the court assignment?}
+\label{\detokenize{lectures/lecture02/homographies:what-is-missing-from-the-court-assignment}}
+\sphinxAtStartPar
+We need \sphinxstylestrong{correspondences and a target shape}. Select four floor corners in cyclic order, match them to a rectangle, then estimate \(H\). Its width\sphinxhyphen{}to\sphinxhyphen{}height ratio must come from known court geometry if we want metric proportions. An arbitrary rectangle can look tidy while having the wrong scale ratio.
+
+\sphinxAtStartPar
+Our figure uses approximate source pixels \((24,194)\), \((250,45)\), \((410,70)\), \((280,278)\), matched to \((0,0)\), \((279,0)\), \((279,149)\), \((0,149)\). The chosen aspect ratio is illustrative, not a measurement of the court. Boundary pixels are approximate because the supplied photo is small. \sphinxstylestrong{A floor homography cannot reveal hidden floor or flatten raised objects correctly.}
+
+\index{homography@\spxentry{homography}}\ignorespaces
+\index{cross\sphinxhyphen{}ratio@\spxentry{cross\sphinxhyphen{}ratio}}\ignorespaces
+\index{invariant@\spxentry{invariant}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Image warping: where do the new pixels come from?}
+\label{\detokenize{lectures/lecture02/warping:image-warping-where-do-the-new-pixels-come-from}}\label{\detokenize{lectures/lecture02/warping:lec02-warping}}\label{\detokenize{lectures/lecture02/warping::doc}}
+\sphinxAtStartPar
+Mapping a point is not enough to create an image. Source pixels lie on a grid; transformed positions usually fall between destination pixels. We need a rule for filling the destination grid.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 72–81, printed slides 73–82; the section credits Steve Seitz.
+
+
+\subsection{Move colors, or look them up?}
+\label{\detokenize{lectures/lecture02/warping:move-colors-or-look-them-up}}
+\sphinxAtStartPar
+\sphinxstylestrong{Image filtering} changes pixel values at fixed coordinates, such as darkening a picture. \sphinxstylestrong{Image warping} changes where the content appears. A global parametric warp uses the same coordinate function everywhere, though its displacement can vary with position.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{warp-grids}.pdf}
+\caption{Forward mapping asks where each source pixel lands. Inverse mapping asks where each output pixel should sample. Original diagram of the distinction on PDF pages 76–79.}\label{\detokenize{lectures/lecture02/warping:fig-lec02-warp-grids}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{Formula — inverse image sampling}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/warping:eq-lec02-inversewarp}
+\begin{split}g(u',v')=f\!\left(\operatorname{dehom}\bigl(H^{-1}(u',v',1)^T\bigr)\right).\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(f\) is the source image, \(g\) the output; \(H\) maps \sphinxstylestrong{source to destination}. The operator \(\operatorname{dehom}\) divides the first two coordinates by the last. Pixel values may be grayscale scalars or color vectors. This describes continuous sampling; discrete images require interpolation and a boundary rule.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Fill an output image}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Visit every output pixel center and multiply by \(H^{-1}\).
+
+\item {}
+\sphinxAtStartPar
+Divide by the homogeneous denominator; mark invalid/out\sphinxhyphen{}of\sphinxhyphen{}source samples as background.
+
+\item {}
+\sphinxAtStartPar
+Interpolate the source image and store that value.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+This avoids holes caused by rounded forward placement. Forward warping is still useful when samples must be projected or splatted. When shrinking an image substantially, prefilter it to reduce aliasing; interpolation alone is insufficient.
+
+\end{TextbookBox}
+
+
+\subsection{Bilinear interpolation: blend four neighbors}
+\label{\detokenize{lectures/lecture02/warping:bilinear-interpolation-blend-four-neighbors}}
+\sphinxAtStartPar
+Suppose inverse mapping returns source location \((i+a,j+b)\), where \(i,j\) are integers and \(0\le a,b<1\). First interpolate horizontally in each row, then vertically between those results.
+
+\begin{TextbookBox}
+\textbf{Formula — bilinear interpolation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/warping:eq-lec02-bilinear}
+\begin{split}\begin{aligned}
+f(i+a,j+b)\approx{}&(1-a)(1-b)f(i,j)+a(1-b)f(i+1,j)\\
+&+(1-a)b f(i,j+1)+ab f(i+1,j+1).
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(a,b\) are unitless fractions of a pixel; the output has the same intensity units as the samples. We write coordinates as \((\text{column},\text{row})\); an image array usually indexes \(f[\text{row},\text{column}]\). The four weights are nonnegative and sum to one. Specify how samples outside the image are handled.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Calculate a sampled intensity}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Take the floor of each continuous coordinate to find \(i,j\).
+
+\item {}
+\sphinxAtStartPar
+Compute \(a,b\) and the four weights.
+
+\item {}
+\sphinxAtStartPar
+Blend each image channel separately.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Check that a constant patch remains constant and that integer coordinates reproduce the stored pixel. See Example 2.3.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/warping:ex-lec02-bilinear}}
+\begin{TextbookBox}
+\textbf{Worked example 2.3 — a pixel between pixels}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to PDF page 80, printed slide 81.
+
+\sphinxAtStartPar
+The four intensities at \((i,j),(i+1,j),(i,j+1),(i+1,j+1)\) are \(10,30,50,70\). At \(a=1/4\), \(b=1/2\), the weights are \(3/8,1/8,3/8,1/8\).
+
+\sphinxAtStartPar
+The sampled value is \((3\cdot10+30+3\cdot50+70)/8=35\). Equivalently, the two horizontal interpolations give \(15\) and \(55\), whose halfway blend is \(35\). It lies within the range of the four inputs.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check 2.2 — which inverse?}\par\smallskip
+
+\sphinxAtStartPar
+If \(H\) shifts source content ten pixels right, where does output pixel \((20,8)\) sample?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Answer}
+
+\sphinxAtStartPar
+At source \((10,8)\). Using \(H\) instead of \(H^{-1}\) would sample \((30,8)\) and move content in the wrong direction.
+\end{sphinxadmonition}
+
+\index{inverse warping@\spxentry{inverse warping}}\ignorespaces
+\index{bilinear interpolation@\spxentry{bilinear interpolation}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Estimate a reliable mapping}
+\label{\detokenize{lectures/lecture02/estimation:estimate-a-reliable-mapping}}\label{\detokenize{lectures/lecture02/estimation:lec02-estimation}}\label{\detokenize{lectures/lecture02/estimation::doc}}
+\sphinxAtStartPar
+Four matches can determine a homography, but real matches are noisy and some are wrong. \sphinxstylestrong{DLT} solves for the matrix; \sphinxstylestrong{RANSAC} finds matches that agree with one matrix. They solve different problems.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 82–104, printed slides 83–105. These sections credit R. Hartley, A. Zisserman, and M. Pollefeys. Lecture 3 will add the assigned homography/probability quizzes and further numerical practice.
+
+
+\subsection{DLT: turn matches into linear equations}
+\label{\detokenize{lectures/lecture02/estimation:dlt-turn-matches-into-linear-equations}}
+\sphinxAtStartPar
+The \sphinxstylestrong{direct linear transformation (DLT)} starts from \(x'\sim Hx\). Their cross product is zero because the vectors represent the same projective point: \(x'\times Hx=0\).
+
+\sphinxAtStartPar
+For finite matches \((u,v)\leftrightarrow(u',v')\), multiply out the denominators in \eqref{equation:lectures/lecture02/homographies:eq-lec02-homography}. Each match supplies two independent equations in the nine entries of \(H\).
+
+\begin{TextbookBox}
+\textbf{Formula — homography DLT system}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/estimation:eq-lec02-dlt}
+\begin{split}\begin{aligned}
+A_i&=\begin{pmatrix}
+u&v&1&0&0&0&-u'u&-u'v&-u'\\
+0&0&0&u&v&1&-v'u&-v'v&-v'
+\end{pmatrix},\\
+h&=(h_{11},h_{12},h_{13},h_{21},h_{22},h_{23},h_{31},h_{32},h_{33})^T,\\
+A&=\begin{pmatrix}A_1\\\vdots\\A_n\end{pmatrix},\qquad
+\min_{\|h\|=1}\|Ah\|^2.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(A\) is \(2n\times9\), \(h\) is \(9\times1\). The constraint excludes the useless zero solution. Four nondegenerate exact matches give rank eight and a one\sphinxhyphen{}dimensional nullspace; with noisy extra matches, minimize the residual instead of expecting exact zero.
+
+\sphinxAtStartPar
+The finite\sphinxhyphen{}coordinate rows assume each destination’s last coordinate is nonzero. For ideal points, retain appropriate independent rows of the full cross\sphinxhyphen{}product system. Three cross\sphinxhyphen{}product equations have only two independent constraints; dropping the same row blindly can lose information.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Estimate a homography with SVD}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Normalize coordinates as described below; reject a degenerate four\sphinxhyphen{}point sample.
+
+\item {}
+\sphinxAtStartPar
+Stack two rows per match to form \(A\).
+
+\item {}
+\sphinxAtStartPar
+Compute \(A=U\Sigma V^T\) using singular value decomposition. Choose the \sphinxstylestrong{right singular vector} with smallest singular value and reshape it row by row into \(H\).
+
+\item {}
+\sphinxAtStartPar
+Undo coordinate normalization and check projected matches.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For an \(8\times9\) system, request the full right\sphinxhyphen{}singular\sphinxhyphen{}vector basis: a reduced SVD can omit the ninth vector containing the nullspace. Do not confuse the last row of \(V^T\) with the last column of \(V^T\).
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+Fixing \(h_{33}=1\) is a tempting shortcut, but valid homographies can have \(h_{33}=0\). Unit\sphinxhyphen{}vector normalization avoids privileging that entry. DLT minimizes \sphinxstylestrong{algebraic error}, which depends on coordinate scaling. Pixel reprojection error is a more interpretable final accuracy measure.
+
+\phantomsection\label{\detokenize{lectures/lecture02/estimation:ex-lec02-dlt}}
+\begin{TextbookBox}
+\textbf{Worked example 2.4 — recover a simple planar map}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to PDF pages 83–94.
+
+\sphinxAtStartPar
+Match \((0,0),(1,0),(1,1),(0,1)\) to \((2,1),(4,1),(4,4),(2,4)\) in that order. The first correspondence produces rows
+\begin{equation*}
+\begin{split}
+(0,0,1,0,0,0,0,0,-2),\qquad
+(0,0,0,0,0,1,0,0,-1).
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+For \((1,0)\leftrightarrow(4,1)\) the rows are
+\begin{equation*}
+\begin{split}
+(1,0,1,0,0,0,-4,0,-4),\qquad
+(0,0,0,1,0,1,-1,0,-1).
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The other two matches fill the remaining four rows. The resulting matrix has rank eight. Its null vector, reshaped and rescaled, gives
+\(H=\begin{pmatrix}2&0&2\\0&3&1\\0&0&1\end{pmatrix}\).
+
+\sphinxAtStartPar
+Check the unmeasured center: \(H(1/2,1/2,1)^T=(3,5/2,1)^T\), the center of the destination rectangle. All four measured corners reproject exactly. Three collinear source points would invalidate this four\sphinxhyphen{}point recovery.
+
+\end{TextbookBox}
+
+
+\subsection{Normalize: put the coordinates on a sensible scale}
+\label{\detokenize{lectures/lecture02/estimation:normalize-put-the-coordinates-on-a-sensible-scale}}
+\sphinxAtStartPar
+Raw pixel coordinates may be hundreds, while their products in \(A\) reach tens of thousands. \sphinxstylestrong{Normalized DLT} recenters and rescales each image’s points independently, reducing this imbalance.
+
+\begin{TextbookBox}
+\textbf{Formula — coordinate normalization and recovery}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/estimation:eq-lec02-normalize}
+\begin{split}\begin{aligned}
+c&=\frac1n\sum_i p_i,\quad
+\bar r=\frac1n\sum_i\|p_i-c\|,\quad s=\frac{\sqrt2}{\bar r},\\
+T&=\begin{pmatrix}s&0&-sc_u\\0&s&-sc_v\\0&0&1\end{pmatrix},\qquad
+\widetilde x=Tx,\quad \widetilde x'=T'x',\\
+H&=(T')^{-1}\widetilde H T.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(p_i=(u_i,v_i)^T\) are finite 2D points; \(T,T',H\) are \(3\times3\). The mean distance from the normalized centroid becomes \(\sqrt2\). Require \(\bar r>0\); coincident points provide no spatial information. Normalization improves conditioning, not incorrect matches or degeneracy.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Use normalized DLT}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute separate \(T,T'\) from the source and destination matches.
+
+\item {}
+\sphinxAtStartPar
+Fit \(\widetilde H\) to their normalized coordinates using \eqref{equation:lectures/lecture02/estimation:eq-lec02-dlt}.
+
+\item {}
+\sphinxAtStartPar
+Recover \(H=(T')^{-1}\widetilde H T\) and evaluate error in original coordinates.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The source square in Example 2.4 has centroid \((1/2,1/2)\), mean radius \(1/\sqrt2\), and scale \(s=2\). Its normalized corners are \((\pm1,\pm1)\), at radius \(\sqrt2\).
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+Why this recovery order? The normalized mapping is \(T'x'\sim\widetilde H Tx\). Multiply by \((T')^{-1}\) to isolate the original destination coordinates. PDF page 92 also shows a simpler image\sphinxhyphen{}size scaling; it is an alternative heuristic, not the same transformation as centroid/mean\sphinxhyphen{}distance normalization.
+
+
+\subsection{RANSAC: do not let wrong matches vote as measurements}
+\label{\detokenize{lectures/lecture02/estimation:ransac-do-not-let-wrong-matches-vote-as-measurements}}
+\sphinxAtStartPar
+An \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Inlier}]{\sphinxtermref{\DUrole{xref,std,std-term}{inlier}}}}} agrees with the model within a chosen error threshold. An \sphinxstylestrong{outlier} does not. \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-RANSAC}]{\sphinxtermref{\DUrole{xref,std,std-term}{RANSAC}}}}} means random sample consensus: fit small random subsets, then count how many matches support each hypothesis.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{ransac}.pdf}
+\caption{The idea behind the lecture’s robust\sphinxhyphen{}line example: a large consistent group supports the correct model despite scattered bad measurements. Original schematic; homography hypotheses use four matches rather than two line points.}\label{\detokenize{lectures/lecture02/estimation:fig-lec02-ransac}}\end{figure}
+
+\begin{TextbookBox}
+\textbf{Formula — RANSAC trial count and inlier score}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/estimation:eq-lec02-ransac}
+\begin{split}\begin{aligned}
+N&=\left\lceil\frac{\log(1-p)}{\log(1-w^s)}\right\rceil,\\
+r_i&=\|p_i'-\operatorname{dehom}(Hx_i)\|_2,\qquad
+n_{\rm in}=\#\{i:r_i<\tau\}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(p\) is the desired probability of at least one all\sphinxhyphen{}inlier sample, \(w=1-e\) the inlier fraction, and \(s\) the sample size (four for a homography). Here residuals and threshold \(\tau\) are in destination pixels. \(N\) is a dimensionless integer.
+
+\sphinxAtStartPar
+The usual \(w^s\) model assumes independent draws, or a large pool approximating them, and nondegenerate all\sphinxhyphen{}inlier samples. Trials are independent. For sampling \(s\) distinct matches from a small pool of \(n\) containing \(I\) true inliers, the exact all\sphinxhyphen{}inlier probability is \(\binom I s/\binom n s\). Neither probability guarantees the selected model is correct.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The derivation is short: a trial is all\sphinxhyphen{}inlier with probability \(w^s\). All \(N\) trials fail with probability \((1-w^s)^N\). Set that failure probability at most \(1-p\), take logarithms, and round up.
+
+\begin{TextbookBox}
+\textbf{Fit a homography robustly}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Sample four matches; reject collinear or otherwise degenerate configurations; estimate \(H\).
+
+\item {}
+\sphinxAtStartPar
+Score every match against \(H\) using a fixed error definition and threshold.
+
+\item {}
+\sphinxAtStartPar
+Keep the best consensus and repeat to the trial budget. Update the budget from a better observed inlier ratio, while recognizing that it is an estimate.
+
+\item {}
+\sphinxAtStartPar
+Refit to the best inliers, then refine pixel reprojection error if needed.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For \(w=0\) no finite budget succeeds; for \(w=1\) one nondegenerate trial suffices. A large consensus of repeated patterns can still support the wrong alignment. See Example 2.5.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/estimation:ex-lec02-ransac}}
+\begin{TextbookBox}
+\textbf{Worked example 2.5 — why a better inlier fraction saves work}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} numerical expansion of PDF page 98’s trial table; application figures from PDF page 104.
+
+\sphinxAtStartPar
+With \(p=0.99\), \(w=0.5\), and \(s=4\), the continuous budget is \(\log(0.01)/\log(15/16)\approx71.36\). Round \sphinxstylestrong{up} to 72 trials. At \(w=0.8\), it falls to 9.
+
+\sphinxAtStartPar
+The lecture’s building\sphinxhyphen{}image example starts with 268 putative matches. A 151\sphinxhyphen{}match consensus corresponds to roughly 56\% inliers; using that rounded ratio gives about 45 trials. The slide reports 43 iterations: the simple probability model is a budget estimate, not a reproduction of the implementation’s exact stopping history. Guided matching later finds 262 final inliers; this is a new matching stage, not simply the original consensus.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+An expected consensus threshold is approximately \(wn\) (rounded as needed), but it is not a statistical guarantee. \sphinxstylestrong{LMedS}, least median of squares, instead minimizes median squared residual; it is a different robust objective. Ordinary least squares can be dominated by gross outliers. Iterative refinement is useful \sphinxstylestrong{after} robust selection; iteration alone does not make an estimator robust.
+
+
+\subsection{The complete slide pipeline}
+\label{\detokenize{lectures/lecture02/estimation:the-complete-slide-pipeline}}
+\sphinxAtStartPar
+Detect interest points → propose matches → robustly estimate \(H\) → refine using inliers → use \(H\) to guide more matches. The slides name sum of absolute differences (SAD), sum of squared differences (SSD), and zero\sphinxhyphen{}mean normalized cross\sphinxhyphen{}correlation (ZNCC) as patch comparisons. SAD/SSD compare pixel intensities directly; ZNCC compares mean\sphinxhyphen{}centered, normalized patterns and needs nonzero patch variance. Lecture 5 develops matching and exposure changes.
+
+\sphinxAtStartPar
+When motion is known to be small, restrict candidate locations; do not impose that restriction on arbitrary viewpoint changes. Nonlinear refinement may use Levenberg–Marquardt to minimize an image\sphinxhyphen{}error objective, rather than the initial algebraic DLT objective.
+
+\begin{TextbookBox}
+\textbf{Check 2.3 — can more points rescue a bad model?}\par\smallskip
+
+\sphinxAtStartPar
+Would fitting one homography to hundreds of matches on several depths always work better than using four floor corners?
+
+\end{TextbookBox}
+
+\begin{sphinxadmonition}{note}{Answer}
+
+\sphinxAtStartPar
+No. Extra measurements cannot repair the wrong geometric model. With translation, a single homography generally fits one plane, not objects at many depths.
+\end{sphinxadmonition}
+
+\index{direct linear transformation@\spxentry{direct linear transformation}}\ignorespaces
+\index{normalized DLT@\spxentry{normalized DLT}}\ignorespaces
+\index{RANSAC@\spxentry{RANSAC}}\ignorespaces
+\index{inlier@\spxentry{inlier}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Distortion and two\sphinxhyphen{}view geometry}
+\label{\detokenize{lectures/lecture02/two-view:distortion-and-two-view-geometry}}\label{\detokenize{lectures/lecture02/two-view:lec02-two-view}}\label{\detokenize{lectures/lecture02/two-view::doc}}
+\sphinxAtStartPar
+A planar warp is powerful, but it cannot explain curved lens distortion or general 3D parallax. The final slides introduce the tools for those cases.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 105–129, printed slides 106–130; the section credits R. Hartley, A. Zisserman, and M. Pollefeys. The assigned epipolar/stereo quizzes and a fuller estimation treatment belong to Lecture 4.
+
+
+\subsection{Straight lines first: correct lens distortion}
+\label{\detokenize{lectures/lecture02/two-view:straight-lines-first-correct-lens-distortion}}
+\sphinxAtStartPar
+\sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Radial-distortion}]{\sphinxtermref{\DUrole{xref,std,std-term}{Radial distortion}}}}} moves points along directions from a distortion center. Straight scene edges can become curved. A homography preserves lines, so it cannot generally undo this bending.
+
+\begin{TextbookBox}
+\textbf{Formula — radial correction model}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/two-view:eq-lec02-radial}
+\begin{split}r^2=(u-c_u)^2+(v-c_v)^2,\quad
+\begin{pmatrix}\widehat u\\\widehat v\end{pmatrix}
+=\begin{pmatrix}c_u\\c_v\end{pmatrix}
++(1+k_1r^2+k_2r^4+\cdots)
+\begin{pmatrix}u-c_u\\v-c_v\end{pmatrix}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Here \((u,v)\) are measured distorted coordinates and hats denote corrected coordinates. The coefficients belong to \sphinxstylestrong{this correction direction}; a forward\sphinxhyphen{}distortion model generally needs different coefficients or numerical inversion. Use calibrated units: if \(r\) is in pixels, \(k_1\) has units pixel\(^{-2}\) and \(k_2\) pixel\(^{-4}\); normalized coordinates are also common.
+
+\sphinxAtStartPar
+This low\sphinxhyphen{}order model describes radial effects, not every lens defect. The distortion center may differ from the principal point. PDF page 109 mixes radius and squared\sphinxhyphen{}radius notation; writing \(r^2\) explicitly avoids that ambiguity.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Correct a point before geometric estimation}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Use the calibrated center, units, coefficients, and mapping direction.
+
+\item {}
+\sphinxAtStartPar
+Compute \(r^2\) and the radial factor, then correct the coordinate.
+
+\item {}
+\sphinxAtStartPar
+Check that straight scene edges become straighter; resample images with an appropriate inverse map.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For center \((0,0)\), point \((100,0)\) pixels, \(k_1=10^{-6}\) pixel\(^{-2}\), and no higher terms, the factor is \(1.01\) and the corrected point is \((101,0)\). A positive coefficient here expands radii; never transfer that sign interpretation to the inverse convention blindly.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The slides suggest estimating distortion jointly with other camera parameters or by straightening known straight edges. Their room\sphinxhyphen{}image before/after sequence illustrates why this matters: ideal projective geometry should be applied to undistorted coordinates.
+
+
+\subsection{One point becomes a line in the other image}
+\label{\detokenize{lectures/lecture02/two-view:one-point-becomes-a-line-in-the-other-image}}
+\sphinxAtStartPar
+With two camera centers \(C,C'\) and a scene point \(X\), the three define an \sphinxstylestrong{epipolar plane}. It cuts each image plane in an \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Epipolar-line}]{\sphinxtermref{\DUrole{xref,std,std-term}{epipolar line}}}}}. If the first image point is known but its depth is not, its possible matches lie along that line in the second image.
+
+\sphinxAtStartPar
+The \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Epipole}]{\sphinxtermref{\DUrole{xref,std,std-term}{epipole}}}}} is the image of the other camera center; every epipolar line in an image passes through its epipole. The line between camera centers is the \sphinxstylestrong{baseline}.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=1.000\linewidth]{{epipolar}.pdf}
+\caption{A special, rectified case: the right match must lie on the corresponding row. Its location along that row still depends on depth. Original schematic developing PDF pages 113–119.}\label{\detokenize{lectures/lecture02/two-view:fig-lec02-epipolar}}\end{figure}
+
+
+\subsection{The fundamental matrix maps points to lines}
+\label{\detokenize{lectures/lecture02/two-view:the-fundamental-matrix-maps-points-to-lines}}
+\begin{TextbookBox}
+\textbf{Formula — epipolar constraint and epipoles}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/two-view:eq-lec02-fundamental}
+\begin{split}\begin{aligned}
+\ell'&=Fx,\qquad \ell=F^Tx',\qquad x'^TFx=0,\\
+Fe&=0,\qquad F^Te'=0,\qquad \operatorname{rank}F=2.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(x,x'\) are homogeneous image \(3\times1\) points; \(\ell,\ell'\) are line coefficients, \(e,e'\) epipoles. \(F\) is a \(3\times3\) \sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Fundamental-matrix}]{\sphinxtermref{\DUrole{xref,std,std-term}{fundamental matrix}}}}}, defined up to nonzero scale. It has seven DOF: nine entries minus scale minus the rank\sphinxhyphen{}two constraint. Reversing the image order transposes \(F\).
+
+\sphinxAtStartPar
+This ideal constraint assumes corresponding undistorted points and distinct camera centers. At an epipole, the corresponding line vector can vanish. Pure rotation has no nonzero baseline and does not determine a nonzero fundamental matrix from the camera pair. The equation constrains correspondence; it does not identify a unique match.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Turn a point into a correspondence constraint}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Multiply \(F\) by the first image point to obtain the second image’s line.
+
+\item {}
+\sphinxAtStartPar
+Test a candidate match by its dot product with that line.
+
+\item {}
+\sphinxAtStartPar
+For noisy data, use a scale\sphinxhyphen{}normalized geometric error instead of comparing raw \(x'^TFx\) values across arbitrary scalings.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Check matrix rank and image order. See Example 2.6.
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture02/two-view:ex-lec02-fundamental}}
+\begin{TextbookBox}
+\textbf{Worked example 2.6 — a horizontal epipolar line}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} original numerical companion to the parallel\sphinxhyphen{}camera example, PDF page 119.
+
+\sphinxAtStartPar
+Let \(F=\begin{pmatrix}0&0&0\\0&0&-1\\0&1&0\end{pmatrix}\) and \(x=(2,3,1)^T\). Then \(Fx=(0,-1,3)^T\): candidate matches satisfy \(-v'+3=0\).
+
+\sphinxAtStartPar
+Both \((5,3,1)^T\) and \((8,3,1)^T\) satisfy the constraint; \((5,4,1)^T\) does not. The two valid candidates show why an epipolar line is not a point prediction. The matrix has rank two and both epipoles are \((1,0,0)^T\), the horizontal ideal direction.
+
+\end{TextbookBox}
+
+
+\subsection{Where does the matrix come from?}
+\label{\detokenize{lectures/lecture02/two-view:where-does-the-matrix-come-from}}
+\sphinxAtStartPar
+The source derives \(F\) by projecting two points on the first camera’s viewing ray into the second image. Their join is the epipolar line.
+
+\begin{TextbookBox}
+\textbf{Formula — construct F from two camera matrices}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/two-view:eq-lec02-fcamera}
+\begin{split}PC=0,\qquad e'=P'C,\qquad
+F=[e']_\times P'P^+.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(P,P'\) are rank\sphinxhyphen{}three \(3\times4\) camera matrices; \(C\) is the first camera center as a homogeneous 4\sphinxhyphen{}vector; \(P^+\) is a \(4\times3\) right pseudoinverse with \(PP^+=I_3\). The matrix \([e']_\times\) takes a cross product with \(e'\).
+
+\sphinxAtStartPar
+For distinct centers, \(P^+x\) is one 3D point projecting to \(x\); adding \(\lambda C\) stays on its projective ray. Its second image lies on the line joining \(P'P^+x\) to \(P'C\), producing the formula. Coincident centers give \(P'C=0\), so this construction gives zero, not a valid rank\sphinxhyphen{}two \(F\).
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check a camera\sphinxhyphen{}derived epipolar geometry}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Find a nonzero null vector \(C\) of \(P\) and compute \(e'=P'C\).
+
+\item {}
+\sphinxAtStartPar
+Form the pseudoinverse and cross\sphinxhyphen{}product matrix, then multiply in the stated order.
+
+\item {}
+\sphinxAtStartPar
+Project a test 3D point in both cameras and verify the scalar constraint.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The cameras \(P=[I\mid0]\), \(P'=[I\mid(-1,0,0)^T]\) give Example 2.6’s matrix up to sign. A scene point \((2,3,1,1)^T\) projects to \((2,3,1)^T\) and \((1,3,1)^T\), on the same row.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For a fixed nondegenerate camera pair, \(F\) is unique \sphinxstylestrong{up to scale}. Estimating it from a finite set of matches can be ambiguous, particularly with planar scene points.
+
+\begin{TextbookBox}
+\textbf{Formula — linear equations for F from matches}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/two-view:eq-lec02-eightpoint}
+\begin{split}\begin{pmatrix}u'u&u'v&u'&v'u&v'v&v'&u&v&1\end{pmatrix}f=0,
+\qquad Af=0.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(f=(F_{11},F_{12},F_{13},F_{21},\ldots,F_{33})^T\) is \(9\times1\); one finite match contributes one row. At least eight suitably independent matches give the linear estimate. This differs from homography DLT’s \sphinxstylestrong{two} equations per match. Noisy linear solutions need a rank\sphinxhyphen{}two correction.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Recognize the eight\sphinxhyphen{}point estimation route}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Normalize both sets of image coordinates and stack the rows.
+
+\item {}
+\sphinxAtStartPar
+Find the smallest right singular vector and reshape it into a matrix.
+
+\item {}
+\sphinxAtStartPar
+Enforce rank two by setting its smallest singular value to zero.
+
+\item {}
+\sphinxAtStartPar
+Undo normalization: if normalized points are \(Tx,T'x'\), then \(F=T'^T\widetilde F T\); verify on held\sphinxhyphen{}out matches.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For Example 2.6 and match \((u,v)=(2,3)\), \((u',v')=(5,3)\), the row is \((10,15,5,6,9,3,2,3,1)\). Dotting it with the row\sphinxhyphen{}stacked \(F\) gives \(-3+3=0\). Lecture 4 will develop noisy estimation and its assigned quiz calculations.
+
+\end{TextbookBox}
+
+
+\subsection{Motion patterns and rectification}
+\label{\detokenize{lectures/lecture02/two-view:motion-patterns-and-rectification}}
+\sphinxAtStartPar
+The three slide examples show different locations for the epipoles:
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Converging cameras:} epipolar lines fan toward finite epipoles, possibly outside the images.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Translation parallel to the image plane:} epipoles are ideal; for a horizontal baseline and aligned cameras, epipolar lines are horizontal.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Forward translation:} epipoles can lie inside the images, with radial epipolar lines. Ordinary rectangular planar rectification becomes problematic near that epipole.
 
 \end{itemize}
+
+\sphinxAtStartPar
+\sphinxstylestrong{{\hyperref[\detokenize{reference/glossary:term-Rectification}]{\sphinxtermref{\DUrole{xref,std,std-term}{Rectification}}}}} warps two views so corresponding epipolar lines become matching horizontal rows. It simplifies the search from two dimensions to one; it does not eliminate matching ambiguity or depth variation.
+
+\begin{TextbookBox}
+\textbf{Formula — rectified coordinates and line geometry}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture02/two-view:eq-lec02-rectify}
+\begin{split}\bar x\sim Hx,\quad \bar x'\sim H'x',\quad
+\bar F=H'^{-T}FH^{-1},\qquad
+He\sim H'e'\sim(1,0,0)^T.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(H,H'\) are nonsingular \(3\times3\) image warps. Moving both epipoles to the horizontal ideal point makes epipolar lines horizontal; the two warps must also align the corresponding row coordinates. A finite epipole is sent to infinity, so its neighborhood cannot retain a finite undistorted rectangular image.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Interpret a rectified pair}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Estimate camera/epipolar geometry and choose compatible rectifying warps.
+
+\item {}
+\sphinxAtStartPar
+Resample both images by inverse warping.
+
+\item {}
+\sphinxAtStartPar
+Check that known matches share the same row; then search along that row.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Example 2.6 is already rectified: identity warps preserve its horizontal lines and equal\sphinxhyphen{}row constraint. The final slide’s paired objects illustrate the visual goal. Detailed stereo depth follows in Lecture 4.
+
+\end{TextbookBox}
+
+\index{radial distortion@\spxentry{radial distortion}}\ignorespaces
+\index{epipolar line@\spxentry{epipolar line}}\ignorespaces
+\index{epipole@\spxentry{epipole}}\ignorespaces
+\index{fundamental matrix@\spxentry{fundamental matrix}}\ignorespaces
+\index{rectification@\spxentry{rectification}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Review and formula checklist}
+\label{\detokenize{lectures/lecture02/review:review-and-formula-checklist}}\label{\detokenize{lectures/lecture02/review:lec02-review}}\label{\detokenize{lectures/lecture02/review::doc}}
+\sphinxAtStartPar
+Check the new tools below. Foundation explanations and Spring 2020 Quiz 1 solutions are in {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}. Source ranges below are PDF pages in \sphinxcode{\sphinxupquote{cs532\_f25\_Week2.pdf}}.
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Topic and source pages
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Canonical formula or explanation
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Practice
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Quaternion conversion, 44–49
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/quaternions:eq-lec02-qmatrix}; \eqref{equation:lectures/lecture02/quaternions:eq-lec02-matrixq}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/quaternions:ex-lec02-conversions}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.1}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Smooth rotation interpolation, 45
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/quaternions:eq-lec02-slerp} (explanatory companion)
+&
+\sphinxAtStartPar
+Identity to quarter\sphinxhyphen{}turn midpoint
+\\
+\sphinxhline
+\sphinxAtStartPar
+Directional affine scaling, 68
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/homographies:eq-lec02-affine-factors}
+&
+\sphinxAtStartPar
+Stretch along a diagonal
+\\
+\sphinxhline
+\sphinxAtStartPar
+Planar rectification and cross\sphinxhyphen{}ratio, 62–71
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/homographies:eq-lec02-homography}; \eqref{equation:lectures/lecture02/homographies:eq-lec02-crossratio}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/homographies:ex-lec02-homography}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.2}}}}; court warp
+\\
+\sphinxhline
+\sphinxAtStartPar
+Warping and interpolation, 72–81
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/warping:eq-lec02-inversewarp}; \eqref{equation:lectures/lecture02/warping:eq-lec02-bilinear}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/warping:ex-lec02-bilinear}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.3}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Homography estimation, 82–94
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/estimation:eq-lec02-dlt}; \eqref{equation:lectures/lecture02/estimation:eq-lec02-normalize}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/estimation:ex-lec02-dlt}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.4}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Robust estimation and matching, 95–104
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/estimation:eq-lec02-ransac}; {\hyperref[\detokenize{lectures/lecture02/estimation:lec02-estimation}]{\sphinxcrossref{\DUrole{std,std-ref}{Estimate a reliable mapping}}}}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/estimation:ex-lec02-ransac}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.5}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Radial correction, 105–110
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/two-view:eq-lec02-radial}
+&
+\sphinxAtStartPar
+Correct \((100,0)\) to \((101,0)\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+Epipolar geometry, 111–126
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/two-view:eq-lec02-fundamental}; \eqref{equation:lectures/lecture02/two-view:eq-lec02-fcamera}; \eqref{equation:lectures/lecture02/two-view:eq-lec02-eightpoint}
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture02/two-view:ex-lec02-fundamental}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 2.6}}}}
+\\
+\sphinxhline
+\sphinxAtStartPar
+Rectification, 127–129
+&
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture02/two-view:eq-lec02-rectify}
+&
+\sphinxAtStartPar
+Equal\sphinxhyphen{}row and epipole checks
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Can you do these without notes?}
+\label{\detokenize{lectures/lecture02/review:can-you-do-these-without-notes}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+Convert a rotation matrix to a quaternion and verify the round trip.
+
+\item {}
+\sphinxAtStartPar
+Check quaternion signs with a cyclic\sphinxhyphen{}axis rotation and handle a half\sphinxhyphen{}turn without dividing by zero.
+
+\item {}
+\sphinxAtStartPar
+Explain why a homography has eight DOF and needs four nondegenerate matches.
+
+\item {}
+\sphinxAtStartPar
+Write two DLT rows for a match and identify the correct right singular vector.
+
+\item {}
+\sphinxAtStartPar
+Undo coordinate normalization in the correct order.
+
+\item {}
+\sphinxAtStartPar
+Explain why inverse warping still needs interpolation and a boundary rule.
+
+\item {}
+\sphinxAtStartPar
+Distinguish noise, outliers, and the wrong geometric model.
+
+\item {}
+\sphinxAtStartPar
+Map an image point to an epipolar line, then test a possible match.
+
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Choose the right image model:} a homography maps planar points to points; a fundamental matrix maps a point to a correspondence line in another view.
+
+\sphinxAtStartPar
+Finish with the {\hyperref[\detokenize{lectures/lecture02/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR and short quiz}}}}. Lecture 3 will expand camera calibration and homography practice; Lecture 4 will expand epipolar estimation and stereo. Those later quiz assignments remain in their planned chapters.
+
+\sphinxstepscope
+
+
+\section{TLDR}
+\label{\detokenize{lectures/lecture02/tldr:tldr}}\label{\detokenize{lectures/lecture02/tldr:lec02-tldr}}\label{\detokenize{lectures/lecture02/tldr::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Lecture 2 in one sentence:} estimate planar image mappings from trustworthy matches, resample them correctly, and recognize when distortion or 3D depth requires another model.
+
+
+\subsection{The important things}
+\label{\detokenize{lectures/lecture02/tldr:the-important-things}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Convert quaternions consistently.} This chapter adds quaternion\sphinxhyphen{}to\sphinxhyphen{}matrix and matrix\sphinxhyphen{}to\sphinxhyphen{}quaternion formulas. The scalar extraction is \(w=\tfrac12\sqrt{1+\operatorname{tr}R}\); near a half\sphinxhyphen{}turn, use a largest\sphinxhyphen{}component branch. See {\hyperref[\detokenize{lectures/lecture02/quaternions:lec02-quaternions}]{\sphinxcrossref{\DUrole{std,std-ref}{Quaternions: convert without changing the rotation}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{SLERP interpolates orientations.} Align endpoint quaternion signs, then interpolate along the unit sphere. For nearly identical orientations, normalized linear interpolation avoids an unstable denominator.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{A plane can be rectified with four nondegenerate matches.} A homography supplies the mapping; the destination rectangle’s aspect ratio needs known geometry for metric accuracy. Raised objects and hidden floor cannot be reconstructed by a floor warp. See {\hyperref[\detokenize{lectures/lecture02/homographies:lec02-homographies}]{\sphinxcrossref{\DUrole{std,std-ref}{Homographies: straighten a photographed plane}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Cross\sphinxhyphen{}ratio survives perspective.} For four ordered collinear coordinates, \(\operatorname{CR}(a,b;c,d)=(c-a)(d-b)/((c-b)(d-a))\). Ordinary spacings may change while this value stays fixed.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Inverse warping fills the output grid.} For each destination pixel, use \(H^{-1}\) to locate its source sample. Bilinear interpolation blends four neighbors with weights summing to one; strong shrinking also needs antialiasing. See {\hyperref[\detokenize{lectures/lecture02/warping:lec02-warping}]{\sphinxcrossref{\DUrole{std,std-ref}{Image warping: where do the new pixels come from?}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{DLT estimates the mapping; normalization stabilizes it.} Each homography match contributes two rows to a \(2n\times9\) system. The smallest right singular vector supplies the matrix entries. Normalize each image independently, then recover \(H=(T')^{-1}\widetilde H T\). See {\hyperref[\detokenize{lectures/lecture02/estimation:lec02-estimation}]{\sphinxcrossref{\DUrole{std,std-ref}{Estimate a reliable mapping}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{RANSAC rejects inconsistent matches.} Sample → fit → score → repeat → refit. Under its sampling assumptions, use \(N=\lceil\log(1-p)/\log(1-w^s)\rceil\), where \(w\) is the inlier fraction, \(s\) the sample size, and \(p\) the desired sampling success probability. Consensus is not proof of a correct model.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Distortion and depth variation require different tools.} Radial correction straightens lens\sphinxhyphen{}bent edges. The fundamental matrix constrains correspondence by \(\ell'=Fx\) and \(x'^TFx=0\); it has rank two and seven DOF. Rectification aligns corresponding epipolar lines with matching rows. See {\hyperref[\detokenize{lectures/lecture02/two-view:lec02-two-view}]{\sphinxcrossref{\DUrole{std,std-ref}{Distortion and two\sphinxhyphen{}view geometry}}}}.
+
+\end{enumerate}
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture02/tldr:short-quiz}}
+\sphinxAtStartPar
+These original questions test the additions in this chapter. Foundation quiz solutions are in {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+For a proper rotation with trace zero, what scalar quaternion component does the trace branch give?
+
+\item {}
+\sphinxAtStartPar
+Before SLERP, what should you do if the endpoint quaternions have a negative dot product?
+
+\item {}
+\sphinxAtStartPar
+What is \(\operatorname{CR}(0,1;2,3)\)? Should a projective warp of the line change it?
+
+\item {}
+\sphinxAtStartPar
+How many nondegenerate matches and how many DLT rows are needed for a minimal homography estimate?
+
+\item {}
+\sphinxAtStartPar
+A source\sphinxhyphen{}to\sphinxhyphen{}destination warp translates content by \((6,-2)\) pixels. Where does destination pixel \((10,10)\) sample?
+
+\item {}
+\sphinxAtStartPar
+Four neighboring intensities are \(0,20,40,60\). What is their bilinear value at the center of the square?
+
+\item {}
+\sphinxAtStartPar
+For \(p=0.99\), \(w=0.8\), \(s=4\), is the standard RANSAC budget 8 or 9 trials? Does it guarantee the correct model?
+
+\item {}
+\sphinxAtStartPar
+If \(Fx=(0,-1,4)^T\), what must a matching ordinary point \((u',v')\) satisfy? Is \(u'\) determined?
+
+\end{enumerate}
+
+
+\subsection{Answers}
+\label{\detokenize{lectures/lecture02/tldr:answers}}
+\begin{sphinxadmonition}{note}{Show answers and short explanations}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(w=1/2\).} Substitute the trace into \(\tfrac12\sqrt{1+\operatorname{tr}R}\); the chosen branch takes the nonnegative sign.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Negate one endpoint.} This aligns quaternion signs so interpolation follows a shortest rotation path.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(4/3\), unchanged.} Substitute \((2-0)(3-1)/((2-1)(3-0))\). Preserve the ordering of the four points.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Four matches, eight rows.} Each match gives two independent equations; the exact nondegenerate system is \(8\times9\) with rank eight.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Source \((4,12)\).} Undo the translation: subtract six from the column and add two to the row.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{30.} At the center all four weights are \(1/4\).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Nine.} Round the continuous estimate, about \(8.74\), up. It gives a sampling probability under stated assumptions, not a correctness guarantee.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{\(v'=4\); \(u'\) remains free.} The line equation is \(-v'+4=0\); image content must still identify a match along it.
+
+\end{enumerate}
+\end{sphinxadmonition}
 
 \sphinxstepscope
 
@@ -3514,7 +5133,7 @@ Select the most useful examples from the actual slides and integrate the assigne
 \chapter{Formula reference}
 \label{\detokenize{reference/formulas:formula-reference}}\label{\detokenize{reference/formulas:id1}}\label{\detokenize{reference/formulas::doc}}
 \sphinxAtStartPar
-This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lecture 1 is now populated; later lectures remain pending.
+This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lectures 1 and 2 are populated; Lectures 3–6 remain pending.
 
 
 \begin{savenotes}\sphinxattablestart
@@ -3554,13 +5173,19 @@ Homogeneous scale
 \sphinxAtStartPar
 See the {\hyperref[\detokenize{lectures/lecture01/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 1 formula and source checklist}}}} for the full inventory. Each entry links to its formula box, assumptions, and companion application procedure.
 
+
+\section{Lecture 2}
+\label{\detokenize{reference/formulas:lecture-2}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture02/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 2 formula and source checklist}}}} for quaternion conversions, directional scaling, homographies, image sampling, DLT/normalization, RANSAC, radial correction, and epipolar constraints. Repeated Lecture 1 formulas retain their original canonical boxes.
+
 \sphinxstepscope
 
 
 \chapter{Quiz practice index}
 \label{\detokenize{reference/quiz-index:quiz-practice-index}}\label{\detokenize{reference/quiz-index:quiz-index}}\label{\detokenize{reference/quiz-index::doc}}
 \sphinxAtStartPar
-Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now includes independently checked worked examples and a supplementary depth\sphinxhyphen{}map bridge. Later lectures remain planned. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
+Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now includes independently checked worked examples and a supplementary depth\sphinxhyphen{}map bridge. Spring 2020 Quiz 1 retains its Lecture 2 assignment but its solutions are in Lecture 1 to avoid repeating foundations; Lectures 3–6 remain planned. Duplicate sources are retained for later closed\sphinxhyphen{}notes retests.
 
 
 \section{Lecture 1}
@@ -3596,7 +5221,10 @@ Placements follow \sphinxcode{\sphinxupquote{quizByLec.md}}. Lecture 1 now inclu
 \sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{cs532s20\_quiz1.pdf}}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Planned use:} Collinearity; intersections; projection dimensions.
+\sphinxstylestrong{Teaching location:} {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}, alongside the concepts it tests.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Worked solutions:} {\hyperref[\detokenize{lectures/lecture01/quiz-practice:ex-lec02-collinear}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.17}}}} (P1), {\hyperref[\detokenize{lectures/lecture01/quiz-practice:ex-lec02-projection}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.18}}}} (P2.1–2), and {\hyperref[\detokenize{lectures/lecture01/quiz-practice:ex-lec02-intersections}]{\sphinxcrossref{\DUrole{std,std-ref}{Example 1.19}}}} (P3.1–2). All parts include assumptions and degeneracy checks.
 
 
 \section{Lecture 3}
@@ -3899,6 +5527,64 @@ Mapping a pixel to a camera ray, then using specified depth to recover a 3D poin
 The point’s coordinate along the camera’s forward axis; it differs from Euclidean range along the ray. See \eqref{equation:lectures/lecture01/cameras:eq-lec01-backproject}.
 
 \end{description}
+\begin{description}
+\sphinxlineitem{Homography\index{Homography@\spxentry{Homography}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Homography}}}
+\sphinxAtStartPar
+An invertible projective mapping between planes, represented by a nonsingular \(3\times3\) matrix up to scale. See \eqref{equation:lectures/lecture02/homographies:eq-lec02-homography} and {\hyperref[\detokenize{lectures/lecture02/homographies:lec02-homographies}]{\sphinxcrossref{\DUrole{std,std-ref}{Homographies: straighten a photographed plane}}}}.
+
+\sphinxlineitem{Cross\sphinxhyphen{}ratio\index{Cross\sphinxhyphen{}ratio@\spxentry{Cross\sphinxhyphen{}ratio}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Cross-ratio}}}
+\sphinxAtStartPar
+An ordered ratio of four collinear positions preserved by projective mappings. See \eqref{equation:lectures/lecture02/homographies:eq-lec02-crossratio}.
+
+\sphinxlineitem{Invariant\index{Invariant@\spxentry{Invariant}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Invariant}}}
+\sphinxAtStartPar
+A property unchanged by a specified transformation family. See {\hyperref[\detokenize{lectures/lecture02/homographies:lec02-homographies}]{\sphinxcrossref{\DUrole{std,std-ref}{Homographies: straighten a photographed plane}}}}.
+
+\sphinxlineitem{SLERP\index{SLERP@\spxentry{SLERP}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-SLERP}}}
+\sphinxAtStartPar
+Spherical linear interpolation of unit quaternions, giving an orientation path with constant angular speed when parameterized uniformly. See \eqref{equation:lectures/lecture02/quaternions:eq-lec02-slerp}.
+
+\sphinxlineitem{Inverse warping\index{Inverse warping@\spxentry{Inverse warping}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Inverse-warping}}}
+\sphinxAtStartPar
+Filling each output pixel by looking up a source coordinate through the inverse geometric mapping. See \eqref{equation:lectures/lecture02/warping:eq-lec02-inversewarp}.
+
+\sphinxlineitem{Bilinear interpolation\index{Bilinear interpolation@\spxentry{Bilinear interpolation}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Bilinear-interpolation}}}
+\sphinxAtStartPar
+Blending four neighboring grid samples using horizontal and vertical fractional\sphinxhyphen{}coordinate weights. See \eqref{equation:lectures/lecture02/warping:eq-lec02-bilinear}.
+
+\sphinxlineitem{Direct linear transformation\index{Direct linear transformation@\spxentry{Direct linear transformation}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Direct-linear-transformation}}}
+\sphinxAtStartPar
+DLT: estimating a projective mapping from a homogeneous linear system. See \eqref{equation:lectures/lecture02/estimation:eq-lec02-dlt}; coordinate normalization is in \eqref{equation:lectures/lecture02/estimation:eq-lec02-normalize}.
+
+\sphinxlineitem{Inlier\index{Inlier@\spxentry{Inlier}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Inlier}}}
+\sphinxAtStartPar
+A measurement consistent with a model within a specified residual threshold. An outlier fails that test. See {\hyperref[\detokenize{lectures/lecture02/estimation:lec02-estimation}]{\sphinxcrossref{\DUrole{std,std-ref}{Estimate a reliable mapping}}}}.
+
+\sphinxlineitem{RANSAC\index{RANSAC@\spxentry{RANSAC}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-RANSAC}}}
+\sphinxAtStartPar
+Random sample consensus: fit small random subsets, score their support, and refit a selected consensus. See \eqref{equation:lectures/lecture02/estimation:eq-lec02-ransac} for sampling assumptions.
+
+\sphinxlineitem{Radial distortion\index{Radial distortion@\spxentry{Radial distortion}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Radial-distortion}}}
+\sphinxAtStartPar
+Lens\sphinxhyphen{}induced coordinate displacement along directions from a distortion center. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-radial}, including mapping\sphinxhyphen{}direction conventions.
+
+\sphinxlineitem{Epipolar line\index{Epipolar line@\spxentry{Epipolar line}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Epipolar-line}}}
+\sphinxAtStartPar
+The image of an epipolar plane; a known point in one view restricts its counterpart to this line in the other. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-fundamental}.
+
+\sphinxlineitem{Epipole\index{Epipole@\spxentry{Epipole}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Epipole}}}
+\sphinxAtStartPar
+The image of the other camera’s center, shared by the epipolar lines of a view. See {\hyperref[\detokenize{lectures/lecture02/two-view:lec02-two-view}]{\sphinxcrossref{\DUrole{std,std-ref}{Distortion and two\sphinxhyphen{}view geometry}}}}.
+
+\sphinxlineitem{Fundamental matrix\index{Fundamental matrix@\spxentry{Fundamental matrix}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Fundamental-matrix}}}
+\sphinxAtStartPar
+A rank\sphinxhyphen{}two \(3\times3\) matrix mapping image points to epipolar lines in another view, defined up to scale. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-fundamental}.
+
+\sphinxlineitem{Rectification\index{Rectification@\spxentry{Rectification}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Rectification}}}
+\sphinxAtStartPar
+Warping a pair of images so corresponding epipolar lines lie on matching horizontal rows. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-rectify}.
+
+\end{description}
 
 \sphinxstepscope
 
@@ -3922,6 +5608,15 @@ Lecture 1 includes three embedded image assets extracted without retouching from
 \label{\detokenize{reference/credits:reading-list-named-in-the-lecture}}
 \sphinxAtStartPar
 The deck’s PDF pages 9–10 name Richard Szeliski’s \sphinxstyleemphasis{Computer Vision: Algorithms and Applications} (2010), David M. Mount’s CMSC 754 computational\sphinxhyphen{}geometry lecture notes (2012), and Xiang Gao and Tao Zhang’s \sphinxstyleemphasis{Introduction to Visual SLAM: From Theory to Practice}. These are source\sphinxhyphen{}listed further reading; the present chapter was developed from the supplied slides and quizzes rather than claiming those books were consulted in full.
+
+
+\section{Lecture 2}
+\label{\detokenize{reference/credits:lecture-2}}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{cs532\_f25\_Week2.pdf}} credits M. Pollefeys and D. Cappelleri for geometry (PDF page 2), John Oliensis for image formation (51), Steve Seitz for warping (72), and R. Hartley, A. Zisserman, and M. Pollefeys for estimation, distortion, and two\sphinxhyphen{}view geometry (82, 95, 105, 111).
+
+\sphinxAtStartPar
+The basketball\sphinxhyphen{}court photograph is extracted from PDF page 71, printed slide 72. Its individual photographer and reuse terms are not identified there. The annotated source/rectangular\sphinxhyphen{}warp comparison is computed locally from four disclosed approximate corner coordinates. The chosen output aspect ratio is illustrative. Four additional original vector diagrams explain quiz intersections, warp sampling, consensus, and rectified epipolar lines. Editable sources and paired print/web assets are retained in the figure register.
 
 \sphinxstepscope
 
@@ -4023,6 +5718,42 @@ All source\sphinxhyphen{}solution computations remain subject to independent che
 
 \sphinxAtStartPar
 Numerical companions are checked by \sphinxcode{\sphinxupquote{scripts/check\_lecture01\_math.py}}. These qualifications do not imply that every flagged issue in later lectures has already been checked.
+
+
+\section{Lecture 2: verified corrections and assumptions}
+\label{\detokenize{reference/errata:lecture-2-verified-corrections-and-assumptions}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Matrix\sphinxhyphen{}to\sphinxhyphen{}quaternion formula, PDF page 49:} the scalar component needs \(w=\frac12\sqrt{1+\operatorname{tr}R}\). The slide omits \(+1\); identity, quarter\sphinxhyphen{}turn, and cyclic\sphinxhyphen{}axis checks expose the error. Near a half\sphinxhyphen{}turn, use a component branch instead of dividing by \(w\). See {\hyperref[\detokenize{lectures/lecture02/quaternions:lec02-quaternions}]{\sphinxcrossref{\DUrole{std,std-ref}{Quaternions: convert without changing the rotation}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Quaternion convention, PDF pages 43, 48–49:} the sandwich and quaternion\sphinxhyphen{}to\sphinxhyphen{}matrix slide use the inverse/passive convention relative to the book, while the displayed skew\sphinxhyphen{}entry extraction uses active signs. The book uses active Hamilton formulas consistently and verifies matrix round trips.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Geometry shorthand, PDF pages 11, 23–25:} identify homogeneous vectors under nonzero scale; compute the right nullspace of the incidence coefficient matrix, not of the unknown vector. These repeat Lecture 1’s qualifications.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Camera direction, PDF page 60:} the displayed projection goes from 3D to 2D despite the prose saying 2D to 3D. Without depth, inverse projection gives a ray. See {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Radius notation, PDF page 109:} the displayed polynomial and radius definition mix squared\sphinxhyphen{}radius conventions. The book defines \(r^2\) explicitly and states the correction direction and coefficient units. See \eqref{equation:lectures/lecture02/two-view:eq-lec02-radial}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Fundamental\sphinxhyphen{}matrix uniqueness, PDF page 124:} uniqueness is up to scale for a fixed nondegenerate camera pair; a finite match set can be ambiguous. Coincident camera centers do not yield a nonzero fundamental matrix. See {\hyperref[\detokenize{lectures/lecture02/two-view:lec02-two-view}]{\sphinxcrossref{\DUrole{std,std-ref}{Distortion and two\sphinxhyphen{}view geometry}}}}.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Quiz degeneracy, Spring 2020 Quiz 1 P1:} repeated points make the cross\sphinxhyphen{}product line undefined, although the determinant still correctly indicates linear dependence and existence of a containing line. P3 requires \(d>0\) for distinct vertical lines. See {\hyperref[\detokenize{lectures/lecture01/quiz-practice:lec01-quiz-practice}]{\sphinxcrossref{\DUrole{std,std-ref}{Foundation quiz practice}}}}.
+
+\end{itemize}
+
+\sphinxAtStartPar
+Lecture 2’s numerical examples are checked by \sphinxcode{\sphinxupquote{scripts/check\_lecture02\_math.py}}.
 
 
 

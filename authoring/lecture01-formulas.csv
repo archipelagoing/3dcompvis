@@ -24,3 +24,4 @@ eq-lec01-ideal,Formula — ideal points and the line at infinity,68–71,book/le
 eq-lec01-rigid3,Formula — rigid coordinate transform and inverse,101–102,book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples
 eq-lec01-compose,Formula — compose compatible frame transforms,102 (expanded explanation),book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples
 eq-lec01-relative-pose,Relative camera pose — specialization of rigid-transform composition,Fall 2025 Quiz 1 Q3 (specialization),book/lectures/lecture01/frames-quizzes.md,derived and checked; see numerical checks for worked examples
+eq-lec02-collinear,collinear,Spring 2020 Quiz 1 P1; L2 PDF 5–7,book/lectures/lecture01/quiz-practice.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed

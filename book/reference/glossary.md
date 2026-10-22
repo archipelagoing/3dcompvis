@@ -102,3 +102,47 @@ Backprojection
 Axial depth
   The point's coordinate along the camera's forward axis; it differs from Euclidean range along the ray. See {eq}`eq-lec01-backproject`.
 ```
+
+```{glossary}
+Homography
+  An invertible projective mapping between planes, represented by a nonsingular $3\times3$ matrix up to scale. See {eq}`eq-lec02-homography` and {ref}`lec02-homographies`.
+
+Cross-ratio
+  An ordered ratio of four collinear positions preserved by projective mappings. See {eq}`eq-lec02-crossratio`.
+
+Invariant
+  A property unchanged by a specified transformation family. See {ref}`lec02-homographies`.
+
+SLERP
+  Spherical linear interpolation of unit quaternions, giving an orientation path with constant angular speed when parameterized uniformly. See {eq}`eq-lec02-slerp`.
+
+Inverse warping
+  Filling each output pixel by looking up a source coordinate through the inverse geometric mapping. See {eq}`eq-lec02-inversewarp`.
+
+Bilinear interpolation
+  Blending four neighboring grid samples using horizontal and vertical fractional-coordinate weights. See {eq}`eq-lec02-bilinear`.
+
+Direct linear transformation
+  DLT: estimating a projective mapping from a homogeneous linear system. See {eq}`eq-lec02-dlt`; coordinate normalization is in {eq}`eq-lec02-normalize`.
+
+Inlier
+  A measurement consistent with a model within a specified residual threshold. An outlier fails that test. See {ref}`lec02-estimation`.
+
+RANSAC
+  Random sample consensus: fit small random subsets, score their support, and refit a selected consensus. See {eq}`eq-lec02-ransac` for sampling assumptions.
+
+Radial distortion
+  Lens-induced coordinate displacement along directions from a distortion center. See {eq}`eq-lec02-radial`, including mapping-direction conventions.
+
+Epipolar line
+  The image of an epipolar plane; a known point in one view restricts its counterpart to this line in the other. See {eq}`eq-lec02-fundamental`.
+
+Epipole
+  The image of the other camera's center, shared by the epipolar lines of a view. See {ref}`lec02-two-view`.
+
+Fundamental matrix
+  A rank-two $3\times3$ matrix mapping image points to epipolar lines in another view, defined up to scale. See {eq}`eq-lec02-fundamental`.
+
+Rectification
+  Warping a pair of images so corresponding epipolar lines lie on matching horizontal rows. See {eq}`eq-lec02-rectify`.
+```

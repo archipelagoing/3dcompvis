@@ -4,6 +4,12 @@ Follow [the simplification prompt](../TEXTBOOK_SIMPLIFICATION_PROMPT.md) for rea
 
 `book/` MyST Markdown is the single content source for HTML and LaTeX. Edit those pages, not generated files under `print/`. Follow `TEXTBOOK_PROMPT.md` and `todo.md`; use `quizByLec.md` for primary quiz placement, with explicit secondary cross-references.
 
+## One teaching location per concept
+
+Each lecture adds unique material. Before authoring, compare its topics, formulas, examples, TLDR, and quiz with earlier chapters. Keep each explanation and canonical formula at its first teaching location; replace repeated slide material with a short prerequisite link. Later use of an earlier result must add a new task or conclusion, rather than repeat the derivation, invariant table, or numerical example.
+
+Preserve original lecture/quiz assignments in the source registers even when solutions belong beside an earlier concept. The user's unique-content requirement takes precedence over literal lecture-slide order. Lecture 2's Spring 2020 Quiz 1 foundation solutions therefore live in Lecture 1. Chapter TLDRs summarize that chapter's additions, and their quizzes test those additions.
+
 ## Structure and labels
 
 - One navigation chapter per lecture, with topic pages added as `sections` in `book/_toc.yml` when written. Preserve lecture order.

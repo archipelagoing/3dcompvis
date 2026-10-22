@@ -1,24 +1,19 @@
 (lecture02)=
-# Lecture 2: Projective geometry and transformations
+# Lecture 2: Projective geometry and image warping
 
-```{note}
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-```
+**How can a tilted photograph become a view from above?** The basketball-court task turns geometry into a practical tool: find a mapping, then use it to create a new image.
 
-## Planned scope
+This chapter teaches the material added beyond Lecture 1: quaternion conversions and interpolation, planar rectification, image sampling, robust estimation, lens correction, and two-view constraints.
 
-Geometry review; rotation representations; projectivities and warping; DLT/RANSAC; two-view introduction.
+**Prerequisites:** [Lecture 1](../lecture01/index.md) owns homogeneous geometry, transformation families, rotations, frames, and camera projection. The source slides repeat those topics; the textbook links to their original explanations. Spring 2020 Quiz 1 remains attributed to Lecture 2 in the [quiz index](../../reference/quiz-index.md), with its foundation solutions collected in [Lecture 1](../lecture01/quiz-practice.md).
 
-**Source deck:** `cs532_f25_Week2.pdf`. Full explanations will record verified printed slide labels and one-based PDF page numbers separately.
+## Reading route
 
-## Examples and practice
+1. [Quaternion conversions](quaternions.md): convert rotation descriptions and interpolate orientations.
+2. [Homographies](homographies.md): straighten a photographed plane and calculate cross-ratios.
+3. [Image warping](warping.md): sample the source image to fill a destination grid.
+4. [Estimate a reliable mapping](estimation.md): DLT, normalization, and RANSAC.
+5. [Distortion and two-view geometry](two-view.md): handle lens bending and constrain matches across views.
+6. [Review and formula checklist](review.md), then the final [TLDR and short quiz](tldr.md).
 
-Select the most useful examples from the actual slides and integrate the assigned questions from the [quiz index](../../reference/quiz-index.md). Missing quiz coverage will be filled with new, clearly labeled worked examples.
-
-## Completion checklist
-
-- [ ] Audit every substantive slide topic and formula.
-- [ ] Write explanations, derivations, and formula/application boxes.
-- [ ] Add selected slide illustrations and independently checked quiz examples.
-- [ ] Complete keywords, glossary entries, and source references.
-- [ ] Check both the website and cumulative printable edition.
+**Source:** `cs532_f25_Week2.pdf`, 129 PDF pages. Printed labels equal PDF pages through page 43; pages 44–49 have no visible label; from PDF page 50 onward, printed labels are one greater. Notes below use **PDF pages** unless stated otherwise. The authoring coverage register records which repeated slides are already covered in Lecture 1.

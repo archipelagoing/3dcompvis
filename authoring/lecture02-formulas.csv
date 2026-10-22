@@ -1,0 +1,17 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec02-homography,homography,L2 PDF 62–71,book/lectures/lecture02/homographies.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-crossratio,crossratio,L2 PDF 62–71,book/lectures/lecture02/homographies.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-radial,radial,L2 PDF 105–129,book/lectures/lecture02/two-view.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-fundamental,fundamental,L2 PDF 105–129,book/lectures/lecture02/two-view.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-fcamera,fcamera,L2 PDF 105–129,book/lectures/lecture02/two-view.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-eightpoint,eightpoint,L2 PDF 105–129,book/lectures/lecture02/two-view.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-rectify,rectify,L2 PDF 105–129,book/lectures/lecture02/two-view.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-qmatrix,qmatrix,L2 PDF 42–49; SLERP explanatory supplement,book/lectures/lecture02/quaternions.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-matrixq,matrixq,L2 PDF 42–49; SLERP explanatory supplement,book/lectures/lecture02/quaternions.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-slerp,slerp,L2 PDF 42–49; SLERP explanatory supplement,book/lectures/lecture02/quaternions.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-inversewarp,inversewarp,L2 PDF 72–81,book/lectures/lecture02/warping.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-bilinear,bilinear,L2 PDF 72–81,book/lectures/lecture02/warping.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-dlt,dlt,L2 PDF 82–104,book/lectures/lecture02/estimation.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-normalize,normalize,L2 PDF 82–104,book/lectures/lecture02/estimation.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-ransac,ransac,L2 PDF 82–104,book/lectures/lecture02/estimation.md,canonical box and application; mathematical/numerical and HTML/PDF checks passed
+eq-lec02-affine-factors,directional scaling factorization,L2 PDF 68,book/lectures/lecture02/homographies.md,new beyond L1 hierarchy; numerical eigenvector checks passed

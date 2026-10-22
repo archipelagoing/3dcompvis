@@ -28,6 +28,7 @@ Keep material that helps the reader understand a relevant concept, interpret a r
 - Use the strongest slide example or image when it genuinely explains the idea.
 - Remove invented extensions, historical background, tangents, repeated reminders, and extra examples that add no new understanding.
 - Consolidate repeated topics and duplicate quiz exposition. Preserve duplicate quizzes as short retest references.
+- Give each concept one teaching location across the entire book. Later chapters contain only additions: replace repeated definitions, formulas, invariant tables, and already-solved numerical examples with prerequisite links. Compare TLDRs and end quizzes as well. Preserve original source assignments in the registers when moving distinct practice questions beside the chapter that teaches their concepts.
 - Give lower-priority material proportionately less space. Never omit a necessary topic merely because its mathematics is difficult.
 
 Do not turn the book into a collection of optional extras. Use a short **Going deeper** subsection only when a longer derivation or subtle qualification is useful but would interrupt the first reading. If a detail has no clear learning purpose, remove it rather than relocating it.

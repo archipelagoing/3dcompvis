@@ -1,7 +1,7 @@
 (quiz-index)=
 # Quiz practice index
 
-Placements follow `quizByLec.md`. Lecture 1 now includes independently checked worked examples and a supplementary depth-map bridge. Later lectures remain planned. Duplicate sources are retained for later closed-notes retests.
+Placements follow `quizByLec.md`. Lecture 1 now includes independently checked worked examples and a supplementary depth-map bridge. Spring 2020 Quiz 1 retains its Lecture 2 assignment but its solutions are in Lecture 1 to avoid repeating foundations; Lectures 3–6 remain planned. Duplicate sources are retained for later closed-notes retests.
 
 ## Lecture 1
 
@@ -25,7 +25,9 @@ Placements follow `quizByLec.md`. Lecture 1 now includes independently checked w
 
 **Source:** `cs532s20_quiz1.pdf`
 
-**Planned use:** Collinearity; intersections; projection dimensions.
+**Teaching location:** {ref}`lec01-quiz-practice`, alongside the concepts it tests.
+
+**Worked solutions:** {ref}`Example 1.17 <ex-lec02-collinear>` (P1), {ref}`Example 1.18 <ex-lec02-projection>` (P2.1–2), and {ref}`Example 1.19 <ex-lec02-intersections>` (P3.1–2). All parts include assumptions and degeneracy checks.
 
 ## Lecture 3
 

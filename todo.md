@@ -6,7 +6,7 @@ Complete **Lecture 1 → Lecture 2 → Lecture 3 → Lecture 4 → Lecture 5 →
 
 Follow [TEXTBOOK_PROMPT.md](TEXTBOOK_PROMPT.md) for editorial and technical requirements. Use [quizByLec.md](3dcvMid/lectures/quizByLec.md) for primary quiz placement and secondary overlaps, and [ExamToDo.md](ExamToDo.md) for emphasis, errata, and exam gaps. Relevance scores are not exam probabilities. Check the actual PDFs before finalizing topic boundaries or source references.
 
-**Current next action:** review the completed Lecture 1 web/PDF draft and its style before starting Lecture 2. Lectures 2–6 remain unwritten.
+**Current next action:** review Lecture 2 with the user before starting Lecture 3. Lectures 3–6 remain unwritten.
 
 ## 0. Prepare the shared foundation
 
@@ -44,18 +44,20 @@ Source: `3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf`.
 - [x] Integrate the relevant geometry from **Fall 2017 Quiz 9**, `olderquizzes/cs532_f17_quiz9.pdf`: rotated vectors/normals where supported by the slides. Label depth-map fusion or other beyond-scope content as an extension, and defer prerequisite-dependent backprojection to Lecture 3/4 with cross-references.
 - [x] Choose the strongest slide illustrations to redraw or reuse with credits; add a fully worked coordinate/geometry example if the quizzes do not adequately teach the foundations.
 - [x] Complete the authoring and technical checks, including the compiled PDF and internal layout review.
-- [ ] Review Lecture 1 with the user and incorporate style/content feedback before starting Lecture 2.
+- [x] Review Lecture 1 with the user and incorporate style/content feedback before starting Lecture 2. User approved progression after the TLDR addition.
 
 ## 2. Lecture 2 — Projective geometry and linear algebra
 
 Source: `3dcvMid/lectures/cs532_f25_Week2.pdf`.
 
-- [ ] Verify the lecture's coverage of homogeneous geometry, linear algebra, transformations, rotation representations, and quaternions. Consolidate overlap with Lecture 1 through references.
-- [ ] Select the clearest slide examples of projective intersections and transformations; use precise diagrams and small computations to explain the geometry.
-- [ ] Integrate **Spring 2020 Quiz 1**, `olderquizzes/cs532s20_quiz1.pdf`: collinearity via dot/cross products, finite/ideal intersections, and projection-matrix dimensions. Identify degenerate configurations explicitly.
-- [ ] Add new worked examples for slide topics absent from the quiz, especially rotation representations, quaternions, and transformation hierarchies where covered. State composition order and conventions.
-- [ ] Cross-reference Lecture 1's relative-pose example and preview the camera formulation developed in Lecture 3.
-- [ ] Complete every item in the repeated lecture checklist.
+- [x] Verify the lecture's coverage of homogeneous geometry, linear algebra, transformations, rotation representations, and quaternions. Remove repeated teaching, summaries, and quiz content; link to Lecture 1 prerequisites.
+- [x] Select the clearest slide examples of projective intersections and transformations; use precise diagrams and small computations to explain the geometry.
+- [x] Retain the Lecture 2 source assignment for **Spring 2020 Quiz 1**, but place its worked solutions with Lecture 1 foundations to satisfy the user's unique-content requirement. Source: `olderquizzes/cs532s20_quiz1.pdf`: collinearity via dot/cross products, finite/ideal intersections, and projection-matrix dimensions. Identify degenerate configurations explicitly.
+- [x] Add new worked examples for slide topics absent from the quiz, especially rotation representations, quaternions, and transformation hierarchies where covered. State composition order and conventions.
+- [x] Cross-reference Lecture 1's relative-pose example and preview the camera formulation developed in Lecture 3.
+- [x] Complete every item in the repeated lecture checklist.
+
+- [ ] Review Lecture 2 with the user and incorporate feedback before Lecture 3.
 
 ## 3. Lecture 3 — Camera projection, homographies, and RANSAC
 

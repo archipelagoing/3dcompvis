@@ -61,3 +61,9 @@ as well as the registers. Compile both editions before marking it complete.
 Run `.venv/bin/python scripts/check_lecture01_math.py` for the independently checked numerical examples. Rebuild the original vector diagrams with `.venv/bin/python scripts/build_lecture01_figures.py`; this requires XeLaTeX and Poppler's `pdftocairo`. The generated assets are already included, so ordinary book builds do not need to regenerate figures.
 
 The local textbook extension deduplicates extension scripts in HTML builds. The optional Favourites MathJax loader patch is disabled to keep one standard MathJax loader and avoid duplicate startup. A forced full HTML rebuild is available with `teachbooks build book --builder html --all --warningiserror` after changing renderer configuration.
+
+## Lecture 2 authoring checks
+
+Install the optional numerical/image dependencies with `uv pip install --python .venv/bin/python -r requirements-authoring.txt` (these also support Lecture 1's numerical checker). Run `.venv/bin/python scripts/check_lecture02_math.py` to verify the quiz calculations, quaternion conversions, DLT, sampling, RANSAC and epipolar examples.
+
+Regenerate Lecture 2's diagrams and computed court warp with `.venv/bin/python scripts/build_lecture02_figures.py`; this also requires XeLaTeX and Poppler. The source court photograph, approximate corner coordinates, and output dimensions are retained. No downloads are needed to regenerate these assets, and ordinary book builds use the bundled images without regeneration.

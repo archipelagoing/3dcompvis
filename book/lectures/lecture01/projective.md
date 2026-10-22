@@ -82,7 +82,7 @@ Each input and output is a $3\times1$ homogeneous vector. Joining two distinct p
 ```
 (ex-lec01-intersections)=
 ```{worked-example} Worked example 1.1 — parallel lines have a projective intersection
-**Source:** original numerical expansion of the railway/ideal-point example, PDF pages 67–71. The related Spring 2020 Quiz 1 is reserved for Lecture 2.
+**Source:** original numerical expansion of the railway/ideal-point example, PDF pages 67–71. The related Spring 2020 Quiz 1 is solved in {ref}`lec01-quiz-practice`.
 
 Take $y=1$ and $y=2$, represented by $\ell_1=(0,1,-1)^T$ and $\ell_2=(0,1,-2)^T$.
 

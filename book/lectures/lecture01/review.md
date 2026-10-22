@@ -81,3 +81,5 @@ A world point is $X=(2,1,6)^T$. A camera has center $C=(1,0,2)^T$, identity orie
 ```
 
 You are ready to move on when you can explain the geometry before choosing a formula, solve these examples without copying their steps, and state each answer's assumptions and degeneracies. Lecture 2 will revisit the projective and rotation language and extend it toward image transformations and estimation.
+
+Finish with the [TLDR and short quiz](tldr.md) for a quick self-check.

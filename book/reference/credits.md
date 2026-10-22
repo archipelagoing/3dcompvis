@@ -12,3 +12,9 @@ Lecture 1 includes three embedded image assets extracted without retouching from
 ## Reading list named in the lecture
 
 The deck's PDF pages 9–10 name Richard Szeliski's *Computer Vision: Algorithms and Applications* (2010), David M. Mount's CMSC 754 computational-geometry lecture notes (2012), and Xiang Gao and Tao Zhang's *Introduction to Visual SLAM: From Theory to Practice*. These are source-listed further reading; the present chapter was developed from the supplied slides and quizzes rather than claiming those books were consulted in full.
+
+## Lecture 2
+
+`cs532_f25_Week2.pdf` credits M. Pollefeys and D. Cappelleri for geometry (PDF page 2), John Oliensis for image formation (51), Steve Seitz for warping (72), and R. Hartley, A. Zisserman, and M. Pollefeys for estimation, distortion, and two-view geometry (82, 95, 105, 111).
+
+The basketball-court photograph is extracted from PDF page 71, printed slide 72. Its individual photographer and reuse terms are not identified there. The annotated source/rectangular-warp comparison is computed locally from four disclosed approximate corner coordinates. The chosen output aspect ratio is illustrative. Four additional original vector diagrams explain quiz intersections, warp sampling, consensus, and rectified epipolar lines. Editable sources and paired print/web assets are retained in the figure register.

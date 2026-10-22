@@ -1,0 +1,3 @@
+# Optional: numerical checks and regeneration of already bundled figures.
+numpy
+Pillow
