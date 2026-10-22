@@ -91,3 +91,17 @@ Run `.venv/bin/python scripts/check_lecture04_math.py` for the assigned quizzes,
 Regenerate the original diagrams and paired slide-photo panel with `.venv/bin/python scripts/build_lecture04_figures.py` (run from the repository root; XeLaTeX and Poppler required). Source photographs are retained without retouching, with their visible lecture credits and unknown individual creator/reuse terms documented. Ordinary builds use included assets.
 
 With the site served locally, `.venv/bin/python scripts/check_lecture04_browser.py` checks the eight L4 pages, ten independent stereo/ray cases, genuine 3D dragging/orbit/zoom isolation, reset/keyboard, phone layout, print and no-JS/WebGL/module fallbacks, and initialization of earlier chapter widgets. Optional Playwright/Chromium is required; `--base-url` and `--output-dir` are supported.
+
+## Maintaining the complete quiz solutions
+
+The shared `original-question` and `solution-step` directives render a problem, a red numbered heading, a short reason and blue inline/display mathematics in both HTML and XeLaTeX. The main textbook pages remain MyST; the quiz inventory and reviewed workings are maintained in `authoring/quiz-worked-content.json`.
+
+After changing quiz content, run:
+
+```sh
+.venv/bin/python scripts/render_quiz_workbooks.py
+.venv/bin/python scripts/check_quiz_workbooks.py
+make all
+```
+
+The renderer is an explicit maintenance step, not an automatic build hook. It regenerates the six `quiz-workbook.md` pages, so keep quiz edits in the JSON. Original end-of-chapter quizzes remain authored directly in their TLDR MyST pages with the same directives. `authoring/quiz-question-coverage.csv` records every historical/booklet problem group. Screenshots and browser checks use `scripts/check_quiz_workbooks_browser.py` with the local preview running at port 8765.

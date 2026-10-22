@@ -36,6 +36,8 @@ sphinx:                                              # Options passed on to the 
       preamble: |
         \usepackage[most]{tcolorbox}
         \usepackage{needspace}
+        \definecolor{QuizStepRed}{HTML}{A71930}
+        \definecolor{QuizMathBlue}{HTML}{124FAD}
         \tcbset{before skip=12pt,after skip=12pt}
         \newtcolorbox{TextbookBox}{breakable,colback=white,colframe=black!65,
           boxrule=0.6pt,arc=1mm,left=9pt,right=9pt,top=7pt,bottom=7pt}

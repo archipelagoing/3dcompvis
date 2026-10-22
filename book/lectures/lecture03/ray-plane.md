@@ -7,26 +7,7 @@ One pixel supplies a ray, not a distance. A known plane supplies the missing con
 
 ## First, keep the two kinds of coordinates straight
 
-(ex-lec03-ray)=
-````{worked-example} Worked example 3.3 — two points on one viewing ray
-**Adapted from:** Spring 2020 Quiz 2, P1–P2.
-
-The camera center is the origin. A scene point is $A=(X,Y,Z)^T$ and the virtual image plane is at $f=Z/10$, with $Z>0$. Where does the ray meet that plane?
-
-A point along the ray is $a=\lambda A$. Its third coordinate must be $f$, so
-
-$$
-\lambda Z=Z/10\quad\Rightarrow\quad\lambda=1/10,
-\qquad a=(X/10,Y/10,Z/10)^T.
-$$
-
-For $A=(2,1,20)^T$ and $f=2$, the intersection is $a=(0.2,0.1,2)^T$. It is one tenth of the distance along the same ray.
-
-The quiz also asks for $A\times a$. Since $a=A/10$,
-$A\times a=(A\times A)/10=\mathbf0$.
-
-**Why zero is correct:** here $A$ and $a$ are ordinary **Euclidean 3D vectors** from the camera center. A zero cross product confirms parallel directions. They are not two homogeneous 2D image points being joined into a line. Same three-entry shape, different meaning.
-````
+**Worked example 3.3 — two points on one viewing ray.** {ref}`Read the original problem and every worked step <quiz-14-q1>`.
 
 ## Intersect the ray with a plane
 

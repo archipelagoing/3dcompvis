@@ -46,3 +46,16 @@ The print exporter copies selected assets into `print/images/` and rewrites thei
 - `lecture-boundaries.md`: inspected overlap decisions and provisional teaching ownership.
 
 Update public reference pages and registers together. Source provenance belongs beside adapted material, including filename, verified printed slide/PDF page, and quiz question. Keep supplementary material labeled.
+
+
+## Required complete quiz-example format
+
+Every assigned quiz question/subquestion must show the complete original problem from the supplied quiz booklet, its source filename and question number, followed by a fully worked solution. Preserve the original givens; identify booklet wording versus verbatim historical-PDF wording accurately. Label any added numerical inputs as original companions.
+
+Use `original-question` for the problem and `solution-step` for each numbered step. Step headings are red; each includes a short **Why** explanation in normal text; all mathematics inside a step is blue in HTML and LaTeX. Write full matrices/vectors, row-column products, substitutions, intermediate results and final checks. Conceptual questions get a complete reasoned sequence; do not fabricate numerical givens or matrices for a question that needs a written argument. Keep colors dark enough for print and keep numbered labels/meaning readable in grayscale.
+
+Duplicate retests have their own original problems and complete worked solutions. Do not replace a quiz with a summary, toy numerical variant, final-answer table, or a retest-only link. Each lecture’s `quiz-workbook.md` is the canonical complete treatment; concept pages link directly to the relevant question. Old abbreviated quiz answers have been replaced by these links. The 18 historical quizzes and seven booklet supplements are tracked question by question in `authoring/quiz-question-coverage.csv`.
+
+Quiz content is maintained in `authoring/quiz-worked-content.json` and rendered to MyST with `.venv/bin/python scripts/render_quiz_workbooks.py`; normal HTML/LaTeX builds read those MyST pages. Do not separately edit the generated quiz pages and the JSON. Preserve all non-quiz MyST as before. This focused cross-lecture quiz revision is authorized by the user; it does not mark the full Lecture 5–6 chapters complete.
+
+For original end-of-chapter quizzes, use `original-question` with the title `Original practice question` and a `worked-solution` dropdown containing `solution-step` blocks. These print as openly visible, page-breakable solutions. Do not label original TLDR questions as historical booklet questions.

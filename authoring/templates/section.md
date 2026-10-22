@@ -58,3 +58,19 @@ Include full reasoning. This content appears openly in the PDF.
 ## What to remember
 
 Provide a short takeaway and checklist with stable references to the formula, figure, worked example, and source pages.
+
+## Complete quiz example template
+
+**Source:** original filename and problem/subpart. Preserve the full problem and label added data.
+
+````{original-question}
+Reproduce the complete problem, including all givens and requested subparts.
+````
+
+````{solution-step} 1 — Multiply the first matrix by the point
+**Why:** Explain the operation's purpose in one simple sentence.
+
+Show the actual full matrix and vector, row products, and resulting vector in display math. Mathematics within this directive is blue in both editions; the step label is red.
+````
+
+Add as many meaningful steps as needed, with one final verification/interpretation. Restart at Step 1 for the next original problem.

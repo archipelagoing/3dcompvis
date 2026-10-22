@@ -1,7 +1,7 @@
 # Compile the printable textbook
 
 This folder is a generated print edition of the MyST pages in `book/`.
-It currently contains the Lecture 1 draft, the shared foundation, and clearly labeled planning outlines for Lectures 2–6.
+It currently contains completed Lectures 1–4, the shared foundation and references, and clearly labeled planning outlines for Lectures 5–6. Interactive learning results have full static print counterparts.
 
 ## Overleaf
 
@@ -14,7 +14,7 @@ image download is needed to compile the bundle.
 ## Local LaTeX
 
 Install a full TeX Live or MacTeX distribution with XeLaTeX, latexmk, tcolorbox,
-and makeindex. In this directory run:
+needspace, and makeindex. In this directory run:
 
 ```sh
 latexmk -xelatex -interaction=nonstopmode -halt-on-error CS532_Textbook.tex
@@ -32,3 +32,5 @@ will be overwritten.
 
 Overleaf import must still be verified in Overleaf itself. Local compilation of
 the portable bundle checks the underlying XeLaTeX workflow without that service.
+
+All six lectures now include complete quiz workbooks (18 historical quizzes plus seven original booklet supplements). Main lecture chapters 5–6 remain outlines. Quiz questions and red-step/blue-math solutions are part of this continuous manuscript and compile with the same XeLaTeX command.

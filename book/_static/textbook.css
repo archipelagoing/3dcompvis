@@ -99,3 +99,30 @@
   .interactive-demo > .interactive-fallback { display: block !important; }
   .interactive-demo { border: 1px solid #555; }
 }
+
+/* Quiz solutions: labels and words also identify the hierarchy in grayscale. */
+:root { --quiz-step-red: #a71930; --quiz-math-blue: #124fad; }
+html[data-theme="dark"] { --quiz-step-red: #ff9bad; --quiz-math-blue: #91bfff; }
+.original-question { border-bottom: 1px solid var(--pst-color-border); padding: .3rem 0 .8rem; margin-bottom: 1.2rem; }
+.original-question-title { font-weight: 750; }
+.solution-step { margin: 1.3rem 0; min-width: 0; }
+.bd-article .solution-step-title { color: var(--quiz-step-red); font-weight: 750; margin-bottom: .4rem; }
+.solution-math { color: var(--quiz-math-blue); }
+div.solution-math { max-width: 100%; overflow-x: auto; }
+.solution-math mjx-container { color: inherit; }
+@media print {
+  .solution-step-title { color: #a71930 !important; }
+  .solution-math { color: #124fad !important; }
+  .solution-step-title { break-after: avoid; }
+}
+/* Print must expose solutions even when the web dropdown is closed. */
+@media print {
+  .admonition.worked-solution.toggle-hidden .admonition-title ~ * {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-top: .8rem !important;
+  }
+  .admonition.worked-solution .toggle-button { display: none !important; }
+}

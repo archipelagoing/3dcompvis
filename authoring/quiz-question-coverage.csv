@@ -1,0 +1,47 @@
+source,booklet_id,lecture,problem_group,type,question_label,worked_steps,destination
+cs532f25_quiz_1_solution.pdf,17,1,Question 1,historical quiz,quiz-17-q1,3,book/lectures/lecture01/quiz-workbook.md#quiz-17-q1
+cs532f25_quiz_1_solution.pdf,17,1,Question 2,historical quiz,quiz-17-q2,4,book/lectures/lecture01/quiz-workbook.md#quiz-17-q2
+cs532f25_quiz_1_solution.pdf,17,1,Question 3,historical quiz,quiz-17-q3,6,book/lectures/lecture01/quiz-workbook.md#quiz-17-q3
+cs532f25_quiz_1_solution.pdf,17,1,Question 4,historical quiz,quiz-17-q4,6,book/lectures/lecture01/quiz-workbook.md#quiz-17-q4
+cs532_f17_quiz9.pdf,18,1,Problem 1,historical quiz,quiz-18-q1,6,book/lectures/lecture01/quiz-workbook.md#quiz-18-q1
+cs532_f17_quiz9.pdf,18,1,Problem 2(a),historical quiz,quiz-18-q2,6,book/lectures/lecture01/quiz-workbook.md#quiz-18-q2
+cs532_f17_quiz9.pdf,18,1,Problem 2(b),historical quiz,quiz-18-q3,5,book/lectures/lecture01/quiz-workbook.md#quiz-18-q3
+cs532s20_quiz1.pdf,8,2,Problem 1,historical quiz,quiz-8-q1,4,book/lectures/lecture02/quiz-workbook.md#quiz-8-q1
+cs532s20_quiz1.pdf,8,2,Problem 2(a--b),historical quiz,quiz-8-q2,3,book/lectures/lecture02/quiz-workbook.md#quiz-8-q2
+cs532s20_quiz1.pdf,8,2,Problem 3(a--b),historical quiz,quiz-8-q3,5,book/lectures/lecture02/quiz-workbook.md#quiz-8-q3
+cs532s19-quiz3.pdf,7,3,Problem 1(a--d),historical quiz,quiz-7-q1,6,book/lectures/lecture03/quiz-workbook.md#quiz-7-q1
+cs532s19_quiz2-2.pdf,10,3,Problem 1,historical quiz,quiz-10-q1,3,book/lectures/lecture03/quiz-workbook.md#quiz-10-q1
+cs532s19_quiz2-2.pdf,10,3,Problem 2,historical quiz,quiz-10-q2,3,book/lectures/lecture03/quiz-workbook.md#quiz-10-q2
+cs532s19_quiz2-2.pdf,10,3,Problem 3(a--b),historical quiz,quiz-10-q3,3,book/lectures/lecture03/quiz-workbook.md#quiz-10-q3
+cs532s19_quiz2-2.pdf,10,3,Problem 4,historical quiz,quiz-10-q4,3,book/lectures/lecture03/quiz-workbook.md#quiz-10-q4
+cs532s20_quiz3.pdf,11,3,Problem 1,historical quiz,quiz-11-q1,3,book/lectures/lecture03/quiz-workbook.md#quiz-11-q1
+cs532s20_quiz3.pdf,11,3,Problem 2,historical quiz,quiz-11-q2,3,book/lectures/lecture03/quiz-workbook.md#quiz-11-q2
+cs532s20_quiz3.pdf,11,3,Problem 3(a--b),historical quiz,quiz-11-q3,3,book/lectures/lecture03/quiz-workbook.md#quiz-11-q3
+cs532s20_quiz3.pdf,11,3,Problem 4,historical quiz,quiz-11-q4,3,book/lectures/lecture03/quiz-workbook.md#quiz-11-q4
+cs532s20_quiz2.pdf,14,3,Problem 1,historical quiz,quiz-14-q1,4,book/lectures/lecture03/quiz-workbook.md#quiz-14-q1
+cs532s20_quiz2.pdf,14,3,Problem 2,historical quiz,quiz-14-q2,4,book/lectures/lecture03/quiz-workbook.md#quiz-14-q2
+cs532f15_quiz9.pdf,15,3,Problem 1,historical quiz,quiz-15-q1,7,book/lectures/lecture03/quiz-workbook.md#quiz-15-q1
+cs532f15_quiz4.pdf,1,4,Problem 1,historical quiz,quiz-1-q1,4,book/lectures/lecture04/quiz-workbook.md#quiz-1-q1
+cs532f15_quiz4.pdf,1,4,Problem 2,historical quiz,quiz-1-q2,4,book/lectures/lecture04/quiz-workbook.md#quiz-1-q2
+cs532s19_quiz4.pdf,2,4,Problem 1,historical quiz,quiz-2-q1,4,book/lectures/lecture04/quiz-workbook.md#quiz-2-q1
+cs532s19_quiz4.pdf,2,4,Problem 2,historical quiz,quiz-2-q2,4,book/lectures/lecture04/quiz-workbook.md#quiz-2-q2
+cs532f25_quiz_2_solution.pdf,3,4,Question 1,historical quiz,quiz-3-q1,8,book/lectures/lecture04/quiz-workbook.md#quiz-3-q1
+cs532f25_quiz_2_solution.pdf,3,4,Question 2,historical quiz,quiz-3-q2,5,book/lectures/lecture04/quiz-workbook.md#quiz-3-q2
+cs532f25_quiz_3_solution.pdf,4,4,Question 1,historical quiz,quiz-4-q1,4,book/lectures/lecture04/quiz-workbook.md#quiz-4-q1
+cs532f25_quiz_3_solution.pdf,4,4,Question 2,historical quiz,quiz-4-q2,4,book/lectures/lecture04/quiz-workbook.md#quiz-4-q2
+cs532s19_quiz5-2.pdf,5,4,Problem 1(a--c),historical quiz,quiz-5-q1,6,book/lectures/lecture04/quiz-workbook.md#quiz-5-q1
+cs532s20_quiz5.pdf,6,4,Problem 1(a--c),historical quiz,quiz-6-q1,6,book/lectures/lecture04/quiz-workbook.md#quiz-6-q1
+cs532f25_quiz_4_solution.pdf,9,5,Question 1,historical quiz,quiz-9-q1,7,book/lectures/lecture05/quiz-workbook.md#quiz-9-q1
+cs532s19_quiz6-2.pdf,13,5,Problem 1(a--d),historical quiz,quiz-13-q1,6,book/lectures/lecture05/quiz-workbook.md#quiz-13-q1
+cs532f25_quiz_5_solution-1.pdf,12,6,"Question 1, Scenario A",historical quiz,quiz-12-q1,5,book/lectures/lecture06/quiz-workbook.md#quiz-12-q1
+cs532f25_quiz_5_solution-1.pdf,12,6,"Question 1, Scenario B",historical quiz,quiz-12-q2,4,book/lectures/lecture06/quiz-workbook.md#quiz-12-q2
+cs532f25_quiz_5_solution-1.pdf,12,6,Question 2,historical quiz,quiz-12-q3,4,book/lectures/lecture06/quiz-workbook.md#quiz-12-q3
+cs532f25_quiz_6_solution.pdf,16,6,Question 1,historical quiz,quiz-16-q1,6,book/lectures/lecture06/quiz-workbook.md#quiz-16-q1
+cs532f25_quiz_6_solution.pdf,16,6,Question 2,historical quiz,quiz-16-q2,5,book/lectures/lecture06/quiz-workbook.md#quiz-16-q2
+CS532_18_Quizzes_By_Lecture.tex,A1,3,Illustrative problem,original practice,quiz-a1-q1,8,book/lectures/lecture03/quiz-workbook.md#quiz-a1-q1
+CS532_18_Quizzes_By_Lecture.tex,A2,5,Illustrative problem,original practice,quiz-a2-q1,6,book/lectures/lecture05/quiz-workbook.md#quiz-a2-q1
+CS532_18_Quizzes_By_Lecture.tex,A3,5,Illustrative problem,original practice,quiz-a3-q1,6,book/lectures/lecture05/quiz-workbook.md#quiz-a3-q1
+CS532_18_Quizzes_By_Lecture.tex,A4,4,Illustrative problem,original practice,quiz-a4-q1,6,book/lectures/lecture04/quiz-workbook.md#quiz-a4-q1
+CS532_18_Quizzes_By_Lecture.tex,A5,6,Illustrative problem,original practice,quiz-a5-q1,7,book/lectures/lecture06/quiz-workbook.md#quiz-a5-q1
+CS532_18_Quizzes_By_Lecture.tex,A6,6,Illustrative problem,original practice,quiz-a6-q1,6,book/lectures/lecture06/quiz-workbook.md#quiz-a6-q1
+CS532_18_Quizzes_By_Lecture.tex,A7,6,Illustrative problem,original practice,quiz-a7-q1,7,book/lectures/lecture06/quiz-workbook.md#quiz-a7-q1

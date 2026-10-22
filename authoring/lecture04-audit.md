@@ -4,7 +4,7 @@ Source: `wk4_cs532s26_TwoViewGeometry.pdf`, all 77 PDF pages extracted and inspe
 
 ## Ownership and coverage
 
-- Pages 2–21 repeat the L2 distortion and epipolar introduction, including fundamental-matrix properties and linear rows. L2 retains canonical explanations/boxes; L4 adds symbolic and three-view quiz applications.
+- Pages 2–21 repeat the L2 distortion and epipolar introduction, including fundamental-matrix properties and linear rows. L2 retains canonical formula references; following user feedback, L4 also includes a guided ray/plane/line recap and original numerical point-to-line, candidate, transpose and epipole-nullspace calculations before the expanded symbolic and three-view quiz applications.
 - Pages 22–23 add E, its equal-pair singular-value condition and five DOF, four poses, and positive-depth selection. L4 gives a derivation and computational SVD companion with an independently solved four-pose example. Official OpenCV documentation was consulted only to cross-check decomposition/translation-direction/cheirality conventions; its link is retained beside the material.
 - Pages 24–37 add numerical F estimation, nearest rank-two projection, geometric pixel residuals, normalization experiments, seven-point robust hypotheses, guided matches and degenerate scenes. General point normalization, existing linear rows, and general RANSAC probability remain at L2/L3. The twelve-match noisy numerical dataset is in `lecture04-matches.csv`; the checker regenerates its camera projections/noise and held-out data.
 - Pages 38–41 repeat search reduction/rectification; retain L2 canonical teaching.
@@ -26,10 +26,14 @@ Every page's disposition and selected example are recorded in `coverage.csv`.
 
 ## Selected visuals and interaction
 
-Four original paired SVG/PDF diagrams: third-view intersection, rectified stereo rays, inverse-depth sensitivity with one-pixel intervals, and support crossing a depth boundary. The actual toy/plant reference/matching images are extracted from PDF page 46, printed 50; editable panel labels retain the unmodified JPEG assets. The window-size comparison is extracted unchanged from PDF page 66, printed 70. Source credits/unknown individual creators and permissions are preserved in captions and `figure-credits.csv`.
+Five original paired SVG/PDF diagrams: a sloping epipolar-line/candidate illustration, third-view intersection, rectified stereo rays, inverse-depth sensitivity with one-pixel intervals, and support crossing a depth boundary. The actual toy/plant reference/matching images are extracted from PDF page 46, printed 50; editable panel labels retain the unmodified JPEG assets. The window-size comparison is extracted unchanged from PDF page 66, printed 70. Source credits/unknown individual creators and permissions are preserved in captions and `figure-credits.csv`.
 
 The lecture has one actual Three.js stereo scene: aligned cameras with correctly sized virtual planes, epipolar plane, true/perturbed ray intersections, linked left/right image columns, and numerical substitution cards. True depth, baseline, focal length and signed disparity error are adjustable. Point dragging changes modeled depth; inspection orbit/zoom does not change the model. Invalid measured disparities and off-image correspondences are identified. The static explanation/table/curve carries the full learning objective into PDF/no-JavaScript reading. Camera markers are schematic; projection geometry uses a disclosed physical pixel pitch.
 
 ## Checks and handoff
 
 `check_lecture04_math.py` independently checks all quiz subparts, generated noisy data and held-out errors, singular-value constraints/pose selection, exact signed errors/search limits, sampler budgets, score direction/normalization, rank/Census and adaptive costs. `check_lecture04_browser.py` checks eight pages and ten stereo states, actual ray-plane intersections, 3D gestures, reset/keyboard, mobile, earlier widget initialization, and all static fallbacks. Build/print/bundle inspection results are recorded in `LECTURE04_STATUS.md` after execution. The next user review checkpoint precedes L5; L5/L6 remain outlines. No publishing or pushes are authorized by this chapter task.
+
+## Requested clarity revision
+
+The landing page now directly indexes epipolar calculations A–C and each assigned geometry/stereo example. Quiz solutions expose row/column products, cross-product components, scalar checks and homogeneous division. Stereo gives the common-denominator derivation, signed-error convention, derivative and non-calculus approximation, distance-squared sensitivity at fixed cameras, a near/far table, a bounded-error interval and both quiz errors with explicit fraction arithmetic. These derived explanations are original pedagogical companions to the lecture/quiz material. Stable quiz/example labels and the single 3D explorer are preserved.

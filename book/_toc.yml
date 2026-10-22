@@ -18,6 +18,7 @@ parts:
     - file: lectures/lecture01/frames-quizzes
     - file: lectures/lecture01/cameras
     - file: lectures/lecture01/quiz-practice
+    - file: lectures/lecture01/quiz-workbook
     - file: lectures/lecture01/review
     - file: lectures/lecture01/tldr
   - file: lectures/lecture02/index
@@ -27,6 +28,7 @@ parts:
     - file: lectures/lecture02/warping
     - file: lectures/lecture02/estimation
     - file: lectures/lecture02/two-view
+    - file: lectures/lecture02/quiz-workbook
     - file: lectures/lecture02/review
     - file: lectures/lecture02/tldr
   - file: lectures/lecture03/index
@@ -35,6 +37,7 @@ parts:
     - file: lectures/lecture03/ray-plane
     - file: lectures/lecture03/homography-practice
     - file: lectures/lecture03/probability-ransac
+    - file: lectures/lecture03/quiz-workbook
     - file: lectures/lecture03/review
     - file: lectures/lecture03/tldr
   - file: lectures/lecture04/index
@@ -44,10 +47,15 @@ parts:
     - file: lectures/lecture04/essential
     - file: lectures/lecture04/stereo
     - file: lectures/lecture04/matching
+    - file: lectures/lecture04/quiz-workbook
     - file: lectures/lecture04/review
     - file: lectures/lecture04/tldr
   - file: lectures/lecture05/index
+    sections:
+    - file: lectures/lecture05/quiz-workbook
   - file: lectures/lecture06/index
+    sections:
+    - file: lectures/lecture06/quiz-workbook
 - caption: Study and reference
   chapters:
   - file: reference/formulas

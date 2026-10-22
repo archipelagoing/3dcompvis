@@ -1,6 +1,9 @@
 (lecture02)=
 # Lecture 2: Projective geometry and image warping
 
+**[Original quiz questions + fully worked solutions](quiz-workbook.md)** — complete problem statements, numbered red steps with a plain-English reason, and blue mathematics showing intermediate operations.
+
+
 **How can a tilted photograph become a view from above?** The basketball-court task turns geometry into a practical tool: find a mapping, then use it to create a new image.
 
 This chapter teaches the material added beyond Lecture 1: quaternion conversions and interpolation, planar rectification, image sampling, robust estimation, lens correction, and two-view constraints.

@@ -15,7 +15,13 @@ The slide sequence on pages 45–53 follows one practical pipeline:
 
 A **cost volume** stores one score for each image position and hypothesis: dimensions width × height × number of disparities. A depth map selects one hypothesis per reference pixel; it is view-dependent and need not contain occluded surfaces. The [earlier reconstruction pipeline](../lecture01/motivation.md) explains how depth can feed other 3D representations.
 
-```{index} Cost volume; Photo-consistency; Occlusion
+```{index} Cost volume
+```
+
+```{index} Photo-consistency
+```
+
+```{index} Occlusion
 ```
 
 ````{formula-box} Formula — aggregate costs and select disparity
@@ -120,7 +126,13 @@ All add assumptions. Similar colors can still occur at different depths, and an 
 
 ## Rank and Census use relative intensity order
 
-```{index} Census transform; Rank transform; Adaptive support
+```{index} Census transform
+```
+
+```{index} Rank transform
+```
+
+```{index} Adaptive support
 ```
 
 ````{formula-box} Formula — rank, Census, and Hamming distance
@@ -168,7 +180,7 @@ w(p,q)&=\exp\left[-\frac{\Delta_c(p,q)}{\gamma_c}
 \end{aligned}
 ```
 
-$\gamma_c,\gamma_s>0$ set color and spatial scales; $\gamma_s$ uses pixels. The exponential arguments are dimensionless. This displayed version uses reference-image weights and requires a nonzero weight sum. Some methods also incorporate shifted right-image weights; state the convention rather than mixing implementations. A constant multiplier in every weight cancels in the normalized cost.
+$\operatorname{Lab}(p)=(L_p,a_p,b_p)^T$ is a three-channel color vector. $\gamma_c>0$ uses color-distance units; $\gamma_s>0$ uses pixels, making both exponents dimensionless. These are reference-image weights with a nonzero sum. Other methods also include shifted right-image weights; specify the convention. A common weight multiplier cancels.
 ````
 
 ```{application} Aggregate without crossing every edge equally

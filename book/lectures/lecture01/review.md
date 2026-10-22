@@ -30,7 +30,7 @@ The PDF-page ranges refer to `wk1_2_cs532s26_IntroToGeometry.pdf`. Equation link
 | Camera-motion hands-on task | {ref}`Example 1.15 <ex-lec01-camera-motion>` | 114 |
 | Depth-map backprojection: quiz extension | {eq}`eq-lec01-backproject` | Quiz, not a slide formula |
 
-The epipolar constraint and disparity formula embedded in the workflow previews on PDF pages 25–26 are explicitly deferred to Lecture 4, where their variables and assumptions will be developed.
+The workflow previews on PDF pages 25–26 point ahead to [epipolar constraints](../lecture02/two-view.md) and [stereo depth](../lecture04/stereo.md), where their variables and assumptions are explained.
 
 The administrative title, policies, logistics, and reading-list slides are recorded in the coverage ledger but do not become mathematical exercises. The rank/SVD and Rodrigues explanations fill explanatory steps needed to understand the lecture; they are identified as supplements where they go beyond its printed formulas.
 

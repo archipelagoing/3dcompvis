@@ -103,19 +103,134 @@ def depart_html(self, node):
 
 
 def visit_latex(self, node):
-    self.body.append("\n\\begin{TextbookBox}\n")
+    if "worked-solution" in node.get("classes", []):
+        self.body.append("\n\\par\\medskip\n")
+    else:
+        self.body.append("\n\\begin{TextbookBox}\n")
 
 
 def depart_latex(self, node):
-    self.body.append("\n\\end{TextbookBox}\n")
+    if "worked-solution" in node.get("classes", []):
+        self.body.append("\n\\par\\medskip\n")
+    else:
+        self.body.append("\n\\end{TextbookBox}\n")
 
 
 def visit_box_title(self, node):
+    if "worked-solution" in node.parent.get("classes", []):
+        self.body.append("\\textbf{Worked solution}\\par\\smallskip\n")
+        raise nodes.SkipNode
     self.body.append("\\textbf{")
 
 
 def depart_box_title(self, node):
     self.body.append("}\\par\\smallskip\n")
+
+
+class WorkedSolutionDirective(TeachingBoxDirective):
+    def run(self):
+        result = super().run()
+        result[0]["classes"].append("dropdown")
+        return result
+
+
+class OriginalQuestion(nodes.General, nodes.Element):
+    pass
+
+
+class SolutionStep(nodes.General, nodes.Element):
+    pass
+
+
+class StepMath(nodes.General, nodes.Element):
+    pass
+
+
+class OriginalQuestionDirective(SphinxDirective):
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 1
+    final_argument_whitespace = True
+
+    def run(self):
+        node = OriginalQuestion(title=self.arguments[0] if self.arguments else "Original problem · quiz booklet")
+        self.set_source_info(node)
+        self.state.nested_parse(self.content, self.content_offset, node)
+        return [node]
+
+
+class SolutionStepDirective(SphinxDirective):
+    has_content = True
+    required_arguments = 1
+    final_argument_whitespace = True
+
+    def run(self):
+        match = re.fullmatch(r"([1-9][0-9]*)\s*[—–-]\s*(.+)", self.arguments[0])
+        if not match:
+            raise self.error("Use solution-step: number — meaningful action title.")
+        node = SolutionStep(number=int(match[1]), title=match[2])
+        self.set_source_info(node)
+        self.state.nested_parse(self.content, self.content_offset, node)
+        # Preserve native Sphinx/MathJax math nodes and their references. Only the
+        # math, not the explanation, gets the blue presentation wrapper.
+        for math in list(node.findall(lambda n: isinstance(n, (nodes.math, nodes.math_block)))):
+            wrapper = StepMath(display=isinstance(math, nodes.math_block))
+            math.parent.replace(math, wrapper)
+            wrapper += math
+        return [node]
+
+
+def visit_question_html(self, node):
+    self.body.append(self.starttag(node, "div", CLASS="original-question"))
+    self.body.append('<p class="original-question-title">' + escape(node['title']) + '</p>')
+
+
+def depart_question_html(self, node):
+    self.body.append('</div>')
+
+
+def visit_question_latex(self, node):
+    self.body.append("\n\\par\\medskip\\textbf{" + self.encode(node["title"]) + "}\\par\\smallskip\n")
+
+
+def depart_question_latex(self, node):
+    self.body.append("\n\\par\\medskip\n")
+
+
+def visit_step_html(self, node):
+    self.body.append(self.starttag(node, "div", CLASS="solution-step", **{"data-step": str(node["number"])}))
+    self.body.append('<p class="solution-step-title">Step '
+                     + str(node["number"]) + ' — ' + escape(node["title"]) + '</p>')
+
+
+def depart_step_html(self, node):
+    self.body.append('</div>')
+
+
+def visit_step_latex(self, node):
+    self.body.append("\n\\par\\medskip\\Needspace{4\\baselineskip}\n"
+                     + "{\\color{QuizStepRed}\\bfseries Step " + str(node["number"])
+                     + " — " + self.encode(node["title"]) + "}\\par\\smallskip\n")
+
+
+def depart_step_latex(self, node):
+    self.body.append("\n\\par\n")
+
+
+def visit_step_math_html(self, node):
+    self.body.append(self.starttag(node, "div" if node["display"] else "span", CLASS="solution-math"))
+
+
+def depart_step_math_html(self, node):
+    self.body.append('</div>' if node["display"] else '</span>')
+
+
+def visit_step_math_latex(self, node):
+    self.body.append("{\\color{QuizMathBlue} ")
+
+
+def depart_step_math_latex(self, node):
+    self.body.append("}")
 
 
 def unique_scripts(scripts):
@@ -149,6 +264,18 @@ def setup(app):
     # script deduplicator can consolidate both registrations.
     app.add_js_file("textbook-interactives.js")
     app.add_directive("interactive-demo", InteractiveDemoDirective)
+    app.add_directive("original-question", OriginalQuestionDirective)
+    app.add_directive("worked-solution", WorkedSolutionDirective)
+    app.add_directive("solution-step", SolutionStepDirective)
+    app.add_node(OriginalQuestion,
+                 html=(visit_question_html, depart_question_html),
+                 latex=(visit_question_latex, depart_question_latex))
+    app.add_node(SolutionStep,
+                 html=(visit_step_html, depart_step_html),
+                 latex=(visit_step_latex, depart_step_latex))
+    app.add_node(StepMath,
+                 html=(visit_step_math_html, depart_step_math_html),
+                 latex=(visit_step_math_latex, depart_step_math_latex))
     app.add_node(InteractiveDemo,
                  html=(visit_interactive_html, depart_interactive_html),
                  latex=(visit_interactive_latex, depart_interactive_latex))
@@ -163,5 +290,5 @@ def setup(app):
                  latex=(visit_latex, depart_latex))
     for name in ("formula-box", "application", "worked-example", "understanding-check"):
         app.add_directive(name, TeachingBoxDirective)
-    return {"version": "1.6", "env_version": 7,
+    return {"version": "1.9", "env_version": 10,
             "parallel_read_safe": True, "parallel_write_safe": True}

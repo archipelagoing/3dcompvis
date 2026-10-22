@@ -27,7 +27,7 @@ Keep material that helps the reader understand a relevant concept, interpret a r
 - Keep distinct, relevant quiz questions integrated beside the concepts they test.
 - Use the strongest slide example or image when it genuinely explains the idea.
 - Remove invented extensions, historical background, tangents, repeated reminders, and extra examples that add no new understanding.
-- Consolidate repeated topics and duplicate quiz exposition. Preserve duplicate quizzes as short retest references.
+- Consolidate repeated topics and duplicate quiz exposition. Give duplicate quizzes their own original questions and complete worked solutions in the standardized quiz format.
 - Give each concept one teaching location across the entire book. Later chapters contain only additions: replace repeated definitions, formulas, invariant tables, and already-solved numerical examples with prerequisite links. Compare TLDRs and end quizzes as well. Preserve original source assignments in the registers when moving distinct practice questions beside the chapter that teaches their concepts.
 - Give lower-priority material proportionately less space. Never omit a necessary topic merely because its mathematics is difficult.
 
@@ -113,3 +113,14 @@ If a passage is shorter but harder to understand, revise it again.
 ## One-line invocation
 
 “Apply `TEXTBOOK_SIMPLIFICATION_PROMPT.md` to all currently written textbook content. Preserve required coverage and quiz integration, remove unnecessary detail, and rebuild the web and LaTeX/PDF editions.”
+
+
+## Required complete quiz-example format
+
+Every assigned quiz question/subquestion must show the complete original problem from the supplied quiz booklet, its source filename and question number, followed by a fully worked solution. Preserve the original givens; identify booklet wording versus verbatim historical-PDF wording accurately. Label any added numerical inputs as original companions.
+
+Use `original-question` for the problem and `solution-step` for each numbered step. Step headings are red; each includes a short **Why** explanation in normal text; all mathematics inside a step is blue in HTML and LaTeX. Write full matrices/vectors, row-column products, substitutions, intermediate results and final checks. Conceptual questions get a complete reasoned sequence; do not fabricate numerical givens or matrices for a question that needs a written argument. Keep colors dark enough for print and keep numbered labels/meaning readable in grayscale.
+
+Duplicate retests have their own original problems and complete worked solutions. Do not replace a quiz with a summary, toy numerical variant, final-answer table, or a retest-only link. Each lecture’s `quiz-workbook.md` is the canonical complete treatment; concept pages link directly to the relevant question. Old abbreviated quiz answers have been replaced by these links. The 18 historical quizzes and seven booklet supplements are tracked question by question in `authoring/quiz-question-coverage.csv`.
+
+Quiz content is maintained in `authoring/quiz-worked-content.json` and rendered to MyST with `.venv/bin/python scripts/render_quiz_workbooks.py`; normal HTML/LaTeX builds read those MyST pages. Do not separately edit the generated quiz pages and the JSON. Preserve all non-quiz MyST as before. This focused cross-lecture quiz revision is authorized by the user; it does not mark the full Lecture 5–6 chapters complete.

@@ -1,0 +1,1774 @@
+[
+  {
+    "booklet_id": "17",
+    "source": "cs532f25_quiz_1_solution.pdf",
+    "title": "Fall 2025 Quiz 1 --- Probability and rigid camera poses",
+    "lecture": 1,
+    "questions": [
+      {
+        "part": "Question 1",
+        "question": "A parlay succeeds only if all three independent fair coin flips succeed. What is the chance of winning one parlay?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-17-q1",
+        "worked_steps": [
+          {
+            "title": "Identify independent events",
+            "why": "Independent outcomes let us multiply their probabilities.",
+            "body": "Each fair flip succeeds with probability $1/2$. The three flip outcomes are independent."
+          },
+          {
+            "title": "Multiply the three chances",
+            "why": "A parlay wins only when every flip wins.",
+            "body": "Multiply probabilities for the joint event: $P(\\text{all 3})=(1/2)^3=1/8$."
+          },
+          {
+            "title": "Interpret the probability",
+            "why": "A fraction and a percentage describe the same chance.",
+            "body": "$\\boxed{P(\\text{win})=1/8=12.5\\%}$. This is the same product rule used for all-inlier RANSAC samples."
+          }
+        ]
+      },
+      {
+        "part": "Question 2",
+        "question": "You attempt one three-coin-flip parlay each day for seven independent days. What is the probability of winning at least one?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-17-q2",
+        "worked_steps": [
+          {
+            "title": "Find one day's failure chance",
+            "why": "Counting no wins is easier than counting every possible pattern of wins.",
+            "body": "One parlay win probability is $q=1/8$. Its loss probability is $1-q=7/8$."
+          },
+          {
+            "title": "Multiply seven failures",
+            "why": "The daily attempts are assumed independent.",
+            "body": "All seven attempts fail with probability $P(0\\text{ wins})=(7/8)^7$."
+          },
+          {
+            "title": "Take the complement",
+            "why": "At least one win and no wins are complementary events.",
+            "body": "Use the complement of no wins: \\[P(\\ge1\\text{ win})=1-(7/8)^7=1-823543/2097152.\\]"
+          },
+          {
+            "title": "Convert to a percentage",
+            "why": "The result should be a probability between zero and one.",
+            "body": "Therefore $\\boxed{P(\\ge1\\text{ win})\\approx0.607304\\approx60.73\\%}$."
+          }
+        ]
+      },
+      {
+        "part": "Question 3",
+        "question": "Two static cameras concurrently estimate the 3D rigid pose of the same object, as $[R_1,t_1]$ and $[R_2,t_2]$ in their own camera frames. Can one recover the relative camera pose? Explain and derive a transformation.",
+        "given": [],
+        "notes": [
+          "The uploaded key's superscript/subscript arrows are inconsistent in places. The formula above is unambiguous because its mapping direction is defined explicitly. If the poses are only known up to unknown scale, relative metric translation is not determined absolutely."
+        ],
+        "key": "quiz-17-q3",
+        "worked_steps": [
+          {
+            "title": "Define the coordinate maps",
+            "why": "Matrix order is meaningful only after we know what each map does.",
+            "body": "Define the direction before multiplying. For $i=1,2$, the object-to-camera pose is\n\\[T_i=\\begin{pmatrix}R_i&t_i\\\\0&1\\end{pmatrix},\\qquad X_{C_i}=T_iX_O.\\]\nHere $R_i$ is $3\\times3$, $t_i$ is $3\\times1$, and $T_i$ is $4\\times4$. The same physical object frame, time and length scale must be used in both estimates."
+          },
+          {
+            "title": "Invert camera 2's object pose",
+            "why": "We must return to the shared object frame first.",
+            "body": "Undo the second camera's map to return to object coordinates:\n\\[X_O=T_2^{-1}X_{C_2},\\qquad T_2^{-1}=\\begin{pmatrix}R_2^T&-R_2^Tt_2\\\\0&1\\end{pmatrix}.\\]\nA rotation's inverse is its transpose, and its translation must be undone in the rotated frame."
+          },
+          {
+            "title": "Compose the frame path",
+            "why": "The object frame connects the two camera frames.",
+            "body": "Follow the frame path camera 2 → object → camera 1:\n\\[X_{C_1}=T_1(T_2^{-1}X_{C_2})=(T_1T_2^{-1})X_{C_2}.\\]\nThe rightmost matrix acts first; reversing the product changes the mapping direction."
+          },
+          {
+            "title": "Multiply the block matrices",
+            "why": "This exposes the recovered rotation and translation separately.",
+            "body": "Multiply the complete block matrices:\n\\[\\begin{aligned}\nT_{C_1\\leftarrow C_2}\n&=\\begin{pmatrix}R_1&t_1\\\\0&1\\end{pmatrix}\n\\begin{pmatrix}R_2^T&-R_2^Tt_2\\\\0&1\\end{pmatrix}\\\\\n&=\\begin{pmatrix}R_1R_2^T&t_1-R_1R_2^Tt_2\\\\0&1\\end{pmatrix}.\n\\end{aligned}\\]\nThus $R_{12}=R_1R_2^T$ and $t_{12}=t_1-R_1R_2^Tt_2$."
+          },
+          {
+            "title": "Insert a numerical example",
+            "why": "Full matrices make the abstract composition concrete.",
+            "body": "Original numerical companion, not extra quiz givens: let $R_1=R_2=I$, $t_1=(1,1,4)^T$, $t_2=(-1,1,4)^T$. Then\n\\[T_1=\\begin{pmatrix}1&0&0&1\\\\0&1&0&1\\\\0&0&1&4\\\\0&0&0&1\\end{pmatrix},\\quad\nT_2^{-1}=\\begin{pmatrix}1&0&0&1\\\\0&1&0&-1\\\\0&0&1&-4\\\\0&0&0&1\\end{pmatrix}.\\]\nTheir product is\n\\[T_{12}=\\begin{pmatrix}1&0&0&2\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}.\\]"
+          },
+          {
+            "title": "Check the object origin",
+            "why": "A known point tests both the matrix order and translation sign.",
+            "body": "Check the direction on the observed object origin:\n\\[\\begin{pmatrix}1&0&0&2\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}\n\\begin{pmatrix}-1\\\\1\\\\4\\\\1\\end{pmatrix}\n=\\begin{pmatrix}-1+2\\\\1\\\\4\\\\1\\end{pmatrix}\n=\\begin{pmatrix}1\\\\1\\\\4\\\\1\\end{pmatrix}.\\]\nThis is exactly camera 1's observation $t_1$. Independent unknown pose scales or inconsistent object-frame orientations prevent this metric recovery."
+          }
+        ]
+      },
+      {
+        "part": "Question 4",
+        "question": "Can one determine the 3D plane passing through both camera centers and the tracked object's center? Derive it.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-17-q4",
+        "worked_steps": [
+          {
+            "title": "Choose one working frame",
+            "why": "Points can share a plane equation only when their coordinates use the same frame.",
+            "body": "Use camera-1 coordinates as the world frame: $C_1=(0,0,0)^T$. The object-frame origin is observed at $O=t_1$."
+          },
+          {
+            "title": "Locate camera 2",
+            "why": "Its origin maps to the translation column of the relative camera pose.",
+            "body": "Find camera-2 center $C_2$ as the translation part of the transform $^{C_1}T_{C_2}$ from Question 3."
+          },
+          {
+            "title": "Cross two in-plane vectors",
+            "why": "The cross product is perpendicular to both directions.",
+            "body": "Two vectors lying in the plane are $a=O-C_1$ and $b=C_2-C_1$. Take the cross product to find a plane normal: $\\boxed{n=a\\times b}$."
+          },
+          {
+            "title": "Write the plane equation",
+            "why": "Every displacement inside the plane is perpendicular to its normal.",
+            "body": "The plane equation is $n^T(X-C_1)=0$ or $n^TX+d=0$ with $d=-n^TC_1$. Because $C_1=0$, $\\boxed{n^TX=0}$."
+          },
+          {
+            "title": "Check for collinearity",
+            "why": "Three collinear points do not determine a unique plane.",
+            "body": "Require $n\\ne0$, i.e. the three points are noncollinear. If cameras and object center lie on one line, infinitely many planes contain them. Draw a triangle joining $C_1,C_2,O$ with a perpendicular arrow $n$."
+          },
+          {
+            "title": "Expand and verify a numerical plane",
+            "why": "Substitution checks that all three required points actually lie on the answer.",
+            "body": "Original numerical companion: the preceding question gave $C_1=(0,0,0)^T$, $C_2=(2,0,0)^T$, $O=(1,1,4)^T$. Expand the cross product:\n\\[n=\\begin{pmatrix}1\\\\1\\\\4\\end{pmatrix}\\times\\begin{pmatrix}2\\\\0\\\\0\\end{pmatrix}\n=\\begin{pmatrix}1(0)-4(0)\\\\4(2)-1(0)\\\\1(0)-1(2)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\8\\\\-2\\end{pmatrix}\\sim\\begin{pmatrix}0\\\\4\\\\-1\\end{pmatrix}.\\]\nThe plane is $4Y-Z=0$. Substitution gives $0$ for both camera centers and $4(1)-4=0$ for the object origin. An extended object need not lie entirely on this plane."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "18",
+    "source": "cs532_f17_quiz9.pdf",
+    "title": "Fall 2017 Quiz 9 --- Depth maps and tetrahedron normals",
+    "lecture": 1,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "Explain how to convert two depth maps into a single 3D point cloud in a common reference frame. What information is required? Make a sketch.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-18-q1",
+        "worked_steps": [
+          {
+            "title": "Collect calibration and poses",
+            "why": "Depth alone does not identify a point's coordinates in a shared world frame.",
+            "body": "For camera $i\\in\\{1,2\\}$ obtain intrinsic matrix $K_i$, per-pixel depth $Z_i(u,v)$, and a known camera-to-world rigid transform $^{W}T_{C_i}=\\begin{bmatrix}R_i&t_i\\\\0&1\\end{bmatrix}$. First correct lens distortion if depth is reported in distorted coordinates."
+          },
+          {
+            "title": "Backproject each depth pixel",
+            "why": "Intrinsics turn a pixel into a viewing ray; axial depth sets its scale.",
+            "body": "For pixel $p_i=(u,v,1)^T$, compute normalized camera ray $r_i=K_i^{-1}p_i$, whose last component is 1 under standard intrinsics. If depth means camera-axis $Z$, backproject: $\\boxed{X_{C_i}=Z_i(u,v)\\,K_i^{-1}p_i}$."
+          },
+          {
+            "title": "Expand the camera coordinates",
+            "why": "This makes the pixel offsets and focal-length divisions explicit.",
+            "body": "For standard intrinsics with zero skew this becomes $X_{C_i}=((u-c_x)Z/f_x,(v-c_y)Z/f_y,Z)^T$. Skip missing, zero, invalid, or occluded depth pixels."
+          },
+          {
+            "title": "Transform both clouds into one frame",
+            "why": "Coordinates from different cameras cannot be merged directly.",
+            "body": "Map every 3D point into the \\emph{same} world frame: $\\boxed{X_W=R_iX_{C_i}+t_i}$. Combine both transformed sets; optional voxel fusion/outlier removal prevents duplicates or inconsistent observations."
+          },
+          {
+            "title": "Check the meaning of depth",
+            "why": "Range along a ray and depth along the optical axis require different scaling.",
+            "body": "If depth means \\emph{Euclidean range along ray}, use $X_{C_i}=\\rho_i r_i/\\|r_i\\|$, not $Z_i r_i$. The question needs a depth convention, the two sets of intrinsics, and the relative/world poses."
+          },
+          {
+            "title": "Multiply a complete numerical example",
+            "why": "Both camera observations should land on the same world point.",
+            "body": "Original numerical companion: use\n\\[K=\\begin{pmatrix}500&0&250\\\\0&500&250\\\\0&0&1\\end{pmatrix},\\quad\nK^{-1}=\\begin{pmatrix}1/500&0&-1/2\\\\0&1/500&-1/2\\\\0&0&1\\end{pmatrix}.\\]\nBoth axial depths are $10$. Backproject each measurement explicitly:\n\\[X_{C_1}=10K^{-1}\\begin{pmatrix}300\\\\250\\\\1\\end{pmatrix}\n=10\\begin{pmatrix}300/500-1/2\\\\250/500-1/2\\\\1\\end{pmatrix}\n=\\begin{pmatrix}1\\\\0\\\\10\\end{pmatrix},\\]\n\\[X_{C_2}=10K^{-1}\\begin{pmatrix}200\\\\250\\\\1\\end{pmatrix}\n=10\\begin{pmatrix}200/500-1/2\\\\250/500-1/2\\\\1\\end{pmatrix}\n=\\begin{pmatrix}-1\\\\0\\\\10\\end{pmatrix}.\\]\nCamera 2 is at world $(2,0,0)$ with identity orientation. Its camera-to-world map gives\n\\[\\begin{pmatrix}1&0&0&2\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}\n\\begin{pmatrix}-1\\\\0\\\\10\\\\1\\end{pmatrix}\n=\\begin{pmatrix}1\\\\0\\\\10\\\\1\\end{pmatrix}.\\]\nThe two observations now represent the same world point."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2(a)",
+        "question": "A tetrahedron has vertices $v_1=(1,1,0)$, $v_2=(1,2,0)$, $v_3=(1,1,1)$, $v_4=(2,1,0)$. Find one \\emph{outward} surface normal per face, and sketch the result.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-18-q2",
+        "worked_steps": [
+          {
+            "title": "Choose faces and an orientation rule",
+            "why": "A cross product gives two possible normal directions depending on edge order.",
+            "body": "Use the four faces 123, 124, 134 and 234. For each face take two edge vectors and cross them. Choose outward unit normals for a consistent answer; the opposite vertex lies on the inward side. A candidate $n$ is outward when $n^T(v_{opposite}-v_{face})<0$."
+          },
+          {
+            "title": "Compute face 123",
+            "why": "The opposite vertex tells us whether to flip the candidate normal.",
+            "body": "Face 123: subtract the vertices and expand:\n\\[a=v_2-v_1=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix},\\quad b=v_3-v_1=\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix},\\]\n\\[a\\times b=\\begin{pmatrix}1(1)-0(0)\\\\0(0)-0(1)\\\\0(0)-1(0)\\end{pmatrix}\n=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}.\\]\nThe opposite vertex is toward $+X$, so this candidate points inward. Flip it: $n_{123}=(-1,0,0)^T$."
+          },
+          {
+            "title": "Compute face 124",
+            "why": "The cross product must point away from the tetrahedron's interior.",
+            "body": "Face 124 uses $a=(0,1,0)^T$ and $b=v_4-v_1=(1,0,0)^T$:\n\\[a\\times b=\\begin{pmatrix}1(0)-0(0)\\\\0(1)-0(0)\\\\0(0)-1(1)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix}.\\]\nIt points away from the opposite vertex above $Z=0$, so $n_{124}=(0,0,-1)^T$."
+          },
+          {
+            "title": "Compute face 134",
+            "why": "A candidate pointing toward the opposite vertex is inward.",
+            "body": "Face 134 uses $a=(0,0,1)^T$, $b=(1,0,0)^T$:\n\\[a\\times b=\\begin{pmatrix}0(0)-1(0)\\\\1(1)-0(0)\\\\0(0)-0(1)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}.\\]\nThe opposite vertex lies toward $+Y$, so flip this inward candidate: $n_{134}=(0,-1,0)^T$."
+          },
+          {
+            "title": "Compute face 234",
+            "why": "The slanted face also needs normalization to unit length.",
+            "body": "Face 234 uses $a=v_3-v_2=(0,-1,1)^T$, $b=v_4-v_2=(1,-1,0)^T$:\n\\[a\\times b=\\begin{pmatrix}(-1)(0)-1(-1)\\\\1(1)-0(0)\\\\0(-1)-(-1)(1)\\end{pmatrix}\n=\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}.\\]\nIts dot product with $v_1-v_2=(0,-1,0)^T$ is $-1$, so it already points outward. Divide by $\\sqrt{1+1+1}=\\sqrt3$: $n_{234}=(1,1,1)^T/\\sqrt3$."
+          },
+          {
+            "title": "Collect and check all normals",
+            "why": "Unit length, perpendicularity and outward direction are separate checks.",
+            "body": "The four answers are\n\\[n_{123}=\\begin{pmatrix}-1\\\\0\\\\0\\end{pmatrix},\\quad n_{124}=\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix},\\quad\nn_{134}=\\begin{pmatrix}0\\\\-1\\\\0\\end{pmatrix},\\quad n_{234}=\\frac1{\\sqrt3}\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}.\\]\nEach has unit length and zero dot product with both edges of its own face. Draw arrows outward from the four face interiors."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2(b)",
+        "question": "Rotate the complete tetrahedron by $+90^\\circ$ about the global $Z$ axis. Find the modified face normals.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-18-q3",
+        "worked_steps": [
+          {
+            "title": "Build the rotation matrix",
+            "why": "The active right-handed convention fixes the signs.",
+            "body": "For an \\emph{active}, right-handed $+90^\\circ$ rotation, \\[R_z(90^\\circ)=\\begin{bmatrix}\\cos90^\\circ&-\\sin90^\\circ&0\\\\\\sin90^\\circ&\\cos90^\\circ&0\\\\0&0&1\\end{bmatrix}=\\begin{bmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{bmatrix}.\\]"
+          },
+          {
+            "title": "Apply the normal transformation rule",
+            "why": "A rigid rotation rotates a normal without adding translation.",
+            "body": "Pure rigid rotations rotate normals by the same matrix: $n'_{ijk}=R_zn_{ijk}$. (General nonrigid affine transforms use an inverse-transpose rule instead.)"
+          },
+          {
+            "title": "Multiply the three axis normals",
+            "why": "Writing every matrix-vector product exposes the changed directions.",
+            "body": "Multiply the rotation by each axis-aligned normal:\n\\[\\begin{aligned}\nn'_{123}&=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}-1\\\\0\\\\0\\end{pmatrix}\n=\\begin{pmatrix}0\\\\-1\\\\0\\end{pmatrix},\\\\\nn'_{124}&=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix}\n=\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix},\\\\\nn'_{134}&=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0\\\\-1\\\\0\\end{pmatrix}\n=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}.\n\\end{aligned}\\]"
+          },
+          {
+            "title": "Multiply the slanted normal",
+            "why": "Its normalization must be preserved too.",
+            "body": "For the slanted face, retain the normalization:\n\\[n'_{234}=\\frac1{\\sqrt3}\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}\n\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\n=\\frac1{\\sqrt3}\\begin{pmatrix}0(1)-1(1)+0(1)\\\\1(1)+0(1)+0(1)\\\\0(1)+0(1)+1(1)\\end{pmatrix}\n=\\frac1{\\sqrt3}\\begin{pmatrix}-1\\\\1\\\\1\\end{pmatrix}.\\]"
+          },
+          {
+            "title": "Check geometric consistency",
+            "why": "A rotation preserves lengths and perpendicularity.",
+            "body": "Check the rotation rather than adding translation: $R_z^TR_z=I$ preserves unit lengths and dot products. Rotating the vertices and recomputing their outward normals gives these same answers. Under a general nonrigid affine transform, normals instead use an inverse transpose."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "8",
+    "source": "cs532s20_quiz1.pdf",
+    "title": "Spring 2020 Quiz 1 --- Projective points and camera projection",
+    "lecture": 2,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "For projective-plane points $a,b,c$, use only dot and cross products to test whether they are collinear. In what case does the test fail?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-8-q1",
+        "worked_steps": [
+          {
+            "title": "Join two projective points",
+            "why": "The cross product constructs their homogeneous line.",
+            "body": "Recall that the homogeneous \\emph{line through two distinct points} is their cross product: $\\ell=a\\times b$."
+          },
+          {
+            "title": "Test the third point",
+            "why": "A point is on a line exactly when their dot product is zero.",
+            "body": "A third point $c$ lies on $\\ell$ exactly when its dot product with $\\ell$ is zero. Thus test $\\boxed{c^T(a\\times b)=0}$. This equals the determinant of the matrix with columns $a,b,c$."
+          },
+          {
+            "title": "Handle repeated points",
+            "why": "A zero cross product cannot identify a unique joining line.",
+            "body": "If $a\\sim b$, then $a\\times b=0$, so it does not construct a unique line. Choose a distinct pair instead. The determinant still correctly says the three representatives are linearly dependent: any repeated point together with a third point lies on at least one line. A zero homogeneous point itself is invalid."
+          },
+          {
+            "title": "Expand a numerical test",
+            "why": "Actual products show both a passing and a failing candidate.",
+            "body": "Original numerical companion: take $a=(0,0,1)^T$, $b=(2,0,1)^T$, $c=(5,0,1)^T$. Then\n\\[a\\times b=\\begin{pmatrix}0(1)-1(0)\\\\1(2)-0(1)\\\\0(0)-0(2)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\2\\\\0\\end{pmatrix},\\qquad\nc^T(a\\times b)=\\begin{pmatrix}5&0&1\\end{pmatrix}\\begin{pmatrix}0\\\\2\\\\0\\end{pmatrix}=0.\\]\nThe points lie on $Y=0$. Replacing $c$ by $(5,1,1)^T$ gives $5(0)+1(2)+1(0)=2$, so that point is off the line."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2(a--b)",
+        "question": "Let $X=(X,Y,Z,W)^T$ be a homogeneous 3D point and $x\\sim MX$ a homogeneous 2D image point. Find (a) the dimensions of $M$; (b) explicit inhomogeneous image coordinates from the entries $m_{ij}$ and $X$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-8-q2",
+        "worked_steps": [
+          {
+            "title": "Count input and output entries",
+            "why": "Matrix multiplication determines the camera matrix's dimensions.",
+            "body": "A 3D homogeneous point has four components; a 2D homogeneous image point has three. Therefore $\\boxed{M\\in\\mathbb R^{3\\times4}}$ and $Mx\\!$ is \\emph{not} the mapping; the correct product is $MX\\in\\mathbb R^{3\\times1}$."
+          },
+          {
+            "title": "Multiply the full projection matrix",
+            "why": "Every output entry is one row dotted with the world point.",
+            "body": "Show the full matrix-vector product:\n\\[\\begin{aligned}\nq&=\\begin{pmatrix}m_{11}&m_{12}&m_{13}&m_{14}\\\\m_{21}&m_{22}&m_{23}&m_{24}\\\\m_{31}&m_{32}&m_{33}&m_{34}\\end{pmatrix}\n\\begin{pmatrix}X\\\\Y\\\\Z\\\\W\\end{pmatrix}\\\\\n&=\\begin{pmatrix}m_{11}X+m_{12}Y+m_{13}Z+m_{14}W\\\\m_{21}X+m_{22}Y+m_{23}Z+m_{24}W\\\\m_{31}X+m_{32}Y+m_{33}Z+m_{34}W\\end{pmatrix}.\n\\end{aligned}\\]"
+          },
+          {
+            "title": "Divide by the last coordinate",
+            "why": "Homogeneous image coordinates represent ratios.",
+            "body": "A finite homogeneous point represents ratios, so divide the first two entries by the third:\n\\[\\begin{aligned}\nu&=\\frac{m_{11}X+m_{12}Y+m_{13}Z+m_{14}W}{m_{31}X+m_{32}Y+m_{33}Z+m_{34}W},\\\\\nv&=\\frac{m_{21}X+m_{22}Y+m_{23}Z+m_{24}W}{m_{31}X+m_{32}Y+m_{33}Z+m_{34}W}.\n\\end{aligned}\\]\nFor a finite world point choose $W=1$. If $q_3=0$ and $q\\ne0$, the result is an ideal image point; if $q=0$, projection is undefined."
+          }
+        ]
+      },
+      {
+        "part": "Problem 3(a--b)",
+        "question": "Let $\\ell_1,\\ell_2$ be two distinct vertical lines each at distance $d>0$ from the 2D origin, and $\\ell_3$ the horizontal line through the origin. Give their homogeneous line vectors and count the possible pairwise intersections.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-8-q3",
+        "worked_steps": [
+          {
+            "title": "Represent the vertical lines",
+            "why": "Their equations fix the signs of the constant coefficients.",
+            "body": "Choose $\\ell_1:x=d$ and $\\ell_2:x=-d$; as $ax+by+c=0$, their vectors are $\\boxed{\\ell_1=(1,0,-d)^T}$, $\\boxed{\\ell_2=(1,0,d)^T}$."
+          },
+          {
+            "title": "Represent the horizontal line",
+            "why": "The line through the origin has no constant offset.",
+            "body": "For the horizontal line $y=0$, use $\\boxed{\\ell_3=(0,1,0)^T}$. Line vectors are homogeneous, so nonzero multiples are equivalent."
+          },
+          {
+            "title": "Compute both finite intersections",
+            "why": "Cross products intersect homogeneous lines.",
+            "body": "Compute both finite intersections component by component:\n\\[\\begin{aligned}\n\\ell_1\\times\\ell_3&=\\begin{pmatrix}0(0)-(-d)(1)\\\\(-d)(0)-1(0)\\\\1(1)-0(0)\\end{pmatrix}\n=\\begin{pmatrix}d\\\\0\\\\1\\end{pmatrix},\\\\\n\\ell_2\\times\\ell_3&=\\begin{pmatrix}0(0)-d(1)\\\\d(0)-1(0)\\\\1(1)-0(0)\\end{pmatrix}\n=\\begin{pmatrix}-d\\\\0\\\\1\\end{pmatrix}.\n\\end{aligned}\\]\nTheir final coordinates are already one, giving ordinary points $(d,0)$ and $(-d,0)$."
+          },
+          {
+            "title": "Intersect the parallel lines",
+            "why": "A zero last coordinate represents a point at infinity.",
+            "body": "The parallel vertical lines give\n\\[\\ell_1\\times\\ell_2=\\begin{pmatrix}0(d)-(-d)(0)\\\\(-d)(1)-1(d)\\\\1(0)-0(1)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\-2d\\\\0\\end{pmatrix}\\sim\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}.\\]\nThe last coordinate is zero, so do not divide: this is a point at infinity in the vertical direction."
+          },
+          {
+            "title": "Count in the stated geometry",
+            "why": "Projective and finite-plane intersection counts differ.",
+            "body": "Thus $\\boxed{3\\text{ projective intersections}}$ among the 3 line pairs, of which $\\boxed{2\\text{ are finite}}$. Say both numbers to clarify the geometric convention."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "7",
+    "source": "cs532s19-quiz3.pdf",
+    "title": "Spring 2019 Quiz 3 --- Pentagon, homography, RANSAC",
+    "lecture": 3,
+    "questions": [
+      {
+        "part": "Problem 1(a--d)",
+        "question": "Two images show only the same \\emph{irregular five-sided polygon}, related by an unknown homography. All five corners are detected in each image. You create every possible putative corner correspondence. (a) How many? (b) What inlier rate? (c) How many RANSAC iterations are needed to reliably estimate the homography? (d) What changes for a regular/equilateral pentagon?",
+        "given": [],
+        "notes": [
+          "The irregular-pentagon problem still requires nondegenerate 4-tuples (e.g. no three source points collinear). The exact without-replacement refinement above does not imply that \\emph{every} four-inlier subset yields a uniquely acceptable model under all degeneracies."
+        ],
+        "key": "quiz-7-q1",
+        "worked_steps": [
+          {
+            "title": "Count all candidate pairs",
+            "why": "Every corner in the first image can pair with every corner in the second.",
+            "body": "There are 5 features in image A and 5 in image B. Exhaustive matching forms all ordered cross-image pairs, so $\\boxed{5\\times5=25}$ putative correspondences."
+          },
+          {
+            "title": "Count the true inliers",
+            "why": "The inlier ratio is measured relative to one intended corner assignment.",
+            "body": "Assume one unique correct correspondence for each of the 5 image-A corners. Then 5 of the 25 pairs are inliers, so $\\boxed{w=5/25=0.2}$ and outlier rate $e=0.8$."
+          },
+          {
+            "title": "Set up the RANSAC probability",
+            "why": "A homography needs four nondegenerate correspondences in one clean sample.",
+            "body": "The minimal homography solver requires $s=4$ nondegenerate correspondences. The usual RANSAC independent-sample approximation sets \\[1-(1-w^s)^N\\ge p\\quad\\Rightarrow\\quad N\\ge\\frac{\\ln(1-p)}{\\ln(1-w^s)}.\\]"
+          },
+          {
+            "title": "Insert a confidence level",
+            "why": "The question needs a chosen confidence before a numerical trial count exists.",
+            "body": "For the \\emph{illustrative} common confidence $p=0.99$, $w^4=0.2^4=0.0016$, hence \\[\\boxed{N_{\\mathrm{approx}}=\\left\\lceil\\frac{\\ln(0.01)}{\\ln(0.9984)}\\right\\rceil=2876}.\\] The quiz does not specify a confidence; the general formula is the source-supported answer. Sampling all putative matches independently also ignores the one-to-one matching constraint, so these iteration counts describe a simplified model."
+          },
+          {
+            "title": "Check the finite sampling model",
+            "why": "Drawing distinct pairs from a small pool changes the clean-sample probability.",
+            "body": "Because there are only 25 candidate pairs and each RANSAC \\emph{sample selects 4 distinct pairs}, the exact probability of four inliers in a uniform draw without replacement is smaller: \\[q_{\\mathrm{exact}}=\\frac{\\binom54}{\\binom{25}4}=\\frac5{12650}\\approx0.00039526.\\] If \\emph{each trial samples afresh} and we desire $p=0.99$, \\[\\boxed{N_{\\mathrm{finite}}=\\left\\lceil\\frac{\\ln(.01)}{\\ln(1-5/12650)}\\right\\rceil=11649}.\\] This is an optional exact finite-population refinement; the standard lecture approximation uses $w^s$."
+          },
+          {
+            "title": "Explain the regular-pentagon ambiguity",
+            "why": "More trials cannot distinguish equally supported symmetries.",
+            "body": "For a regular pentagon, rotational/reflection symmetry makes the corner identities ambiguous: several match permutations may fit geometrically similar configurations. Without texture/orientation/other cues, a unique physical correspondence is less secure. Explain that good geometric fits need not identify the \\emph{intended} corner labeling.\nFor a genuinely regular pentagon, each of its five corners can serve as the first aligned corner. Each choice permits a clockwise or counterclockwise ordering, giving $5\\times2=10$ equally supported alignments: five rotations and five reflections. If an external orientation constraint excludes reflections, five remain. The $20\\%$ inlier rate refers to one selected alignment, not a union of different models. Equal side lengths alone do not imply these symmetries; the answer assumes a regular pentagon with equal angles too."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "10",
+    "source": "cs532s19_quiz2-2.pdf",
+    "title": "Spring 2019 Quiz 2 --- FOV, calibration, homogeneous scaling",
+    "lecture": 3,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "A digital camera has image resolution $640\\times480$ pixels and horizontal field of view $90^\\circ$. Determine the focal length in pixels and draw a sketch.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-10-q1",
+        "worked_steps": [
+          {
+            "title": "Draw the half-angle triangle",
+            "why": "The symmetric horizontal field of view splits into two equal angles.",
+            "body": "Take a horizontal cross-section through the optical axis. The full horizontal FOV is $90^\\circ$, so each edge ray is $45^\\circ$ from the optical axis. The image half-width is $W/2=320$ pixels."
+          },
+          {
+            "title": "Rearrange the tangent relation",
+            "why": "Similar triangles connect pixel half-width and focal length.",
+            "body": "In the pinhole triangle, $\\tan(\\theta/2)=(W/2)/f_x$. Rearrange: $f_x=(W/2)/\\tan(\\theta/2)$."
+          },
+          {
+            "title": "Substitute the camera's numbers",
+            "why": "The requested focal length is in pixels.",
+            "body": "Substitute $W=640$, $\\theta=90^\\circ$: \\[\\boxed{f_x=\\frac{320}{\\tan45^\\circ}=320\\ \\mathrm{px}}.\\]"
+          }
+        ]
+      },
+      {
+        "part": "Problem 2",
+        "question": "Write the intrinsic calibration matrix $K$ for the camera.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-10-q2",
+        "worked_steps": [
+          {
+            "title": "Write the intrinsic matrix",
+            "why": "Its entries separate focal lengths, skew and principal point.",
+            "body": "Use standard intrinsic form $K=\\begin{bmatrix}f_x&s&c_x\\\\0&f_y&c_y\\\\0&0&1\\end{bmatrix}$."
+          },
+          {
+            "title": "State the missing assumptions",
+            "why": "Horizontal field of view alone does not determine every entry.",
+            "body": "The horizontal FOV determines $f_x=320$ px only. To fill the other terms, \\emph{assume} square pixels ($f_y=f_x$), zero skew ($s=0$), and centered principal point ($(c_x,c_y)=(320,240)$)."
+          },
+          {
+            "title": "Fill in all matrix entries",
+            "why": "Only the stated extra assumptions justify a numerical K.",
+            "body": "Under those common assumptions, \\[\\boxed{K=\\begin{bmatrix}320&0&320\\\\0&320&240\\\\0&0&1\\end{bmatrix}}.\\] Without them, $f_y,s,c_x,c_y$ cannot all be inferred from the given horizontal FOV alone."
+          }
+        ]
+      },
+      {
+        "part": "Problem 3(a--b)",
+        "question": "In $x=K[R\\mid t]X$, give dimensions of every matrix/vector. If the right-hand side is multiplied by 2 to obtain $x'=2K[R\\mid t]X$, how are $x'$ and $x$ related?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-10-q3",
+        "worked_steps": [
+          {
+            "title": "List matrix dimensions",
+            "why": "Adjacent matrix dimensions must agree in the projection product.",
+            "body": "$K:3\\times3$, $R:3\\times3$, $t:3\\times1$, $[R\\mid t]:3\\times4$, $X:4\\times1$, $x:3\\times1$; total projection matrix $P=K[R\\mid t]$ is $3\\times4$."
+          },
+          {
+            "title": "Apply the common scale",
+            "why": "Homogeneous coordinates permit a nonzero common multiplier.",
+            "body": "Homogeneous images are defined up to nonzero scale: $x'=(2q_1,2q_2,2q_3)^T$ vs $x=(q_1,q_2,q_3)^T$."
+          },
+          {
+            "title": "Divide out that scale",
+            "why": "Ordinary image coordinates depend on ratios, so the location stays fixed.",
+            "body": "Dehomogenize: $u'=2q_1/(2q_3)=q_1/q_3=u$ and $v'=2q_2/(2q_3)=v$. So $\\boxed{x'\\sim x}$: identical physical image points."
+          }
+        ]
+      },
+      {
+        "part": "Problem 4",
+        "question": "What are the 3D coordinates of the image principal point in the camera coordinate system?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-10-q4",
+        "worked_steps": [
+          {
+            "title": "Locate the optical-axis intersection",
+            "why": "That intersection defines the principal point geometrically.",
+            "body": "The principal point is the intersection of the camera optical axis with the image plane. In a virtual plane $z=f_{\\mathrm{physical}}$, the optical axis is $X=Y=0$."
+          },
+          {
+            "title": "Give its camera-frame position",
+            "why": "The virtual image plane is at physical focal depth.",
+            "body": "Therefore its camera-frame position is $\\boxed{(0,0,f_{\\mathrm{physical}})}$. If the image-plane coordinate units are \\emph{chosen as pixel-equivalent units}, one may write $(0,0,320)$ using the computed focal length in pixels."
+          },
+          {
+            "title": "Separate physical and pixel coordinates",
+            "why": "Pixel focal length does not reveal millimeters without pixel pitch.",
+            "body": "Distinguish this 3D position from the image-array pixel coordinates $\\boxed{(c_x,c_y)=(320,240)}$ under the centered-principal-point assumption. Physical $f$ in meters/mm is not determined by pixel focal length alone without pixel pitch."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "11",
+    "source": "cs532s20_quiz3.pdf",
+    "title": "Spring 2020 Quiz 3 --- Duplicate camera model",
+    "lecture": 3,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "A camera is $640$ pixels wide by $480$ tall with horizontal FOV $90^\\circ$. Find pixel focal length and sketch the rays.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-11-q1",
+        "worked_steps": [
+          {
+            "title": "Split the field of view",
+            "why": "The centered optical axis produces two 45-degree half angles.",
+            "body": "Half-angle is $90^\\circ/2=45^\\circ$, and half-width is $640/2=320$ pixels. Draw the camera center, optical axis and the rays to the two horizontal ends of the image plane."
+          },
+          {
+            "title": "Write the tangent equation",
+            "why": "The opposite side is the 320-pixel half-width.",
+            "body": "$\\tan45^\\circ=(320\\,\\mathrm{px})/f_x$."
+          },
+          {
+            "title": "Solve the focal length",
+            "why": "The tangent of 45 degrees is one.",
+            "body": "Since $\\tan45^\\circ=1$, $\\boxed{f_x=320\\,\\mathrm{px}}$. The half-angle/FOV diagram on the preceding quiz applies."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2",
+        "question": "Write the camera intrinsic matrix $K$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-11-q2",
+        "worked_steps": [
+          {
+            "title": "Write the general matrix",
+            "why": "This shows which intrinsic parameters remain unknown.",
+            "body": "Use $K=\\begin{bmatrix}f_x&s&c_x\\\\0&f_y&c_y\\\\0&0&1\\end{bmatrix}$. The supplied FOV fixes only $f_x$."
+          },
+          {
+            "title": "Declare the calibration assumptions",
+            "why": "Centering, square pixels and zero skew are additional information.",
+            "body": "Explicitly assume square pixels $f_y=f_x=320$, zero skew $s=0$, and principal point at $(320,240)$."
+          },
+          {
+            "title": "Substitute every entry",
+            "why": "The assumptions now determine a full numerical matrix.",
+            "body": "Then $\\boxed{K=\\begin{bmatrix}320&0&320\\\\0&320&240\\\\0&0&1\\end{bmatrix}}$."
+          }
+        ]
+      },
+      {
+        "part": "Problem 3(a--b)",
+        "question": "Give dimensions in $x=K[R\\mid t]X$ and explain what doubling the full homogeneous right-hand side changes.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-11-q3",
+        "worked_steps": [
+          {
+            "title": "Check every matrix shape",
+            "why": "The product maps four world entries to three image entries.",
+            "body": "Identify $K\\in\\mathbb R^{3\\times3}$, $R\\in\\mathbb R^{3\\times3}$, $t\\in\\mathbb R^{3\\times1}$, $[R\\mid t]\\in\\mathbb R^{3\\times4}$, $X\\in\\mathbb R^{4\\times1}$, $x\\in\\mathbb R^{3\\times1}$."
+          },
+          {
+            "title": "Double the homogeneous column",
+            "why": "The question rescales all three components together.",
+            "body": "For projected $x=(a,b,c)^T$, the doubled homogeneous vector $x'=2x=(2a,2b,2c)^T$."
+          },
+          {
+            "title": "Dehomogenize both columns",
+            "why": "The common multiplier cancels from both ratios.",
+            "body": "The dehomogenized coordinates are the same: $(a/c,b/c)=(2a/2c,2b/2c)$. Answer: $\\boxed{\\text{no image location change}}$."
+          }
+        ]
+      },
+      {
+        "part": "Problem 4",
+        "question": "Find the 3D coordinates of the principal point in the camera reference frame.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-11-q4",
+        "worked_steps": [
+          {
+            "title": "Write the optical-axis ray",
+            "why": "Its two lateral camera coordinates are zero.",
+            "body": "Set the optical-axis ray to $\\{(0,0,Z):Z>0\\}$; intersect with virtual image plane $z=f_{\\mathrm{physical}}$."
+          },
+          {
+            "title": "Intersect with the virtual image plane",
+            "why": "The plane fixes the third coordinate to the focal length.",
+            "body": "The point is $\\boxed{(0,0,f_{\\mathrm{physical}})}$ in camera length units; in pixel-normalized plane units $f=320$ gives the coordinate triple $(0,0,320)$."
+          },
+          {
+            "title": "Distinguish the pixel-array answer",
+            "why": "Camera-frame positions and pixel indices are different quantities.",
+            "body": "If the question instead asks for image-array pixel coordinates, use $(c_x,c_y)=(320,240)$ under the stated centering assumption."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "14",
+    "source": "cs532s20_quiz2.pdf",
+    "title": "Spring 2020 Quiz 2 --- Pinhole ray and cross product",
+    "lecture": 3,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "Let $A=(X,Y,Z)$ be a camera-frame 3D point. Its viewing ray passes through image point $a$ on the image plane. Given $f=Z/10$, determine the 3D camera-frame coordinates of $a$; sketch.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-14-q1",
+        "worked_steps": [
+          {
+            "title": "Use the common viewing ray",
+            "why": "A pinhole camera center, image-plane point and scene point are collinear.",
+            "body": "For a virtual pinhole image plane at $z=f$, the 3D point and pixel lie on the same ray from the origin. Similar triangles give $x_a/f=X/Z$ and $y_a/f=Y/Z$."
+          },
+          {
+            "title": "Write all three coordinates",
+            "why": "The image point lies on the plane with third coordinate f.",
+            "body": "Thus $a=(fX/Z,fY/Z,f)$."
+          },
+          {
+            "title": "Substitute the supplied focal length",
+            "why": "The common scale becomes one tenth.",
+            "body": "Substitute $f=Z/10$, assuming $Z\\ne0$: \\[\\boxed{a=(X/10,Y/10,Z/10)=A/10}.\\]"
+          },
+          {
+            "title": "Sketch the geometry",
+            "why": "The drawing should show the same ray through both points.",
+            "body": "Draw origin $O$, the point $A$, the intermediate image plane $z=f$, and $a$ on the segment of ray $OA$ (for $Z>0$ and $f=Z/10$). The vectors $Oa$ and $OA$ point in the same direction."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2",
+        "question": "Develop the expression for $A\\times a$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-14-q2",
+        "worked_steps": [
+          {
+            "title": "Insert the two vectors",
+            "why": "The preceding part fixes every coordinate of the image-plane point.",
+            "body": "Set $A=(X,Y,Z)^T$ and $a=(X/10,Y/10,Z/10)^T$."
+          },
+          {
+            "title": "Set up the cross product",
+            "why": "Its determinant representation organizes the three component calculations.",
+            "body": "Use the cross-product determinant: \\[A\\times a=\\begin{vmatrix}\\mathbf i&\\mathbf j&\\mathbf k\\\\X&Y&Z\\\\X/10&Y/10&Z/10\\end{vmatrix}.\\]"
+          },
+          {
+            "title": "Expand each component",
+            "why": "Equal scalar products cancel pairwise.",
+            "body": "Expand components: $(YZ/10-ZY/10,\\ ZX/10-XZ/10,\\ XY/10-YX/10)$."
+          },
+          {
+            "title": "Interpret the zero vector",
+            "why": "Parallel Euclidean 3D directions have zero cross product.",
+            "body": "Every component is zero, so $\\boxed{A\\times a=(0,0,0)^T}$. Geometrically, collinear vectors have zero cross product."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "15",
+    "source": "cs532f15_quiz9.pdf",
+    "title": "Older Quiz 9 --- Pinhole ray intersects a 3D plane",
+    "lecture": 3,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "A 3D plane has homogeneous parameters $\\pi=(A,B,C,D)^T$, i.e. $AX+BY+CZ+D=0$. A pinhole camera has center at the 3D origin, orientation $I$, focal length $f$, and observes pixel image-plane coordinates $(x',y')$. Find the 3D depth of the intersection of the viewing ray with the plane. Draw a sketch.",
+        "given": [],
+        "notes": [
+          "The formula gives $Z$ (depth along optical axis), not necessarily Euclidean camera-to-point range $\\sqrt{X^2+Y^2+Z^2}$."
+        ],
+        "key": "quiz-15-q1",
+        "worked_steps": [
+          {
+            "title": "Parameterize the viewing ray",
+            "why": "Every candidate 3D point must lie along that ray.",
+            "body": "The ray begins at camera origin and passes through $(x',y',f)$ on the virtual image plane. Its parametric form is $r(\\lambda)=\\lambda(x',y',f)=(\\lambda x',\\lambda y',\\lambda f)$."
+          },
+          {
+            "title": "Express X and Y using depth",
+            "why": "Pinhole ratios reduce the unknown point to one unknown Z.",
+            "body": "Using pinhole geometry, $x'/f=X/Z$, $y'/f=Y/Z$, hence $X=(x'/f)Z$ and $Y=(y'/f)Z$."
+          },
+          {
+            "title": "Substitute into the plane",
+            "why": "The requested intersection must satisfy the plane equation.",
+            "body": "Substitute into plane equation: \\[A\\frac{x'Z}{f}+B\\frac{y'Z}{f}+CZ+D=0.\\]"
+          },
+          {
+            "title": "Collect the depth terms",
+            "why": "Factoring Z isolates the quantity we want.",
+            "body": "Factor out $Z$: $Z(Ax'/f+By'/f+C)=-D$."
+          },
+          {
+            "title": "Solve the axial depth",
+            "why": "Division is valid only when the ray-plane denominator is nonzero.",
+            "body": "Solve the optical-axis depth: \\[\\boxed{Z=-\\frac{Df}{Ax'+By'+Cf}}.\\]"
+          },
+          {
+            "title": "Recover the full point",
+            "why": "Once depth is known the ray determines both lateral coordinates.",
+            "body": "Recover the complete intersection point, if requested: \\[\\boxed{X=\\frac{x'Z}{f},\\quad Y=\\frac{y'Z}{f},\\quad Z=-\\frac{Df}{Ax'+By'+Cf}}.\\] Equivalently $\\lambda=-D/(Ax'+By'+Cf)$ and $r(\\lambda)$ gives all three coordinates."
+          },
+          {
+            "title": "Check exceptional cases",
+            "why": "Parallel, contained and behind-camera cases need different interpretations.",
+            "body": "Check exceptions: if $Ax'+By'+Cf=0$ and $D\\ne0$, the viewing ray is parallel to the plane (no finite intersection). If both equal zero, the entire ray lies in the plane (no unique depth). A visible front-of-camera intersection normally requires $Z>0$."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "1",
+    "source": "cs532f15_quiz4.pdf",
+    "title": "Older Quiz 4 --- Epipolar line and constraint",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "Let $x_A=(x,y,w)^T$ be a point in image A and $F_{AB}=[f_{ij}]$ be the fundamental matrix from image A to B. Write the epipolar-line equation in B, using both matrix entries and the row vectors $\\mathbf f_1^T,\\mathbf f_2^T,\\mathbf f_3^T$. Make an illustrative sketch.",
+        "given": [
+          "$F_{AB}=\\begin{bmatrix}f_{11}&f_{12}&f_{13}\\\\f_{21}&f_{22}&f_{23}\\\\f_{31}&f_{32}&f_{33}\\end{bmatrix}$; homogeneous line $\\ell_B=(a,b,c)^T$."
+        ],
+        "notes": [],
+        "key": "quiz-1-q1",
+        "worked_steps": [
+          {
+            "title": "Choose the point-to-line rule",
+            "why": "F maps the known point to possible matches in the other image.",
+            "body": "Start from the fundamental-matrix point-to-line relation: $\\ell_B=F_{AB}x_A$. This is a line, not the matched pixel itself."
+          },
+          {
+            "title": "Multiply all three rows",
+            "why": "The resulting column contains line coefficients.",
+            "body": "Multiply each row of the full matrix by the input column:\n\\[\\begin{aligned}\n\\ell_B&=\\begin{pmatrix}f_{11}&f_{12}&f_{13}\\\\f_{21}&f_{22}&f_{23}\\\\f_{31}&f_{32}&f_{33}\\end{pmatrix}\n\\begin{pmatrix}x\\\\y\\\\w\\end{pmatrix}\\\\\n&=\\begin{pmatrix}f_{11}x+f_{12}y+f_{13}w\\\\f_{21}x+f_{22}y+f_{23}w\\\\f_{31}x+f_{32}y+f_{33}w\\end{pmatrix}\n=\\begin{pmatrix}\\mathbf f_1^Tx_A\\\\\\mathbf f_2^Tx_A\\\\\\mathbf f_3^Tx_A\\end{pmatrix}.\n\\end{aligned}\\]\nThe output entries are line coefficients $(a,b,c)^T$, not point coordinates."
+          },
+          {
+            "title": "Enforce point-line incidence",
+            "why": "A true candidate must give a zero scalar dot product.",
+            "body": "A candidate $x_B=(u_B,v_B,w_B)^T$ lies on that line when its dot product is zero:\n\\[\\begin{aligned}\n0=x_B^T\\ell_B\n&=(f_{11}x+f_{12}y+f_{13}w)u_B\\\\\n&\\quad +(f_{21}x+f_{22}y+f_{23}w)v_B\\\\\n&\\quad +(f_{31}x+f_{32}y+f_{33}w)w_B.\n\\end{aligned}\\]\nFor a finite point set $w_B=1$, giving $au_B+bv_B+c=0$. If $b\\ne0$, rewrite it as $v_B=-(a/b)u_B-c/b$ for plotting; $b=0$ instead gives a vertical line when $a\\ne0$."
+          },
+          {
+            "title": "Draw the predicted line",
+            "why": "One point generally predicts a line rather than a unique match.",
+            "body": "If the point is finite, set $w_B=1$; plot $au_B+bv_B+c=0$. For $b\\neq0$, $v_B=-(a/b)u_B-c/b$. Draw a line in image B through the unknown match; its exact location depends on the supplied $F_{AB}$ and $x_A$."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2",
+        "question": "Write the explicit epipolar constraint $x_B^TF_{AB}x_A=0$ for $x_A=(1,0,1)^T$ and $x_B=(0,1,1)^T$. Rewrite it using row-vector dot products.",
+        "given": [],
+        "notes": [
+          "The quiz provides symbolic $F$, so no individual numeric $f_{ij}$ values can be solved; the requested result is a constraint on the entries."
+        ],
+        "key": "quiz-1-q2",
+        "worked_steps": [
+          {
+            "title": "Multiply F by the assigned point",
+            "why": "The zero middle coordinate removes the second column's contribution.",
+            "body": "Multiply the actual point into the full symbolic matrix:\n\\[\\begin{aligned}\nF_{AB}x_A&=\\begin{pmatrix}f_{11}&f_{12}&f_{13}\\\\f_{21}&f_{22}&f_{23}\\\\f_{31}&f_{32}&f_{33}\\end{pmatrix}\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}\\\\\n&=\\begin{pmatrix}f_{11}(1)+f_{12}(0)+f_{13}(1)\\\\f_{21}(1)+f_{22}(0)+f_{23}(1)\\\\f_{31}(1)+f_{32}(0)+f_{33}(1)\\end{pmatrix}\n=\\begin{pmatrix}f_{11}+f_{13}\\\\f_{21}+f_{23}\\\\f_{31}+f_{33}\\end{pmatrix}.\n\\end{aligned}\\]"
+          },
+          {
+            "title": "Dot with the second point",
+            "why": "Its row selects the second and third line coefficients.",
+            "body": "Transpose the other point and multiply the row by that column:\n\\[\\begin{aligned}\nx_B^TF_{AB}x_A\n&=\\begin{pmatrix}0&1&1\\end{pmatrix}\\begin{pmatrix}f_{11}+f_{13}\\\\f_{21}+f_{23}\\\\f_{31}+f_{33}\\end{pmatrix}\\\\\n&=0(f_{11}+f_{13})+1(f_{21}+f_{23})+1(f_{31}+f_{33}).\n\\end{aligned}\\]\nThe result is a scalar: $(1\\times3)(3\\times1)=1\\times1$."
+          },
+          {
+            "title": "Set the scalar to zero",
+            "why": "This is the required epipolar constraint on the unknown entries.",
+            "body": "Enforce incidence: \\[\\boxed{f_{21}+f_{23}+f_{31}+f_{33}=0}.\\]"
+          },
+          {
+            "title": "Rewrite with row-vector products",
+            "why": "The compact row notation must express the same scalar equation.",
+            "body": "Rewrite using the supplied row vectors: $x_B^TFx_A=(\\mathbf f_2^T+\\mathbf f_3^T)x_A=\\mathbf f_2\\cdot x_A+\\mathbf f_3\\cdot x_A=0$."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "2",
+    "source": "cs532s19_quiz4.pdf",
+    "title": "Spring 2019 Quiz 4 --- Duplicate epipolar retest",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Problem 1",
+        "question": "Given $x_A=(x,y,w)^T$ and the rows $\\mathbf f_1^T,\\mathbf f_2^T,\\mathbf f_3^T$ of $F_{AB}$, express its epipolar line in image B and make a sketch.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-2-q1",
+        "worked_steps": [
+          {
+            "title": "Check mapping direction",
+            "why": "A point in A must generate a line in B.",
+            "body": "Choose the correct direction: $F_{AB}$ maps a \\emph{point in A} to a \\emph{line in B}; compute $\\ell_B=F_{AB}x_A$."
+          },
+          {
+            "title": "Expand the matrix multiplication",
+            "why": "Each row supplies one coefficient of that line.",
+            "body": "Multiply each row of the full matrix by the input column:\n\\[\\begin{aligned}\n\\ell_B&=\\begin{pmatrix}f_{11}&f_{12}&f_{13}\\\\f_{21}&f_{22}&f_{23}\\\\f_{31}&f_{32}&f_{33}\\end{pmatrix}\n\\begin{pmatrix}x\\\\y\\\\w\\end{pmatrix}\\\\\n&=\\begin{pmatrix}f_{11}x+f_{12}y+f_{13}w\\\\f_{21}x+f_{22}y+f_{23}w\\\\f_{31}x+f_{32}y+f_{33}w\\end{pmatrix}\n=\\begin{pmatrix}\\mathbf f_1^Tx_A\\\\\\mathbf f_2^Tx_A\\\\\\mathbf f_3^Tx_A\\end{pmatrix}.\n\\end{aligned}\\]\nThe output entries are line coefficients $(a,b,c)^T$, not point coordinates."
+          },
+          {
+            "title": "Write the complete line equation",
+            "why": "Incidence converts the coefficient vector into a condition on a candidate point.",
+            "body": "A candidate $x_B=(u_B,v_B,w_B)^T$ lies on that line when its dot product is zero:\n\\[\\begin{aligned}\n0=x_B^T\\ell_B\n&=(f_{11}x+f_{12}y+f_{13}w)u_B\\\\\n&\\quad +(f_{21}x+f_{22}y+f_{23}w)v_B\\\\\n&\\quad +(f_{31}x+f_{32}y+f_{33}w)w_B.\n\\end{aligned}\\]\nFor a finite point set $w_B=1$, giving $au_B+bv_B+c=0$. If $b\\ne0$, rewrite it as $v_B=-(a/b)u_B-c/b$ for plotting; $b=0$ instead gives a vertical line when $a\\ne0$."
+          },
+          {
+            "title": "Make the requested sketch",
+            "why": "The camera rays and image line explain the algebra geometrically.",
+            "body": "Sketch two camera centers joined by a baseline, their image planes, a common 3D point and both rays; label the line in image B that contains the possible match. The same diagram as on the preceding page applies."
+          }
+        ]
+      },
+      {
+        "part": "Problem 2",
+        "question": "For $x_A=(1,0,1)^T$ and $x_B=(0,1,1)^T$, expand $x_B^TF_{AB}x_A=0$ and express it in terms of row vectors.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-2-q2",
+        "worked_steps": [
+          {
+            "title": "Multiply the known point into F",
+            "why": "This selects and adds columns one and three.",
+            "body": "Multiply the actual point into the full symbolic matrix:\n\\[\\begin{aligned}\nF_{AB}x_A&=\\begin{pmatrix}f_{11}&f_{12}&f_{13}\\\\f_{21}&f_{22}&f_{23}\\\\f_{31}&f_{32}&f_{33}\\end{pmatrix}\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}\\\\\n&=\\begin{pmatrix}f_{11}(1)+f_{12}(0)+f_{13}(1)\\\\f_{21}(1)+f_{22}(0)+f_{23}(1)\\\\f_{31}(1)+f_{32}(0)+f_{33}(1)\\end{pmatrix}\n=\\begin{pmatrix}f_{11}+f_{13}\\\\f_{21}+f_{23}\\\\f_{31}+f_{33}\\end{pmatrix}.\n\\end{aligned}\\]"
+          },
+          {
+            "title": "Perform the final row-column product",
+            "why": "Only two output coefficients contribute.",
+            "body": "Transpose the other point and multiply the row by that column:\n\\[\\begin{aligned}\nx_B^TF_{AB}x_A\n&=\\begin{pmatrix}0&1&1\\end{pmatrix}\\begin{pmatrix}f_{11}+f_{13}\\\\f_{21}+f_{23}\\\\f_{31}+f_{33}\\end{pmatrix}\\\\\n&=0(f_{11}+f_{13})+1(f_{21}+f_{23})+1(f_{31}+f_{33}).\n\\end{aligned}\\]\nThe result is a scalar: $(1\\times3)(3\\times1)=1\\times1$."
+          },
+          {
+            "title": "Enforce the zero constraint",
+            "why": "Correspondence requires incidence, not equality between a point and a line.",
+            "body": "Set the scalar to zero: $\\boxed{f_{21}+f_{23}+f_{31}+f_{33}=0}$."
+          },
+          {
+            "title": "Express the row-vector form",
+            "why": "This checks the equivalent notation requested by the quiz.",
+            "body": "In row notation, $\\boxed{(\\mathbf f_2^T+\\mathbf f_3^T)x_A=0}$; this is one scalar epipolar incidence constraint."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "3",
+    "source": "cs532f25_quiz_2_solution.pdf",
+    "title": "Fall 2025 Quiz 2 --- Three-view epipolar geometry",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Question 1",
+        "question": "Three images A, B, C observe a point. The pair $x_A\\leftrightarrow x_B$ is known, but its image location $x_C$ is unknown. Given fundamental matrices $F_{AC}$ and $F_{BC}$ (which map A/B points to lines in C), determine $x_C$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-3-q1",
+        "worked_steps": [
+          {
+            "title": "Predict the line from image A",
+            "why": "The unknown point in C must satisfy the A-to-C geometry.",
+            "body": "Map $x_A$ to a line in C: $\\boxed{\\ell_C^{(A)}=F_{AC}x_A}$. Any correct $x_C$ must satisfy $x_C^T\\ell_C^{(A)}=0$."
+          },
+          {
+            "title": "Predict the line from image B",
+            "why": "A second independent view supplies another constraint in the same image C.",
+            "body": "Map $x_B$ independently to a second line in C: $\\boxed{\\ell_C^{(B)}=F_{BC}x_B}$. The same $x_C$ must satisfy $x_C^T\\ell_C^{(B)}=0$."
+          },
+          {
+            "title": "Intersect the two lines",
+            "why": "Their cross product gives the homogeneous intersection.",
+            "body": "In the projective plane, the intersection of two lines is their cross product: \\[\\boxed{x_C\\sim \\ell_C^{(A)}\\times\\ell_C^{(B)}}.\\]"
+          },
+          {
+            "title": "Normalize and check the intersection",
+            "why": "Homogeneous coordinates must be converted before reading a finite pixel.",
+            "body": "Normalize $x_C=(q_1,q_2,q_3)^T$ to $(q_1/q_3,q_2/q_3)$ if $q_3\\ne0$. Check both incidence products equal zero. If the two lines coincide, they do not determine a unique point; with noisy lines use an appropriate least-squares estimate."
+          },
+          {
+            "title": "Define a numerical companion",
+            "why": "The original symbolic question has no numerical matrices to multiply.",
+            "body": "Original numerical companion: let $x_A=(1/2,3/4,1)^T$, $x_B=(1/4,3/4,1)^T$, and\n\\[F_{AC}=\\begin{pmatrix}0&0&-1\\\\0&0&0\\\\1&0&0\\end{pmatrix},\\quad\nF_{BC}=\\begin{pmatrix}0&0&-1\\\\0&0&-1\\\\1&1&0\\end{pmatrix}.\\]\nThese are compatible with identity-oriented normalized cameras centered at $(0,0,0)$, $(1,0,0)$, $(0,1,0)$ observing world point $(2,3,4)$."
+          },
+          {
+            "title": "Multiply both numerical matrices",
+            "why": "Full row products show exactly where both predicted lines come from.",
+            "body": "Multiply both matrices, retaining every row operation:\n\\[\\begin{aligned}\n\\ell_C^{(A)}&=\\begin{pmatrix}0&0&-1\\\\0&0&0\\\\1&0&0\\end{pmatrix}\\begin{pmatrix}1/2\\\\3/4\\\\1\\end{pmatrix}\n=\\begin{pmatrix}0(1/2)+0(3/4)-1\\\\0\\\\1(1/2)+0+0\\end{pmatrix}\n=\\begin{pmatrix}-1\\\\0\\\\1/2\\end{pmatrix},\\\\\n\\ell_C^{(B)}&=\\begin{pmatrix}0&0&-1\\\\0&0&-1\\\\1&1&0\\end{pmatrix}\\begin{pmatrix}1/4\\\\3/4\\\\1\\end{pmatrix}\n=\\begin{pmatrix}-1\\\\-1\\\\1/4+3/4\\end{pmatrix}\n=\\begin{pmatrix}-1\\\\-1\\\\1\\end{pmatrix}.\n\\end{aligned}\\]"
+          },
+          {
+            "title": "Expand the cross product",
+            "why": "Its three components determine the common image point.",
+            "body": "Intersect the two lines by expanding the cross product:\n\\[x_C\\sim\\begin{pmatrix}-1\\\\0\\\\1/2\\end{pmatrix}\\times\\begin{pmatrix}-1\\\\-1\\\\1\\end{pmatrix}\n=\\begin{pmatrix}0(1)-(1/2)(-1)\\\\(1/2)(-1)-(-1)(1)\\\\(-1)(-1)-0(-1)\\end{pmatrix}\n=\\begin{pmatrix}1/2\\\\1/2\\\\1\\end{pmatrix}.\\]\nDivide by the last coordinate to get $(u_C,v_C)=(1/2,1/2)$. A scaled result $(4,4,8)^T$ gives the same ratios."
+          },
+          {
+            "title": "Substitute into both lines",
+            "why": "Both independent constraints must pass at the answer.",
+            "body": "Check both original line equations at the answer:\n\\[\\begin{aligned}\n(\\ell_C^{(A)})^Tx_C&=(-1)(1/2)+0(1/2)+(1/2)(1)=0,\\\\\n(\\ell_C^{(B)})^Tx_C&=(-1)(1/2)+(-1)(1/2)+(1)(1)=0.\n\\end{aligned}\\]\nCoincident lines give a zero cross product and no unique point. Distinct parallel lines meet at infinity; nearly parallel lines make a finite intersection sensitive to noise. Image appearance must still confirm visibility and identity."
+          }
+        ]
+      },
+      {
+        "part": "Question 2",
+        "question": "Given $x'=(1,2,1)^T$ and $F=\\begin{bmatrix}1&2&1\\\\0&1&2\\\\1&0&1\\end{bmatrix}$, propose an epipolar-consistent point $x$.",
+        "given": [],
+        "notes": [
+          "The uploaded solution writes $x'^TF=x$; that is dimensionally/conceptually inaccurate. $x'^TF$ is a \\emph{line row-vector}, not a specific corresponding image point. There are infinitely many epipolar-consistent points on this line. Note that a true fundamental matrix must have rank 2; the numerical matrix given in the quiz is nonsingular, but its scalar incidence equation remains solvable as requested."
+        ],
+        "key": "quiz-3-q2",
+        "worked_steps": [
+          {
+            "title": "Choose the unprimed-image line",
+            "why": "The transpose maps the primed point back to a line in the unprimed image.",
+            "body": "Start from $\\boxed{x'^TFx=0}$. To obtain the possible locations of $x$, form the line $\\ell=F^Tx'$ in the \\emph{unprimed} image."
+          },
+          {
+            "title": "Transpose and multiply explicitly",
+            "why": "The line coefficients come from row-column products.",
+            "body": "Transpose explicitly, then multiply row by row:\n\\[F^T=\\begin{pmatrix}1&0&1\\\\2&1&0\\\\1&2&1\\end{pmatrix},\\qquad\nF^Tx'=\\begin{pmatrix}1(1)+0(2)+1(1)\\\\2(1)+1(2)+0(1)\\\\1(1)+2(2)+1(1)\\end{pmatrix}\n=\\begin{pmatrix}2\\\\4\\\\6\\end{pmatrix}.\\]"
+          },
+          {
+            "title": "Write the incidence equation",
+            "why": "A candidate must make the dot product zero.",
+            "body": "Write line incidence for $x=(u,v,1)^T$: $2u+4v+6=0$, or $\\boxed{u+2v+3=0}$."
+          },
+          {
+            "title": "Choose a convenient finite point",
+            "why": "One free coordinate remains because the answer is a whole line.",
+            "body": "Choose a convenient solution, e.g. $v=0\\Rightarrow u=-3$. Thus $\\boxed{x=(-3,0,1)^T}$. Alternatively $u=-1\\Rightarrow v=-1$."
+          },
+          {
+            "title": "Check the answer and the matrix rank",
+            "why": "Solving the given equation does not make an invalid matrix physically valid.",
+            "body": "Verify the point by multiplying it into the original supplied matrix:\n\\[Fx=\\begin{pmatrix}1&2&1\\\\0&1&2\\\\1&0&1\\end{pmatrix}\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix}\n=\\begin{pmatrix}-3+0+1\\\\0+0+2\\\\-3+0+1\\end{pmatrix}\n=\\begin{pmatrix}-2\\\\2\\\\-2\\end{pmatrix},\\]\n\\[x'^TFx=\\begin{pmatrix}1&2&1\\end{pmatrix}\\begin{pmatrix}-2\\\\2\\\\-2\\end{pmatrix}=-2+4-2=0.\\]\nBut $\\det F=1(1)-2(-2)+1(-1)=4$, so its rank is three. The point solves the supplied equation; this matrix is not a valid fundamental matrix for pinhole cameras."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "4",
+    "source": "cs532f25_quiz_3_solution.pdf",
+    "title": "Fall 2025 Quiz 3 --- Stereo depth sensitivity",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Question 1",
+        "question": "Rectified stereo cameras have baseline $b=10$ cm, common focal length $f=50$ pixels, and true disparity $d^*=25$ pixels. Determine the depth error caused by a 1-pixel disparity mistake.",
+        "given": [
+          "Use $Z=bf/d$. The problem does not say whether disparity is over- or underestimated, so compute both; the supplied key uses a first-order approximate magnitude."
+        ],
+        "notes": [
+          "The exact errors are asymmetric ($+0.8333$ and $-0.7692$ cm), whereas the linearized approximation gives $\\pm0.8$ cm. The source key reports the approximation, not both exact cases."
+        ],
+        "key": "quiz-4-q1",
+        "worked_steps": [
+          {
+            "title": "Compute the true depth",
+            "why": "We need a reference before defining an error.",
+            "body": "Keep physical units consistent: $bf=(10\\,\\mathrm{cm})(50\\,\\mathrm{px})=500\\,\\mathrm{cm\\,px}$. True depth: \\[Z^*=500/25=\\boxed{20\\,\\mathrm{cm}}.\\]"
+          },
+          {
+            "title": "Calculate the underestimated-disparity case",
+            "why": "A smaller positive disparity should reconstruct a farther point.",
+            "body": "For $\\delta=-1$, measured disparity is $24$ pixels:\n\\[\\widehat Z_- =\\frac{500}{24}=\\frac{125}{6}\\,\\mathrm{cm},\\qquad\n\\Delta Z_- =\\frac{125}{6}-20=\\frac{125-120}{6}=\\frac56\\,\\mathrm{cm}\\approx+0.83333\\,\\mathrm{cm}.\\]"
+          },
+          {
+            "title": "Calculate the overestimated-disparity case",
+            "why": "A larger disparity should reconstruct a nearer point.",
+            "body": "For $\\delta=+1$, measured disparity is $26$ pixels:\n\\[\\widehat Z_+ =\\frac{500}{26}=\\frac{250}{13}\\,\\mathrm{cm},\\qquad\n\\Delta Z_+ =\\frac{250}{13}-20=\\frac{250-260}{13}=-\\frac{10}{13}\\,\\mathrm{cm}\\approx-0.76923\\,\\mathrm{cm}.\\]"
+          },
+          {
+            "title": "Compare the first-order approximation",
+            "why": "The derivative estimates a small change rather than both exact nonlinear errors.",
+            "body": "To obtain the first-order approximation, differentiate $Z(d)=bf/d$: \\[\\frac{dZ}{dd}=-\\frac{bf}{d^2},\\quad \\Delta Z\\approx-\\frac{500}{25^2}\\Delta d=-0.8\\Delta d\\ \\mathrm{cm}.\\] Thus the \\emph{approximate magnitude} is $\\boxed{0.8\\,\\mathrm{cm}}$ for $|\\Delta d|=1$."
+          }
+        ]
+      },
+      {
+        "part": "Question 2",
+        "question": "For the same setup, restrict the searched 3D depth range to between 1 m and 5 m. What disparity interval corresponds to this?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-4-q2",
+        "worked_steps": [
+          {
+            "title": "Convert the baseline to meters",
+            "why": "Depth and baseline must use the same physical unit.",
+            "body": "Convert baseline: $b=10\\,\\mathrm{cm}=0.1\\,\\mathrm m$. Then $bf=0.1(50)=5\\,\\mathrm{m\\,px}$."
+          },
+          {
+            "title": "Invert the depth formula",
+            "why": "Search limits are requested in disparity rather than depth.",
+            "body": "Invert the depth equation: $d=bf/Z$. Larger depth implies smaller disparity."
+          },
+          {
+            "title": "Evaluate the far endpoint",
+            "why": "The farthest permitted point gives the smallest positive disparity.",
+            "body": "At farthest depth $Z_{\\max}=5$ m: $d_{\\min}=5/5=\\boxed{1\\,\\mathrm{px}}$."
+          },
+          {
+            "title": "Evaluate the near endpoint",
+            "why": "The nearest permitted point gives the largest disparity.",
+            "body": "At nearest depth $Z_{\\min}=1$ m: $d_{\\max}=5/1=\\boxed{5\\,\\mathrm{px}}$. Search $\\boxed{d\\in[1,5]\\,\\mathrm{px}}$."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "5",
+    "source": "cs532s19_quiz5-2.pdf",
+    "title": "Spring 2019 Quiz 5 --- Exact stereo errors",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Problem 1(a--c)",
+        "question": "Rectified cameras have baseline $b=10$ cm and focal length $f=5$ pixels. True disparity is $d^*=3$ pixels. (a) Find the depth error when disparity is underestimated by one pixel; (b) when overestimated by one pixel; (c) explain whether these errors remain constant at larger disparity.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-5-q1",
+        "worked_steps": [
+          {
+            "title": "Insert focal length and baseline",
+            "why": "Their product determines the depth scale.",
+            "body": "Write the depth-disparity law and insert the givens: $Z(d)=bf/d=(10)(5)/d=50/d\\ \\mathrm{cm}$."
+          },
+          {
+            "title": "Compute the true depth",
+            "why": "Signed errors are measured relative to this value.",
+            "body": "True depth is $Z^*=50/3=\\boxed{16\\tfrac23\\,\\mathrm{cm}}\\approx16.6667$ cm."
+          },
+          {
+            "title": "Underestimate disparity by one",
+            "why": "Subtract exact fractions before rounding the error.",
+            "body": "Underestimate disparity by one: $\\widehat d=3-1=2$. Then\n\\[\\widehat Z=\\frac{50}{2}=25\\,\\mathrm{cm},\\qquad\n\\Delta Z=25-\\frac{50}{3}=\\frac{75-50}{3}=\\frac{25}{3}\\,\\mathrm{cm}\\approx+8.3333\\,\\mathrm{cm}.\\]\nA positive signed error means the estimated point is too far away."
+          },
+          {
+            "title": "Overestimate disparity by one",
+            "why": "The nonlinear inverse relation produces a different error magnitude.",
+            "body": "Overestimate disparity by one: $\\widehat d=3+1=4$. Then\n\\[\\widehat Z=\\frac{50}{4}=\\frac{25}{2}\\,\\mathrm{cm},\\qquad\n\\Delta Z=\\frac{25}{2}-\\frac{50}{3}=\\frac{75-100}{6}=-\\frac{25}{6}\\,\\mathrm{cm}\\approx-4.1667\\,\\mathrm{cm}.\\]\nA negative signed error means the estimate is too near. The two magnitudes are unequal."
+          },
+          {
+            "title": "Generalize the two exact errors",
+            "why": "Their denominators show how the magnitudes change with disparity.",
+            "body": "No: $Z(d)=bf/d$ is nonlinear. The exact error for +1 px is $Z(d+1)-Z(d)=-bf/[d(d+1)]$; for -1 px it is $Z(d-1)-Z(d)=+bf/[d(d-1)]$ for $d>1$. Both magnitudes diminish at larger $d$."
+          },
+          {
+            "title": "Interpret the local derivative",
+            "why": "It explains the trend for small perturbations.",
+            "body": "The derivative $dZ/dd=-bf/d^2$ gives the local approximation $|\\Delta Z|\\approx bf|\\Delta d|/d^2$. Because $1/d^2$ decreases as $d$ grows, disparity errors cause smaller depth errors for nearer points."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "6",
+    "source": "cs532s20_quiz5.pdf",
+    "title": "Spring 2020 Quiz 5 --- Repeat disparity test",
+    "lecture": 4,
+    "questions": [
+      {
+        "part": "Problem 1(a--c)",
+        "question": "Rectified stereo cameras: $b=10$ cm, $f=5$ pixels, true $d^*=3$ pixels. Determine (a) error for $\\hat d=2$, (b) error for $\\hat d=4$, and (c) how errors behave as disparity increases.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-6-q1",
+        "worked_steps": [
+          {
+            "title": "Set up the stereo depth law",
+            "why": "The same physical and pixel units must be used consistently.",
+            "body": "Write $Z(d)=bf/d$, using $bf=(10\\,\\mathrm{cm})(5\\,\\mathrm{px})=50\\,\\mathrm{cm\\,px}$."
+          },
+          {
+            "title": "Find the true depth",
+            "why": "This is the reference for both signed errors.",
+            "body": "True depth: $Z^*=50/3=16.6667$ cm."
+          },
+          {
+            "title": "Solve the smaller-disparity case",
+            "why": "A common denominator makes the positive error explicit.",
+            "body": "Underestimate disparity by one: $\\widehat d=3-1=2$. Then\n\\[\\widehat Z=\\frac{50}{2}=25\\,\\mathrm{cm},\\qquad\n\\Delta Z=25-\\frac{50}{3}=\\frac{75-50}{3}=\\frac{25}{3}\\,\\mathrm{cm}\\approx+8.3333\\,\\mathrm{cm}.\\]\nA positive signed error means the estimated point is too far away."
+          },
+          {
+            "title": "Solve the larger-disparity case",
+            "why": "The exact subtraction exposes the unequal negative error.",
+            "body": "Overestimate disparity by one: $\\widehat d=3+1=4$. Then\n\\[\\widehat Z=\\frac{50}{4}=\\frac{25}{2}\\,\\mathrm{cm},\\qquad\n\\Delta Z=\\frac{25}{2}-\\frac{50}{3}=\\frac{75-100}{6}=-\\frac{25}{6}\\,\\mathrm{cm}\\approx-4.1667\\,\\mathrm{cm}.\\]\nA negative signed error means the estimate is too near. The two magnitudes are unequal."
+          },
+          {
+            "title": "Explain the asymmetry",
+            "why": "Equal disparity changes do not give equal changes in inverse disparity.",
+            "body": "Explain why the two numbers differ: $Z$ is proportional to $1/d$, not linear in $d$; changes of +1 and -1 around the same $d$ need not have equal effects."
+          },
+          {
+            "title": "State the large-disparity trend",
+            "why": "The derivative and exact formula both predict decreasing sensitivity.",
+            "body": "Generalize: $\\frac{dZ}{dd}=-bf/d^2$, so a fixed disparity error typically matters less at larger disparities. For exact +1 px, $\\Delta Z=-bf/[d(d+1)]$."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "9",
+    "source": "cs532f25_quiz_4_solution.pdf",
+    "title": "Fall 2025 Quiz 4 --- KLT with auto-exposure",
+    "lecture": 5,
+    "questions": [
+      {
+        "part": "Question 1",
+        "question": "You track features over a long monocular video with automatic exposure that changes brightness from frame to frame. Propose modifications to the KLT brightness-constancy formulation, explaining why they improve robustness without invalidating the local linearization.",
+        "given": [],
+        "notes": [
+          "The uploaded key specifically proposes patch mean/std normalization. This method assumes patches have nonzero texture and a roughly affine photometric change. Saturation, shadows and spatially nonuniform lighting can still break the model."
+        ],
+        "key": "quiz-9-q1",
+        "worked_steps": [
+          {
+            "title": "State brightness constancy",
+            "why": "Ordinary KLT explains image changes using motion alone.",
+            "body": "State original KLT assumption: $I_2(x+\\mathbf d)\\approx I_1(x)$, with $\\mathbf d=(u,v)^T$. Linearizing gives $I_xu+I_yv+I_t\\approx0$."
+          },
+          {
+            "title": "Model the exposure change",
+            "why": "Gain and offset can change intensities even at the correct match.",
+            "body": "Model auto-exposure as a frame-dependent affine brightness change: $I_2(x+\\mathbf d)\\approx aI_1(x)+b$, where $a>0$ rescales contrast and $b$ changes brightness. This violates raw brightness constancy even if motion is correct."
+          },
+          {
+            "title": "Normalize each patch",
+            "why": "Subtracting the mean removes offset and standardizing removes positive gain.",
+            "body": "For each local patch $W$, calculate its mean $\\mu=(1/|W|)\\sum_W I$ and standard deviation $\\sigma=\\sqrt{(1/|W|)\\sum_W(I-\\mu)^2}$. Define normalized intensity $\\boxed{\\widetilde I(x)=(I(x)-\\mu)/(\\sigma+\\varepsilon)}$, with a small $\\varepsilon$ preventing division by zero."
+          },
+          {
+            "title": "Prove the cancellation",
+            "why": "The affine exposure terms cancel under nonzero patch variance.",
+            "body": "Show why the correction works when $\\varepsilon\\approx0$: if $I_2=aI_1+b$ and $a>0$, then $\\mu_2=a\\mu_1+b$ and $\\sigma_2=a\\sigma_1$. Therefore \\[\\widetilde I_2=\\frac{aI_1+b-(a\\mu_1+b)}{a\\sigma_1}=\\frac{I_1-\\mu_1}{\\sigma_1}=\\widetilde I_1.\\]"
+          },
+          {
+            "title": "Linearize the normalized images",
+            "why": "Tracking still needs derivatives of the residual that is actually optimized.",
+            "body": "Now apply the usual local Taylor expansion to \\emph{normalized} patches: $\\widetilde I_2(x+\\mathbf d)\\approx\\widetilde I_2(x)+\\nabla\\widetilde I_2(x)^T\\mathbf d$. The tracking equations retain the Lucas--Kanade/KLT least-squares form but use normalized derivatives."
+          },
+          {
+            "title": "Consider joint exposure estimation",
+            "why": "Gain and offset can instead be treated as extra unknowns.",
+            "body": "Optional alternative: estimate exposure nuisance parameters jointly by minimizing $\\sum_W[I_2(x+\\mathbf d)-aI_1(x)-b]^2$; linearize the residual with respect to small increments in $u,v,a,b$."
+          },
+          {
+            "title": "Verify a numerical patch pair",
+            "why": "Matching normalized columns demonstrate the correction and its assumptions.",
+            "body": "Original numerical companion: patches $I_1=(10,20,30)^T$ and $I_2=(30,50,70)^T=2I_1+10$ have means $20$ and $50$. Their centered columns are $(-10,0,10)^T$ and $(-20,0,20)^T$; population standard deviations are $\\sqrt{200/3}$ and $2\\sqrt{200/3}$. With $\\varepsilon=0$ they normalize to the same column:\n\\[\\widetilde I_1=\\widetilde I_2=\\begin{pmatrix}-\\sqrt{3/2}\\\\0\\\\\\sqrt{3/2}\\end{pmatrix}.\\]\nWith a small positive $\\varepsilon$, invariance is approximate. Freeze the selected patch statistics while forming each local linear system, and recompute after updating the warp; if differentiating the full normalized residual instead, include derivatives of those statistics. Reject flat or saturated patches rather than trusting the denominator safeguard to create texture."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "13",
+    "source": "cs532s19_quiz6-2.pdf",
+    "title": "Spring 2019 Quiz 6 --- Feature trackability",
+    "lecture": 5,
+    "questions": [
+      {
+        "part": "Problem 1(a--d)",
+        "question": "A binary image contains three black lines meeting at one vertex $v$: horizontal $\\ell_h$, vertical $\\ell_v$, and a $45^\\circ$ line $\\ell_s$. There is also one isolated black pixel $p=(x,y,1)$ surrounded by white pixels. (a) Express intersection vertex coordinates in terms of the horizontal/vertical lines. (b) Is the common vertex good to track? (c) What about an arbitrary point along the slanted edge with both $I_x$ and $I_y$ large? (d) Is the isolated black pixel better than a neighboring white pixel?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-13-q1",
+        "worked_steps": [
+          {
+            "title": "Find the junction geometrically",
+            "why": "Intersecting the two known lines gives its position.",
+            "body": "Represent a homogeneous line as $\\ell=(a,b,c)^T$, with line equation $ax+by+cw=0$. Two noncoincident lines intersect at their cross product, giving \\[\\boxed{v\\sim \\ell_h\\times\\ell_v}.\\] Verify that the diagonal line also passes through the vertex: $\\ell_s^Tv=0$."
+          },
+          {
+            "title": "Explain why the junction is trackable",
+            "why": "Multiple gradient directions constrain both motion components.",
+            "body": "Use the Harris/KLT structure tensor $M=\\sum_W w\\nabla I\\nabla I^T$. A corner-like intersection provides intensity gradients in multiple directions, making \\emph{both} eigenvalues sufficiently large. So $\\boxed{\\text{yes, the vertex is generally good to track}}$ if patch size/contrast resolve the junction."
+          },
+          {
+            "title": "Test the diagonal-edge claim",
+            "why": "Two nonzero gradient components do not imply two independent directions.",
+            "body": "For a straight diagonal edge, gradients may have \\emph{both coordinate components} $I_x\\ne0$, $I_y\\ne0$, but every local gradient is approximately parallel to the same edge normal $g$. Then $M\\approx(\\sum w\\alpha_i^2)gg^T$, a rank-1 matrix with one near-zero eigenvalue. Thus $\\boxed{\\text{no, not reliably trackable along the edge}}$: the aperture problem remains."
+          },
+          {
+            "title": "Compare the dot and neighboring pixel",
+            "why": "Tracking quality belongs to a window, not to a pixel's color.",
+            "body": "For an isolated dot, local intensity changes in both x and y directions; the dot as a \\emph{patch} is distinctive. However a nearby white pixel whose tracking \\emph{window includes the same dot} sees essentially the same local gradients and is not necessarily worse. So $\\boxed{\\text{feature quality depends on the patch, not the center pixel color}}$."
+          },
+          {
+            "title": "Check what the window contains",
+            "why": "A flat neighboring window has no useful motion information.",
+            "body": "If the tracking window around the neighboring white pixel \\emph{misses} the dot completely, then it is flat and poor. The correct answer requires specifying the window and its gradients."
+          },
+          {
+            "title": "Work out the line and rank calculations",
+            "why": "A full matrix shows precisely why the diagonal edge remains ambiguous.",
+            "body": "Original algebraic companion to parts (a–c): a horizontal line at $v=v_0$ and vertical line at $u=u_0$ have\n\\[\\ell_h=\\begin{pmatrix}0\\\\1\\\\-v_0\\end{pmatrix},\\quad\\ell_v=\\begin{pmatrix}1\\\\0\\\\-u_0\\end{pmatrix},\\quad\n\\ell_h\\times\\ell_v=\\begin{pmatrix}-u_0\\\\-v_0\\\\-1\\end{pmatrix}\\sim\\begin{pmatrix}u_0\\\\v_0\\\\1\\end{pmatrix}.\\]\nFor $N$ identical diagonal-edge gradients $g=(1,1)^T$, the tracking matrix is\n\\[M=N\\begin{pmatrix}1\\\\1\\end{pmatrix}\\begin{pmatrix}1&1\\end{pmatrix}\n=N\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}.\\]\nIts characteristic equation is $(N-\\lambda)^2-N^2=\\lambda(\\lambda-2N)=0$. One eigenvalue is zero even though both gradient components are nonzero. Motion along the edge cannot be recovered from that patch alone."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "12",
+    "source": "cs532f25_quiz_5_solution-1.pdf",
+    "title": "Fall 2025 Quiz 5 --- SfM reconstruction upgrades",
+    "lecture": 6,
+    "questions": [
+      {
+        "part": "Question 1, Scenario A",
+        "question": "You photograph an office facade with parallel horizontal bands and parallel pedestrian crossing lines on the road. Is this geometry sufficient to upgrade an entire-scene projective reconstruction? To what type? What extra information is needed?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-12-q1",
+        "worked_steps": [
+          {
+            "title": "State what each reconstruction preserves",
+            "why": "The target upgrade determines which geometric constraints are needed.",
+            "body": "Recall reconstruction hierarchy: projective transformations preserve incidence; affine preserves parallelism; similarity preserves angles and length ratios; Euclidean/metric reconstruction preserves true lengths when scale is fixed."
+          },
+          {
+            "title": "Identify the supplied ideal points",
+            "why": "Each parallel-line family contributes one direction at infinity.",
+            "body": "Each known family of 3D parallel lines gives a vanishing/ideal point in projective reconstruction. Horizontal facade bands provide one direction; road crossing lines provide a second."
+          },
+          {
+            "title": "Count the plane-at-infinity constraints",
+            "why": "Two points leave a family of possible planes.",
+            "body": "To identify the plane at infinity $\\pi_\\infty$ (a 3D plane in projective space), three independent noncollinear ideal points are generally needed. Two ideal points alone do not specify this plane."
+          },
+          {
+            "title": "Decide whether an affine upgrade is determined",
+            "why": "A third independent ideal point is generally needed.",
+            "body": "Therefore the two supplied families are $\\boxed{\\text{insufficient for a unique entire-scene affine upgrade}}$ under the simple count used by the quiz. A third independent family, such as vertical facade edges, may provide the missing ideal point; with suitable calibrated correspondences it constrains the affine plane."
+          },
+          {
+            "title": "Separate metric constraints and scale",
+            "why": "Parallelism alone does not recover angles or absolute lengths.",
+            "body": "To reach metric/similarity reconstruction, also require enough Euclidean information, such as camera calibration, orthogonality/angular or absolute-conic constraints with adequate geometry. One known physical length then fixes absolute scale."
+          }
+        ]
+      },
+      {
+        "part": "Question 1, Scenario B",
+        "question": "You film a planar kitchen floor tiled with regular square tiles. Can this geometry upgrade the reconstruction, and what else is required for metric scale?",
+        "given": [],
+        "notes": [],
+        "key": "quiz-12-q2",
+        "worked_steps": [
+          {
+            "title": "Identify the square-grid constraints",
+            "why": "Parallel directions, a right angle and equal lengths constrain the observed plane.",
+            "body": "A square tile grid contains two line directions with known 3D parallelism, and their intersection angle is $90^\\circ$. Equal-length squares also supply metric relations \\emph{within the floor plane}."
+          },
+          {
+            "title": "State the identifiable upgrade",
+            "why": "Plane rectification is weaker than upgrading arbitrary off-plane structure.",
+            "body": "The square grid directly permits a \\emph{metric rectification of the floor plane up to scale}. An \\emph{entire-scene} \\emph{similarity reconstruction (metric up to scale)} additionally requires sufficient camera-calibration and nondegenerate 3D constraints; diverse views of a single plane alone are not a general guarantee."
+          },
+          {
+            "title": "Recover scale when a length is known",
+            "why": "The ratio of real to reconstructed tile size fixes units.",
+            "body": "If tile side length $L$ is given (e.g. 30 cm), compare reconstructed tile dimension $\\hat L$ with $L$ and scale all translations/points by $s=L/\\hat L$ to fix absolute units."
+          },
+          {
+            "title": "State the full-scene limitation",
+            "why": "A planar grid alone does not determine general 3D metric geometry.",
+            "body": "Scope qualification: the known square grid alone, viewed only as a single plane without adequate camera/model constraints, does not in general uniquely determine full 3D scene metric geometry. State the extra assumption of sufficient viewpoints/calibration constraints when claiming an \\emph{entire-scene} upgrade."
+          }
+        ]
+      },
+      {
+        "part": "Question 2",
+        "question": "An image sequence has weak overlap: A overlaps B, B overlaps C, but A and C never share points, and so on. Is a single global factorization or a sequential SfM approach better?",
+        "given": [],
+        "notes": [
+          "The original answer key describes a similarity upgrade. The rigorous distinction is between rectifying the observed tile plane and uniquely upgrading arbitrary off-plane 3D structure; the latter needs extra camera/scene constraints."
+        ],
+        "key": "quiz-12-q3",
+        "worked_steps": [
+          {
+            "title": "Inspect the visibility pattern",
+            "why": "Neighboring-only tracks leave many entries missing.",
+            "body": "Form the tracking/measurement matrix mentally: many 3D features occur in only neighboring frames, leaving missing entries outside a narrow image-track visibility band."
+          },
+          {
+            "title": "Check complete-data factorization's assumptions",
+            "why": "Ordinary dense SVD expects a suitable filled measurement matrix.",
+            "body": "Classical complete-data factorization $D\\approx MS$ presumes adequate common visibility. With widespread missing observations, naive dense SVD cannot be applied directly and estimates can become poorly conditioned."
+          },
+          {
+            "title": "Choose incremental reconstruction",
+            "why": "It can grow using successive overlapping views.",
+            "body": "Choose $\\boxed{\\text{sequential / incremental SfM}}$: start with a strongly overlapping initial pair; estimate two-view geometry and poses, triangulate their tracks, add the next overlapping image via pose estimation, then triangulate new points."
+          },
+          {
+            "title": "Refine and verify the result",
+            "why": "Bundle adjustment uses the visible measurements across the growing model.",
+            "body": "Periodically refine all visible cameras and points with bundle adjustment; robust matching handles outliers. This respects the chain-like visibility structure."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "16",
+    "source": "cs532f25_quiz_6_solution.pdf",
+    "title": "Fall 2025 Quiz 6 --- Large-scale Structure from Motion",
+    "lecture": 6,
+    "questions": [
+      {
+        "part": "Question 1",
+        "question": "Given about 500,000 weakly overlapping photographs of Manhattan, choose incremental, global, hierarchical or hybrid SfM and defend your choice.",
+        "given": [],
+        "notes": [
+          "The uploaded key uses an $O(N^3)$ assertion about pure incremental BA. That is not a universal complexity for sparse bundle adjustment, so the defensible argument is high computational cost that depends on graph structure, implementation and solver."
+        ],
+        "key": "quiz-16-q1",
+        "worked_steps": [
+          {
+            "title": "Read the dataset constraints",
+            "why": "Scale, weak overlap and repetition determine the practical bottlenecks.",
+            "body": "Read the constraints: huge dataset, weak overlap, large repetitive urban textures (windows/facades), and significant computational burden from repeatedly refining poses and points."
+          },
+          {
+            "title": "Compare the candidate pipelines",
+            "why": "Each approach handles computation and bad pairwise matches differently.",
+            "body": "Incremental SfM grows a reconstruction camera by camera; it gives good local control but updating an enormous model can become expensive. Global SfM estimates camera motions jointly but bad pairwise matches in repetitive facades can contaminate the solution."
+          },
+          {
+            "title": "Choose a hierarchical strategy",
+            "why": "Connected clusters make a huge reconstruction more manageable.",
+            "body": "Choose $\\boxed{\\text{hierarchical SfM}}$ (a hierarchical--hybrid strategy is also defensible). Build an image-overlap graph and partition it into moderately sized, sufficiently connected image clusters."
+          },
+          {
+            "title": "Reconstruct and refine locally",
+            "why": "Verified tracks are needed before neighboring pieces can be merged.",
+            "body": "Run robust local two-view matching/geometric verification, initialize and triangulate points within each cluster, and perform local bundle adjustment."
+          },
+          {
+            "title": "Merge overlapping reconstructions",
+            "why": "Shared cameras or points provide alignment constraints.",
+            "body": "Merge neighboring cluster reconstructions using common tracks/cameras and an appropriate similarity/alignment transformation; reject inconsistent alignments. Perform regional/global adjustment once the merged model is stable."
+          },
+          {
+            "title": "Defend the tradeoff",
+            "why": "The choice follows from the dataset rather than a universal complexity claim.",
+            "body": "State why this choice matches the question: computation is localized; false repetitive-feature matches are easier to reject; partial overlaps need not be tracked in a single fully dense global factorization."
+          }
+        ]
+      },
+      {
+        "part": "Question 2",
+        "question": "The images are crowd-sourced and contaminated by ``WTF'' watermarks/text/frames that may produce false geometric matches. Suggest one simple modification to the RANSAC geometric verification step.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-16-q2",
+        "worked_steps": [
+          {
+            "title": "Inspect the consensus beyond its size",
+            "why": "Repeated overlays can create a large false match set.",
+            "body": "Run RANSAC for each candidate image pair, estimating a valid geometric model and collecting its consensus inliers. A high inlier count \\emph{alone} may be deceptive when static overlays match each other."
+          },
+          {
+            "title": "Measure border concentration",
+            "why": "Frames and watermarks often produce suspicious edge-localized inliers.",
+            "body": "Measure the spatial distribution of inliers: compute the proportion near thin image-border strips, as watermark/frames often occur along borders."
+          },
+          {
+            "title": "Check displacement consistency",
+            "why": "Overlay matches may behave like one common image translation.",
+            "body": "For those border inliers, calculate pixel-coordinate displacements $\\delta_i=x_i'-x_i$ after dehomogenization (and accounting for image size/crop if needed). Check whether most are approximately the same 2D translation with little parallax or 3D structure."
+          },
+          {
+            "title": "Reject or downweight suspicious models",
+            "why": "The combined evidence can identify a false consensus.",
+            "body": "If both conditions hold---large border concentration and near-translation consistency---\\emph{reject or downweight the model/image pair}, despite its inlier count. Optionally mask border strips and rerun robust estimation."
+          },
+          {
+            "title": "State the heuristic's limitation",
+            "why": "Genuine scene geometry can also produce nearly translational matches.",
+            "body": "To avoid false rejection of genuine pure translations, apply this rule as a \\emph{heuristic} together with spatial-coverage and scene-consistency checks, not as an infallible theorem."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A1",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A1. Homography, DLT and SVD (L3, slides 34--45)",
+    "lecture": 3,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "Find the homography mapping $(0,0)\\mapsto(0,0)$, $(1,0)\\mapsto(1/2,0)$, $(0,1)\\mapsto(0,1)$, $(1,1)\\mapsto(1/2,1/2)$. Explain where SVD would enter for noisy pairs.",
+        "given": [],
+        "notes": [
+          "Fixing $h_{33}=1$ is only valid if the actual $h_{33}$ is nonzero; the homogeneous SVD formulation avoids relying on that choice."
+        ],
+        "key": "quiz-a1-q1",
+        "worked_steps": [
+          {
+            "title": "Write the projective mapping",
+            "why": "Homogeneous scaling makes the image coordinates ratios.",
+            "body": "Write the unknown homography $H=[h_{ij}]$, with $h_{33}=1$ for this convenient example. Use $u=(h_{11}x+h_{12}y+h_{13})/(h_{31}x+h_{32}y+1)$ and $v=(h_{21}x+h_{22}y+h_{23})/(h_{31}x+h_{32}y+1)$."
+          },
+          {
+            "title": "Use the origin match",
+            "why": "It isolates the translation-like numerator entries.",
+            "body": "The origin maps to itself, so at $(x,y)=(0,0)$: $h_{13}=h_{23}=0$."
+          },
+          {
+            "title": "Use the horizontal match",
+            "why": "Its nonzero input coordinate constrains one denominator term.",
+            "body": "At $(1,0)\\to(1/2,0)$: $h_{11}/(h_{31}+1)=1/2$ and $h_{21}/(h_{31}+1)=0$. Therefore $2h_{11}=h_{31}+1$ and $h_{21}=0$."
+          },
+          {
+            "title": "Use the vertical match",
+            "why": "This constrains the remaining numerator and denominator entries.",
+            "body": "At $(0,1)\\to(0,1)$: $h_{12}/(h_{32}+1)=0$ and $h_{22}/(h_{32}+1)=1$. Thus $h_{12}=0$ and $h_{22}=h_{32}+1$."
+          },
+          {
+            "title": "Use the final corner",
+            "why": "Combining previous constraints determines the projective denominator.",
+            "body": "At $(1,1)\\to(1/2,1/2)$: $h_{11}/(h_{31}+h_{32}+1)=1/2$ and $h_{22}/(h_{31}+h_{32}+1)=1/2$. Compare with step 3 to get $h_{32}=0$, hence $h_{22}=1$. Then $h_{31}+1=2$, so $h_{31}=h_{11}=1$."
+          },
+          {
+            "title": "Assemble and project a check point",
+            "why": "A held-out point tests the resulting matrix.",
+            "body": "Assemble and verify: \\[\\boxed{H=\\begin{bmatrix}1&0&0\\\\0&1&0\\\\1&0&1\\end{bmatrix}}.\\] For $(x,y)=(2,1)$, $H(2,1,1)^T=(2,1,3)^T$, so the new image coordinates are $(2/3,1/3)$."
+          },
+          {
+            "title": "Build the general DLT equations",
+            "why": "Each correspondence supplies two linear constraints on nine homogeneous entries.",
+            "body": "In general, each match $(x,y)\\to(u,v)$ yields two rows of $Ah=0$: \\[A_i=\\begin{bmatrix}x&y&1&0&0&0&-ux&-uy&-u\\\\0&0&0&x&y&1&-vx&-vy&-v\\end{bmatrix}.\\] With more than four noisy pairs, choose the \\emph{last right singular vector} of $A=U\\Sigma V^T$ (smallest singular value) and reshape it to $H$. Coordinate normalization before DLT improves conditioning: $H=T'^{-1}\\widetilde HT$."
+          },
+          {
+            "title": "Show the complete numerical system",
+            "why": "The actual eight rows expose the nullspace that SVD must recover.",
+            "body": "For these four actual matches, the full $8\\times9$ homogeneous DLT system is $Ah=0$, where\n\\[A=\\begin{pmatrix}\n0&0&1&0&0&0&0&0&0\\\\0&0&0&0&0&1&0&0&0\\\\\n1&0&1&0&0&0&-1/2&0&-1/2\\\\0&0&0&1&0&1&0&0&0\\\\\n0&1&1&0&0&0&0&0&0\\\\0&0&0&0&1&1&0&-1&-1\\\\\n1&1&1&0&0&0&-1/2&-1/2&-1/2\\\\0&0&0&1&1&1&-1/2&-1/2&-1/2\n\\end{pmatrix},\\]\n\\[h=\\begin{pmatrix}h_{11}&h_{12}&h_{13}&h_{21}&h_{22}&h_{23}&h_{31}&h_{32}&h_{33}\\end{pmatrix}^T.\n\\]\nThe solution $h=(1,0,0,0,1,0,1,0,1)^T$ makes each row zero. For four pairs, use a full right-singular basis: the null vector is the ninth right singular vector of this wide matrix, not the last vector of a reduced eight-vector basis."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A2",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A2. Harris response from gradients (L5, slides 11--30)",
+    "lecture": 5,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "A small patch contains two gradient vectors $(2,0)^T$ and $(0,3)^T$, equally weighted. Compute its second-moment matrix, eigenvalues, and Harris score for $k=0.04$. Classify it.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-a2-q1",
+        "worked_steps": [
+          {
+            "title": "Set up the structure tensor",
+            "why": "Gradient outer products measure changes in every direction.",
+            "body": "Construct the unweighted second-moment matrix as the sum of gradient outer products: $M=\\sum_i g_ig_i^T$."
+          },
+          {
+            "title": "Multiply and add the full matrices",
+            "why": "The off-diagonal and diagonal entries come from explicit products.",
+            "body": "Multiply each $2\\times1$ gradient by its $1\\times2$ transpose, then add:\n\\[\\begin{aligned}\ng_1g_1^T&=\\begin{pmatrix}2\\\\0\\end{pmatrix}\\begin{pmatrix}2&0\\end{pmatrix}\n=\\begin{pmatrix}4&0\\\\0&0\\end{pmatrix},\\\\\ng_2g_2^T&=\\begin{pmatrix}0\\\\3\\end{pmatrix}\\begin{pmatrix}0&3\\end{pmatrix}\n=\\begin{pmatrix}0&0\\\\0&9\\end{pmatrix},\\\\\nM&=\\begin{pmatrix}4&0\\\\0&0\\end{pmatrix}+\\begin{pmatrix}0&0\\\\0&9\\end{pmatrix}\n=\\begin{pmatrix}4&0\\\\0&9\\end{pmatrix}.\n\\end{aligned}\\]\nHere equal weights mean both weights are one; averaging instead would scale the eigenvalues and response."
+          },
+          {
+            "title": "Read the eigenvalues",
+            "why": "A diagonal matrix makes the independent gradient strengths visible.",
+            "body": "Because $M$ is diagonal, its eigenvalues are $\\lambda_1=4$ and $\\lambda_2=9$; intensity changes in two independent directions."
+          },
+          {
+            "title": "Compute determinant and trace",
+            "why": "Harris combines these two scalar summaries.",
+            "body": "Compute determinant and trace: $\\det M=4(9)=36$, $\\operatorname{tr}M=4+9=13$."
+          },
+          {
+            "title": "Evaluate the Harris response",
+            "why": "Substitute the supplied k after computing the summaries.",
+            "body": "Harris response: $R=\\det M-k(\\operatorname{tr}M)^2=36-0.04(13)^2=36-6.76=\\boxed{29.24}$."
+          },
+          {
+            "title": "Classify and select the feature",
+            "why": "A corner-like score still needs a threshold and nonmaximum suppression.",
+            "body": "This positive score is \\emph{corner-like}; actual detector selection also requires an image-dependent threshold and spatial nonmaximum suppression. If instead $M=\\operatorname{diag}(20,0)$, the response would be $-0.04(20)^2=-16$ (edge-like and singular)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A3",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A3. Lucas--Kanade least-squares displacement (L5, slides 39--50)",
+    "lecture": 5,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "Two pixels in one small tracked patch have spatial gradients $(I_x,I_y)=(2,0)$ and $(0,3)$, with temporal derivatives $I_t=-4$ and $-3$, respectively. Find the shared displacement $(u,v)$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-a3-q1",
+        "worked_steps": [
+          {
+            "title": "Write brightness constancy's linearization",
+            "why": "Small motion turns each pixel into one linear equation.",
+            "body": "Start with linearized brightness constancy at each pixel: $I_xu+I_yv+I_t=0$."
+          },
+          {
+            "title": "Substitute both pixels",
+            "why": "Different gradient directions constrain different displacement components.",
+            "body": "Substitute pixel 1: $2u+0v-4=0\\Rightarrow 2u=4$. Pixel 2: $0u+3v-3=0\\Rightarrow3v=3$."
+          },
+          {
+            "title": "Stack the linear system",
+            "why": "The patch shares one displacement vector.",
+            "body": "Write matrix form: $Ad=b$, with $A=\\begin{bmatrix}2&0\\\\0&3\\end{bmatrix}$, $d=(u,v)^T$, $b=(4,3)^T$."
+          },
+          {
+            "title": "Multiply out the normal equations",
+            "why": "This exposes the structure tensor and right-hand side completely.",
+            "body": "Multiply the full normal-equation matrices:\n\\[A^TA=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}=\\begin{pmatrix}4&0\\\\0&9\\end{pmatrix},\\]\n\\[A^Tb=\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}\\begin{pmatrix}4\\\\3\\end{pmatrix}=\\begin{pmatrix}8\\\\9\\end{pmatrix}.\n\\]\nThus the two least-squares equations are\n\\[\\begin{pmatrix}4&0\\\\0&9\\end{pmatrix}\\begin{pmatrix}u\\\\v\\end{pmatrix}=\\begin{pmatrix}8\\\\9\\end{pmatrix}.\\]"
+          },
+          {
+            "title": "Solve and verify the displacement",
+            "why": "A zero residual checks the proposed motion in the stated linear model.",
+            "body": "For this diagonal example, show the inverse explicitly:\n\\[\\begin{pmatrix}u\\\\v\\end{pmatrix}\n=\\begin{pmatrix}1/4&0\\\\0&1/9\\end{pmatrix}\\begin{pmatrix}8\\\\9\\end{pmatrix}\n=\\begin{pmatrix}8/4\\\\9/9\\end{pmatrix}=\\begin{pmatrix}2\\\\1\\end{pmatrix}\\,\\mathrm{pixels}.\\]\nCheck $A(2,1)^T-b=(0,0)^T$. In implementations, solve the system rather than explicitly inverting it; use warping/pyramids when the local small-motion approximation is inadequate."
+          },
+          {
+            "title": "Connect solvability to corner quality",
+            "why": "An edge makes the same normal matrix nearly singular.",
+            "body": "Notice $A^TA=M$, the same second-moment matrix as in Harris. When both eigenvalues are positive and not too small, the optical-flow estimate is better determined; on an edge one eigenvalue tends toward zero and the aperture problem returns."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A4",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A4. Essential matrix and cheirality (L4, slides 22--41)",
+    "lecture": 4,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "Two calibrated cameras have relative rotation $R=I$ and translation $t=(1,0,0)^T$ in compatible normalized units. Form $E$, identify its rank and singular values, and explain why pose decomposition is not unique without a positive-depth test.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-a4-q1",
+        "worked_steps": [
+          {
+            "title": "Write the essential-matrix construction",
+            "why": "Translation and rotation determine the calibrated two-view relation.",
+            "body": "The essential matrix is $\\boxed{E=[t]_\\times R}$, with cross-product matrix $[t]_\\times=\\begin{bmatrix}0&-t_z&t_y\\\\t_z&0&-t_x\\\\-t_y&t_x&0\\end{bmatrix}$."
+          },
+          {
+            "title": "Insert the translation and rotation",
+            "why": "The cross-product matrix fixes every entry.",
+            "body": "Insert $t=(1,0,0)^T$ and $R=I$: \\[\\boxed{E=\\begin{bmatrix}0&0&0\\\\0&0&-1\\\\0&1&0\\end{bmatrix}}.\\]"
+          },
+          {
+            "title": "Multiply E transpose by E",
+            "why": "Its eigenvalues determine E's singular values.",
+            "body": "Compute the singular-value check from the complete product:\n\\[\\begin{aligned}\nE^TE&=\\begin{pmatrix}0&0&0\\\\0&0&1\\\\0&-1&0\\end{pmatrix}\n\\begin{pmatrix}0&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}\\\\\n&=\\begin{pmatrix}0&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}.\n\\end{aligned}\\]\nIts eigenvalues are $1,1,0$, so the singular values of $E$ are their nonnegative square roots: $1,1,0$. Two are nonzero, hence rank two."
+          },
+          {
+            "title": "Connect calibrated and pixel coordinates",
+            "why": "Intrinsic matrices convert between the essential and fundamental relations.",
+            "body": "For calibrated normalized image coordinates $\\hat x,\\hat x'$, corresponding points satisfy $\\hat x'^TE\\hat x=0$. If pixel intrinsics are known, $E=K_R^TFK_L$."
+          },
+          {
+            "title": "List the pose ambiguity",
+            "why": "The SVD gives two rotations and two translation signs.",
+            "body": "Decomposing a general essential matrix via SVD gives two rotation candidates $R_1,R_2$ and a translation \\emph{direction} with two signs, i.e. four candidates $(R_1,+t)$, $(R_1,-t)$, $(R_2,+t)$, $(R_2,-t)$."
+          },
+          {
+            "title": "Apply the positive-depth test",
+            "why": "The visible scene must lie in front of both observing cameras.",
+            "body": "Triangulate one or more matched 3D points under each candidate. Keep the one for which the points have positive camera-frame $Z$ in \\emph{both} views (cheirality). The magnitude of $t$ remains unobservable without external scale."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A5",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A5. Linear triangulation with two projection matrices (L6, slides 48--52)",
+    "lecture": 6,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "Rectified cameras have $f=800$ px and baseline $b=0.2$ m. Let $P_L=\\begin{bmatrix}800&0&0&0\\\\0&800&0&0\\\\0&0&1&0\\end{bmatrix}$ and $P_R=\\begin{bmatrix}800&0&0&-160\\\\0&800&0&0\\\\0&0&1&0\\end{bmatrix}$. Observed pixels are $(260,120)$ and $(220,120)$. Reconstruct $X=(X,Y,Z)$.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-a5-q1",
+        "worked_steps": [
+          {
+            "title": "Write two constraints per camera",
+            "why": "The projected point must lie on each observed viewing ray.",
+            "body": "For each point $(u,v)$ in a camera with matrix rows $p_1^T,p_2^T,p_3^T$, the two homogeneous equations are $(up_3^T-p_1^T)\\widetilde X=0$ and $(vp_3^T-p_2^T)\\widetilde X=0$, with $\\widetilde X=(X,Y,Z,1)^T$."
+          },
+          {
+            "title": "Stack the complete homogeneous system",
+            "why": "Both image observations constrain the same four-component point.",
+            "body": "Stack two equations from each actual camera:\n\\[\\begin{pmatrix}-800&0&260&0\\\\0&-800&120&0\\\\-800&0&220&160\\\\0&-800&120&0\\end{pmatrix}\n\\begin{pmatrix}X\\\\Y\\\\Z\\\\W\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\\\0\\\\0\\end{pmatrix}.\\]\nThe matrix is $4\\times4$ and the point is $4\\times1$. For a finite point choose $W=1$ after finding a nonzero homogeneous solution."
+          },
+          {
+            "title": "Read the first camera's equations",
+            "why": "They express lateral coordinates in terms of depth.",
+            "body": "Row 1 gives $X=(260/800)Z$ and row 2 gives $Y=(120/800)Z$. Row 3 gives $-800X+220Z+160=0$."
+          },
+          {
+            "title": "Substitute into the second camera",
+            "why": "The baseline resolves the remaining depth ambiguity.",
+            "body": "Substitute $X$: $-260Z+220Z+160=0\\Rightarrow Z=4$ m. Then $X=260(4)/800=1.3$ m, $Y=120(4)/800=0.6$ m."
+          },
+          {
+            "title": "Reproject the answer",
+            "why": "Both original observations should be recovered.",
+            "body": "Answer $\\boxed{(X,Y,Z)=(1.3,0.6,4)\\ \\mathrm m}$. Check by projecting into each camera: $(800X/Z,800Y/Z)=(260,120)$; $(800(X-0.2)/Z,800Y/Z)=(220,120)$."
+          },
+          {
+            "title": "Explain the noisy SVD solution",
+            "why": "Noisy constraints require a best-fit homogeneous null vector.",
+            "body": "With noisy measurements the four rays/equations are inconsistent. Use SVD $A=U\\Sigma V^T$; take the last right singular vector as homogeneous $\\widetilde X$, then divide by its fourth coordinate. Refine if needed by minimizing \\emph{reprojection} error rather than algebraic residual."
+          },
+          {
+            "title": "Verify the full nullspace product",
+            "why": "Every row should vanish for the exact supplied measurements.",
+            "body": "Explicit nullspace check for the answer:\n\\[A\\begin{pmatrix}1.3\\\\0.6\\\\4\\\\1\\end{pmatrix}\n=\\begin{pmatrix}-800(1.3)+260(4)\\\\-800(0.6)+120(4)\\\\-800(1.3)+220(4)+160\\\\-800(0.6)+120(4)\\end{pmatrix}\n=\\begin{pmatrix}0\\\\0\\\\0\\\\0\\end{pmatrix}.\\]\nAn SVD may return this column divided by $\\sqrt{19.05}$, with either sign. Divide its first three entries by its fourth to recover $(1.3,0.6,4)$; do not interpret a unit homogeneous vector as ordinary coordinates."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A6",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A6. Gauss--Newton and reprojection error (L6, slides 46 and 62--70)",
+    "lecture": 6,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "For calibrated rectified stereo with $u_L=260$, $bf=160$ pixel-meters, and an observed right pixel $u_R^{obs}=219$, refine an initial depth $Z_0=4$ m by one Gauss--Newton iteration.",
+        "given": [],
+        "notes": [
+          "This is a one-variable reprojection refinement, not full joint bundle adjustment. The purpose is to demonstrate a complete numerical optimization update before scaling to the sparse multivariable system."
+        ],
+        "key": "quiz-a6-q1",
+        "worked_steps": [
+          {
+            "title": "Define prediction and residual",
+            "why": "Optimization needs an explicit error whose sign is fixed.",
+            "body": "Predicted right pixel from stereo geometry is $\\widehat u_R(Z)=260-160/Z$. Define signed residual $r(Z)=\\widehat u_R(Z)-219=41-160/Z$. Minimize $E(Z)=r(Z)^2$."
+          },
+          {
+            "title": "Evaluate the initial error",
+            "why": "This gives the starting point for improvement.",
+            "body": "Evaluate initial prediction: $\\widehat u_R(4)=260-160/4=220$, hence $r(4)=1$ pixel and $E(4)=1$ squared pixel."
+          },
+          {
+            "title": "Differentiate the residual",
+            "why": "The Jacobian predicts how the error responds to a depth change.",
+            "body": "Differentiate: $J(Z)=dr/dZ=160/Z^2$, so $J(4)=160/16=10$ pixels/meter."
+          },
+          {
+            "title": "Solve the normal equation",
+            "why": "Gauss–Newton chooses an increment that cancels the linearized residual.",
+            "body": "Gauss--Newton normal equation is $(J^TJ)\\Delta Z=-J^Tr$. In this one-variable case $10^2\\Delta Z=-(10)(1)$, giving $\\Delta Z=-0.1$ m."
+          },
+          {
+            "title": "Update and re-evaluate",
+            "why": "The nonlinear residual must actually decrease.",
+            "body": "Update $\\boxed{Z_1=Z_0+\\Delta Z=3.9\\ \\mathrm m}$. New pixel prediction is $260-160/3.9\\approx218.97436$, residual $-0.02564$, error $E(Z_1)\\approx0.000657$."
+          },
+          {
+            "title": "Compare with the exact solution",
+            "why": "The small example clarifies the role of damping and multivariable extension.",
+            "body": "The exact zero-residual solution is $Z^*=160/41\\approx3.902439$ m. Full bundle adjustment extends this to many camera pose and 3D-point variables: $\\min_\\theta\\sum\\|x^{obs}-\\pi(P(\\theta)X(\\theta))\\|^2$. LM adds damping: $(J^TJ+\\lambda I)\\Delta\\theta=-J^Tr$."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "booklet_id": "A7",
+    "source": "CS532_18_Quizzes_By_Lecture.tex",
+    "title": "A7. Affine structure-from-motion factorization (L6, slides 25--37)",
+    "lecture": 6,
+    "original_supplement": true,
+    "questions": [
+      {
+        "part": "Illustrative problem",
+        "question": "Four 3D points are $(0,0,0)$, $(2,0,0)$, $(0,2,0)$ and $(0,0,2)$. The first orthographic camera records $(X,Y)$ and the second records $(Y,Z)$. Build the centered observation matrix and explain its rank and SVD factorization.",
+        "given": [],
+        "notes": [],
+        "key": "quiz-a7-q1",
+        "worked_steps": [
+          {
+            "title": "Center the first view",
+            "why": "Subtracting the image centroid removes its translation.",
+            "body": "In view 1, image $x$ coordinates are $(0,2,0,0)$ with mean $0.5$, and $y$ coordinates are $(0,0,2,0)$ with mean $0.5$. Centered rows: $(-.5,1.5,-.5,-.5)$ and $(-.5,-.5,1.5,-.5)$."
+          },
+          {
+            "title": "Center the second view",
+            "why": "Every view must use its own centroid.",
+            "body": "In view 2, image coordinates are $(Y,Z)$. Their centered rows are $(-.5,-.5,1.5,-.5)$ and $(-.5,-.5,-.5,1.5)$."
+          },
+          {
+            "title": "Stack all measured rows",
+            "why": "The centered matrix contains two rows per image.",
+            "body": "Stack views to obtain the $2m\\times n=4\\times4$ matrix: \\[\\boxed{D=\\begin{bmatrix}-.5&1.5&-.5&-.5\\\\-.5&-.5&1.5&-.5\\\\-.5&-.5&1.5&-.5\\\\-.5&-.5&-.5&1.5\\end{bmatrix}}.\\]"
+          },
+          {
+            "title": "Check rank three",
+            "why": "Only three independent shape-coordinate rows are needed.",
+            "body": "Rows 2 and 3 are identical, so rank $\\le3$. Rows 1,2,4 are linearly independent; therefore $\\boxed{\\operatorname{rank}(D)=3}$. This illustrates the centered affine/orthographic SfM rank-three condition."
+          },
+          {
+            "title": "Split the SVD factors",
+            "why": "Three singular components produce motion and centered structure factors.",
+            "body": "Perform SVD $D=U\\Sigma V^T$, retain the top three singular terms, and form $\\widetilde M=U_3\\Sigma_3^{1/2}$, $\\widetilde S=\\Sigma_3^{1/2}V_3^T$. Then $D=\\widetilde M\\widetilde S$ in this noise-free example."
+          },
+          {
+            "title": "Explain the affine ambiguity",
+            "why": "An invertible middle transformation leaves the measurements unchanged.",
+            "body": "The factorization is not unique: for any invertible $Q\\in\\mathbb R^{3\\times3}$, $(\\widetilde M Q)(Q^{-1}\\widetilde S)=D$. Metric constraints and camera-model assumptions are needed to upgrade from arbitrary affine coordinates. With missing feature observations, naive dense SVD also needs a missing-data strategy."
+          },
+          {
+            "title": "Multiply an exact geometric factorization",
+            "why": "Full matrices show one concrete motion-and-shape pair.",
+            "body": "An exact geometric factorization makes the matrix multiplication visible:\n\\[M=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix},\\quad\nS=\\begin{pmatrix}-.5&1.5&-.5&-.5\\\\-.5&-.5&1.5&-.5\\\\-.5&-.5&-.5&1.5\\end{pmatrix}.\\]\nMultiplying $MS$ selects row 1, row 2, row 2 again, then row 3 of $S$, reproducing every row of $D$. These are one valid camera/centered-shape pair; the balanced SVD factors generally look different but reproduce the same measurements."
+          }
+        ]
+      }
+    ]
+  }
+]

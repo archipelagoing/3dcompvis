@@ -35,6 +35,12 @@ Five original vector diagrams cover FOV, ray–plane depth, the numerical projec
 
 The actual toy/plant photographs are extracted unchanged from PDF page 46 (printed slide 50), then paired with original project labels. The window-size result illustration is extracted unchanged from PDF page 66 (printed slide 70). Individual image creators and reuse terms are not identified on these slides; that uncertainty is retained. Original extracted files and editable panel source are preserved.
 
-Four original paired SVG/PDF diagrams explain the third-view intersection, stereo rays, depth sensitivity, and a window crossing a depth boundary. The 3D stereo explorer uses the existing locally bundled Three.js r180/OrbitControls with the retained MIT license. Its scene, mathematical linkage, and static experiment are original project work. No new remote rendering dependency was introduced.
+Five original paired SVG/PDF diagrams explain sloping epipolar lines and candidate checks, the third-view intersection, stereo rays, depth sensitivity, and a window crossing a depth boundary. The 3D stereo explorer uses the existing locally bundled Three.js r180/OrbitControls with the retained MIT license. Its scene, mathematical linkage, and static experiment are original project work. No new remote rendering dependency was introduced.
 
 The essential-matrix decomposition was cross-checked against [OpenCV's official camera-geometry documentation](https://docs.opencv.org/4.12.0/d9/d0c/group__calib3d.html). Its role here is implementation verification of four candidates, translation direction, and cheirality; the supplied lecture and independently worked examples remain the teaching sources.
+
+## Complete quiz workbooks
+
+The 18 historical quizzes and seven original supplemental problems follow the full statements in the supplied `CS532_18_Quizzes_By_Lecture.tex` booklet. Its wording lightly edits the historical PDFs; original filenames and printed-header discrepancies remain beside each quiz. Solutions are expanded independently. The camera/object-plane and epipolar-plane sketches are reproduced from the booklet's editable TikZ source as local SVG/PDF pairs; reuse terms were not specified in that source. Existing credited project figures are reused where they illustrate the same question.
+
+Red numbered step headings, short reasons, and blue mathematical workings are shared between HTML and LaTeX. Numbering and explicit labels carry the meaning when printed in grayscale. The source register distinguishes all duplicate retests and the seven newly authored booklet supplements.

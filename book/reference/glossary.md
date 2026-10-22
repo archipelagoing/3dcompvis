@@ -159,7 +159,7 @@ Symmetry ambiguity
   Multiple alignments supported by identical visible evidence. Regular-pentagon corner matches illustrate why extra trials cannot recover missing identity information. See {ref}`lec03-ransac-practice`.
 
 Essential matrix
-  Calibrated two-view relation E=[t]×R, with two equal nonzero singular values and one zero. See {eq}`eq-lec04-essential`.
+  Calibrated two-view relation $E=[t]_\times R$, with two equal nonzero singular values and one zero. See {eq}`eq-lec04-essential`.
 
 Cheirality
   The requirement that reconstructed visible points have positive depth in both observing cameras. Used to choose pose candidates; see {ref}`lec04-essential`.

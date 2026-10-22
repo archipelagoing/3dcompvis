@@ -5,7 +5,13 @@ A fundamental matrix works with pixels. Calibration removes each camera's intern
 
 **Source:** lecture PDF pages 22–23. The explicit SVD construction below is a computational companion to the slides' essential-matrix and four-solution statements. OpenCV's [official decomposition and pose-recovery documentation](https://docs.opencv.org/4.12.0/d9/d0c/group__calib3d.html) provides an implementation cross-check: four pose candidates, a translation direction, and a positive-depth test.
 
-```{index} Essential matrix; Cheirality; Translation scale
+```{index} Essential matrix
+```
+
+```{index} Cheirality
+```
+
+```{index} Translation scale
 ```
 
 ## Remove intrinsics before asking about motion
@@ -85,5 +91,5 @@ All lengths here use the chosen unit baseline. Doubling the baseline and all poi
 ````
 
 ```{understanding-check} Two different singular-value rules
-A fitted matrix has singular values $(3,2,0.1)$. A rank-two $F$ correction keeps $(3,2,0)$. An essential-form correction uses $(2.5,2.5,0)$. The equal-pair condition is additional information supplied by calibration.
+For singular values $(3,2,0.1)$, $F$ correction uses $(3,2,0)$; $E$ correction uses $(2.5,2.5,0)$.
 ```

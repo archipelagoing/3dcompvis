@@ -1,6 +1,9 @@
 (lecture03)=
 # Lecture 3: Put camera geometry to work
 
+**[Original quiz questions + fully worked solutions](quiz-workbook.md)** — complete problem statements, numbered red steps with a plain-English reason, and blue mathematics showing intermediate operations.
+
+
 **Can you turn an image size into a camera matrix, or a pixel into a 3D point?** This chapter puts the earlier geometry to work on the assigned quizzes, then shows why even thousands of random trials cannot resolve an ambiguous match.
 
 The Lecture 3 deck repeats theory already taught in Lectures 1–2. Those explanations keep their original homes. Here we add **new applications**, a complete projective calculation, and a sampling experiment.

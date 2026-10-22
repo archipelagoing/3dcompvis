@@ -1,6 +1,6 @@
 id,name,source_pdf_pages_or_quiz,destination,status
 eq-lec04-depth,depth,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
-eq-lec04-depth-error,depth-error,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
+eq-lec04-depth-error,depth-error and distance-squared sensitivity,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; expanded exact/derivative derivations and interval examples; independent finite-difference checks passed
 eq-lec04-disparity-range,disparity-range,see named box and chapter source notes,book/lectures/lecture04/stereo.md,canonical numbered box/application; numerical checks passed; web/print review
 eq-lec04-essential,essential,see named box and chapter source notes,book/lectures/lecture04/essential.md,canonical numbered box/application; numerical checks passed; web/print review
 eq-lec04-poses,poses,see named box and chapter source notes,book/lectures/lecture04/essential.md,canonical numbered box/application; numerical checks passed; web/print review

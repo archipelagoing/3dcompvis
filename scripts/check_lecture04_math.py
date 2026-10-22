@@ -47,6 +47,35 @@ def ncc(a,b):
     return np.dot(a,b)/norm if norm else np.nan
 
 def run():
+    # New guided example: derive F independently from calibrated camera motion.
+    rotation=np.array([[0,-1,0],[1,0,0],[0,0,1]])
+    translation=np.array([1,2,1])
+    guided=skew(translation)@rotation
+    np.testing.assert_array_equal(guided,[[-1,0,2],[0,-1,-1],[1,2,0]])
+    assert np.linalg.matrix_rank(guided)==2
+    point=np.array([1,3,1]);line=guided@point
+    np.testing.assert_array_equal(line,[1,-4,7])
+    for candidate in [[3,2.5,1],[5,3,1]]:assert np.dot(candidate,line)==0
+    assert np.dot([1,3,1],line)==-4
+    np.testing.assert_array_equal(guided.T@np.array([5,3,1]),[-4,-1,7])
+    np.testing.assert_array_equal(guided@np.array([2,-1,1]),[0,0,0])
+    np.testing.assert_array_equal(guided.T@np.array([1,2,1]),[0,0,0])
+    for scale in [1,-3,10]:
+        scaled=scale*line
+        np.testing.assert_allclose(abs(scaled@point)/np.linalg.norm(scaled[:2]),4/np.sqrt(17))
+    # Verify a family of actual finite scene points obeys the same camera geometry.
+    for depth in [1,2,5]:
+        world=depth*point
+        right=rotation@world+translation
+        right=right/right[2]
+        np.testing.assert_allclose(right@guided@point,0,atol=1e-14)
+    for depth in [20,40,100]:
+        disparity=500/depth
+        np.testing.assert_allclose(500/disparity**2,depth**2/500)
+        step=1e-5
+        slope=(500/(disparity+step)-500/(disparity-step))/(2*step)
+        np.testing.assert_allclose(slope,-depth**2/500,rtol=1e-8)
+    np.testing.assert_allclose([500/5.5,500/4.5],[90.9090909091,111.1111111111])
     F=np.arange(1,10).reshape(3,3);xa=np.array([1,0,1]);xb=np.array([0,1,1])
     assert xb@F@xa==F[1,0]+F[1,2]+F[2,0]+F[2,2]
     fac=skew([0,-1,0]);fbc=skew([1,-1,0]);la=fac@np.array([.5,.75,1]);lb=fbc@np.array([.25,.75,1])

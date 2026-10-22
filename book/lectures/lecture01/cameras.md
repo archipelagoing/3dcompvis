@@ -185,18 +185,7 @@ $K$ is $3\times3$, $q,X_c,X_w,t$ are $3\times1$, and $Z_c$ is **{term}`axial dep
 See {ref}`Example 1.16 <ex-lec01-depth>`.
 ```
 
-(ex-lec01-depth)=
-```{worked-example} Worked example 1.16 — Fall 2017 Quiz 9, problem 1: preview solution
-The required information is each camera's intrinsics, distortion model or undistorted pixels, a defined depth convention and scale, and extrinsics expressed relative to one common frame. The boxed procedure supplies the construction.
-
-For a small numerical illustration added here, let both cameras use the $K$ from Example 1.15. Camera 1 is at the origin and camera 2 at $(2,0,0)$, both with identity orientation.
-
-1. Camera 1's pixel $(300,250)$ with axial depth 10 backprojects to $(1,0,10)$ in camera 1 and world coordinates.
-2. Camera 2's pixel $(200,250)$ at depth 10 backprojects to $(-1,0,10)$ in camera 2.
-3. Camera 2 has world-to-camera translation $t=(-2,0,0)$. Applying $X_w=X_c-t$ gives $(1,0,10)$, the same world point.
-
-The two camera centers and their rays to this common point form the illustrative geometry: draw the centers at $(0,0,0)$ and $(2,0,0)$ and connect both to $(1,0,10)$. The shared-object frame graph and the projection-ray figures show the two ingredients separately. A dedicated ray sketch follows.
-```
+**Worked example 1.16 — Fall 2017 Quiz 9, problem 1: preview solution.** {ref}`Read the original problem and every worked step <quiz-18-q1>`.
 
 ```{figure} ../../images/lecture01/depth-rays.*
 :name: fig-lec01-depth-rays

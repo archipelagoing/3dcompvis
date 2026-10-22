@@ -41,3 +41,5 @@ Final consolidated checks passed: HTML and LaTeX warnings-as-errors builds, XeLa
 ## Interactive addition
 
 Exactly one interactive explorer is placed at the relevant teaching point: perspective warp/cross-ratio in the homography section. The same MyST content supplies complete static explanation and results for print and no-JavaScript readers. See `INTERACTIVES.md` for the remaining lecture plan and validation.
+
+**Quiz-format update:** the cross-lecture workbook revision supersedes earlier descriptions of shortened quiz examples and shared retest answers. See `QUIZ_WORKBOOK_STATUS.md` for current problem-level coverage and validation. Main lecture explanations retain their existing review status.

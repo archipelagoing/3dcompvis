@@ -6,7 +6,7 @@ Complete **Lecture 1 → Lecture 2 → Lecture 3 → Lecture 4 → Lecture 5 →
 
 Follow [TEXTBOOK_PROMPT.md](TEXTBOOK_PROMPT.md) for editorial and technical requirements. Use [quizByLec.md](3dcvMid/lectures/quizByLec.md) for primary quiz placement and secondary overlaps, and [ExamToDo.md](ExamToDo.md) for emphasis, errata, and exam gaps. Relevance scores are not exam probabilities. Check the actual PDFs before finalizing topic boundaries or source references.
 
-**Current next action:** review completed Lecture 4 with the user before starting Lecture 5. Lectures 5–6 remain unwritten.
+**Current next action:** review the cross-lecture quiz-workbook revision. The user requested all assigned quiz problems in full, with red numbered steps and blue intermediate mathematics. Main Lecture 5–6 explanations remain unfinished; their quiz workbooks are now supplied.
 
 ## 0. Prepare the shared foundation
 
@@ -89,23 +89,27 @@ Source: `3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf`.
 
 Source: `3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf`.
 
-- [ ] Select slide examples that make distortion, epipolar geometry, and stereo constraints visually concrete. Include labeled two-camera geometry and image-space epipolar lines.
-- [ ] Integrate `olderquizzes/cs532f15_quiz4.pdf` and `olderquizzes/cs532s19_quiz4.pdf`: fundamental matrix to line and expansion of the epipolar constraint. Preserve both source entries; use the duplicate for retesting.
-- [ ] Integrate **Fall 2025 Quiz 2**, `quizzesf25sol/cs532f25_quiz_2_solution.pdf`: intersect epipolar lines in a third view and find points satisfying a constraint. Correct the line/point confusion, check matrix rank, and explain degenerate intersections.
-- [ ] Integrate **Fall 2025 Quiz 3**, `quizzesf25sol/cs532f25_quiz_3_solution.pdf`: depth, first-order versus exact error, and disparity-search bounds with consistent units.
-- [ ] Integrate **Spring 2019 Quiz 5**, `olderquizzes/cs532s19_quiz5-2.pdf`: exact ±1-pixel disparity errors and their asymmetry. Use `olderquizzes/cs532s20_quiz5.pdf` as the duplicate retest.
-- [ ] Fill quiz gaps with worked examples of fundamental-matrix estimation/normalized eight-point estimation, essential-matrix constraints and four candidate poses, and cheirality, to the depth supported by the lecture. Label extra context explicitly.
-- [ ] Explain triangulation and stereo costs where introduced; connect to Lecture 6's full triangulation derivation. Include a depth-sensitivity plot and static equivalents of any interactive demonstration.
-- [ ] Complete every item in the repeated lecture checklist; verify all high-priority formulas and errata.
+- [x] Select slide examples that make distortion, epipolar geometry, and stereo constraints visually concrete. Include labeled two-camera geometry and image-space epipolar lines.
+- [x] Integrate `olderquizzes/cs532f15_quiz4.pdf` and `olderquizzes/cs532s19_quiz4.pdf`: fundamental matrix to line and expansion of the epipolar constraint. Preserve both source entries; use the duplicate for retesting.
+- [x] Integrate **Fall 2025 Quiz 2**, `quizzesf25sol/cs532f25_quiz_2_solution.pdf`: intersect epipolar lines in a third view and find points satisfying a constraint. Correct the line/point confusion, check matrix rank, and explain degenerate intersections.
+- [x] Integrate **Fall 2025 Quiz 3**, `quizzesf25sol/cs532f25_quiz_3_solution.pdf`: depth, first-order versus exact error, and disparity-search bounds with consistent units.
+- [x] Integrate **Spring 2019 Quiz 5**, `olderquizzes/cs532s19_quiz5-2.pdf`: exact ±1-pixel disparity errors and their asymmetry. Use `olderquizzes/cs532s20_quiz5.pdf` as the duplicate retest.
+- [x] Fill quiz gaps with worked examples of fundamental-matrix estimation/normalized eight-point estimation, essential-matrix constraints and four candidate poses, and cheirality, to the depth supported by the lecture. Label extra context explicitly.
+- [x] Explain triangulation and stereo costs where introduced; connect to Lecture 6's full triangulation derivation. Include a depth-sensitivity plot and static equivalents of any interactive demonstration.
+- [x] Complete every item in the repeated lecture checklist; verify all high-priority formulas and errata.
+
+- [x] Incorporate L4 feedback: prominent epipolar example navigation; ray/plane/line intuition; guided matrix, transpose, nullspace and residual calculations; fully expanded quiz arithmetic; stereo sensitivity, signed exact errors, derivative and bounded-error examples. Rebuild web and printable LaTeX/PDF.
+- [ ] Review the revised Lecture 4 with the user before Lecture 5.
 
 ## 5. Lecture 5 — Corners, tracking, descriptors, and matching
 
 Source: `3dcvMid/lectures/wk5_cs532_Corners.pdf`.
 
 - [ ] Select actual slide examples of feature detection/matching, including panorama or rover imagery if useful after inspection. Preserve image credits and show what the reader should notice.
-- [ ] Integrate **Spring 2019 Quiz 6**, `olderquizzes/cs532s19_quiz6-2.pdf`: intersections, corners versus edges, slanted-edge ambiguity, and isolated pixels. Explain the structure tensor rather than relying only on intuition.
-- [ ] Integrate **Fall 2025 Quiz 4**, `quizzesf25sol/cs532f25_quiz_4_solution.pdf`: exposure changes, brightness constancy, patch normalization, assumptions, and zero/low-variance limitations.
-- [ ] Add a complete numerical Harris example: gradients, weighted sums, tensor, eigenvalues, determinant/trace response, thresholding, and non-maximum suppression.
+- [x] Integrate **Spring 2019 Quiz 6**, `olderquizzes/cs532s19_quiz6-2.pdf`: intersections, corners versus edges, slanted-edge ambiguity, and isolated pixels. Explain the structure tensor rather than relying only on intuition.
+- [x] Integrate **Fall 2025 Quiz 4**, `quizzesf25sol/cs532f25_quiz_4_solution.pdf`: exposure changes, brightness constancy, patch normalization, assumptions, and zero/low-variance limitations.
+- [x] Supply the booklet’s fully worked numerical Harris and Lucas–Kanade problems in the Lecture 5 quiz workbook.
+- [ ] Develop the main chapter’s complete Harris example: gradients, weighted sums, tensor, eigenvalues, determinant/trace response, thresholding, and non-maximum suppression.
 - [ ] Add a complete Lucas–Kanade example: Taylor approximation, displacement sign convention, `A`, `b`, normal equations, solvability, and interpreted motion. Illustrate the aperture problem.
 - [ ] Cover the slide-supported descriptors, invariance properties, matching metrics, and ambiguity with an illustrated matching example.
 - [ ] Complete every item in the repeated lecture checklist.
@@ -115,9 +119,10 @@ Source: `3dcvMid/lectures/wk5_cs532_Corners.pdf`.
 Source: `3dcvMid/lectures/wk6_cs532s24_SFM1.pdf`.
 
 - [ ] Select the lecture's most informative reconstruction and feature-track examples. Use them to connect measurements, camera motion, and recovered structure.
-- [ ] Integrate **Fall 2025 Quiz 5**, `quizzesf25sol/cs532f25_quiz_5_solution-1.pdf`: facade/floor constraints, reconstruction upgrades, and weak-overlap sequential versus factorization choices. Correct unsupported full-scene metric-upgrade claims and distinguish unknown visibility from zero-valued measurements.
-- [ ] Integrate **Fall 2025 Quiz 6**, `quizzesf25sol/cs532f25_quiz_6_solution.pdf`: large-scale pipeline choice and contaminated-match verification. Label advanced transfer material and check claims about computational complexity and failure modes.
-- [ ] Add a centered measurement-matrix/SVD factorization example, showing rank-three structure and affine/metric ambiguity.
+- [x] Integrate **Fall 2025 Quiz 5**, `quizzesf25sol/cs532f25_quiz_5_solution-1.pdf`: facade/floor constraints, reconstruction upgrades, and weak-overlap sequential versus factorization choices. Correct unsupported full-scene metric-upgrade claims and distinguish unknown visibility from zero-valued measurements.
+- [x] Integrate **Fall 2025 Quiz 6**, `quizzesf25sol/cs532f25_quiz_6_solution.pdf`: large-scale pipeline choice and contaminated-match verification. Label advanced transfer material and check claims about computational complexity and failure modes.
+- [x] Supply the booklet’s complete factorization, linear triangulation and one-variable Gauss–Newton problems in the Lecture 6 workbook.
+- [ ] Develop the main chapter’s centered measurement-matrix/SVD factorization example, showing rank-three structure and affine/metric ambiguity.
 - [ ] Add a full linear-triangulation example: construct `AX = 0`, solve by SVD, dehomogenize, check cheirality and reprojection error, and explain degeneracy/noise.
 - [ ] Add a bundle-adjustment example with residuals, objective, gauge fixing, Jacobian structure, and a manageable Gauss–Newton/LM update. Explain the geometric effect rather than presenting unexplained matrix algebra.
 - [ ] Include a reconstruction-pipeline figure and distinguish calibrated, projective, affine, and metric/similarity recovery with explicit assumptions.
@@ -126,9 +131,19 @@ Source: `3dcvMid/lectures/wk6_cs532s24_SFM1.pdf`.
 ## 7. Final book-wide completion
 
 - [ ] Reconcile the coverage ledger with all six PDFs: every substantive topic/formula is taught or has an explicit disposition.
-- [ ] Reconcile the quiz index with all 18 in-scope PDFs and every subquestion, including duplicate retests and deferred secondary placements. Keep Fall 2025 Quizzes 7 and 8 outside core scope.
+- [x] Reconcile the quiz index with the supplied booklet’s 18 in-scope historical sources and every grouped subquestion, including complete duplicate retests and primary/secondary placements. Keep Fall 2025 Quizzes 7 and 8 outside core scope.
 - [ ] Verify all seven exam-gap topics and the exam-readiness route in `ExamToDo.md`; retain lecture order for the main reading route.
 - [ ] Consolidate notation, formula boxes, glossary, keyword index, bibliography, credits, and errata; remove accidental repetition and fix forward references.
 - [ ] Build and visually inspect the complete website and continuous PDF. Resolve references, print solutions, static interaction equivalents, image paths, and layout problems.
 - [ ] Compile the portable bundle from documented commands with local relative assets. Supply the complete `.tex`, PDF, images, bibliography/support files, and Overleaf/local build instructions.
 - [ ] Report actual checks and remaining limitations; publish the completed updates only when authorized.
+
+## Cross-lecture quiz-format correction
+
+- [x] Audit the supplied lecture-organized booklet: 18 historical quizzes, 39 problem groups with all subparts, plus seven original supplemental problems.
+- [x] Preserve full problem wording/givens, source identity, header discrepancies and separate duplicate retests.
+- [x] Supply six clearly named quiz workbooks; route existing concept/example links to the complete treatments.
+- [x] Expand matrix/vector products, substitutions and intermediate arithmetic; give every step a short reason, a red numbered heading and blue math in web and LaTeX. Also expand all 32 original end-of-chapter quiz answers in Lectures 1–4 using this format.
+- [x] Keep a question-level coverage register and update the authoring prompts/template to require this format.
+- [x] Complete independent math, original-question fidelity, web/mobile/color/navigation and continuous PDF/portable-bundle checks. See `authoring/QUIZ_WORKBOOK_STATUS.md`: 78 complete statements, 290 styled steps, 214-page current PDF, all bundled figures verified.
+- [ ] Review the new quiz format with the user; keep full Lecture 5–6 completion separate.

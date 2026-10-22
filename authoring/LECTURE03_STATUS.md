@@ -29,3 +29,5 @@
 - Authoring evidence: `lecture03-audit.md`, `lecture03-formulas.csv`, `coverage.csv`, quiz/figure/errata registers.
 
 The user approved L3 and requested L4; its current status is tracked separately. Lectures 5–6 remain outlines. No changes were pushed or published.
+
+**Quiz-format update:** the cross-lecture workbook revision supersedes earlier descriptions of shortened quiz examples and shared retest answers. See `QUIZ_WORKBOOK_STATUS.md` for current problem-level coverage and validation. Main lecture explanations retain their existing review status.

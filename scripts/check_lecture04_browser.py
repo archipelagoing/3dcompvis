@@ -18,7 +18,23 @@ def main():
             page.wait_for_timeout(500)
             assert not page.locator('mjx-merror,.problematic').count(),name
             assert page.locator('article img').evaluate_all('(images)=>images.every(i=>i.complete&&i.naturalWidth>0)'),name
-            if name in ['essential','matching']:page.screenshot(path=str(out/(name+'.png')),full_page=True)
+            if name in ['index','epipolar-practice','essential','stereo','matching']:page.screenshot(path=str(out/(name+'.png')),full_page=True)
+        # The chapter landing page must expose working direct routes to the new math.
+        page.goto(base+'index.html')
+        for fragment in ['epipolar-point-line','epipolar-test-match','epipolar-reverse','stereo-depth-sensitivity']:
+            link=page.locator('article a[href$="#'+fragment+'"]').first
+            assert link.count(),fragment
+            target=link.get_attribute('href')
+            page.goto(base+target)
+            assert page.locator('[id="'+fragment+'"]').count(),target
+            page.goto(base+'index.html')
+        mobile_math=browser.new_context(viewport={'width':390,'height':844},is_mobile=True)
+        mobile_page=mobile_math.new_page()
+        for name in ['index','epipolar-practice','stereo']:
+            mobile_page.goto(base+name+'.html')
+            mobile_page.wait_for_function('!document.querySelector(".math") || !!document.querySelector("mjx-container")')
+            assert mobile_page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),name
+        mobile_math.close()
         page.goto(base+'stereo.html');root=page.locator('[data-demo="stereo"][data-ready="true"][data-rendered="true"]');root.wait_for(timeout=30000)
         assert root.get_attribute('data-renderer')=='webgl'
         def set_input(name,value):

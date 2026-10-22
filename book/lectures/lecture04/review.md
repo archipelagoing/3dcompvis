@@ -1,7 +1,7 @@
 (lec04-review)=
 # Review and source checklist
 
-The chapter adds calculations and reconstruction methods to the earlier epipolar introduction. Work through the quiz examples before trying to memorize a pipeline.
+Start with the [epipolar visual guide and calculations A–C](epipolar-practice.md): point-to-line multiplication, candidate checks, transpose, and epipole nullspaces. Then work through the expanded quiz examples below. The {ref}`stereo sensitivity walkthrough <stereo-depth-sensitivity>` explains exact errors, the derivative, distance-squared sensitivity, and uncertainty intervals.
 
 ## Formula and application map
 
@@ -42,7 +42,7 @@ The canonical fundamental constraint, linear eight-point rows, radial correction
 | PDF pages | Disposition |
 | --- | --- |
 | 1 | Title and source metadata |
-| 2–21 | Distortion, epipolar planes/epipoles/F and linear rows already taught in L2; new quiz applications here |
+| 2–21 | Distortion, epipolar planes/epipoles/F and linear rows already taught in L2; guided geometry recap and expanded quiz applications here |
 | 22–23 | Essential-matrix constraints, four poses and cheirality |
 | 24–37 | Noisy normalized F fitting, rank projection, residuals, seven-point robust sampling and model degeneracy |
 | 38–41 | Search reduction and rectification already taught in L2; linked as prerequisites |

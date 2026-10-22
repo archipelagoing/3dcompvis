@@ -123,7 +123,7 @@ $f=(F_{11},F_{12},F_{13},F_{21},\ldots,F_{33})^T$ is $9\times1$; one finite matc
 3. Enforce rank two by setting its smallest singular value to zero.
 4. Undo normalization: if normalized points are $Tx,T'x'$, then $F=T'^T\widetilde F T$; verify on held-out matches.
 
-For Example 2.6 and match $(u,v)=(2,3)$, $(u',v')=(5,3)$, the row is $(10,15,5,6,9,3,2,3,1)$. Dotting it with the row-stacked $F$ gives $-3+3=0$. Lecture 4 will develop noisy estimation and its assigned quiz calculations.
+For Example 2.6 and match $(u,v)=(2,3)$, $(u',v')=(5,3)$, the row is $(10,15,5,6,9,3,2,3,1)$. Dotting it with the row-stacked $F$ gives $-3+3=0$. [Lecture 4](../lecture04/estimation.md) develops noisy estimation and the assigned quiz calculations.
 ```
 
 ## Motion patterns and rectification
@@ -152,7 +152,7 @@ $H,H'$ are nonsingular $3\times3$ image warps. Moving both epipoles to the horiz
 2. Resample both images by inverse warping.
 3. Check that known matches share the same row; then search along that row.
 
-Example 2.6 is already rectified: identity warps preserve its horizontal lines and equal-row constraint. The final slide's paired objects illustrate the visual goal. Detailed stereo depth follows in Lecture 4.
+Example 2.6 is already rectified: identity warps preserve its horizontal lines and equal-row constraint. The final slide's paired objects illustrate the visual goal. [Stereo depth and error](../lecture04/stereo.md) follow in Lecture 4.
 ```
 
 ```{index} radial distortion

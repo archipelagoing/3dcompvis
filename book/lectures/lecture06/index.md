@@ -1,8 +1,11 @@
 (lecture06)=
 # Lecture 6: Structure from motion
 
+**[Original quiz questions + fully worked solutions](quiz-workbook.md)** — complete problem statements, numbered red steps with a plain-English reason, and blue mathematics showing intermediate operations.
+
+
 ```{note}
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
+The main lecture explanations remain a planning outline. Its assigned quiz questions and the booklet’s relevant supplemental problems are now fully worked in the linked workbook; the slide audit and remaining chapter material will be completed separately.
 ```
 
 ## Planned scope
@@ -13,7 +16,7 @@ Reconstruction ambiguity; factorization; triangulation; bundle adjustment.
 
 ## Examples and practice
 
-Select the most useful examples from the actual slides and integrate the assigned questions from the [quiz index](../../reference/quiz-index.md). Missing quiz coverage will be filled with new, clearly labeled worked examples.
+The [quiz workbook](quiz-workbook.md) contains both assigned historical quizzes and the relevant original practice problems from the supplied booklet. It is available now; this does not mark the full lecture complete.
 
 ## Completion checklist
 

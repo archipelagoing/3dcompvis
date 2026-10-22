@@ -1,19 +1,41 @@
 (lec04-stereo)=
-# Stereo depth and its errors
+# Stereo depth, sensitivity and worked error examples
 
 Hold a finger in front of your face and close one eye at a time. Its apparent horizontal shift is larger when it is close. **Disparity** measures that shift in a rectified camera pair.
 
+**Quick route:** {ref}`derive depth <stereo-derive-depth>`, [understand sensitivity](#stereo-depth-sensitivity), [Fall quiz: ±1 pixel](#ex-lec04-stereo-fall), [Spring quiz: larger errors](#ex-lec04-stereo-spring), [3D explorer](#stereo-explorer), [depth range → search range](#ex-lec04-search).
+
 **Sources:** lecture PDF pages 58–64; Fall 2025 Quiz 3, `cs532f25_quiz_3_solution.pdf`, Q1–Q2, page 1; Spring 2019 Quiz 5, `cs532s19_quiz5-2.pdf`, P1's three bullets, page 1; Spring 2020 Quiz 5, `cs532s20_quiz5.pdf`, same questions under an overprinted 2019/2020 header.
 
-```{index} Disparity; Stereo depth; Depth uncertainty
+```{index} Disparity
 ```
 
+```{index} Stereo depth
+```
+
+```{index} Depth uncertainty
+```
+
+(stereo-derive-depth)=
 ## Turn horizontal shift into axial depth
 
 Assume aligned rectified cameras with a horizontal baseline $b>0$, shared horizontal focal length $f$ in pixels, and matched principal-point columns. Put the left center at $(0,0,0)$ and the right center at $(b,0,0)$.
 
-For a scene point $(X,Y,Z)$, the two horizontal projections obey
-$u_L-c_x=fX/Z$ and $u_R-c_x=f(X-b)/Z$. Subtract them: $u_L-u_R=fb/Z$.
+For a scene point $(X,Y,Z)$, the left camera sees horizontal position $X$, while the right camera sees $X-b$ relative to its own center. Perspective divides each by the same depth:
+
+$$u_L-c_x=\frac{fX}{Z},\qquad u_R-c_x=\frac{f(X-b)}{Z}.$$
+
+**Subtract the right observation from the left.** The principal point cancels, then the unknown $X$ cancels:
+
+$$
+\begin{aligned}
+d&=(u_L-c_x)-(u_R-c_x)\\
+&=\frac{fX}{Z}-\frac{f(X-b)}{Z}
+=\frac{fX-fX+fb}{Z}=\frac{fb}{Z}.
+\end{aligned}
+$$
+
+Multiply both sides by $Z$, giving $dZ=fb$. Divide by positive $d$: **$Z=fb/d$**. This is why the horizontal shift alone can recover depth once the cameras are calibrated.
 
 ````{formula-box} Formula — rectified stereo depth
 ```{math}
@@ -23,6 +45,10 @@ d=u_L-u_R,\qquad Z=\frac{fb}{d}.
 
 $f$ and $d$ use pixels; $Z$ uses the same length unit as $b$. $Z$ is axial depth. Require $d>0$ under this camera order and forward-view convention. If principal-point columns differ, use corrected disparity $d=(u_L-c_{xL})-(u_R-c_{xR})$ instead. A zero disparity is the ideal infinite-depth limit, not a finite reconstruction.
 ````
+
+```{raw} latex
+\Needspace{12\baselineskip}
+```
 
 ```{application} Reconstruct with a known baseline
 1. **Input:** rectified correspondence, calibrated pixel focal length, and baseline length.
@@ -41,9 +67,25 @@ The source's BAD/GOOD rectification examples (PDF pages 59–60) illustrate that
 A side view along the horizontal baseline: the difference between two projections fixes the ray intersection's depth. Virtual image planes are drawn in front of the cameras.
 ```
 
-## A pixel error produces an asymmetric depth error
+(stereo-depth-sensitivity)=
+## Stereo depth sensitivity: why one pixel matters
 
-Let the true disparity be $d$ and the measured disparity $d+\delta$. Define **signed error** as estimated depth minus true depth. Subtract the two depth fractions before approximating.
+**Faraway points barely move between the two images.** Their disparity is small, so one pixel is a large fraction of the signal. Nearby points have a larger shift and tolerate the same pixel error better.
+
+Let the true disparity be $d$ and the measured disparity $d+\delta$. Here $\delta$ is a **disparity error**, not automatically the error in one particular image coordinate. Since $d=u_L-u_R$, measurement errors $\epsilon_L,\epsilon_R$ give $\delta=\epsilon_L-\epsilon_R$. If the left coordinate is held fixed, a right-coordinate error has the opposite sign to $\delta$.
+
+Define **signed depth error** as estimated depth minus true depth. Start with the two depths, give their fractions a common denominator, and simplify:
+
+$$
+\begin{aligned}
+\Delta Z&=\widehat Z-Z=\frac{fb}{d+\delta}-\frac{fb}{d}\\
+&=\frac{fb\,d-fb(d+\delta)}{d(d+\delta)}\\
+&=\frac{fb\,d-fb\,d-fb\,\delta}{d(d+\delta)}
+=-\frac{fb\,\delta}{d(d+\delta)}.
+\end{aligned}
+$$
+
+**Read the sign:** $\delta>0$ means too much disparity and an estimate too near ($\Delta Z<0$). $\delta<0$ means too little disparity and an estimate too far ($\Delta Z>0$), provided measured disparity stays positive.
 
 ````{formula-box} Formula — exact and first-order depth error
 ```{math}
@@ -52,7 +94,8 @@ Let the true disparity be $d$ and the measured disparity $d+\delta$. Define **si
 \Delta Z&=\frac{fb}{d+\delta}-\frac{fb}{d}
 =-\frac{fb\,\delta}{d(d+\delta)},\\
 \Delta Z&\approx-\frac{fb}{d^2}\delta\quad (|\delta|\ll d),\qquad
-\frac{|\Delta Z|}{Z}\approx\frac{|\delta|}{d}.
+\frac{|\Delta Z|}{Z}\approx\frac{|\delta|}{d},\\
+\left|\frac{dZ}{dd}\right|&=\frac{fb}{d^2}=\frac{Z^2}{fb}.
 \end{aligned}
 ```
 
@@ -68,33 +111,55 @@ Require $d>0$ and $d+\delta>0$ for two finite forward-depth estimates. The appro
 For bounded error $|\delta|\le\epsilon<d$, the possible depths lie between $fb/(d+\epsilon)$ and $fb/(d-\epsilon)$. If the interval reaches zero disparity, there is no finite upper depth bound under this model.
 ```
 
-(ex-lec04-stereo-fall)=
-````{worked-example} Worked example 4.6 — the one-pixel Fall 2025 question
-**Adapted from:** Fall 2025 Quiz 3, Q1.
+### Understand the approximation, not just the formula
 
-**Given:** $b=10\,\mathrm{cm}$, $f=50$ pixels, true $d=25$ pixels. Then $fb=500\,\mathrm{cm\,pixels}$ and $Z=500/25=20\,\mathrm{cm}$.
+Write $Z=fb\,d^{-1}$. Differentiating with respect to disparity gives
 
-| Measured disparity | Estimated depth | Signed exact error |
-| --- | --- | --- |
-| $24$ pixels ($\delta=-1$) | $500/24=20.8333\,\mathrm{cm}$ | $+0.8333\,\mathrm{cm}$ |
-| $26$ pixels ($\delta=+1$) | $500/26=19.2308\,\mathrm{cm}$ | $-0.7692\,\mathrm{cm}$ |
+$$\frac{dZ}{dd}=fb(-d^{-2})=-\frac{fb}{d^2}.$$
 
-The first-order magnitude is $500/25^2=0.8\,\mathrm{cm}$. The supplied solution reports this approximation. It is sensible here because $1/25=4\%$, but it is not either exact signed error. “By one pixel” needs a direction or an explicit magnitude convention.
-````
+A derivative is the **local slope**: approximately how much depth changes for a small change in disparity. Multiply this slope by $\delta$ to get $\Delta Z\approx-fb\delta/d^2$. Its units are length per pixel times pixels, giving length.
 
-(ex-lec04-stereo-spring)=
-````{worked-example} Worked example 4.7 — why ±1 pixel is not symmetric
-**Adapted from:** Spring 2019 Quiz 5, P1, all three bullets. Spring 2020 Quiz 5 is the closed-notes retest.
+You can also see the approximation without calculus. If $|\delta|$ is much smaller than $d$, replace the exact denominator $d(d+\delta)$ by $d^2$. Dividing the resulting error magnitude by $Z=fb/d$ gives
 
-**Given:** $b=10\,\mathrm{cm}$, $f=5$ pixels, $d=3$ pixels. True depth is $50/3=16.6667\,\mathrm{cm}$.
+$$\frac{|\Delta Z|}{Z}\approx
+\frac{fb|\delta|}{d^2}\frac{d}{fb}=\frac{|\delta|}{d}.$$
 
-1. **Underestimate by one:** measured $d=2$, depth $25\,\mathrm{cm}$, error $25-50/3=25/3\approx+8.3333\,\mathrm{cm}$.
-2. **Overestimate by one:** measured $d=4$, depth $12.5\,\mathrm{cm}$, error $12.5-50/3=-25/6\approx-4.1667\,\mathrm{cm}$.
-3. **Larger true disparities:** errors do not stay constant. Their magnitudes are $fb/[d(d-1)]$ and $fb/[d(d+1)]$ for one-pixel under/overestimation, respectively. Both decrease as $d$ increases above one.
+**A 1-pixel error at 25 pixels is roughly a 4% depth error. At 5 pixels it is roughly 20%.** Close to zero disparity, this approximation becomes unreliable; use the exact depths instead.
 
-At $d=3$, a one-pixel error is one third of the true disparity. The linearized magnitude $50/9\approx5.5556\,\mathrm{cm}$ misses the strong asymmetry, so use the exact fractions.
-````
+### Why distance makes sensitivity grow so quickly
 
+Substitute $d=fb/Z$ into the slope magnitude:
+
+$$\left|\frac{dZ}{dd}\right|
+=\frac{fb}{(fb/Z)^2}=\frac{Z^2}{fb}.$$
+
+At fixed focal length and baseline, **double the true depth → about four times the absolute error** for the same small disparity error. At fixed true depth, a larger baseline or longer pixel focal length reduces this local sensitivity. A larger baseline also makes occlusions and matching more difficult; geometry alone does not guarantee a usable correspondence.
+
+For $f=50$ pixels and $b=10\,\mathrm{cm}$, so $fb=500$:
+
+| True depth | True disparity | Depth if disparity is 1 pixel too small | Depth if disparity is 1 pixel too large | Local sensitivity |
+| --- | --- | --- | --- | --- |
+| $20\,\mathrm{cm}$ | $25$ px | $20.8333\,\mathrm{cm}$ | $19.2308\,\mathrm{cm}$ | $0.8\,\mathrm{cm/px}$ |
+| $40\,\mathrm{cm}$ | $12.5$ px | $43.4783\,\mathrm{cm}$ | $37.0370\,\mathrm{cm}$ | $3.2\,\mathrm{cm/px}$ |
+| $100\,\mathrm{cm}$ | $5$ px | $125\,\mathrm{cm}$ | $83.3333\,\mathrm{cm}$ | $20\,\mathrm{cm/px}$ |
+
+For example, the last row uses $d=500/100=5$, then $500/(5-1)=125$ and $500/(5+1)=83.3333$. The exact errors are **$+25$ and $-16.6667\,\mathrm{cm}$**, despite equal one-pixel disparity errors.
+
+### A bounded error gives a depth interval
+
+Suppose $d=5$ pixels and the disparity error is at most $0.5$ pixel. With $fb=500$, the permitted measured disparities are $[4.5,5.5]$. Because larger disparity means smaller depth, reverse the endpoints:
+
+$$\widehat Z\in
+\left[\frac{500}{5.5},\frac{500}{4.5}\right]
+=[90.9091,111.1111]\,\mathrm{cm}.$$
+
+Relative to the true depth $100\,\mathrm{cm}$, the errors lie in $[-9.0909,+11.1111]\,\mathrm{cm}$. The derivative estimate would give approximately $\pm10\,\mathrm{cm}$. A bound is an interval, not a probability statement. If permitted disparity reaches zero, finite upper depth is no longer bounded.
+
+**Worked example 4.6 — the one-pixel Fall 2025 question.** {ref}`Read the original problem and every worked step <quiz-4-q1>`.
+
+**Worked example 4.7 — why ±1 pixel is not symmetric.** {ref}`Read the original problem and every worked step <quiz-5-q1>`.
+
+(stereo-explorer)=
 ## Explore the real 3D geometry
 
 Move the true point in depth, change the camera baseline or focal length, and perturb the measured disparity. The orange point is the truth; the purple point is the estimate from the perturbed right-image match. Orbiting the scene changes only your inspection view.
@@ -141,11 +206,4 @@ The inequalities reverse because depth and positive disparity are inversely rela
 4. Check that the larger disparity belongs to the nearer depth.
 ```
 
-(ex-lec04-search)=
-```{worked-example} Worked example 4.8 — restrict the Fall 2025 search
-**Adapted from:** Fall 2025 Quiz 3, Q2.
-
-Use $b=0.1\,\mathrm m$, $f=50$ pixels, and depth range $[1,5]\,\mathrm m$. Then $fb=5\,\mathrm{m\,pixels}$, so $d_{\min}=5/5=1$ pixel and $d_{\max}=5/1=5$ pixels. Search integer disparities $1,2,3,4,5$, or subpixel values in that interval.
-
-For a left column $u_L$, candidates are at $u_R=u_L-d$ on the matching row. Also clip the search to valid image coordinates; a geometrically permitted match can still fall outside the image.
-```
+**Worked example 4.8 — restrict the Fall 2025 search.** {ref}`Read the original problem and every worked step <quiz-4-q2>`.

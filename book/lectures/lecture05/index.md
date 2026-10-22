@@ -1,24 +1,16 @@
 (lecture05)=
-# Lecture 5: Corners, tracking, and matching
+# Lecture 5: Find points you can track
 
-```{note}
-Planning outline — this lecture has not yet been written. Its full slide audit, examples, and formulas will be completed in lecture order.
-```
+**Which part of a picture can you recognize after the camera moves?** A plain wall gives no location cue. An edge gives only one direction. A corner can constrain both. This chapter turns that observation into a detector, a tracker, and a matching procedure.
 
-## Planned scope
+**[Original quiz questions and fully worked solutions](quiz-workbook.md)** include Spring 2019 Quiz 6, Fall 2025 Quiz 4, and the numerical Harris/Lucas–Kanade booklet problems. Every original question has red numbered steps, a short reason, and blue mathematical workings.
 
-Corner detection; feature tracking; descriptors and matching.
+## Reading route
 
-**Source deck:** `wk5_cs532_Corners.pdf`. Full explanations will record verified printed slide labels and one-based PDF page numbers separately.
+1. [Find distinctive features](features.md): the mountain panorama and Mars Rover matches.
+2. [Understand Harris corners](corners.md): shifted windows → gradients → a 2×2 matrix → eigenvalues → selected corners. Includes the 3D error-surface explorer.
+3. [Track with Lucas–Kanade](tracking.md): build and solve the patch equations, then handle large motion, drift, and exposure changes.
+4. [Describe and match features](descriptors.md): BRIEF, ORB, BRISK, Hamming distance, ratio tests, and measured matching quality.
+5. [Full quiz workbook](quiz-workbook.md), [formula/source checklist](review.md), and final [TLDR with answered quiz](tldr.md).
 
-## Examples and practice
-
-Select the most useful examples from the actual slides and integrate the assigned questions from the [quiz index](../../reference/quiz-index.md). Missing quiz coverage will be filled with new, clearly labeled worked examples.
-
-## Completion checklist
-
-- [ ] Audit every substantive slide topic and formula.
-- [ ] Write explanations, derivations, and formula/application boxes.
-- [ ] Add selected slide illustrations and independently checked quiz examples.
-- [ ] Complete keywords, glossary entries, and source references.
-- [ ] Check both the website and cumulative printable edition.
+**Source:** `wk5_cs532_Corners.pdf`, 91 PDF pages. References use one-based PDF pages; visible page labels match them where printed. Early unnumbered slides are identified by their PDF positions. Source illustrations retain their credits in captions and the figure register. The chapter develops new feature-selection/tracking mathematics; Lecture 4 remains the reference for patch costs and stereo geometry.

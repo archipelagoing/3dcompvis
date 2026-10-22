@@ -1,6 +1,9 @@
 (lecture01)=
 # Lecture 1: Foundations and 3D geometry
 
+**[Original quiz questions + fully worked solutions](quiz-workbook.md)** — complete problem statements, numbered red steps with a plain-English reason, and blue mathematics showing intermediate operations.
+
+
 Can photographs taken from different viewpoints reveal a shared 3D world? Lecture 1 introduces that problem and builds the geometric language used to solve it.
 
 This chapter follows the actual supplied deck, including its early introduction to camera projection. Later lectures revisit these foundations and develop their estimation algorithms. Read the sections in order; use the review checklist to find a formula or the final TLDR for a quick recap and quiz.

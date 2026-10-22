@@ -43,3 +43,5 @@ Spring 2020 Quiz 1 foundation solutions were relocated here under the user's lat
 Exactly one interactive explorer is placed at the relevant teaching point: camera motion/projection after Example 1.15. The same MyST content supplies complete static explanation and results for print and no-JavaScript readers. See `INTERACTIVES.md` for the remaining lecture plan and validation.
 
 The projection explorer now uses an actual WebGL 3D scene with orbit/zoom, draggable point, point/camera/focal/yaw controls, linked pixel view and world→camera→pixel calculation cards. Its static 3D scene diagram and physical-plane-to-pixel calculation are retained in print. One widget remains.
+
+**Quiz-format update:** the cross-lecture workbook revision supersedes earlier descriptions of shortened quiz examples and shared retest answers. See `QUIZ_WORKBOOK_STATUS.md` for current problem-level coverage and validation. Main lecture explanations retain their existing review status.

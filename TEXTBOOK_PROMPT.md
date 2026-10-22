@@ -132,7 +132,7 @@ Use two clearly associated components:
 
 - Inventory all 18 relevant quiz PDFs listed in `ExamToDo.md`. Map every question/subquestion to a section and record its disposition: worked example, guided exercise, independent practice, duplicate retest, or explicitly scoped extension.
 - Integrate as many distinct relevant questions as possible without interrupting the exposition. Provide a practice index linking every listed source to its treatment.
-- Preserve exact and near-duplicate quiz entries as intentional closed-notes retests, as requested by `ExamToDo.md`; share explanations when appropriate rather than padding the exposition.
+- Preserve exact and near-duplicate quiz entries as intentional closed-notes retests with their own full question statements and complete worked solutions, as requested by the user.
 - Identify sources precisely, for example, “Adapted from Fall 2025, Quiz 3, Question 1.” Label newly authored problems and numerical variants separately.
 - Independently verify solutions. Explain corrections and assumptions in a concise errata record; never copy an incorrect answer merely because it appears in a supplied solution.
 - Correct the epipolar constraint/line-coefficient confusion in Fall 2025 Quiz 2. Check the numerical matrix’s rank before treating it as a physically valid fundamental matrix, and distinguish a formal algebra exercise from valid camera geometry if necessary.
@@ -193,3 +193,14 @@ Keep changes focused on the book and supporting authoring/build assets. Preserve
 - Website navigation, equations, assets, links, citations, and cross-references work.
 - The complete book exports to one compilable `.tex` manuscript and one continuous PDF, with all essential content and static equivalents of interactive material.
 - The print bundle builds using documented commands and relative local assets; successful checks and remaining limitations are reported accurately.
+
+
+## Required complete quiz-example format
+
+Every assigned quiz question/subquestion must show the complete original problem from the supplied quiz booklet, its source filename and question number, followed by a fully worked solution. Preserve the original givens; identify booklet wording versus verbatim historical-PDF wording accurately. Label any added numerical inputs as original companions.
+
+Use `original-question` for the problem and `solution-step` for each numbered step. Step headings are red; each includes a short **Why** explanation in normal text; all mathematics inside a step is blue in HTML and LaTeX. Write full matrices/vectors, row-column products, substitutions, intermediate results and final checks. Conceptual questions get a complete reasoned sequence; do not fabricate numerical givens or matrices for a question that needs a written argument. Keep colors dark enough for print and keep numbered labels/meaning readable in grayscale.
+
+Duplicate retests have their own original problems and complete worked solutions. Do not replace a quiz with a summary, toy numerical variant, final-answer table, or a retest-only link. Each lecture’s `quiz-workbook.md` is the canonical complete treatment; concept pages link directly to the relevant question. Old abbreviated quiz answers have been replaced by these links. The 18 historical quizzes and seven booklet supplements are tracked question by question in `authoring/quiz-question-coverage.csv`.
+
+Quiz content is maintained in `authoring/quiz-worked-content.json` and rendered to MyST with `.venv/bin/python scripts/render_quiz_workbooks.py`; normal HTML/LaTeX builds read those MyST pages. Do not separately edit the generated quiz pages and the JSON. Preserve all non-quiz MyST as before. This focused cross-lecture quiz revision is authorized by the user; it does not mark the full Lecture 5–6 chapters complete.
