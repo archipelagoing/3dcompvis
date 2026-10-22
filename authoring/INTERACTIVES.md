@@ -1,6 +1,6 @@
 # One interactive demonstration per lecture
 
-User requirement: one demonstration per lecture, placed where interaction adds the most understanding. Implement each as its chapter is authored; do not fill unwritten chapters just to host a widget. Lectures 1–4 are implemented; later placements below remain proposals pending their full source audits.
+User requirement: one demonstration per lecture, placed where interaction adds the most understanding. Implement each as its chapter is authored; do not fill unwritten chapters just to host a widget. All six placements are implemented and have full source audits.
 
 | Lecture | Demonstration and learning question | Placement | State |
 | --- | --- | --- | --- |
@@ -8,8 +8,8 @@ User requirement: one demonstration per lecture, placed where interaction adds t
 | 2 | Perspective warp: how do spacings change while grid straightness and cross-ratio survive? | Homographies, after the cross-ratio application | Implemented: `homography` |
 | 3 | RANSAC sampling: compare observed all-inlier samples with the predicted success probability as inlier ratio/sample budget changes | Probability application and assigned polygon/probability quizzes | Implemented: `ransac` |
 | 4 | Actual 3D stereo: move true depth, change baseline/focal length, perturb one image match, and compare ray-intersection depth with signed exact/linearized errors | Stereo depth/error quiz applications | Implemented: `stereo` |
-| 5 | Corner/edge tracking: compare patch gradients, tensor eigenvalues, and constrained versus ambiguous motion | Harris/aperture-problem explanation | Planned |
-| 6 | Reprojection and bundle adjustment: move a scene point, see image residuals, then take an optimization step with cameras fixed | Bundle-adjustment objective and worked example | Planned |
+| 5 | Corner/edge tracking: compare patch gradients, tensor eigenvalues, and constrained versus ambiguous motion | Harris/aperture-problem explanation | Implemented: `corner` |
+| 6 | Reprojection and bundle adjustment: move a scene point, see image residuals, then take an optimization step with cameras fixed | Bundle-adjustment objective and worked example | Implemented: `refinement` |
 
 ## Shared implementation
 
@@ -54,3 +54,7 @@ Implemented in `lecture04/stereo.md` using the shared `interactive-demo` host an
 Controls adjust depth, baseline, focal length and signed disparity error. Dragging the true point changes depth while keeping it centered between cameras; orbiting and zooming only inspect the geometry. Reset restores the model and inspection view. A side view and perspective view aid inspection. Marker sizes are schematic and do not enter the math. The default scene is fitted with phone width in mind.
 
 The static MyST explanation includes left/right column values, signed perturbations, exact depths and a sensitivity curve; it remains the PDF/no-JavaScript teaching path. Browser checks independently intersect the two normalized rays and reproject the estimate, verify actual virtual-plane intersections, sweep valid/zero/negative/off-image states, exercise dragging/orbit/zoom/keyboard/reset, and test mobile/no-JS/module failure/no-WebGL/print fallback. No new remote dependencies.
+
+## Lectures 5–6
+
+`textbook-final-explorers.mjs` loads the same local Three.js dependency. L5 renders E=d^TMd for explicitly listed two-gradient flat/edge/corner models, with common vertical scale E/16, trial-shift sliders and schematic-image dragging. L6 fixes two cameras and a left measured ray, adjusts point depth, displays the right residual/Jacobian, and accepts a GN/LM step only after checking positive depth and actual error. This is explicitly a one-parameter point-refinement subset, not full bundle adjustment. Both support orbit/keyboard/mobile and complete static explanations. `check_final_lectures_browser.py` verifies model arithmetic and fallback paths.

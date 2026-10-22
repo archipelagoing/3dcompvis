@@ -1,0 +1,20 @@
+{
+  "source": "3dcvMid/lectures/wk5_cs532_Corners.pdf",
+  "pdf_pages": [
+    65,
+    72,
+    77
+  ],
+  "fractional_crop": [
+    0.03,
+    0.26,
+    0.97,
+    0.95
+  ],
+  "labels": [
+    "BRIEF comparisons",
+    "ORB steering",
+    "BRISK rings"
+  ],
+  "rights": "Original supplied teaching material; source captions retain known credits; reuse terms not independently identified."
+}

@@ -15,6 +15,8 @@ class BoxTitle(nodes.title):
 
 
 DEMO_TITLES = {
+    "corner": "Explore feature trackability in 3D",
+    "refinement": "Explore reprojection refinement in 3D",
     "stereo": "Explore stereo depth in 3D",
     "ransac": "Explore RANSAC sampling probability",
     "projection": "Explore camera motion and projection",
@@ -290,5 +292,5 @@ def setup(app):
                  latex=(visit_latex, depart_latex))
     for name in ("formula-box", "application", "worked-example", "understanding-check"):
         app.add_directive(name, TeachingBoxDirective)
-    return {"version": "1.9", "env_version": 10,
+    return {"version": "2.0", "env_version": 11,
             "parallel_read_safe": True, "parallel_write_safe": True}

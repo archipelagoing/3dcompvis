@@ -16,7 +16,7 @@ Computer vision
   Inferring scene properties from images. See {ref}`lec01-motivation` for the inverse-problem viewpoint.
 
 Structure from motion
-  Joint recovery of camera motion and scene structure from corresponding image measurements. See {ref}`lec01-motivation`; full estimation follows in Lecture 6.
+  Joint recovery of camera motion and scene structure from corresponding image measurements. See {ref}`lec01-motivation`; full estimation is in {ref}`lec06-pipeline`.
 
 Depth map
   An image-indexed array of depth measurements or estimates. Its depth convention and camera model must be specified. See {ref}`lec01-cameras`.
@@ -181,4 +181,63 @@ Rank transform
 
 Adaptive support
   Neighborhood contributions weighted by similarity and proximity rather than uniformly. See {eq}`eq-lec04-adaptive`.
+```
+
+```{glossary}
+Structure tensor
+  Gradient outer-product sum describing local directional intensity change. See {eq}`eq-lec05-patch-energy` and {ref}`lec05-corners`.
+
+Harris corner detector
+  Detector using determinant and squared trace of the patch tensor, followed by thresholding and local peak selection. See {eq}`eq-lec05-harris`.
+
+Non-maximum suppression
+  Selection of local score peaks, with a specified neighborhood and tie policy. See {ref}`the NMS example <ex-lec05-nms>`.
+
+Lucas–Kanade tracking
+  Local iterative motion estimation by linearized brightness-constancy least squares. See {eq}`eq-lec05-lk` and {ref}`lec05-tracking`.
+
+Aperture problem
+  A single local edge does not constrain motion along that edge. See {ref}`lec05-tracking`.
+
+BRIEF
+  Binary patch descriptor formed from ordered intensity-pair comparisons. See {ref}`lec05-descriptors`.
+
+ORB
+  Oriented FAST and rotated BRIEF pipeline with multiscale detection. See {ref}`lec05-descriptors` for the scale qualification.
+
+BRISK
+  Binary feature pipeline using long pairs for orientation and short pairs for descriptor bits. See {ref}`lec05-descriptors`.
+
+Hamming distance
+  Number of differing positions in equal-length binary descriptors. See {eq}`eq-lec05-binary`.
+
+Nearest-neighbor distance ratio
+  Best-to-second-best candidate distance ratio for one query, used to reject ambiguous matches. See {eq}`eq-lec05-ratio`.
+
+Gauge freedom
+  Common coordinate changes that leave the observations unchanged. See {ref}`lec06-ambiguity` and {eq}`eq-lec06-gauge`.
+
+Affine factorization
+  Splitting a centered affine measurement matrix into motion and shape factors. See {eq}`eq-lec06-factorization`.
+
+Metric upgrade
+  Constraining a reconstruction to recover Euclidean geometric properties, usually up to a similarity. See {eq}`eq-lec06-metric` and {ref}`lec06-ambiguity`.
+
+Bundle adjustment
+  Joint camera-and-point refinement against observed image reprojection error. See {eq}`eq-lec06-ba`.
+
+Gauss–Newton
+  Least-squares iteration using the linearized residual Jacobian. See {eq}`eq-lec06-updates` and {ref}`the numerical update <ex-lec06-gn>`.
+
+Levenberg–Marquardt
+  Damped least-squares update with an acceptance policy. See {eq}`eq-lec06-updates`.
+
+Schur complement
+  Block elimination that reduces a bundle system to camera parameters before recovering point updates. See {eq}`eq-lec06-schur`.
+
+P3P
+  Calibrated pose estimation from three known 3D points and corresponding image rays, potentially with several solutions. See {ref}`lec06-pipeline`.
+
+Self-calibration
+  Inferring intrinsic calibration through multi-view/scene constraints, subject to sufficient independent information and noncritical configurations. See {ref}`lec06-pipeline`.
 ```

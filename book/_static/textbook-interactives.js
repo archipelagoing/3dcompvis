@@ -3,6 +3,7 @@
   "use strict";
   const projectionModule = new URL("textbook-3d.mjs", document.currentScript.src);
   const stereoModule = new URL("textbook-stereo.mjs", document.currentScript.src);
+  const finalModule = new URL("textbook-final-explorers.mjs", document.currentScript.src);
   const NS = "http://www.w3.org/2000/svg";
   let sequence = 0;
   const pretty = (n) => Number.isFinite(n) ? String(Number(n.toFixed(3))) : "undefined";
@@ -165,10 +166,13 @@
     createStereoExplorer(root);
   }
 
+  async function corner(root) { const m = await import(finalModule.href); m.createCornerExplorer(root); }
+  async function refinement(root) { const m = await import(finalModule.href); m.createRefinementExplorer(root); }
+
   function initialize() {
     document.querySelectorAll(".interactive-demo:not([data-ready]):not([data-initializing])").forEach(root => {
       root.dataset.initializing = "true";
-      Promise.resolve().then(() => ({projection, homography, ransac, stereo}[root.dataset.demo])(root)).then(() => {
+      Promise.resolve().then(() => ({projection, homography, ransac, stereo, corner, refinement}[root.dataset.demo])(root)).then(() => {
         root.dataset.ready = "true";
       }).catch(error => {
         // WebGL/module failures preserve the complete static explanation.

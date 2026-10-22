@@ -1,0 +1,22 @@
+{
+  "source": "3dcvMid/lectures/wk5_cs532_Corners.pdf",
+  "pdf_pages": [
+    42,
+    43,
+    54,
+    55
+  ],
+  "fractional_crop": [
+    0.04,
+    0.23,
+    0.98,
+    0.99
+  ],
+  "labels": [
+    "Actual motion",
+    "Perceived motion",
+    "One direction",
+    "Independent directions"
+  ],
+  "rights": "Original supplied teaching material; source captions retain known credits; reuse terms not independently identified."
+}

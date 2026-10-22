@@ -52,10 +52,23 @@ parts:
     - file: lectures/lecture04/tldr
   - file: lectures/lecture05/index
     sections:
+    - file: lectures/lecture05/features
+    - file: lectures/lecture05/corners
+    - file: lectures/lecture05/tracking
+    - file: lectures/lecture05/descriptors
     - file: lectures/lecture05/quiz-workbook
+    - file: lectures/lecture05/review
+    - file: lectures/lecture05/tldr
   - file: lectures/lecture06/index
     sections:
+    - file: lectures/lecture06/ambiguity
+    - file: lectures/lecture06/factorization
+    - file: lectures/lecture06/triangulation
+    - file: lectures/lecture06/pipeline
+    - file: lectures/lecture06/optimization
     - file: lectures/lecture06/quiz-workbook
+    - file: lectures/lecture06/review
+    - file: lectures/lecture06/tldr
 - caption: Study and reference
   chapters:
   - file: reference/formulas

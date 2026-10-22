@@ -49,3 +49,13 @@ Lecture 2's numerical examples are checked by `scripts/check_lecture02_math.py`.
 - **Spring 2020 Quiz 5:** the printed header overprints 2019/2020; its problem repeats Spring 2019 Quiz 5. Both filenames and headers remain documented.
 - **NCC, PDF page 68:** use a self-consistent centered-norm denominator and reject zero-variance patches. The [explicit formula](../lectures/lecture04/matching.md) avoids ambiguity about whether standard deviations include a sample-count factor.
 - **Repeated radial notation, PDF page 6:** the radius/squared-radius clarification remains at its canonical Lecture 2 location.
+
+## Lecture 5–6 slide qualifications
+
+- **L5, page 75:** fixed-scale steering alone supplies no scale invariance; the full ORB pyramid pipeline handles multiple scales.
+- **L5, page 81:** BRISK uses long pairs for orientation and short pairs for descriptor comparisons; the blanket instruction to avoid short pairs is misleading.
+- **L5, page 85:** symmetry and zero diagonal apply to self-distances, not an arbitrary cross-image descriptor matrix.
+- **L6, pages 28–35:** affine centered measurements have rank at most three; equality needs nondegeneracy.
+- **L6, pages 7,25,41:** observation counts are necessary checks, not proofs of unique recovery.
+- **L6, page 37:** metric upgrade must state its camera-scale assumptions and produce a valid positive definite metric from enough independent constraints.
+- **L6, pages 49–52:** linear algebraic triangulation and geometric image-error optimization are distinct objectives.

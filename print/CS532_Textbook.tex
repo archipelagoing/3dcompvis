@@ -126,11 +126,11 @@
 How can photographs reveal the shape of a scene and the motion of a camera? This book develops the geometric ideas behind that question through the first six CS 532 lectures.
 
 \sphinxAtStartPar
-Read in lecture order, beginning with the {\hyperref[\detokenize{foundations/notation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{notation guide}}}} and {\hyperref[\detokenize{foundations/prerequisites::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{prerequisite refresher}}}}. Worked examples will connect the lecture slides to the course quizzes. The {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}} shows the planned placements.
+Read in lecture order, beginning with the {\hyperref[\detokenize{foundations/notation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{notation guide}}}} and {\hyperref[\detokenize{foundations/prerequisites::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{prerequisite refresher}}}}. Worked examples connect the lecture slides to the course quizzes. The {\hyperref[\detokenize{reference/quiz-index::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz index}}}} links every included source to its full worked solutions.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Lectures 1–4 now contain explanations, diagrams, worked quiz examples, and practice. Lectures 5–6 remain clearly labeled planning outlines. Material is added and reviewed one lecture at a time.
+All six lectures contain explanations, credited figures, formula/application boxes, complete quiz workbooks, and final TLDR quizzes. Each lecture has one interactive demonstration with a full static counterpart for print.
 \end{sphinxadmonition}
 
 \begin{DUlineblock}{0em}
@@ -12243,56 +12243,956 @@ The Census string is {\color{QuizMathBlue} \(1010\)}. The rank is {\color{QuizMa
 \sphinxstepscope
 
 
-\chapter{Lecture 5: Corners, tracking, and matching}
-\label{\detokenize{lectures/lecture05/index:lecture-5-corners-tracking-and-matching}}\label{\detokenize{lectures/lecture05/index:lecture05}}\label{\detokenize{lectures/lecture05/index::doc}}
+\chapter{Lecture 5: Find points you can track}
+\label{\detokenize{lectures/lecture05/index:lecture-5-find-points-you-can-track}}\label{\detokenize{lectures/lecture05/index:lecture05}}\label{\detokenize{lectures/lecture05/index::doc}}
 \sphinxAtStartPar
-\sphinxstylestrong{{\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Original quiz questions + fully worked solutions}}}}} — complete problem statements, numbered red steps with a plain\sphinxhyphen{}English reason, and blue mathematics showing intermediate operations.
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxAtStartPar
-The main lecture explanations remain a planning outline. Its assigned quiz questions and the booklet’s relevant supplemental problems are now fully worked in the linked workbook; the slide audit and remaining chapter material will be completed separately.
-\end{sphinxadmonition}
-
-
-\section{Planned scope}
-\label{\detokenize{lectures/lecture05/index:planned-scope}}
-\sphinxAtStartPar
-Corner detection; feature tracking; descriptors and matching.
+\sphinxstylestrong{Which part of a picture can you recognize after the camera moves?} A plain wall gives no location cue. An edge gives only one direction. A corner can constrain both. This chapter turns that observation into a detector, a tracker, and a matching procedure.
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{wk5\_cs532\_Corners.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+\sphinxstylestrong{{\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Original quiz questions and fully worked solutions}}}}} include Spring 2019 Quiz 6, Fall 2025 Quiz 4, and the numerical Harris/Lucas–Kanade booklet problems. Every original question has red numbered steps, a short reason, and blue mathematical workings.
 
 
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture05/index:examples-and-practice}}
-\sphinxAtStartPar
-The {\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz workbook}}}} contains both assigned historical quizzes and the relevant original practice problems from the supplied booklet. It is available now; this does not mark the full lecture complete.
-
-
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture05/index:completion-checklist}}\begin{itemize}
+\section{Reading route}
+\label{\detokenize{lectures/lecture05/index:reading-route}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {}
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
+{\hyperref[\detokenize{lectures/lecture05/features::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Find distinctive features}}}}: the mountain panorama and Mars Rover matches.
 
 \item {}
 \sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+{\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Understand Harris corners}}}}: shifted windows → gradients → a 2×2 matrix → eigenvalues → selected corners. Includes the 3D error\sphinxhyphen{}surface explorer.
 
 \item {}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+{\hyperref[\detokenize{lectures/lecture05/tracking::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Track with Lucas–Kanade}}}}: build and solve the patch equations, then handle large motion, drift, and exposure changes.
 
 \item {}
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Describe and match features}}}}: BRIEF, ORB, BRISK, Hamming distance, ratio tests, and measured matching quality.
 
 \item {}
 \sphinxAtStartPar
- Check both the website and cumulative printable edition.
+{\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Full quiz workbook}}}}, {\hyperref[\detokenize{lectures/lecture05/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{formula/source checklist}}}}, and final {\hyperref[\detokenize{lectures/lecture05/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR with answered quiz}}}}.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} \sphinxcode{\sphinxupquote{wk5\_cs532\_Corners.pdf}}, 91 PDF pages. References use one\sphinxhyphen{}based PDF pages; visible page labels match them where printed. Early unnumbered slides are identified by their PDF positions. Source illustrations retain their credits in captions and the figure register. The chapter develops new feature\sphinxhyphen{}selection/tracking mathematics; Lecture 4 remains the reference for patch costs and stereo geometry.
+
+\sphinxstepscope
+
+
+\section{Find a small set of recognizable points}
+\label{\detokenize{lectures/lecture05/features:find-a-small-set-of-recognizable-points}}\label{\detokenize{lectures/lecture05/features:lec05-features}}\label{\detokenize{lectures/lecture05/features::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{To stitch two mountain photos, first find the same places in both.} Aligning all pixels blindly is expensive and easily confused by sky or repeated snow. A smaller set of distinctive neighborhoods gives the alignment process useful anchors.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} Lecture 5 PDF pages 3–10.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{panorama}.pdf}
+\caption{The lecture’s panorama sequence: detect points, find correspondences, then align. Alignment uses the homography methods already taught in Lectures 2–3; here the question is how to obtain their inputs. Source PDF pages 4–6; individual photographer/reuse terms unidentified.}\label{\detokenize{lectures/lecture05/features:fig-lec05-panorama}}\end{figure}
+
+\sphinxAtStartPar
+A \sphinxstylestrong{feature detector} finds an interesting location. A \sphinxstylestrong{descriptor} summarizes its surrounding appearance. A \sphinxstylestrong{matcher} proposes which descriptor in another image belongs to the same physical feature. These are three separate decisions: a strong corner can still get a wrong match.
+
+\sphinxAtStartPar
+Useful features combine four properties:
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Repeatability:} the same physical location can be detected again after viewpoint or illumination changes.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Distinctiveness:} its patch differs from plausible alternatives.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Locality:} the description uses a limited neighborhood, helping with clutter and partial occlusion.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Compactness:} there are far fewer features than pixels, and comparing their descriptions is efficient.
 
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{mars}.pdf}
+\caption{The lecture’s difficult Mars Rover pair, with SIFT matches revealed. NASA imagery; match figure credited to Noah Snavely in PDF page 10. Look at the tiny corresponding marks rather than expecting the two entire views to look alike. SIFT motivates the problem; this deck’s detailed descriptor material is BRIEF, ORB, and BRISK.}\label{\detokenize{lectures/lecture05/features:fig-lec05-mars}}\end{figure}
+
+\sphinxAtStartPar
+\sphinxstylestrong{What makes this hard?} A distinctive rock may change size or orientation. Repeated texture produces look\sphinxhyphen{}alikes. A feature may disappear behind another surface. Features help image alignment, reconstruction, tracking, navigation, retrieval, and recognition, but none of those applications makes a proposed correspondence automatically correct.
+
+\sphinxAtStartPar
+Next, {\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{test whether a patch fixes a location in both directions}}}}.
+
+\index{Feature detector@\spxentry{Feature detector}}\ignorespaces
+\index{Feature descriptor@\spxentry{Feature descriptor}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Why corners are easier to locate}
+\label{\detokenize{lectures/lecture05/corners:why-corners-are-easier-to-locate}}\label{\detokenize{lectures/lecture05/corners:lec05-corners}}\label{\detokenize{lectures/lecture05/corners::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Slide a small image window. Does its appearance change?} If it barely changes, you cannot tell where it belongs. Harris corner detection measures that change in every direction.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 11–33. Numerical booklet companion: {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a2-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Harris gradients and response}}}}. Tracking interpretation: {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-13-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Spring 2019 Quiz 6}}}}.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{patch-types}.pdf}
+\caption{Source PDF page 11. Flat: little change in any direction. Edge: little change along the edge. Corner: appreciable change in every direction. “Corner” describes a locally well\sphinxhyphen{}constrained patch, not just a sharp\sphinxhyphen{}looking center pixel.}\label{\detokenize{lectures/lecture05/corners:fig-lec05-patches}}\end{figure}
+
+
+\subsection{From a shifted patch to a 2×2 matrix}
+\label{\detokenize{lectures/lecture05/corners:from-a-shifted-patch-to-a-22-matrix}}
+\sphinxAtStartPar
+Let \(I(x,y)\) be intensity and \(d=(u,v)^T\) a small shift in pixels. Let \(w_p\ge0\) weight sample \(p\) in the patch; a Gaussian emphasizes samples near its center. The source starts with unit weights and later introduces Gaussian weights.
+
+\begin{TextbookBox}
+\textbf{Formula — patch change and its local approximation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/corners:eq-lec05-patch-energy}
+\begin{split}\begin{aligned}
+E(d)&=\sum_{p\in W}w_p[I(p+d)-I(p)]^2,\\
+I(p+d)&\approx I(p)+I_x(p)u+I_y(p)v,\\
+E(d)&\approx d^TMd,\qquad
+M=\sum_{p\in W}w_p
+\begin{pmatrix}I_x^2&I_xI_y\\I_xI_y&I_y^2\end{pmatrix}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(M\) is the \sphinxstylestrong{structure tensor}, also called the second\sphinxhyphen{}moment matrix. \(I_x,I_y\) are intensity change per pixel. \(M\) is \(2\times2\), \(d\) is \(2\times1\), and \(E\) is a scalar squared\sphinxhyphen{}intensity cost. The first line is the chosen exact patch objective; the quadratic form is a first\sphinxhyphen{}order small\sphinxhyphen{}shift approximation. Assume a differentiable/interpolated image and consistent sample weights.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why does the matrix appear?} Substitute the Taylor approximation into the intensity difference. The unchanged \(I(p)\) cancels, leaving \(I_xu+I_yv\). Squaring gives
+\begin{equation*}
+\begin{split}I_x^2u^2+2I_xI_yuv+I_y^2v^2.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Summing those three coefficients gives the diagonal and off\sphinxhyphen{}diagonal entries of \(M\). Multiplying \([u\ v]M(u,v)^T\) expands back to the same expression. A gradient column \(g_p=(I_x,I_y)^T\) contributes the outer product \(w_pg_pg_p^T\), not the scalar dot product \(g_p^Tg_p\).
+
+\begin{TextbookBox}
+\textbf{Build and use the structure tensor}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute both spatial derivatives at each patch sample.
+
+\item {}
+\sphinxAtStartPar
+Form its full outer product; multiply by the sample weight.
+
+\item {}
+\sphinxAtStartPar
+Add the matrices entry by entry.
+
+\item {}
+\sphinxAtStartPar
+Evaluate a trial shift with \(d^TMd\), or inspect eigenvalues to find weak directions.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Weights and intensity scaling affect response magnitudes, so thresholds must match that convention. See the full products in {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a2-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{the numerical Harris problem}}}}.
+
+\end{TextbookBox}
+
+
+\subsection{Eigenvalues tell you the weak direction}
+\label{\detokenize{lectures/lecture05/corners:eigenvalues-tell-you-the-weak-direction}}
+\sphinxAtStartPar
+An \sphinxstylestrong{eigenvector} is a direction the matrix scales without turning. Its \sphinxstylestrong{eigenvalue} is the scale. For this symmetric nonnegative tensor, choose perpendicular unit eigenvectors. Writing a shift in those directions makes the cost especially simple.
+
+\begin{TextbookBox}
+\textbf{Formula — tensor eigenvalues and directional change}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/corners:eq-lec05-eigen}
+\begin{split}\begin{aligned}
+M&=Q\operatorname{diag}(\lambda_1,\lambda_2)Q^T,
+\quad Q^TQ=I,\quad \lambda_i\ge0,\\
+d&=Qz\quad\Longrightarrow\quad E(d)\approx\lambda_1z_1^2+\lambda_2z_2^2,\\
+M&=\begin{pmatrix}a&c\\c&b\end{pmatrix}
+\quad\Longrightarrow\quad
+\lambda_{\pm}=\frac{a+b\pm\sqrt{(a-b)^2+4c^2}}2.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+The eigenvalue formula comes from \(\det(M-\lambda I)=(a-\lambda)(b-\lambda)-c^2=0\). For a positive cost level \(k\), the ellipse semiaxes are \(\sqrt{k/\lambda_i}\) when both eigenvalues are positive. A small eigenvalue makes a long, weakly constrained direction. Eigenvalues need not be equal for a useful corner.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Classify the patch}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute both eigenvalues and sort them as \(\lambda_{max}\ge\lambda_{min}\).
+
+\item {}
+\sphinxAtStartPar
+Both small: flat patch. One small: edge\sphinxhyphen{}like patch. Both sufficiently large: useful two\sphinxhyphen{}directional structure.
+
+\item {}
+\sphinxAtStartPar
+Also check conditioning \(\lambda_{max}/\lambda_{min}\) when \(\lambda_{min}>0\); a very large ratio means much weaker information in one direction.
+
+\item {}
+\sphinxAtStartPar
+Interpret “large” relative to noise, intensity scale, weights, and patch size.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For \(M=\operatorname{diag}(4,9)\), unit horizontal motion costs \(4\), unit vertical motion costs \(9\). The constant\sphinxhyphen{}cost contour \(4u^2+9v^2=1\) has semiaxes \(1/2\) and \(1/3\). Both directions are constrained, although the vertical one changes faster.
+
+\sphinxAtStartPar
+For a diagonal edge with two gradients \((2,2)^T\), summation gives
+\begin{equation*}
+\begin{split}M=\begin{pmatrix}8&8\\8&8\end{pmatrix},\qquad
+M\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Both \(I_x\) and \(I_y\) can be large while motion along \((1,-1)^T\) remains invisible. This answers the slanted\sphinxhyphen{}edge part of {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-13-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{the original trackability quiz}}}}.
+
+
+\subsection{Turn the score into selected corners}
+\label{\detokenize{lectures/lecture05/corners:turn-the-score-into-selected-corners}}
+\begin{TextbookBox}
+\textbf{Formula — Harris and Shi–Tomasi responses}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/corners:eq-lec05-harris}
+\begin{split}R_H=\det M-k(\operatorname{tr}M)^2
+=\lambda_1\lambda_2-k(\lambda_1+\lambda_2)^2,
+\qquad R_{ST}=\lambda_{min}(M).\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(k\) is a dimensionless parameter, typically 0.04–0.06 in these slides. A large positive Harris response suggests a corner; an edge usually gives a negative response, and a weak flat patch gives a small response. A positive response alone does not set a practical detection threshold. Shi–Tomasi directly measures the least\sphinxhyphen{}constrained direction.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Run Harris detection}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Differentiate the image; smooth the derivative products with the chosen Gaussian window.
+
+\item {}
+\sphinxAtStartPar
+Compute \(M\) and \(R_H\) at every candidate pixel.
+
+\item {}
+\sphinxAtStartPar
+Keep responses above a chosen threshold.
+
+\item {}
+\sphinxAtStartPar
+Apply \sphinxstylestrong{non\sphinxhyphen{}maximum suppression (NMS)}: retain a local peak rather than every nearby high response. Define a tie\sphinxhyphen{}breaking rule and minimum separation.
+
+\item {}
+\sphinxAtStartPar
+Reject image\sphinxhyphen{}border candidates without sufficient valid support.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{harris-stages}.pdf}
+\caption{The source toy\sphinxhyphen{}animal sequence, PDF pages 28–33. Thresholding produces clusters; NMS selects representative peaks. The source local\sphinxhyphen{}maxima marks are tiny: compare that sparse panel with the threshold mask and final overlay. Source image creator/reuse terms unidentified.}\label{\detokenize{lectures/lecture05/corners:fig-lec05-harris-stages}}\end{figure}
+\phantomsection\label{\detokenize{lectures/lecture05/corners:ex-lec05-nms}}
+\begin{TextbookBox}
+\textbf{Worked example 5.1 — a threshold is not NMS}\par\smallskip
+
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original companion to:} PDF pages 30–32. Suppose the local response grid is
+\begin{equation*}
+\begin{split}R=\begin{pmatrix}1&2&1&0&0\\2&9&8&0&1\\1&7&3&1&2\\0&0&1&6&1\\0&0&0&1&0\end{pmatrix}.\end{split}
+\end{equation*}
+\par\medskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Apply the threshold}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Weak responses should not become candidates.
+
+\sphinxAtStartPar
+With the strict threshold {\color{QuizMathBlue} \(R>5\)}, the surviving values are {\color{QuizMathBlue} \(9,8,7,6\)}. Use one\sphinxhyphen{}based row/column locations: {\color{QuizMathBlue} \((2,2),(2,3),(3,2),(4,4)\)}.
+
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Compare each candidate with its neighbors}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Adjacent high responses can describe the same local feature.
+
+\sphinxAtStartPar
+In a {\color{QuizMathBlue} \(3\times3\)} neighborhood, the {\color{QuizMathBlue} \(9\)} suppresses the neighboring {\color{QuizMathBlue} \(8\)} and {\color{QuizMathBlue} \(7\)}. The {\color{QuizMathBlue} \(6\)} at {\color{QuizMathBlue} \((4,4)\)} is larger than its own neighbors, so it survives. The two retained centers are {\color{QuizMathBlue} \((2,2)\)} and {\color{QuizMathBlue} \((4,4)\)}.
+
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 3 — Check what the procedure guarantees}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A local maximum is a selection rule, not proof of a correct correspondence.
+
+\sphinxAtStartPar
+Both surviving responses exceed the threshold and are local peaks. A later matching step must still identify the corresponding physical points.
+
+\par
+
+\end{TextbookBox}
+
+
+\subsection{Explore the surface in 3D}
+\label{\detokenize{lectures/lecture05/corners:explore-the-surface-in-3d}}
+\subsubsection*{Explore feature trackability in 3D — print edition}
+
+\sphinxAtStartPar
+Switch among a flat patch, an edge, and a corner. The image panel is schematic; the \sphinxstylestrong{two listed gradient samples} define the exact model. Change the trial shift and rotate the error surface to inspect the weak directions. Orbiting only changes the inspection view.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Static experiment:} use unit weights and these two\sphinxhyphen{}sample models:
+
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Patch
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Gradient samples
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Tensor \(M\)
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Eigenvalues
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Trial cost at \((u,v)=(1,0)\)
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Flat
+&
+\sphinxAtStartPar
+\((0,0),(0,0)\)
+&
+\sphinxAtStartPar
+zero matrix
+&
+\sphinxAtStartPar
+\(0,0\)
+&
+\sphinxAtStartPar
+\(0\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+Edge
+&
+\sphinxAtStartPar
+\((2,2),(2,2)\)
+&
+\sphinxAtStartPar
+\(\left(\begin{smallmatrix}8&8\\8&8\end{smallmatrix}\right)\)
+&
+\sphinxAtStartPar
+\(16,0\)
+&
+\sphinxAtStartPar
+\(8\)
+\\
+\sphinxhline
+\sphinxAtStartPar
+Corner
+&
+\sphinxAtStartPar
+\((2,0),(0,3)\)
+&
+\sphinxAtStartPar
+\(\operatorname{diag}(4,9)\)
+&
+\sphinxAtStartPar
+\(9,4\)
+&
+\sphinxAtStartPar
+\(4\)
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+The exact displayed quadratic model is \(E_{lin}=d^TMd\). Its relationship to the nonlinear image\sphinxhyphen{}shift cost is approximate. For the edge, shifts \((1,-1)\) cost zero; for the corner that shift costs \(4+9=13\). This is the difference between an ambiguous valley and a bowl with a unique minimum.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{error-surfaces}.pdf}
+\caption{Original surfaces for the three stated tensors. Every printed result uses the same matrices as the interactive.}\label{\detokenize{lectures/lecture05/corners:fig-lec05-surfaces}}\end{figure}
+
+\par\medskip
+
+\index{Structure tensor@\spxentry{Structure tensor}}\ignorespaces
+\index{Harris corner detector@\spxentry{Harris corner detector}}\ignorespaces
+\index{Non\sphinxhyphen{}maximum suppression@\spxentry{Non\sphinxhyphen{}maximum suppression}}\ignorespaces
+\index{Aperture problem@\spxentry{Aperture problem}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Track a feature by solving for its motion}
+\label{\detokenize{lectures/lecture05/tracking:track-a-feature-by-solving-for-its-motion}}\label{\detokenize{lectures/lecture05/tracking:lec05-tracking}}\label{\detokenize{lectures/lecture05/tracking::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Which small shift makes the next patch resemble this one?} Instead of trying every pixel displacement, Lucas–Kanade uses local intensity derivatives to predict an improving shift.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 34–60. Full assigned problems: {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-9-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{exposure changes}}}}, {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-13-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{trackability}}}}, and {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a3-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{the numerical displacement calculation}}}}.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{motion-pairs}.pdf}
+\caption{Source PDF pages 36–37. Either camera motion or object motion changes image locations. The tracker estimates local image displacement; that displacement alone does not identify its 3D cause.}\label{\detokenize{lectures/lecture05/tracking:fig-lec05-motion}}\end{figure}
+
+
+\subsection{One pixel gives one equation, not two}
+\label{\detokenize{lectures/lecture05/tracking:one-pixel-gives-one-equation-not-two}}
+\sphinxAtStartPar
+Let \(I\) be the first frame and \(J\) the next. \sphinxstylestrong{Brightness constancy} assumes the same visible surface has the same intensity after motion. \sphinxstylestrong{Spatial coherence} assumes a sufficiently small patch shares one translation. \sphinxstylestrong{Small motion} permits a local Taylor approximation.
+
+\begin{TextbookBox}
+\textbf{Formula — brightness constancy and patch least squares}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/tracking:eq-lec05-lk}
+\begin{split}\begin{aligned}
+J(p+d)&\approx I(p),\qquad
+J(p+d)\approx J(p)+J_xu+J_yv,\\
+J_xu+J_yv&\approx-I_t,\qquad I_t=J(p)-I(p),\\
+A&=\begin{pmatrix}J_x(p_1)&J_y(p_1)\\\vdots&\vdots\\J_x(p_n)&J_y(p_n)\end{pmatrix},\quad
+b=-\begin{pmatrix}I_t(p_1)\\\vdots\\I_t(p_n)\end{pmatrix},\\
+d^*&=\arg\min_d\|Ad-b\|^2,\qquad A^TAd=A^Tb.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(A\) is \(n\times2\), \(b\) is \(n\times1\), \(d\) is \(2\times1\). Derivatives and displacement use consistent intensity/pixel units. This is the forward\sphinxhyphen{}additive local linearization using gradients of \(J\) at the current warp. Reference\sphinxhyphen{}gradient/inverse\sphinxhyphen{}compositional variants change the update derivation; do not mix their signs or formulas. A single pixel supplies one scalar equation for two motion components.
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why least squares?} Different patch pixels provide different gradient directions. Stack their equations and choose the displacement that minimizes their total squared residual. Differentiating \((Ad-b)^T(Ad-b)\) gives \(2A^T(Ad-b)\); set this to zero to obtain the normal equations. In numerical code use QR/SVD or a stable solve, rather than explicitly forming an inverse.
+
+\sphinxAtStartPar
+The normal matrix is precisely the unweighted structure tensor:
+\begin{equation*}
+\begin{split}A^TA=\begin{pmatrix}\sum J_x^2&\sum J_xJ_y\\\sum J_xJ_y&\sum J_y^2\end{pmatrix}=M.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+That is the connection between \sphinxstylestrong{finding} a good feature and \sphinxstylestrong{tracking} it. Harris tests whether the same matrix will give a useful motion estimate. A weighted tracker uses \(A^TWA\) and \(A^TWb\), with \(W=\operatorname{diag}(w_p)\).
+
+\begin{TextbookBox}
+\textbf{Compute a Lucas–Kanade displacement}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Select a textured patch; compute the current temporal differences and consistently chosen spatial derivatives.
+
+\item {}
+\sphinxAtStartPar
+Stack every row of \(A\) and entry of \(b\); keep the minus sign in \(b=-I_t\).
+
+\item {}
+\sphinxAtStartPar
+Check the smallest eigenvalue and conditioning of \(A^TA\). Reject ambiguous patches.
+
+\item {}
+\sphinxAtStartPar
+Solve the least\sphinxhyphen{}squares system. Interpret the result as the next\sphinxhyphen{}frame location minus the first\sphinxhyphen{}frame location under this convention.
+
+\item {}
+\sphinxAtStartPar
+Warp the next patch, recompute residuals, and verify that the match improved.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+The {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a3-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{booklet numerical problem}}}} shows the full matrices, normal equations and displacement \((2,1)^T\).
+
+\end{TextbookBox}
+
+
+\subsection{Why an edge can fool you}
+\label{\detokenize{lectures/lecture05/tracking:why-an-edge-can-fool-you}}
+\sphinxAtStartPar
+The \sphinxstylestrong{aperture problem} means a local edge reveals motion across the edge, but not motion along it. Adding more pixels with parallel gradients repeats the same directional information; it does not create a second independent equation.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.900\linewidth]{{aperture}.pdf}
+\caption{Source PDF pages 42–43 and 54–55. A second independent edge direction resolves the ambiguity. The barber\sphinxhyphen{}pole example in pages 44–45 illustrates the same effect perceptually; the moving stripes’ local appearance need not reveal their full physical motion.}\label{\detokenize{lectures/lecture05/tracking:fig-lec05-aperture}}\end{figure}
+
+\sphinxAtStartPar
+The original {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-13-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{junction/edge/isolated\sphinxhyphen{}dot quiz}}}} makes an important distinction: two nonzero derivative components do not ensure two independent gradient directions. Feature quality depends on the \sphinxstylestrong{whole tracking patch}, not whether its center pixel is black or white. The source flat/edge/high\sphinxhyphen{}texture tree examples (pages 51–53) apply the same two\sphinxhyphen{}eigenvalue test.
+
+
+\subsection{Iterate, then use a pyramid when necessary}
+\label{\detokenize{lectures/lecture05/tracking:iterate-then-use-a-pyramid-when-necessary}}
+\begin{TextbookBox}
+\textbf{Formula — iterative tracking and coarse\sphinxhyphen{}to\sphinxhyphen{}fine transfer}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/tracking:eq-lec05-iteration}
+\begin{split}\begin{aligned}
+r_p(d_k)&=J(p+d_k)-I(p),\\
+A_k\Delta d&\approx-r(d_k),\qquad d_{k+1}=d_k+\Delta d,\\
+d_{\ell-1}^{init}&=2d_\ell
+\quad\text{for adjacent pyramid levels differing by factor two}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(A_k\) contains the warped next\sphinxhyphen{}image gradients for this forward\sphinxhyphen{}additive version. Interpolate fractional coordinates. Displacements are measured in the pixels of their current pyramid level. Recompute gradients if the chosen formulation requires it; stop on a small update, small residual improvement, or an iteration limit. The local translation/appearance model can still fail.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Track beyond one small step}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Smooth and downsample both frames to create compatible Gaussian pyramids.
+
+\item {}
+\sphinxAtStartPar
+Estimate motion at a coarse level, where large original motion occupies fewer pixels.
+
+\item {}
+\sphinxAtStartPar
+Double the displacement when moving to the next finer level; warp and refine there.
+
+\item {}
+\sphinxAtStartPar
+Reject failed tracks using residuals, conditioning, visibility, and forward/backward or reference\sphinxhyphen{}patch consistency.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+For example, a displacement of 12 full\sphinxhyphen{}resolution pixels becomes 3 pixels after two factor\sphinxhyphen{}two reductions. A coarse estimate of \((3,1)\) initializes \((6,2)\) at the next level and \((12,4)\) at full resolution. A pyramid helps but does not guarantee convergence.
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.750\linewidth]{{tracking-sign}.pdf}
+\caption{The lecture’s “25” sign sequence, PDF page 59, attributed there to frames from Woody Allen’s Manhattan and the tracking illustration. Compare the changing observed windows with the registered patches. Their agreement tests a track; incremental motion updates alone do not prevent drift. Source reuse terms unidentified.}\label{\detokenize{lectures/lecture05/tracking:fig-lec05-sign}}\end{figure}
+
+\sphinxAtStartPar
+Shi–Tomasi tracking (page 58) starts with features whose smallest tensor eigenvalue is large enough, tracks with a local translation model, then checks registration against the \sphinxstylestrong{first} observed patch. An affine consistency check can absorb moderate local shape change. Repeatedly replacing the template without checking the original can accumulate \sphinxstylestrong{drift}. Add newly visible points and remove occluded, out\sphinxhyphen{}of\sphinxhyphen{}image, weak or inconsistent ones.
+
+
+\subsection{What if the camera changes exposure?}
+\label{\detokenize{lectures/lecture05/tracking:what-if-the-camera-changes-exposure}}
+\sphinxAtStartPar
+A correct match can violate raw brightness constancy when \(J\approx aI+b\). The original {\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-9-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Fall 2025 exposure quiz}}}} derives mean/standard\sphinxhyphen{}deviation patch normalization and checks an actual numerical pair.
+
+\begin{TextbookBox}
+\textbf{Formula — exposure\sphinxhyphen{}normalized patch}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/tracking:eq-lec05-photometric}
+\begin{split}\mu=\frac1n\sum_p I(p),\quad
+\sigma^2=\frac1n\sum_p[I(p)-\mu]^2,\quad
+\widetilde I(p)=\frac{I(p)-\mu}{\sigma+\varepsilon}.\end{split}
+\end{equation}
+\sphinxAtStartPar
+For positive gain \(a\) and nonzero variance, setting \(\varepsilon=0\) exactly cancels an affine brightness change. Positive \(\varepsilon\) makes that cancellation approximate. It prevents division by zero but does not make a flat patch informative. Clipping, cast shadows, specularities and spatially varying exposure can defeat this model.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Adapt the tracker to exposure changes}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Reject nearly flat/saturated patches before normalizing.
+
+\item {}
+\sphinxAtStartPar
+Compute the normalization and track normalized appearance with consistent derivatives.
+
+\item {}
+\sphinxAtStartPar
+Specify whether patch statistics are frozen within a local solve or differentiated as part of the full residual; update them consistently after warping.
+
+\item {}
+\sphinxAtStartPar
+Alternatively estimate gain and offset alongside motion, then check residuals and conditioning.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+Normalization is also the core of the NCC comparison already covered in Lecture 4; the new task here is using it consistently in the tracking linearization.
+
+\end{TextbookBox}
+
+\index{Lucas–Kanade tracking@\spxentry{Lucas–Kanade tracking}}\ignorespaces
+\index{Brightness constancy@\spxentry{Brightness constancy}}\ignorespaces
+\index{Drift@\spxentry{Drift}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Describe a patch, then judge its matches}
+\label{\detokenize{lectures/lecture05/descriptors:describe-a-patch-then-judge-its-matches}}\label{\detokenize{lectures/lecture05/descriptors:lec05-descriptors}}\label{\detokenize{lectures/lecture05/descriptors::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{A detector says “look here.” A descriptor says “this is what it looks like.”} Two distant views may need descriptor matching even when frame\sphinxhyphen{}to\sphinxhyphen{}frame tracking is impossible.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 61–91. The deck’s BRIEF/ORB/BRISK material credits J. Heinly and the original method authors. Distortion and viewpoint changes can alter a descriptor even when its intended invariance helps.
+
+
+\subsection{Binary descriptors make comparisons cheap}
+\label{\detokenize{lectures/lecture05/descriptors:binary-descriptors-make-comparisons-cheap}}
+\begin{TextbookBox}
+\textbf{Formula — binary tests, smoothing and Hamming distance}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/descriptors:eq-lec05-binary}
+\begin{split}\begin{aligned}
+\bar I_\sigma(p)&=\sum_q G_\sigma(q)I(p-q),\quad \sum_qG_\sigma(q)=1,\\
+\tau_i&=\mathbf1[\bar I(p_i)<\bar I(q_i)],\qquad
+B=(\tau_1,\ldots,\tau_K),\\
+D_H(B,C)&=\sum_{i=1}^K\mathbf1[B_i\ne C_i].
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+Each ordered sample pair produces one bit; equality gives zero under the stated strict comparison. \(G_\sigma\) is a Gaussian smoothing kernel, \(K\) is the number of tests, and Hamming distance counts differing positions. This is related to Lecture 4’s Census bit comparisons, but these methods use selected point pairs rather than necessarily comparing every neighbor to the center. Normalize a truncated Gaussian’s weights.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Build and compare a binary description}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Smooth the patch to reduce sensitivity to pixel noise.
+
+\item {}
+\sphinxAtStartPar
+Apply the same ordered sampling pattern in both patches, with the method’s orientation/scale handling.
+
+\item {}
+\sphinxAtStartPar
+Store one bit per intensity comparison. A 256\sphinxhyphen{}bit description occupies 32 bytes.
+
+\item {}
+\sphinxAtStartPar
+Count XOR bits to compare descriptors. Reject ambiguous candidates rather than assuming the smallest distance is correct.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{descriptor-patterns}.pdf}
+\caption{BRIEF, ORB and BRISK on the lecture eye patch: PDF pages 65, 72 and 77. Credits: J. Heinly slides, with Calonder et al., Rublee et al., and Leutenegger et al. named in their source sections. The sampling geometry changes; the output remains a compact bit string.}\label{\detokenize{lectures/lecture05/descriptors:fig-lec05-descriptor-patterns}}\end{figure}
+
+\sphinxAtStartPar
+\sphinxstylestrong{BRIEF} uses fixed intensity\sphinxhyphen{}pair tests, with Gaussian\sphinxhyphen{}distributed sample locations in the source illustration. It is fast, but an unrotated fixed pattern does not itself compensate for image rotation or scale change. The slides list 128, 256 or 512 bits.
+
+\sphinxAtStartPar
+\sphinxstylestrong{ORB} combines FAST corner detection with orientation and rotated BRIEF tests. FAST looks for a sufficiently long contiguous bright or dark arc around a center relative to a threshold; the lecture illustrates a 12\sphinxhyphen{}pixel arc on a 16\sphinxhyphen{}pixel circle and rapid rejection tests. Other FAST variants use other arc lengths. Harris ranking/NMS selects useful candidates.
+
+\begin{TextbookBox}
+\textbf{Formula — orientation from intensity moments}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/descriptors:eq-lec05-orientation}
+\begin{split}m_{pq}=\sum_{x,y}x^py^qI(x,y),\quad
+C=\left(\frac{m_{10}}{m_{00}},\frac{m_{01}}{m_{00}}\right),\quad
+\theta=\operatorname{atan2}(m_{01},m_{10}),\quad
+p_i^{steered}=R(\theta)p_i.\end{split}
+\end{equation}
+\sphinxAtStartPar
+Patch coordinates are centered on the keypoint; use a consistent intensity convention and circular support. \(C\) is the intensity centroid. A zero/near\sphinxhyphen{}zero centroid direction gives unstable orientation; \(m_{00}=0\) makes the centroid undefined. Steering rotates the \sphinxstylestrong{sampling pattern}, not the physical object.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Align the description before comparing it}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Estimate the patch’s orientation from the intensity moments.
+
+\item {}
+\sphinxAtStartPar
+Rotate all test locations consistently with the selected reference orientation.
+
+\item {}
+\sphinxAtStartPar
+Interpolate/smooth samples and compute bits in the same test order.
+
+\item {}
+\sphinxAtStartPar
+Use comparisons with good variance and low mutual correlation; redundant bits contribute less independent information.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For example, \(m_{10}=0\), \(m_{01}>0\) yields \(\theta=90^\circ\). Rotating pair endpoint \((1,0)^T\) gives \((0,1)^T\). The geometry is the rotation rule from Lecture 1 applied to descriptor sampling.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Scale qualification:} the lecture summary lists no scale invariance for ORB. The full ORB pipeline detects features over an image pyramid, providing multiscale handling; a single steered descriptor at a fixed scale does not supply that by itself. See the \sphinxhref{https://docs.opencv.org/4.13.0/d1/d89/tutorial\_py\_orb.html}{official ORB description}%
+\begin{footnote}[2]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://docs.opencv.org/4.13.0/d1/d89/tutorial\_py\_orb.html}
+%
+\end{footnote} and \sphinxhref{https://docs.opencv.org/3.4.7/db/d95/classcv\_1\_1ORB.html}{ORB class documentation}%
+\begin{footnote}[3]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://docs.opencv.org/3.4.7/db/d95/classcv\_1\_1ORB.html}
+%
+\end{footnote}. Distinguish orientation compensation, scale selection, and robustness instead of promising perfect invariance.
+
+\sphinxAtStartPar
+\sphinxstylestrong{BRISK} estimates location and scale, uses a concentric sampling pattern with Gaussian\sphinxhyphen{}smoothed intensities, estimates orientation from long\sphinxhyphen{}distance pairs, and encodes short\sphinxhyphen{}distance comparisons. The source’s “avoid short\sphinxhyphen{}distance comparisons” bullet on page 81 is misleading: long pairs estimate orientation; short pairs build the descriptor. The 512\sphinxhyphen{}bit descriptor uses 64 bytes. Its detection/description pipeline targets rotation and scale changes, while smoothing improves noise robustness. The \sphinxhref{https://github.com/ethz-mrl/brisk}{authors’ implementation}%
+\begin{footnote}[4]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://github.com/ethz-mrl/brisk}
+%
+\end{footnote} and \sphinxhref{https://www.iro.umontreal.ca/~mignotte/IFT6150/Articles/BriskDetector.pdf}{original paper}%
+\begin{footnote}[5]\sphinxAtStartFootnote
+\sphinxnolinkurl{https://www.iro.umontreal.ca/~mignotte/IFT6150/Articles/BriskDetector.pdf}
+%
+\end{footnote} support this distinction. The scale diagram is conceptual; do not infer that BRISK is simply SIFT’s DoG detector.
+
+
+\subsection{A small distance is not enough}
+\label{\detokenize{lectures/lecture05/descriptors:a-small-distance-is-not-enough}}
+\sphinxAtStartPar
+With \(m\) and \(n\) descriptors of \(K\) bits, exhaustive comparison takes \(O(mnK)\) bit\sphinxhyphen{}level work (or fewer machine\sphinxhyphen{}word XOR/popcount operations). The cross\sphinxhyphen{}image distance matrix has shape \(m\times n\). It need not be square, symmetric, or have a zero diagonal. Those properties apply to distances within the same ordered set, as qualified from source page 85.
+
+\begin{TextbookBox}
+\textbf{Formula — nearest\sphinxhyphen{}neighbor distance ratio}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/descriptors:eq-lec05-ratio}
+\begin{split}j_1=\arg\min_jD(A,B_j),\qquad
+\rho=\frac{d_1}{d_2},\qquad
+\text{accept if }d_1<\tau d_2,\quad 0<\tau<1.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(d_1\le d_2\) are the first and second candidate distances for the \sphinxstylestrong{same query}, with \(d_2>0\). A small ratio indicates a distinctive nearest candidate. If \(d_2=0\), there are tied exact candidates; reject or resolve the ambiguity explicitly. A threshold is a chosen policy, not a universal constant. A mutual\sphinxhyphen{}nearest test checks agreement in both matching directions.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Filter proposed correspondences}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Compute a metric appropriate to the descriptor; use Hamming for the binary convention above.
+
+\item {}
+\sphinxAtStartPar
+Compare an absolute threshold, nearest\sphinxhyphen{}neighbor choice, and the ratio test for the intended task.
+
+\item {}
+\sphinxAtStartPar
+Require mutual matching or spatial/geometric verification when appropriate.
+
+\item {}
+\sphinxAtStartPar
+Pass surviving pairs to the earlier RANSAC/epipolar/homography procedures; descriptor similarity is appearance evidence, not a geometry proof.
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture05/descriptors:ex-lec05-bits}}
+\begin{TextbookBox}
+\textbf{Worked example 5.2 — a distinctive binary match}\par\smallskip
+
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Original companion to:} pages 68 and 89–90. Query \(A=10110010\) has candidates \(B=10110011\) and \(C=01001100\). Apply a ratio threshold of 0.8 and state the next verification step.
+
+\par\medskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Count differing positions}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Binary descriptors are compared by Hamming distance.
+
+\sphinxAtStartPar
+{\color{QuizMathBlue} \(A\oplus B=00000001\)} has one set bit, so {\color{QuizMathBlue} \(D_H(A,B)=1\)}. {\color{QuizMathBlue} \(A\oplus C=11111110\)} has seven, so {\color{QuizMathBlue} \(D_H(A,C)=7\)}.
+
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Apply an explicit acceptance rule}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The second\sphinxhyphen{}nearest candidate reveals how distinctive the best one is.
+
+\sphinxAtStartPar
+With {\color{QuizMathBlue} \(\tau=0.8\)}, {\color{QuizMathBlue} \(\rho=1/7\approx0.143<0.8\)}, so accept {\color{QuizMathBlue} \(B\)} provisionally. If the two distances were {\color{QuizMathBlue} \(7\)} and {\color{QuizMathBlue} \(8\)}, the ratio {\color{QuizMathBlue} \(0.875\)} would fail even though one candidate is closest.
+
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 3 — Check geometry}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A unique appearance match can still pair different physical surfaces.
+
+\sphinxAtStartPar
+Verify the candidate with the relevant geometric model before using it for reconstruction.
+
+\par
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{matching-choice}.pdf}
+\caption{Source PDF page 90. A distance threshold uses a fixed radius; nearest\sphinxhyphen{}neighbor matching always selects the closest candidate; the ratio test asks whether that choice is sufficiently better than the next one.}\label{\detokenize{lectures/lecture05/descriptors:fig-lec05-matching-choice}}\end{figure}
+
+
+\subsection{Measure the quality of the decisions}
+\label{\detokenize{lectures/lecture05/descriptors:measure-the-quality-of-the-decisions}}
+\begin{TextbookBox}
+\textbf{Formula — matching evaluation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture05/descriptors:eq-lec05-quality}
+\begin{split}\begin{aligned}
+\text{precision}&=\frac{TP}{TP+FP},&
+\text{recall}=TPR&=\frac{TP}{TP+FN},\\
+FPR&=\frac{FP}{FP+TN},&
+\text{accuracy}&=\frac{TP+TN}{TP+FP+FN+TN}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+TP/FP/FN/TN are true positives, false positives, false negatives and true negatives against known match labels. Require nonzero denominators for each reported ratio. The ROC curve plots TPR against FPR as the threshold changes; its ideal operating region has high TPR and low FPR. Accuracy can look high merely because nonmatches dominate.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Evaluate a matching rule}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Label the evaluation pairs and count all four outcomes.
+
+\item {}
+\sphinxAtStartPar
+State the threshold and compute the relevant ratios.
+
+\item {}
+\sphinxAtStartPar
+Vary the threshold to inspect the false\sphinxhyphen{}match/missed\sphinxhyphen{}match tradeoff.
+
+\item {}
+\sphinxAtStartPar
+Keep the evaluation dataset and candidate\sphinxhyphen{}pair definition fixed when comparing methods.
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture05/descriptors:ex-lec05-confusion}}
+\begin{TextbookBox}
+\textbf{Worked example 5.3 — the slide’s 100\sphinxhyphen{}pair table}\par\smallskip
+
+\par\medskip\textbf{Source slide example}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF page 87 gives \(TP=18\), \(FP=4\), \(FN=2\), \(TN=76\). Compute precision, recall, false\sphinxhyphen{}positive rate and accuracy.
+
+\par\medskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Check the counts}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The four cells must account for the same evaluation population.
+
+\sphinxAtStartPar
+There are {\color{QuizMathBlue} \(18+4+2+76=100\)} pairs, {\color{QuizMathBlue} \(18+2=20\)} real matches and {\color{QuizMathBlue} \(4+76=80\)} real nonmatches.
+
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Compute precision and recall}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Accepted\sphinxhyphen{}match reliability and recovered\sphinxhyphen{}match coverage answer different questions.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\text{precision}=\frac{18}{18+4}=\frac{18}{22}\approx0.8182,\qquad
+\text{recall}=\frac{18}{18+2}=0.9.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 3 — Compute false\sphinxhyphen{}positive rate and accuracy}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} These use different denominators from precision.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}FPR=\frac4{4+76}=0.05,\qquad
+\text{accuracy}=\frac{18+76}{100}=0.94.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+This reproduces the source values. A false\sphinxhyphen{}positive rate of 5\% does not mean 95\% of accepted matches are correct; their precision is about 82\%.
+
+\par
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For large descriptor databases, multidimensional trees or hashing can reduce search work. Their speed and approximation quality depend on dimensionality, distance metric and data distribution; exact exhaustive search remains the comparison baseline. These are the indexing alternatives on PDF page 91, not a guarantee of logarithmic query time.
+
+\index{BRIEF@\spxentry{BRIEF}}\ignorespaces
+\index{ORB@\spxentry{ORB}}\ignorespaces
+\index{BRISK@\spxentry{BRISK}}\ignorespaces
+\index{Hamming distance@\spxentry{Hamming distance}}\ignorespaces
+\index{Nearest\sphinxhyphen{}neighbor distance ratio@\spxentry{Nearest\sphinxhyphen{}neighbor distance ratio}}\ignorespaces
 \sphinxstepscope
 
 
@@ -12768,56 +13668,1410 @@ Notice {\color{QuizMathBlue} \(A^TA=M\)}, the same second\sphinxhyphen{}moment m
 \sphinxstepscope
 
 
-\chapter{Lecture 6: Structure from motion}
-\label{\detokenize{lectures/lecture06/index:lecture-6-structure-from-motion}}\label{\detokenize{lectures/lecture06/index:lecture06}}\label{\detokenize{lectures/lecture06/index::doc}}
+\section{Formula and source checklist}
+\label{\detokenize{lectures/lecture05/review:formula-and-source-checklist}}\label{\detokenize{lectures/lecture05/review:lec05-review}}\label{\detokenize{lectures/lecture05/review::doc}}
 \sphinxAtStartPar
-\sphinxstylestrong{{\hyperref[\detokenize{lectures/lecture06/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Original quiz questions + fully worked solutions}}}}} — complete problem statements, numbered red steps with a plain\sphinxhyphen{}English reason, and blue mathematics showing intermediate operations.
+Use this as a map, then work the {\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{original questions and full solutions}}}}. This checklist adds no second version of the lecture.
 
-\begin{sphinxadmonition}{note}{Note:}
+
+\subsection{Find a formula and its procedure}
+\label{\detokenize{lectures/lecture05/review:find-a-formula-and-its-procedure}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
 \sphinxAtStartPar
-The main lecture explanations remain a planning outline. Its assigned quiz questions and the booklet’s relevant supplemental problems are now fully worked in the linked workbook; the slide audit and remaining chapter material will be completed separately.
-\end{sphinxadmonition}
-
-
-\section{Planned scope}
-\label{\detokenize{lectures/lecture06/index:planned-scope}}
+Formula
+&\sphinxstyletheadfamily
 \sphinxAtStartPar
-Reconstruction ambiguity; factorization; triangulation; bundle adjustment.
+Where to learn and apply it
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/corners:eq-lec05-patch-energy} — patch change and its local approximation
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Corners}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/corners:eq-lec05-eigen} — tensor eigenvalues and directional change
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Corners}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/corners:eq-lec05-harris} — Harris and Shi–Tomasi responses
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Corners}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/descriptors:eq-lec05-binary} — binary tests, smoothing and Hamming distance
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/descriptors:eq-lec05-orientation} — orientation from intensity moments
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/descriptors:eq-lec05-ratio} — nearest\sphinxhyphen{}neighbor distance ratio
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/descriptors:eq-lec05-quality} — matching evaluation
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/tracking:eq-lec05-lk} — brightness constancy and patch least squares
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/tracking::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Tracking}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/tracking:eq-lec05-iteration} — iterative tracking and coarse\sphinxhyphen{}to\sphinxhyphen{}fine transfer
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/tracking::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Tracking}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture05/tracking:eq-lec05-photometric} — exposure\sphinxhyphen{}normalized patch
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/tracking::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Tracking}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Trace the lecture slides}
+\label{\detokenize{lectures/lecture05/review:trace-the-lecture-slides}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+PDF pages
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Teaching location
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Covered material
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+3–10
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/features::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Features}}}}
+&
+\sphinxAtStartPar
+Panorama, repeatable/salient/local features, Mars Rover matches
+\\
+\sphinxhline
+\sphinxAtStartPar
+11–33
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/corners::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Corners}}}}
+&
+\sphinxAtStartPar
+Shifted SSD, Taylor expansion, weighted tensor, eigenvalues/ellipses, Harris and NMS
+\\
+\sphinxhline
+\sphinxAtStartPar
+34–60
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/tracking::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Tracking}}}}
+&
+\sphinxAtStartPar
+KLT assumptions, aperture problem, least squares, iterative/pyramid tracking, drift and exposure
+\\
+\sphinxhline
+\sphinxAtStartPar
+61–83
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}
+&
+\sphinxAtStartPar
+BRIEF, FAST/ORB, BRISK; orientation, scale and smoothing qualifications
+\\
+\sphinxhline
+\sphinxAtStartPar
+84–91
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Descriptors}}}}
+&
+\sphinxAtStartPar
+Distance matrices, thresholds, nearest neighbors/ratio, confusion table/ROC, search
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
 
 \sphinxAtStartPar
-\sphinxstylestrong{Source deck:} \sphinxcode{\sphinxupquote{wk6\_cs532s24\_SFM1.pdf}}. Full explanations will record verified printed slide labels and one\sphinxhyphen{}based PDF page numbers separately.
+Pages 1–2 supply title/outline metadata. Repeated pictures and derivation builds are consolidated into the listed explanations. The final TLDR tests this lecture’s additions; the original workbook remains the source for complete historical questions.
 
 
-\section{Examples and practice}
-\label{\detokenize{lectures/lecture06/index:examples-and-practice}}
-\sphinxAtStartPar
-The {\hyperref[\detokenize{lectures/lecture06/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz workbook}}}} contains both assigned historical quizzes and the relevant original practice problems from the supplied booklet. It is available now; this does not mark the full lecture complete.
-
-
-\section{Completion checklist}
-\label{\detokenize{lectures/lecture06/index:completion-checklist}}\begin{itemize}
+\subsection{Quiz route}
+\label{\detokenize{lectures/lecture05/review:quiz-route}}\begin{itemize}
 \item {}
 \sphinxAtStartPar
- Audit every substantive slide topic and formula.
+{\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-13-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Trackable patches and the slanted\sphinxhyphen{}edge trap}}}}.
 
 \item {}
 \sphinxAtStartPar
- Write explanations, derivations, and formula/application boxes.
+{\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-9-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Exposure changes and normalization}}}}.
 
 \item {}
 \sphinxAtStartPar
- Add selected slide illustrations and independently checked quiz examples.
+{\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a2-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Harris numerical tensor/eigenvalue calculation}}}}.
 
 \item {}
 \sphinxAtStartPar
- Complete keywords, glossary entries, and source references.
-
-\item {}
-\sphinxAtStartPar
- Check both the website and cumulative printable edition.
+{\hyperref[\detokenize{lectures/lecture05/quiz-workbook:quiz-a3-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Lucas–Kanade full matrix solve}}}}.
 
 \end{itemize}
 
+\sphinxAtStartPar
+\sphinxstylestrong{Source qualifications:} ORB’s full pyramid pipeline handles multiple scales; fixed\sphinxhyphen{}scale steering alone does not. BRISK uses long pairs for orientation and short pairs for descriptor bits. A cross\sphinxhyphen{}image distance matrix need not be symmetric. See the cited primary references in {\hyperref[\detokenize{lectures/lecture05/descriptors::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{descriptors}}}}.
+
+\sphinxAtStartPar
+Detailed page\sphinxhyphen{}level dispositions and editable formula/figure inventories are in the repository’s \sphinxcode{\sphinxupquote{authoring/coverage.csv}}, \sphinxcode{\sphinxupquote{lecture05\sphinxhyphen{}audit.md}}, and \sphinxcode{\sphinxupquote{lecture05\sphinxhyphen{}formulas.csv}}.
+
+\sphinxstepscope
+
+
+\section{TLDR}
+\label{\detokenize{lectures/lecture05/tldr:tldr}}\label{\detokenize{lectures/lecture05/tldr:lec05-tldr}}\label{\detokenize{lectures/lecture05/tldr::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Find it → track it → describe it → verify it.} These are different jobs, even when one pipeline does all four.
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+A good feature is repeatable, distinctive, compact, and local. Flat patches constrain neither motion direction; edges constrain one; useful corners constrain both.
+
+\item {}
+\sphinxAtStartPar
+The structure tensor collects gradient outer products. Its smallest eigenvalue exposes the weak direction. Two large gradient components at one edge do not imply two independent constraints.
+
+\item {}
+\sphinxAtStartPar
+Harris scores candidates; thresholding removes weak responses; NMS removes nearby duplicates. Shi–Tomasi tests the smallest eigenvalue directly.
+
+\item {}
+\sphinxAtStartPar
+Lucas–Kanade linearizes brightness constancy, stacks patch equations, solves for displacement, warps, and repeats. Pyramids reduce the apparent motion; consistency checks detect drift and failures.
+
+\item {}
+\sphinxAtStartPar
+Exposure normalization can remove positive affine brightness changes, but a flat or clipped patch remains problematic.
+
+\item {}
+\sphinxAtStartPar
+Binary descriptions store intensity comparisons. Hamming distance counts different bits. ORB steers comparisons; BRISK uses long pairs for orientation and short pairs for bits.
+
+\item {}
+\sphinxAtStartPar
+A ratio test checks distinctiveness; geometry checks whether a match is physically plausible. Precision and recall use different denominators.
+
+\end{itemize}
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture05/tldr:short-quiz}}
+\sphinxAtStartPar
+These are \sphinxstylestrong{original practice questions}, separate from the historical/booklet {\hyperref[\detokenize{lectures/lecture05/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz workbook}}}}. Try each before opening its answer. All answers are printed in the PDF.
+
+
+\subsubsection{Question 1}
+\label{\detokenize{lectures/lecture05/tldr:question-1}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+A patch has two gradient samples \((2,2)^T\), each with weight one. Is it a stable two\sphinxhyphen{}directional feature?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Form the outer products}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Different pixels help only if they supply independent directions.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}M=2\begin{pmatrix}4&4\\4&4\end{pmatrix}=\begin{pmatrix}8&8\\8&8\end{pmatrix}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Test its weak direction}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A zero eigenvalue means an unconstrained shift.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}M(1,-1)^T=(0,0)^T,\qquad\lambda=16,0.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+It is edge\sphinxhyphen{}like, not a stable two\sphinxhyphen{}directional feature.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 2}
+\label{\detokenize{lectures/lecture05/tldr:question-2}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+For \(M=\operatorname{diag}(4,9)\) and \(k=0.04\), compute the Harris response and Shi–Tomasi score.
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Compute determinant and trace}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Harris uses both directional responses.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\det M=36,\quad\operatorname{tr}M=13,\quad R_H=36-0.04(169)=29.24.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Read the weaker eigenvalue}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Shi–Tomasi measures the least\sphinxhyphen{}constrained direction.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}R_{ST}=\min(4,9)=4.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Compare scores against thresholds defined for these weights and intensity units.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 3}
+\label{\detokenize{lectures/lecture05/tldr:question-3}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Solve \(Ad=b\) for \(A=\left(\begin{smallmatrix}1&0\\0&1\\1&1\end{smallmatrix}\right)\) and \(b=(2,1,3)^T\).
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Write the normal equations}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} All patch rows must contribute to the displacement estimate.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}A^TA=\begin{pmatrix}2&1\\1&2\end{pmatrix},\quad A^Tb=\begin{pmatrix}5\\4\end{pmatrix}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Solve and substitute}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Substitution checks signs and arithmetic.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}2u+v=5,\quad u+2v=4\Rightarrow d=(2,1)^T,\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}Ad=(2,1,3)^T=b.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 4}
+\label{\detokenize{lectures/lecture05/tldr:question-4}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+A tracker estimates \((3,1)\) pixels at a pyramid level two reductions below full resolution. What full\sphinxhyphen{}resolution initialization follows?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Transfer one level}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Each finer image has twice as many pixels per displacement.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}d_{next}=2(3,1)^T=(6,2)^T.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Transfer the next level}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Repeat the same conversion; refine after each transfer in an actual tracker.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}d_{full}=2(6,2)^T=(12,4)^T.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 5}
+\label{\detokenize{lectures/lecture05/tldr:question-5}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+The two nearest descriptor distances are 7 and 8. Does the match pass a strict ratio threshold of 0.8?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Compute the ratio}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The second\sphinxhyphen{}best candidate measures ambiguity.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\rho=7/8=0.875.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Apply the stated rule}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Being closest does not mean being distinctive.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}0.875\not<0.8.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Reject this proposed match under the given policy.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 6}
+\label{\detokenize{lectures/lecture05/tldr:question-6}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Among accepted matches, 18 are correct and 4 incorrect. Two true matches were missed. What are precision and recall?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Compute accepted\sphinxhyphen{}match reliability}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Precision counts accepted decisions in its denominator.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}P=18/(18+4)=9/11\approx81.82\%.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Compute true\sphinxhyphen{}match coverage}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Recall counts all actual matches in its denominator.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}R=18/(18+2)=90\%.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip
+
+\sphinxstepscope
+
+
+\chapter{Lecture 6: Reconstruct a scene—and improve it}
+\label{\detokenize{lectures/lecture06/index:lecture-6-reconstruct-a-sceneand-improve-it}}\label{\detokenize{lectures/lecture06/index:lecture06}}\label{\detokenize{lectures/lecture06/index::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{The goal:} turn tracks across photographs into camera poses and 3D points. Then adjust both until their projections agree with the measurements.
+
+\sphinxAtStartPar
+Read {\hyperref[\detokenize{lectures/lecture06/ambiguity::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{what reconstruction cannot determine}}}}, {\hyperref[\detokenize{lectures/lecture06/factorization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{affine factorization}}}}, {\hyperref[\detokenize{lectures/lecture06/triangulation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{triangulation}}}}, {\hyperref[\detokenize{lectures/lecture06/pipeline::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{the multi\sphinxhyphen{}view pipeline}}}}, and {\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{bundle adjustment}}}}. Finish with the {\hyperref[\detokenize{lectures/lecture06/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{complete quiz workbook}}}}, {\hyperref[\detokenize{lectures/lecture06/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{formula and source map}}}}, and {\hyperref[\detokenize{lectures/lecture06/tldr::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{TLDR + short quiz}}}}.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} all 72 PDF pages of \sphinxcode{\sphinxupquote{wk6\_cs532s24\_SFM1.pdf}}, Enrique Dunn. The deck credits Szeliski, Seitz, Snavely, Lazebnik, Hebert, and Choudhary. Page references below are one\sphinxhyphen{}based PDF pages. Repeated titles and repeated optimization slides are consolidated.
+
+\sphinxAtStartPar
+We use Lecture 4’s camera and epipolar geometry rather than teach it again. This chapter adds reconstruction ambiguity, many\sphinxhyphen{}view estimation, factorization, and optimization. Exactly one interactive appears at the point where a numerical update becomes a visible 3D improvement.
+
+\sphinxstepscope
+
+
+\section{What can the photographs actually determine?}
+\label{\detokenize{lectures/lecture06/ambiguity:what-can-the-photographs-actually-determine}}\label{\detokenize{lectures/lecture06/ambiguity:lec06-ambiguity}}\label{\detokenize{lectures/lecture06/ambiguity::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{A good\sphinxhyphen{}looking reconstruction can still have the wrong scale.} Photographs measure directions to points. Without a known length, a miniature scene close to the cameras can look identical to a large scene farther away.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 4–19. Worked exam companions: {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-12-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{reconstruction upgrades, Fall 2025 Quiz 5}}}} and {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-12-q2}]{\sphinxcrossref{\DUrole{std,std-ref}{its second scenario}}}}.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{tracks}.pdf}
+\caption{The source facade tracks, PDF page 5. Each track should represent one physical 3D point observed in several images. Attribution follows the lecture deck; original image creator is not individually identified.}\label{\detokenize{lectures/lecture06/ambiguity:fig-lec06-tracks}}\end{figure}
+
+
+\subsection{Count measurements, then count unknowns}
+\label{\detokenize{lectures/lecture06/ambiguity:count-measurements-then-count-unknowns}}
+\sphinxAtStartPar
+Each observed image point supplies two coordinates. A calibrated camera has six pose parameters; each 3D point has three. But an arbitrary common translation, rotation, and scale changes no image. Those seven free choices are the \sphinxstylestrong{similarity gauge}.
+
+\begin{TextbookBox}
+\textbf{Formula — necessary measurement counts}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/ambiguity:eq-lec06-counts}
+\begin{split}\begin{aligned}
+\text{Calibrated:}\quad&2mn\ge 6m+3n-7,\\
+\text{Projective:}\quad&2mn\ge 11m+3n-15,\\
+\text{Affine:}\quad&2mn\ge 8m+3n-12.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(m\) is the number of views and \(n\) the number of points, assuming every point is visible in every view and generic geometry. A projective camera has 11 parameters up to scale; an affine camera has 8. The gauge freedoms have dimensions 15 and 12 respectively. These inequalities are \sphinxstylestrong{necessary counts, not sufficient guarantees of a unique or stable solution}. Missing observations reduce the left side to twice the number actually observed.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Use a count without overclaiming}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Identify the camera model and count actual observations.
+
+\item {}
+\sphinxAtStartPar
+Subtract the appropriate common gauge from the unknowns.
+
+\item {}
+\sphinxAtStartPar
+Check the inequality. Failure means insufficient data; success means only that the count permits a solution.
+
+\item {}
+\sphinxAtStartPar
+Check configuration, ambiguity, outliers, and numerical conditioning separately.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For two calibrated views, \(4n\ge12+3n-7\) gives \(n\ge5\). For two projective views, \(4n\ge22+3n-15\) gives \(n\ge7\). These explain the minimal counts behind five\sphinxhyphen{}point and seven\sphinxhyphen{}point methods; they do not remove their multiple candidate solutions.
+
+
+\subsection{Why a different 3D shape can produce the same images}
+\label{\detokenize{lectures/lecture06/ambiguity:why-a-different-3d-shape-can-produce-the-same-images}}
+\begin{TextbookBox}
+\textbf{Formula — projective reconstruction ambiguity}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/ambiguity:eq-lec06-gauge}
+\begin{split}x_{ij}\sim P_iX_j
+=(P_iH^{-1})(HX_j),\qquad \det H\ne0.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(X_j\) is a homogeneous \(4\times1\) point, \(P_i\) a \(3\times4\) camera, and \(H\) one common invertible \(4\times4\) projective transformation. Transforming all points and compensating every camera preserves their image projections. Arbitrary \(H\) need not preserve lengths, angles, parallelism, or calibration.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Check a claimed reconstruction upgrade}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+State what was recovered: projective, affine, or metric geometry.
+
+\item {}
+\sphinxAtStartPar
+State the extra information: parallel directions, orthogonality, calibration, or known lengths.
+
+\item {}
+\sphinxAtStartPar
+Use it to constrain the allowable common transformation.
+
+\item {}
+\sphinxAtStartPar
+Report the ambiguity that remains. A metric reconstruction usually still has arbitrary common rotation, translation, and scale.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{house-ambiguity}.pdf}
+\caption{Selected house reconstructions from PDF pages 15, 17, and 19. Different reconstruction classes preserve different geometric properties. These are source examples, not three stages computed by this book.}\label{\detokenize{lectures/lecture06/ambiguity:fig-lec06-house}}\end{figure}
+
+\sphinxAtStartPar
+\sphinxstylestrong{A concrete scale example:} replace every Euclidean point \(X\) and camera center \(C_i\) by \(2X\) and \(2C_i\), leaving rotations unchanged. Camera coordinates become \(R_i(2X-2C_i)=2R_i(X-C_i)\). Dividing by depth cancels the factor two. Merely multiplying a homogeneous point vector by two describes the \sphinxstyleemphasis{same} point and is not this physical change of scale.
+
+
+\subsection{What the upgrades add}
+\label{\detokenize{lectures/lecture06/ambiguity:what-the-upgrades-add}}
+\sphinxAtStartPar
+A projective reconstruction has not located the \sphinxstylestrong{plane at infinity} correctly. Establishing that plane gives an affine reconstruction, where parallel lines remain parallel. Recovering the metric additionally constrains angles and relative lengths, commonly through calibration or sufficient orthogonality constraints.
+
+\sphinxAtStartPar
+A known length fixes global scale after a metric reconstruction. One right angle alone generally does not determine an entire metric upgrade. Use the independent constraints and assumptions in the specific question; the two Fall 2025 scenarios are worked separately in the workbook.
+
+\index{Gauge freedom@\spxentry{Gauge freedom}}\ignorespaces
+\index{Projective reconstruction ambiguity@\spxentry{Projective reconstruction ambiguity}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Factorization: split one matrix into cameras and shape}
+\label{\detokenize{lectures/lecture06/factorization:factorization-split-one-matrix-into-cameras-and-shape}}\label{\detokenize{lectures/lecture06/factorization:lec06-factorization}}\label{\detokenize{lectures/lecture06/factorization::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Put the tracks in a table. A low\sphinxhyphen{}rank split separates motion from shape.} This works particularly cleanly for an affine camera, which has no division by depth.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 20–38. Full numerical booklet problem: {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a7-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{rank\sphinxhyphen{}three factorization}}}}.
+
+
+\subsection{Center first}
+\label{\detokenize{lectures/lecture06/factorization:center-first}}
+\begin{TextbookBox}
+\textbf{Formula — affine measurements and centering}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/factorization:eq-lec06-affine}
+\begin{split}\begin{aligned}
+x_{ij}&=A_iX_j+b_i,\\
+\bar x_i&=\frac1n\sum_jx_{ij}=A_i\bar X+b_i,\\
+x_{ij}-\bar x_i&=A_i(X_j-\bar X).
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(x_{ij},b_i\) are \(2\times1\), \(A_i\) is \(2\times3\), and \(X_j\) is Euclidean \(3\times1\). Here the same complete set of \(n\) points is visible in every view. Orthographic and weak\sphinxhyphen{}perspective cameras are special affine models. Centering removes image translation and chooses the shape centroid as the origin.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Build the centered measurement matrix}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+For each image, compute the mean horizontal and vertical coordinates of the same tracked points.
+
+\item {}
+\sphinxAtStartPar
+Subtract these means from that image’s measurements.
+
+\item {}
+\sphinxAtStartPar
+Stack two rows per image into \(D\in\mathbb R^{2m\times n}\).
+
+\item {}
+\sphinxAtStartPar
+Do not enter zero for a missing observation; zero is a valid centered coordinate. Basic SVD here assumes complete tracks.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\Needspace{18\baselineskip}
+
+\begin{TextbookBox}
+\textbf{Formula — rank\sphinxhyphen{}three affine factorization}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/factorization:eq-lec06-factorization}
+\begin{split}\begin{aligned}
+D&=MS,\\
+M&=\begin{pmatrix}A_1\\\vdots\\A_m\end{pmatrix}\in\mathbb R^{2m\times3},\\
+S=\begin{pmatrix}X_1-\bar X&\cdots&X_n-\bar X\end{pmatrix}\in\mathbb R^{3\times n},\\
+\operatorname{rank}D&\le3,\\
+D&=U\Sigma V^T\approx U_3\Sigma_3V_3^T,\\
+\widetilde M&=U_3\Sigma_3^{1/2},\qquad
+\widetilde S=\Sigma_3^{1/2}V_3^T.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+With noise, retaining the three largest singular values gives the best rank\sphinxhyphen{}at\sphinxhyphen{}most\sphinxhyphen{}three approximation in Frobenius norm. A generic nondegenerate scene can have rank three; a planar/degenerate configuration can have lower rank. Do not force a nonexistent third dimension from noise.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Recover affine motion and shape}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Center the complete tracks and compute their SVD.
+
+\item {}
+\sphinxAtStartPar
+Inspect singular values: do three dimensions plausibly explain the data?
+
+\item {}
+\sphinxAtStartPar
+Form the balanced factors above. Their product reproduces the truncated measurements.
+
+\item {}
+\sphinxAtStartPar
+Restore each image mean when predicting original coordinates.
+
+\item {}
+\sphinxAtStartPar
+Treat the factors as affine estimates until additional metric constraints are enforced.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+For any invertible \(3\times3\) matrix \(C\), \((\widetilde MC)(C^{-1}\widetilde S)\) gives the same \(D\). This is the remaining affine ambiguity after centering.
+
+
+\subsection{Turn an orthographic factorization into metric shape}
+\label{\detokenize{lectures/lecture06/factorization:turn-an-orthographic-factorization-into-metric-shape}}
+\sphinxAtStartPar
+For calibrated, unit\sphinxhyphen{}scale orthographic rows \(a_i,b_i\), require unit lengths and perpendicularity. If weak perspective has a different unknown scale in each image, the unit\sphinxhyphen{}length constraints must be changed; do not apply this model blindly.
+
+\begin{TextbookBox}
+\textbf{Formula — orthographic metric upgrade}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/factorization:eq-lec06-metric}
+\begin{split}\begin{aligned}
+M&=\widetilde MC,\quad S=C^{-1}\widetilde S,\quad L=CC^T,\\
+\widetilde a_iL\widetilde a_i^T&=1,\quad
+\widetilde b_iL\widetilde b_i^T=1,\quad
+\widetilde a_iL\widetilde b_i^T=0.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(L\) is symmetric with six unknown entries. Each row pair gives three equations linear in those entries. A valid invertible upgrade requires a positive definite \(L\) and sufficient independent constraints. Factor it as \(CC^T\), for example with Cholesky. Noisy estimates may need constrained fitting; an indefinite result is not a usable Euclidean metric.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Solve the metric upgrade}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Write \(L=\left(\begin{smallmatrix}l_{11}&l_{12}&l_{13}\\l_{12}&l_{22}&l_{23}\\l_{13}&l_{23}&l_{33}\end{smallmatrix}\right)\).
+
+\item {}
+\sphinxAtStartPar
+Expand the three constraints per view; solve for its six distinct entries.
+
+\item {}
+\sphinxAtStartPar
+Check definiteness and constraint residuals.
+
+\item {}
+\sphinxAtStartPar
+Recover \(C\) and update \sphinxstylestrong{both} factors. Verify \(MS=\widetilde M\widetilde S\).
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture06/factorization:ex-lec06-upgrade}}
+\begin{TextbookBox}
+\textbf{Worked example 6.1 — remove unequal axis scaling}\par\smallskip
+
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Three orthographic views give the estimated motion rows below. Find a diagonal metric upgrade and display the corrected motion matrix.
+\begin{equation*}
+\begin{split}\widetilde M=\begin{pmatrix}2&0&0\\0&1&0\\0&1&0\\0&0&1/2\\2&0&0\\0&0&1/2\end{pmatrix}.\end{split}
+\end{equation*}
+\par\medskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Expand all independent constraints}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Unit rows set axis scales; perpendicular rows set the cross terms.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}4l_{11}=1,\quad l_{22}=1,\quad \tfrac14l_{33}=1,\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}2l_{12}=0,\quad \tfrac12l_{23}=0,\quad l_{13}=0.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+The first camera supplies the {\color{QuizMathBlue} \(xy\)} orthogonality constraint, the second {\color{QuizMathBlue} \(yz\)}, and the third {\color{QuizMathBlue} \(xz\)}. Thus
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}L=\begin{pmatrix}1/4&0&0\\0&1&0\\0&0&4\end{pmatrix}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Factor the metric}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Multiplying motion by this factor must make its rows unit length.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}C=\begin{pmatrix}1/2&0&0\\0&1&0\\0&0&2\end{pmatrix},\qquad CC^T=L.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 3 — Correct motion and compensate shape}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Correcting only motion would change the predicted measurements.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}M=\widetilde MC=\begin{pmatrix}1&0&0\\0&1&0\\0&1&0\\0&0&1\\1&0&0\\0&0&1\end{pmatrix},\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}S=\begin{pmatrix}2&0&0\\0&1&0\\0&0&1/2\end{pmatrix}\widetilde S,\qquad
+MS=\widetilde MCC^{-1}\widetilde S=D.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Each camera’s two rows are perpendicular unit vectors. A common rotation/reflection of the recovered coordinate system remains possible.
+
+\par
+
+\end{TextbookBox}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{factorization-house}.pdf}
+\caption{The house\sphinxhyphen{}model sequence and result, PDF page 38, credited in the deck to Tomasi and Kanade. The matrix method reconstructs structure from tracks; the pictures alone are not the measurement matrix.}\label{\detokenize{lectures/lecture06/factorization:fig-lec06-factorization-house}}\end{figure}
+
+\index{Affine factorization@\spxentry{Affine factorization}}\ignorespaces
+\index{Metric upgrade@\spxentry{Metric upgrade}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Triangulation: find the 3D point behind two pixels}
+\label{\detokenize{lectures/lecture06/triangulation:triangulation-find-the-3d-point-behind-two-pixels}}\label{\detokenize{lectures/lecture06/triangulation:lec06-triangulation}}\label{\detokenize{lectures/lecture06/triangulation::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Each pixel gives a ray. Triangulation finds a point consistent with several rays.} Real rays usually miss because image measurements contain error.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 48–52. For full camera matrices, row construction, and substitution checks, work through {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a5-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{the booklet triangulation example}}}}.
+
+
+\subsection{Turn projection into linear equations}
+\label{\detokenize{lectures/lecture06/triangulation:turn-projection-into-linear-equations}}
+\sphinxAtStartPar
+Write the rows of camera \(P_i\) as \(p_{i1}^T,p_{i2}^T,p_{i3}^T\). For an observed homogeneous image point \((u_i,v_i,1)^T\),
+\begin{equation*}
+\begin{split}u_i=\frac{p_{i1}^TX}{p_{i3}^TX},\qquad v_i=\frac{p_{i2}^TX}{p_{i3}^TX}.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Multiply by the denominator and move the numerator to the left. Each image supplies two independent rows.
+
+\begin{TextbookBox}
+\textbf{Formula — linear homogeneous triangulation}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/triangulation:eq-lec06-triangulation}
+\begin{split}A_i=\begin{pmatrix}u_ip_{i3}^T-p_{i1}^T\\v_ip_{i3}^T-p_{i2}^T\end{pmatrix},\quad
+A=\begin{pmatrix}A_1\\\vdots\\A_m\end{pmatrix},\quad
+\widehat X=\underset{\|X\|=1}{\arg\min}\|AX\|^2.\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(A\) is \(2m\times4\). Its right singular vector with smallest singular value is \(\widehat X\). If \(\widehat X_4\ne0\), divide by that entry to obtain Euclidean coordinates. A zero last entry describes a point at infinity, not a finite coordinate you can obtain by dividing by zero.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Triangulate and check}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Use image coordinates consistent with the cameras. If normalizing pixels by \(T_i\), transform the camera to \(T_iP_i\) too.
+
+\item {}
+\sphinxAtStartPar
+Build every row explicitly and take the last right singular vector.
+
+\item {}
+\sphinxAtStartPar
+Dehomogenize only if safe; reproject into every camera.
+
+\item {}
+\sphinxAtStartPar
+Check positive physical depth (\sphinxstylestrong{cheirality}) in the calibrated camera frames.
+
+\item {}
+\sphinxAtStartPar
+Reject large residuals and very small ray angles. Nearly parallel rays make depth unstable.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The linear method minimizes an \sphinxstylestrong{algebraic} residual. Rescaling rows or changing coordinates can change its noisy answer; it is not automatically invariant under arbitrary projective coordinate changes. Use it as a good initializer, then minimize the image error you care about.
+
+
+\subsection{Refine the point in image coordinates}
+\label{\detokenize{lectures/lecture06/triangulation:refine-the-point-in-image-coordinates}}
+\begin{TextbookBox}
+\textbf{Formula — geometric triangulation objectives}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/triangulation:eq-lec06-geometric}
+\begin{split}\begin{aligned}
+X^*&=\arg\min_X\sum_i\|\pi(P_iX)-x_i\|^2,\\
+(\bar x,\bar x')^*&=\arg\min_{\bar x,\bar x'}
+\bigl(\|\bar x-x\|^2+\|\bar x'-x'\|^2\bigr),\\
+&\hspace{2em}\text{subject to }\bar x'^TF\bar x=0.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\pi(a,b,c)^T=(a/c,b/c)^T\); norms in the second formulation compare the two finite image coordinates, with a homogeneous 1 appended only for the epipolar constraint. The first optimizes a 3D point with \sphinxstylestrong{fixed cameras}. The second finds the closest consistent pair of image points for a valid two\sphinxhyphen{}view \(F\). Both assume the chosen unweighted pixel\sphinxhyphen{}error model; unequal uncertainty calls for suitable weights.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Choose the refinement}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Obtain a linear estimate and inspect validity and residuals.
+
+\item {}
+\sphinxAtStartPar
+For fixed known cameras, refine the 3D point against reprojection error.
+
+\item {}
+\sphinxAtStartPar
+For the source’s optimal two\sphinxhyphen{}view correction, parameterize corresponding epipolar lines and optimize the two corrected points before triangulating.
+
+\item {}
+\sphinxAtStartPar
+Compare all valid candidates and include boundary/infinite\sphinxhyphen{}parameter cases where required by that algorithm.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+\sphinxstylestrong{What is the sixth\sphinxhyphen{}degree polynomial on slide 52?} Parameterizing the pair of epipolar lines by one scalar \(t\) turns the correction cost into a rational function. Setting its derivative to zero yields a polynomial of degree up to six. Its real roots are candidate stationary solutions; evaluating the original cost chooses the best valid candidate. The degree does not mean six iterations or six cameras. The slide presents the reduction, not the full polynomial coefficients.
+
+\index{Triangulation@\spxentry{Triangulation}}\ignorespaces
+\index{Cheirality@\spxentry{Cheirality}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Grow a reconstruction one view at a time}
+\label{\detokenize{lectures/lecture06/pipeline:grow-a-reconstruction-one-view-at-a-time}}\label{\detokenize{lectures/lecture06/pipeline:lec06-pipeline}}\label{\detokenize{lectures/lecture06/pipeline::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Structure from motion (SfM)} estimates both the scene and the cameras. Lecture 5 supplies tracks; Lecture 4 supplies two\sphinxhyphen{}view geometry. This section joins those pieces into a reconstruction.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 39–47 and 53–55. Exam companion: {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-16-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{weak overlap and hierarchical reconstruction}}}}.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.950\linewidth]{{sfm-pipeline}.pdf}
+\caption{Original reconstruction loop based on PDF pages 43–46. New cameras need links to existing structure; bundle adjustment revisits earlier estimates.}\label{\detokenize{lectures/lecture06/pipeline:fig-lec06-pipeline}}\end{figure}
+
+
+\subsection{Start with a reliable pair}
+\label{\detokenize{lectures/lecture06/pipeline:start-with-a-reliable-pair}}
+\sphinxAtStartPar
+Use robust matches, a useful baseline, and enough shared nondegenerate structure. A nearly pure rotation can support image alignment while providing little or no depth information. A large baseline can improve triangulation but make matching harder.
+
+\sphinxAtStartPar
+For calibrated cameras, estimate an essential matrix and recover a relative rotation and translation direction, testing cheirality as in Lecture 4. Without calibration, a fundamental matrix initializes a \sphinxstylestrong{projective} reconstruction.
+
+\begin{TextbookBox}
+\textbf{Formula — one canonical camera pair from a fundamental matrix}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/pipeline:eq-lec06-canonical}
+\begin{split}F^Te'=0,\quad P=[I\mid0],\quad
+P'=[-[e']_\times F\mid e'].\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(F\) has rank two, \(e'\ne0\) is the second\sphinxhyphen{}image epipole, and \([e']_\times\) is its cross\sphinxhyphen{}product matrix. This produces cameras consistent with \(F\) up to scale and projective gauge. The left \(3\times3\) block of \(P'\) is generally \sphinxstylestrong{not a physical rotation}. This is a projective construction, not calibrated pose extraction.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Initialize an uncalibrated pair}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Robustly estimate a rank\sphinxhyphen{}two \(F\) with a consistent image\sphinxhyphen{}order convention.
+
+\item {}
+\sphinxAtStartPar
+Find a nonzero vector in the nullspace of \(F^T\).
+
+\item {}
+\sphinxAtStartPar
+Build the two camera matrices above and triangulate shared tracks.
+
+\item {}
+\sphinxAtStartPar
+Keep the result labeled projective until justified upgrade constraints are available.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why is this consistent?} The pair induces \([e']_\times(-[e']_\times F)\). Since \([e']_\times^2=e'e'^T-\|e'\|^2I\) and \(e'^TF=0\), the product is \(\|e'\|^2F\), the same fundamental matrix up to scale.
+
+
+\subsection{Add cameras, then add points}
+\label{\detokenize{lectures/lecture06/pipeline:add-cameras-then-add-points}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Register a new camera} using already reconstructed 3D points and their 2D observations (\sphinxstylestrong{PnP} in the calibrated case).
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Triangulate new tracks} seen in sufficiently separated registered cameras.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Check} reprojection error, cheirality, and track consistency. Remove outliers; do not keep a point merely because a solver returned it.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{Bundle\sphinxhyphen{}adjust} the current cameras and points, then continue. Revisit drift rather than assuming each early estimate is final.
+
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.650\linewidth]{{visibility}.pdf}
+\caption{Source PDF page 45. Each marked observation connects one camera and one point. Empty entries are missing data, not zero\sphinxhyphen{}valued pixel measurements.}\label{\detokenize{lectures/lecture06/pipeline:fig-lec06-visibility}}\end{figure}
+
+
+\subsection{Do not confuse the minimal pose problems}
+\label{\detokenize{lectures/lecture06/pipeline:do-not-confuse-the-minimal-pose-problems}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Problem
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Known data
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Unknown
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Minimal sample and ambiguity
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+Calibrated relative pose
+&
+\sphinxAtStartPar
+Matched pixels in two calibrated views
+&
+\sphinxAtStartPar
+Relative rotation and translation direction
+&
+\sphinxAtStartPar
+Five correspondences; up to ten algebraic candidates in the general five\sphinxhyphen{}point solver
+\\
+\sphinxhline
+\sphinxAtStartPar
+P3P
+&
+\sphinxAtStartPar
+Three known 3D points and their calibrated image rays
+&
+\sphinxAtStartPar
+One camera pose
+&
+\sphinxAtStartPar
+Three correspondences; up to four real pose candidates
+\\
+\sphinxhline
+\sphinxAtStartPar
+Practical robust registration
+&
+\sphinxAtStartPar
+Many noisy matches, possibly with outliers
+&
+\sphinxAtStartPar
+Reliable pose
+&
+\sphinxAtStartPar
+RANSAC plus extra observations, cheirality, and reprojection scoring
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+A sample can generate several hypotheses. More observations select and refine a valid one. These are different problems: two unknown views versus one camera looking at an existing 3D map.
+
+
+\subsection{What if calibration is unknown?}
+\label{\detokenize{lectures/lecture06/pipeline:what-if-calibration-is-unknown}}
+\sphinxAtStartPar
+\sphinxstylestrong{Self\sphinxhyphen{}calibration} uses constraints such as constant intrinsics across views, zero skew, known principal\sphinxhyphen{}point assumptions, or geometric information such as vanishing points. Sufficient independent constraints can upgrade a projective reconstruction toward metric geometry. Constant intrinsics alone is not a universal guarantee: critical camera motions and degenerate scenes can leave ambiguities.
+
+\sphinxAtStartPar
+For long sequences, local reconstructions or keyframes can be joined through shared tracks and refined together. Weak overlap makes merging fragile; a global solver cannot invent missing connectivity. The workbook explains the quiz’s hierarchical strategy, including when it helps and what still needs overlap.
+
+\index{Structure from motion@\spxentry{Structure from motion}}\ignorespaces
+\index{P3P@\spxentry{P3P}}\ignorespaces
+\index{Self\sphinxhyphen{}calibration@\spxentry{Self\sphinxhyphen{}calibration}}\ignorespaces
+\sphinxstepscope
+
+
+\section{Bundle adjustment: move the model until the pixels agree}
+\label{\detokenize{lectures/lecture06/optimization:bundle-adjustment-move-the-model-until-the-pixels-agree}}\label{\detokenize{lectures/lecture06/optimization:lec06-optimization}}\label{\detokenize{lectures/lecture06/optimization::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{A reconstructed point should project back to the pixel where you measured it.} Bundle adjustment changes cameras and points together to reduce those discrepancies. “Bundle” refers to the bundle of viewing rays.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source:} PDF pages 46 and 56–72. Fully worked numerical companions: {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a6-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{a Gauss–Newton reprojection update}}}} and {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-16-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{long\sphinxhyphen{}sequence reconstruction}}}}.
+
+
+\subsection{Define exactly what is being minimized}
+\label{\detokenize{lectures/lecture06/optimization:define-exactly-what-is-being-minimized}}
+\begin{TextbookBox}
+\textbf{Formula — weighted reprojection least squares}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/optimization:eq-lec06-ba}
+\begin{split}\begin{aligned}
+r_{ij}(\theta)&=\pi(K_i[R_i\mid t_i]X_j)-x_{ij},\\
+E(\theta)&=\tfrac12\sum_{(i,j)\in\mathcal O}r_{ij}^TW_{ij}r_{ij}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(\theta\) collects the camera parameters and finite 3D point coordinates; intrinsics may be fixed or estimated as appropriate. \(\mathcal O\) contains actual observations only. Each residual is \(2\times1\), in pixels, and \(W_{ij}\) is a symmetric positive definite \(2\times2\) information matrix (often inverse covariance). The source sometimes uses observed\sphinxhyphen{}minus\sphinxhyphen{}predicted residuals; we consistently use predicted\sphinxhyphen{}minus\sphinxhyphen{}observed. Changing both residual and Jacobian signs leaves the least\sphinxhyphen{}squares update unchanged.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Prepare a meaningful objective}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Choose which parameters are unknown and which are fixed.
+
+\item {}
+\sphinxAtStartPar
+Fix the gauge: for calibrated monocular SfM, fixing the first pose and one nonzero baseline/length removes the usual seven freedoms.
+
+\item {}
+\sphinxAtStartPar
+Stack only valid observed residuals with consistent units and uncertainty weights.
+
+\item {}
+\sphinxAtStartPar
+Remove gross outliers or use an appropriate robust loss. Ordinary squared error gives large residuals strong influence.
+
+\item {}
+\sphinxAtStartPar
+Compare actual objective values after every proposed update.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+
+\subsection{The Jacobian says how a parameter moves a pixel}
+\label{\detokenize{lectures/lecture06/optimization:the-jacobian-says-how-a-parameter-moves-a-pixel}}
+\sphinxAtStartPar
+For zero skew, let camera coordinates be \(q=(x_c,y_c,z_c)^T\) and let
+\begin{equation*}
+\begin{split}u=f_xx_c/z_c+c_x,\qquad v=f_yy_c/z_c+c_y.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Differentiate one coordinate at a time. For example, \(\partial u/\partial x_c=f_x/z_c\) and \(\partial u/\partial z_c=-f_xx_c/z_c^2\).
+
+\begin{TextbookBox}
+\textbf{Formula — projection and pose Jacobian blocks}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/optimization:eq-lec06-jacobian}
+\begin{split}\begin{aligned}
+B&=\begin{pmatrix}f_x/z_c&0&-f_xx_c/z_c^2\\0&f_y/z_c&-f_yy_c/z_c^2\end{pmatrix},\\
+J_{point}&=BR_i,\qquad
+J_{pose}=B\begin{pmatrix}-[q]_\times&I\end{pmatrix}.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(B\) is \(2\times3\), \(J_{point}\) is \(2\times3\), and \(J_{pose}\) is \(2\times6\). Here the local pose increment is ordered \((\delta\omega,\delta t)\) and acts on camera coordinates as \(q'\approx q+\delta\omega\times q+\delta t\) (a left local rigid\sphinxhyphen{}motion increment). A different pose convention changes the block; do not copy it into a different parameterization without checking. Depth must be nonzero. Intrinsics derivatives require extra columns if intrinsics are optimized.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Build a Jacobian row pair}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Transform the point into the camera frame and compute \(B\).
+
+\item {}
+\sphinxAtStartPar
+Multiply by \(R_i\) for world\sphinxhyphen{}point derivatives.
+
+\item {}
+\sphinxAtStartPar
+Use the stated local pose convention for camera derivatives.
+
+\item {}
+\sphinxAtStartPar
+Insert these blocks into the columns for that camera and that point; unrelated columns are zero.
+
+\item {}
+\sphinxAtStartPar
+Compare with small finite differences before trusting a new implementation.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+
+\subsection{Four update rules, one local picture}
+\label{\detokenize{lectures/lecture06/optimization:four-update-rules-one-local-picture}}
+\sphinxAtStartPar
+Linearize \(r(\theta+\delta)\approx r+J\delta\). The derivative of \(\tfrac12r^TWr\) is \(g=J^TWr\). Setting the derivative of the quadratic approximation to zero gives the Gauss–Newton equation.
+
+\begin{TextbookBox}
+\textbf{Formula — gradient, Newton, Gauss–Newton, and damping}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/optimization:eq-lec06-updates}
+\begin{split}\begin{aligned}
+g&=J^TWr,\qquad
+H_{exact}=J^TWJ+\sum_k(Wr)_k\nabla^2r_k,\\
+\delta_{GD}&=-\eta g,\qquad H_{exact}\delta_N=-g,\\
+(J^TWJ)\delta_{GN}&=-g,\\
+(J^TWJ+\lambda D)\delta_{LM}&=-g.
+\end{aligned}\end{split}
+\end{equation}
+\sphinxAtStartPar
+\(W\) is held constant in this expression; \(D\) is a positive diagonal scaling matrix and \(\lambda\ge0\). Gradient descent needs a suitable step size \(\eta\). Newton uses the full Hessian. Gauss–Newton drops the residual second\sphinxhyphen{}derivative term, often useful near a good fit. Levenberg–Marquardt damps the solve; damping alone does not guarantee an accepted step. Large \(\lambda\) gives a scaled gradient\sphinxhyphen{}like direction. Parameter scaling matters because meters and radians have different meanings.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Run an iteration}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Evaluate residuals, weights, Jacobian, and current cost.
+
+\item {}
+\sphinxAtStartPar
+Solve the damped normal system; do not explicitly invert it.
+
+\item {}
+\sphinxAtStartPar
+Apply the camera increment with its proper rotation parameterization.
+
+\item {}
+\sphinxAtStartPar
+Recompute the \sphinxstylestrong{actual} cost and verify valid depths.
+
+\item {}
+\sphinxAtStartPar
+Accept an improving step; otherwise increase damping or reduce the step. Stop using cost, gradient, and step\sphinxhyphen{}size criteria.
+
+\end{enumerate}
+
+\end{TextbookBox}
+\phantomsection\label{\detokenize{lectures/lecture06/optimization:ex-lec06-gn}}
+\begin{TextbookBox}
+\textbf{Worked example 6.2 — a full two\sphinxhyphen{}variable point update}\par\smallskip
+
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Fixed rectified cameras have \(f=800\) pixels and baseline \(b=0.2\) m. Their measured horizontal coordinates are \(u_L=260\) and \(u_R=219\). Refine the horizontal point block \((X,Z)\) from \((1.3,4)\) m using one Gauss–Newton step. This block example holds the cameras fixed; it is not a complete joint camera\sphinxhyphen{}and\sphinxhyphen{}point solve.
+
+\par\medskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Evaluate the residual and Jacobian}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The update must describe the present prediction error and its local sensitivity.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}r=\begin{pmatrix}800X/Z-260\\800(X-0.2)/Z-219\end{pmatrix}_{(1.3,4)}=\begin{pmatrix}0\\1\end{pmatrix},\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}J=\begin{pmatrix}800/Z&-800X/Z^2\\800/Z&-800(X-0.2)/Z^2\end{pmatrix}=\begin{pmatrix}200&-65\\200&-55\end{pmatrix}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Write and solve the complete normal system}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Both parameters affect both observations; solve their coupled equations together.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}J^TJ=\begin{pmatrix}80000&-24000\\-24000&7250\end{pmatrix},\quad J^Tr=\begin{pmatrix}200\\-55\end{pmatrix},\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\begin{pmatrix}80000&-24000\\-24000&7250\end{pmatrix}\begin{pmatrix}\delta_X\\\delta_Z\end{pmatrix}=\begin{pmatrix}-200\\55\end{pmatrix}.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Equivalently, {\color{QuizMathBlue} \(200\delta_X-65\delta_Z=0\)} and {\color{QuizMathBlue} \(200\delta_X-55\delta_Z=-1\)}. Subtracting gives {\color{QuizMathBlue} \(10\delta_Z=-1\)}, hence
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\delta=\begin{pmatrix}-0.0325\\-0.1\end{pmatrix},\qquad
+\begin{pmatrix}X_{new}\\Z_{new}\end{pmatrix}=\begin{pmatrix}1.2675\\3.9\end{pmatrix}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 3 — Reproject and compare actual costs}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A linearized improvement must be verified in the original nonlinear model.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}u_L^{new}=\frac{800(1.2675)}{3.9}=260,\qquad
+u_R^{new}=\frac{800(1.2675-0.2)}{3.9}\approx218.974359.\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}E_{old}=\tfrac12(0^2+1^2)=0.5,\qquad
+E_{new}\approx\tfrac12(0^2+(-0.025641)^2)=0.00032873.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Both depths are positive and the cost falls. The exact horizontal solution is {\color{QuizMathBlue} \(Z=160/(260-219)\approx3.902439\)} m and {\color{QuizMathBlue} \(X=260Z/800\approx1.268293\)} m. One nonlinear iteration gets close; it need not finish exactly.
+
+\par
+
+\end{TextbookBox}
+
+
+\subsection{See a point update in real 3D}
+\label{\detokenize{lectures/lecture06/optimization:see-a-point-update-in-real-3d}}
+\subsubsection*{Explore reprojection refinement in 3D — print edition}
+
+\sphinxAtStartPar
+The cameras stay fixed. The point is constrained to the left measured ray, with \(X=260Z/800\) and \(Y=120Z/800\). Rotate the scene to see that moving along this ray changes the right projection. Adjust the initial depth or right measurement, then take a Gauss–Newton/LM step.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Static equivalent:} \(u_R(Z)=260-160/Z\), \(r(Z)=u_R(Z)-219\), and \(J=160/Z^2\). At \(Z=4\), \(u_R=220\), \(r=1\), and \(J=10\). An undamped step gives \(\delta_Z=-r/J=-0.1\) m. At \(Z=3.9\), \(r\approx-0.025641\); the next update moves back toward \(3.902439\) m. The left projection remains \((260,120)\) throughout.
+
+\sphinxAtStartPar
+For this one\sphinxhyphen{}parameter subset, damping solves \((J^2+\lambda)\delta_Z=-Jr\). The interactive checks positive depth and actual cost, reducing the step if necessary. The measured right pixel defines another ray; the moving point’s projection approaches it. This is a visual model of a point refinement, while full bundle adjustment also updates camera parameters.
+
+\begin{figure}[H]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=0.850\linewidth]{{refinement-rays}.pdf}
+\caption{Original diagram. Camera centers and the left ray stay fixed; the point’s right ray changes as depth is refined.}\label{\detokenize{lectures/lecture06/optimization:fig-lec06-refinement}}\end{figure}
+
+\par\medskip
+
+
+\subsection{Why large reconstructions can still be solved}
+\label{\detokenize{lectures/lecture06/optimization:why-large-reconstructions-can-still-be-solved}}
+\sphinxAtStartPar
+Each image residual depends on \sphinxstylestrong{one camera and one point}, not every unknown. That creates sparse Jacobian blocks.
+
+\begin{TextbookBox}
+\textbf{Formula — eliminate point updates with the Schur complement}\par\smallskip
+\begin{equation}\label{equation:lectures/lecture06/optimization:eq-lec06-schur}
+\begin{split}\begin{pmatrix}U&V\\V^T&W_p\end{pmatrix}
+\begin{pmatrix}\delta_c\\\delta_p\end{pmatrix}
+=-\begin{pmatrix}g_c\\g_p\end{pmatrix},\end{split}
+\end{equation}\begin{equation*}
+\begin{split}\begin{aligned}
+(U-VW_p^{-1}V^T)\delta_c&=-g_c+VW_p^{-1}g_p,\\
+W_p\delta_p&=-g_p-V^T\delta_c.
+\end{aligned}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+\(U\) is the camera block, \(W_p\) the point block, and \(V\) their coupling in the (possibly damped) normal system. \(W_p\) is block diagonal for independent point parameters. Inverse notation expresses elimination; implementations solve the small blocks. Gauge fixing and sufficient observations are needed for nonsingular systems. Here \(W_p\) is not the observation\sphinxhyphen{}weight matrix \(W\) above.
+
+\end{TextbookBox}
+
+\begin{TextbookBox}
+\textbf{Solve a sparse bundle system}\par\smallskip
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {}
+\sphinxAtStartPar
+Assemble blocks only where observations connect a camera and a point.
+
+\item {}
+\sphinxAtStartPar
+Eliminate each independent point block to form the reduced camera system.
+
+\item {}
+\sphinxAtStartPar
+Solve for camera updates, then back\sphinxhyphen{}substitute for point updates.
+
+\item {}
+\sphinxAtStartPar
+Use appropriate ordering, scaling, and preconditioning; inspect connectivity and degeneracy.
+
+\end{enumerate}
+
+\end{TextbookBox}
+
+\sphinxAtStartPar
+The source ends with software examples. The important transferable ideas are the residual definition, a consistent Jacobian, gauge fixing, sparse structure, and checking actual improvement. A large parameter count alone does not tell you whether a reconstruction is well constrained.
+
+\index{Bundle adjustment@\spxentry{Bundle adjustment}}\ignorespaces
+\index{Gauss–Newton@\spxentry{Gauss–Newton}}\ignorespaces
+\index{Levenberg–Marquardt@\spxentry{Levenberg–Marquardt}}\ignorespaces
+\index{Schur complement@\spxentry{Schur complement}}\ignorespaces
 \sphinxstepscope
 
 
@@ -13534,6 +15788,505 @@ Multiplying {\color{QuizMathBlue} \(MS\)} selects row 1, row 2, row 2 again, the
 \sphinxstepscope
 
 
+\section{Formula and source checklist}
+\label{\detokenize{lectures/lecture06/review:formula-and-source-checklist}}\label{\detokenize{lectures/lecture06/review:lec06-review}}\label{\detokenize{lectures/lecture06/review::doc}}
+\sphinxAtStartPar
+Use this as a map, then work the {\hyperref[\detokenize{lectures/lecture06/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{original questions and full solutions}}}}. This checklist adds no second version of the lecture.
+
+
+\subsection{Find a formula and its procedure}
+\label{\detokenize{lectures/lecture06/review:find-a-formula-and-its-procedure}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+Formula
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Where to learn and apply it
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/ambiguity:eq-lec06-counts} — necessary measurement counts
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/ambiguity::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Ambiguity}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/ambiguity:eq-lec06-gauge} — projective reconstruction ambiguity
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/ambiguity::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Ambiguity}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/factorization:eq-lec06-affine} — affine measurements and centering
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/factorization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Factorization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/factorization:eq-lec06-factorization} — rank\sphinxhyphen{}three affine factorization
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/factorization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Factorization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/factorization:eq-lec06-metric} — orthographic metric upgrade
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/factorization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Factorization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/optimization:eq-lec06-ba} — weighted reprojection least squares
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Optimization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/optimization:eq-lec06-jacobian} — projection and pose Jacobian blocks
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Optimization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/optimization:eq-lec06-updates} — gradient, Newton, Gauss–Newton, and damping
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Optimization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/optimization:eq-lec06-schur} — eliminate point updates with the Schur complement
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Optimization}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/pipeline:eq-lec06-canonical} — one canonical camera pair from a fundamental matrix
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/pipeline::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Pipeline}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/triangulation:eq-lec06-triangulation} — linear homogeneous triangulation
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/triangulation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Triangulation}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxhline
+\sphinxAtStartPar
+\eqref{equation:lectures/lecture06/triangulation:eq-lec06-geometric} — geometric triangulation objectives
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/triangulation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Triangulation}}}}; the adjacent application box gives the steps and assumptions
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{Trace the lecture slides}
+\label{\detokenize{lectures/lecture06/review:trace-the-lecture-slides}}
+
+\begin{savenotes}\sphinxattablestart
+\sphinxthistablewithglobalstyle
+\centering
+\begin{tabulary}{\linewidth}[t]{TTT}
+\sphinxtoprule
+\sphinxstyletheadfamily
+\sphinxAtStartPar
+PDF pages
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Teaching location
+&\sphinxstyletheadfamily
+\sphinxAtStartPar
+Covered material
+\\
+\sphinxmidrule
+\sphinxtableatstartofbodyhook
+\sphinxAtStartPar
+4–19
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/ambiguity::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Ambiguity}}}}
+&
+\sphinxAtStartPar
+Unknowns, necessary counts, gauge, projective/affine/similarity ambiguity and house examples
+\\
+\sphinxhline
+\sphinxAtStartPar
+20–38
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/factorization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Factorization}}}}
+&
+\sphinxAtStartPar
+Affine/orthographic cameras, centering, SVD, rank at most three, metric upgrade and house sequence
+\\
+\sphinxhline
+\sphinxAtStartPar
+39–47
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/pipeline::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Pipeline}}}}
+&
+\sphinxAtStartPar
+Perspective count, canonical cameras from F, sequential SfM, visibility, self\sphinxhyphen{}calibration
+\\
+\sphinxhline
+\sphinxAtStartPar
+48–52
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/triangulation::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Triangulation}}}}
+&
+\sphinxAtStartPar
+Linear system/SVD, noisy rays, geometric objectives and sixth\sphinxhyphen{}degree candidate equation
+\\
+\sphinxhline
+\sphinxAtStartPar
+53–55
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/pipeline::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Pipeline}}}}
+&
+\sphinxAtStartPar
+Calibrated five\sphinxhyphen{}point versus P3P, multiple solutions and verification
+\\
+\sphinxhline
+\sphinxAtStartPar
+56–72
+&
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/optimization::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Optimization}}}}
+&
+\sphinxAtStartPar
+Reprojection least squares, gradient/Newton/GN/LM, Jacobians, gauge and sparse elimination
+\\
+\sphinxbottomrule
+\end{tabulary}
+\sphinxtableafterendhook\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Pages 1–3 supply title/credits; repeated section titles and the duplicated BA definition on pages 57/59 are consolidated. Page 72’s software examples are acknowledged in the optimization discussion rather than reproduced as installation instructions.
+
+
+\subsection{Quiz route}
+\label{\detokenize{lectures/lecture06/review:quiz-route}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-12-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Facade and floor reconstruction constraints}}}}, {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-12-q2}]{\sphinxcrossref{\DUrole{std,std-ref}{second scenario}}}}, and {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-12-q3}]{\sphinxcrossref{\DUrole{std,std-ref}{pipeline choice}}}}.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-16-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Weak overlaps}}}} and {\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-16-q2}]{\sphinxcrossref{\DUrole{std,std-ref}{contaminated matches}}}}.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a5-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Linear triangulation with full matrices}}}}.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a6-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Numerical Gauss–Newton reprojection update}}}}.
+
+\item {}
+\sphinxAtStartPar
+{\hyperref[\detokenize{lectures/lecture06/quiz-workbook:quiz-a7-q1}]{\sphinxcrossref{\DUrole{std,std-ref}{Centered measurement matrix and factorization}}}}.
+
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Source qualifications:} rank is at most three, with equality requiring nondegeneracy. Parameter counts alone do not establish uniqueness. A projective camera block is not a rotation. Metric upgrade requires enough independent constraints and a valid positive metric. Linear triangulation optimizes algebraic error; the geometric objective is different.
+
+\sphinxAtStartPar
+Detailed page\sphinxhyphen{}level dispositions and editable formula/figure inventories are in the repository’s \sphinxcode{\sphinxupquote{authoring/coverage.csv}}, \sphinxcode{\sphinxupquote{lecture06\sphinxhyphen{}audit.md}}, and \sphinxcode{\sphinxupquote{lecture06\sphinxhyphen{}formulas.csv}}.
+
+\sphinxstepscope
+
+
+\section{TLDR}
+\label{\detokenize{lectures/lecture06/tldr:tldr}}\label{\detokenize{lectures/lecture06/tldr:lec06-tldr}}\label{\detokenize{lectures/lecture06/tldr::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Tracks give measurements. Camera models turn those measurements into equations. Optimization makes their predictions agree.}
+\begin{itemize}
+\item {}
+\sphinxAtStartPar
+SfM estimates camera motion and 3D structure together. Without external metric information, common gauge freedoms remain.
+
+\item {}
+\sphinxAtStartPar
+A projective reconstruction preserves the images but may distort 3D angles and parallelism. Additional independent constraints justify affine/metric upgrades; a known length can fix metric scale.
+
+\item {}
+\sphinxAtStartPar
+Under affine cameras, center complete tracks, form the measurement matrix, and retain its leading SVD components. Its ideal rank is at most three. Missing entries are not zeros.
+
+\item {}
+\sphinxAtStartPar
+Triangulation stacks two linear rows per view, takes a right singular vector, and checks dehomogenization, cheirality, reprojection, and parallax. Refine geometric image error when needed.
+
+\item {}
+\sphinxAtStartPar
+Sequential SfM initializes a pair, registers cameras against known 3D points, triangulates new tracks, filters, and bundle\sphinxhyphen{}adjusts. Five\sphinxhyphen{}point relative pose and P3P solve different problems.
+
+\item {}
+\sphinxAtStartPar
+Bundle adjustment minimizes reprojection error over observed camera–point pairs. Define residual signs, parameter conventions, weights, and gauge before constructing the Jacobian.
+
+\item {}
+\sphinxAtStartPar
+Gauss–Newton solves a local least\sphinxhyphen{}squares model; LM adds damping. Always check the actual nonlinear cost. Sparsity and point elimination make large solves practical.
+
+\end{itemize}
+
+
+\subsection{Short quiz}
+\label{\detokenize{lectures/lecture06/tldr:short-quiz}}
+\sphinxAtStartPar
+These are \sphinxstylestrong{original practice questions}, separate from the historical/booklet {\hyperref[\detokenize{lectures/lecture06/quiz-workbook::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{quiz workbook}}}}. Try each before opening its answer. All answers are printed in the PDF.
+
+
+\subsubsection{Question 1}
+\label{\detokenize{lectures/lecture06/tldr:question-1}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+If all world points and camera centers double in Euclidean coordinates, with rotations fixed, do image projections change?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Find camera coordinates}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Both the scene and camera translation must scale consistently.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}q\,{}^{new}=R(2X-2C)=2R(X-C)=2q.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Divide by depth}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Perspective removes a common nonzero scale.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}u^{new}=f_x\frac{2q_x}{2q_z}+c_x=u.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+The same holds for the vertical coordinate. Metric scale needs extra information.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 2}
+\label{\detokenize{lectures/lecture06/tldr:question-2}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+A complete centered affine measurement matrix has shape \(8	imes10\). What factor shapes and ideal rank bound apply?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Identify cameras and points}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} There are two rows per camera and one column per point.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}m=4,\quad n=10,\quad M\in\mathbb R^{8\times3},\quad S\in\mathbb R^{3\times10}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Apply the product rank bound}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A product cannot have rank greater than either factor.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}D=MS\quad\Longrightarrow\quad\operatorname{rank}(D)\le3.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+Rank equals three only for suitable nondegenerate motion and shape.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 3}
+\label{\detokenize{lectures/lecture06/tldr:question-3}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Given \(u=2,v=3\) and \(P=[I\mid0]\), display the two triangulation rows.
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Write the camera rows}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Multiplication by the projection denominator removes the unknown image scale.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}p_1^T=(1,0,0,0),\ p_2^T=(0,1,0,0),\ p_3^T=(0,0,1,0).\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Assemble the row pair}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Each observed image point supplies two constraints.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}A_i=\begin{pmatrix}-1&0&2&0\\0&-1&3&0\end{pmatrix}.\end{split}
+\end{equation*}}
+\sphinxAtStartPar
+One image still leaves depth undetermined; add another camera’s constraints.
+
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 4}
+\label{\detokenize{lectures/lecture06/tldr:question-4}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+A centered factorization changes motion to \(MC\) for invertible \(C\). How must shape change to preserve the image measurements?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Cancel the inserted transformation}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The inner factors must multiply to the identity.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}S^{new}=C^{-1}S.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Verify the product}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} Preserving the product preserves centered image predictions.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}M^{new}S^{new}=(MC)(C^{-1}S)=MS=D.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 5}
+\label{\detokenize{lectures/lecture06/tldr:question-5}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+For \(r(Z)=260-160/Z-219\) at \(Z=4\), compute one undamped Gauss–Newton depth update.
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Evaluate the local model}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The residual and derivative set the scalar least\sphinxhyphen{}squares problem.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}r=1,\qquad J=160/Z^2=10.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Solve and check}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} The correct sign must reduce the actual nonlinear error.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}\delta=-\frac{Jr}{J^2}=-0.1,\quad Z_{new}=3.9,\end{split}
+\end{equation*}}{\color{QuizMathBlue} \begin{equation*}
+\begin{split}r(3.9)\approx-0.025641,\quad E_{new}\approx0.00032873<0.5.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip
+
+
+\subsubsection{Question 6}
+\label{\detokenize{lectures/lecture06/tldr:question-6}}
+\par\medskip\textbf{Original practice question}\par\smallskip
+
+\sphinxAtStartPar
+Why are a first\sphinxhyphen{}pose constraint and a nonzero baseline constraint useful in calibrated monocular bundle adjustment?
+
+\par\medskip
+
+\par\medskip
+\textbf{Worked solution}\par\smallskip
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 1 — Identify the freedoms}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A common rigid transform and scale do not change image predictions.
+{\color{QuizMathBlue} \begin{equation*}
+\begin{split}3\text{ translation}+3\text{ rotation}+1\text{ scale}=7\text{ gauge freedoms}.\end{split}
+\end{equation*}}
+\par
+
+\par\medskip\Needspace{4\baselineskip}
+{\color{QuizStepRed}\bfseries Step 2 — Anchor the coordinate system}\par\smallskip
+
+\sphinxAtStartPar
+\sphinxstylestrong{Why:} A solver should not chase directions that leave the objective unchanged.
+
+\sphinxAtStartPar
+Fixing the first pose removes six freedoms. Fixing a nonzero baseline or known length fixes the common scale. Other degeneracies can still remain.
+
+\par
+
+\par\medskip
+
+\sphinxstepscope
+
+
 \setcounter{secnumdepth}{-1}
 \part*{Study and reference}\addcontentsline{toc}{part}{Study and reference}
 
@@ -13543,7 +16296,7 @@ Multiplying {\color{QuizMathBlue} \(MS\)} selects row 1, row 2, row 2 again, the
 \chapter{Formula reference}
 \label{\detokenize{reference/formulas:formula-reference}}\label{\detokenize{reference/formulas:id1}}\label{\detokenize{reference/formulas::doc}}
 \sphinxAtStartPar
-This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lectures 1–4 are populated; Lectures 5–6 remain pending.
+Every entry points to a named formula box, its assumptions, derivation, and application procedure. All six lectures are populated.
 
 
 \begin{savenotes}\sphinxattablestart
@@ -13600,6 +16353,18 @@ See the {\hyperref[\detokenize{lectures/lecture03/review::doc}]{\sphinxcrossref{
 \label{\detokenize{reference/formulas:lecture-4}}
 \sphinxAtStartPar
 See the {\hyperref[\detokenize{lectures/lecture04/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 4 formula and application map}}}} for noisy rank\sphinxhyphen{}two estimation, epipolar pixel errors, essential matrices/poses, stereo depth and exact uncertainty, disparity bounds, and dense matching costs/support. Existing fundamental and rectification formulas keep their Lecture 2 teaching location.
+
+
+\section{Lecture 5}
+\label{\detokenize{reference/formulas:lecture-5}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture05/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 5 formula and source checklist}}}} for the structure tensor, eigenvalues, Harris/Shi–Tomasi, Lucas–Kanade, pyramids, normalization, binary descriptors, orientation, ratio tests and evaluation.
+
+
+\section{Lecture 6}
+\label{\detokenize{reference/formulas:lecture-6}}
+\sphinxAtStartPar
+See the {\hyperref[\detokenize{lectures/lecture06/review::doc}]{\sphinxcrossref{\DUrole{std,std-doc}{Lecture 6 formula and source checklist}}}} for gauge/counts, affine centering/SVD/metric upgrade, triangulation, canonical cameras, reprojection objectives, Jacobians, update rules and sparse elimination.
 
 \sphinxstepscope
 
@@ -14062,7 +16827,7 @@ Inferring scene properties from images. See {\hyperref[\detokenize{lectures/lect
 
 \sphinxlineitem{Structure from motion\index{Structure from motion@\spxentry{Structure from motion}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Structure-from-motion}}}
 \sphinxAtStartPar
-Joint recovery of camera motion and scene structure from corresponding image measurements. See {\hyperref[\detokenize{lectures/lecture01/motivation:lec01-motivation}]{\sphinxcrossref{\DUrole{std,std-ref}{Why reconstruct a world from photographs?}}}}; full estimation follows in Lecture 6.
+Joint recovery of camera motion and scene structure from corresponding image measurements. See {\hyperref[\detokenize{lectures/lecture01/motivation:lec01-motivation}]{\sphinxcrossref{\DUrole{std,std-ref}{Why reconstruct a world from photographs?}}}}; full estimation is in {\hyperref[\detokenize{lectures/lecture06/pipeline:lec06-pipeline}]{\sphinxcrossref{\DUrole{std,std-ref}{Grow a reconstruction one view at a time}}}}.
 
 \sphinxlineitem{Depth map\index{Depth map@\spxentry{Depth map}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Depth-map}}}
 \sphinxAtStartPar
@@ -14283,6 +17048,84 @@ Count of neighbors darker than the center under a fixed comparison convention. S
 Neighborhood contributions weighted by similarity and proximity rather than uniformly. See \eqref{equation:lectures/lecture04/matching:eq-lec04-adaptive}.
 
 \end{description}
+\begin{description}
+\sphinxlineitem{Structure tensor\index{Structure tensor@\spxentry{Structure tensor}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Structure-tensor}}}
+\sphinxAtStartPar
+Gradient outer\sphinxhyphen{}product sum describing local directional intensity change. See \eqref{equation:lectures/lecture05/corners:eq-lec05-patch-energy} and {\hyperref[\detokenize{lectures/lecture05/corners:lec05-corners}]{\sphinxcrossref{\DUrole{std,std-ref}{Why corners are easier to locate}}}}.
+
+\sphinxlineitem{Harris corner detector\index{Harris corner detector@\spxentry{Harris corner detector}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Harris-corner-detector}}}
+\sphinxAtStartPar
+Detector using determinant and squared trace of the patch tensor, followed by thresholding and local peak selection. See \eqref{equation:lectures/lecture05/corners:eq-lec05-harris}.
+
+\sphinxlineitem{Non\sphinxhyphen{}maximum suppression\index{Non\sphinxhyphen{}maximum suppression@\spxentry{Non\sphinxhyphen{}maximum suppression}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Non-maximum-suppression}}}
+\sphinxAtStartPar
+Selection of local score peaks, with a specified neighborhood and tie policy. See {\hyperref[\detokenize{lectures/lecture05/corners:ex-lec05-nms}]{\sphinxcrossref{\DUrole{std,std-ref}{the NMS example}}}}.
+
+\sphinxlineitem{Lucas–Kanade tracking\index{Lucas–Kanade tracking@\spxentry{Lucas–Kanade tracking}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-LucasKanade-tracking}}}
+\sphinxAtStartPar
+Local iterative motion estimation by linearized brightness\sphinxhyphen{}constancy least squares. See \eqref{equation:lectures/lecture05/tracking:eq-lec05-lk} and {\hyperref[\detokenize{lectures/lecture05/tracking:lec05-tracking}]{\sphinxcrossref{\DUrole{std,std-ref}{Track a feature by solving for its motion}}}}.
+
+\sphinxlineitem{Aperture problem\index{Aperture problem@\spxentry{Aperture problem}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Aperture-problem}}}
+\sphinxAtStartPar
+A single local edge does not constrain motion along that edge. See {\hyperref[\detokenize{lectures/lecture05/tracking:lec05-tracking}]{\sphinxcrossref{\DUrole{std,std-ref}{Track a feature by solving for its motion}}}}.
+
+\sphinxlineitem{BRIEF\index{BRIEF@\spxentry{BRIEF}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-BRIEF}}}
+\sphinxAtStartPar
+Binary patch descriptor formed from ordered intensity\sphinxhyphen{}pair comparisons. See {\hyperref[\detokenize{lectures/lecture05/descriptors:lec05-descriptors}]{\sphinxcrossref{\DUrole{std,std-ref}{Describe a patch, then judge its matches}}}}.
+
+\sphinxlineitem{ORB\index{ORB@\spxentry{ORB}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-ORB}}}
+\sphinxAtStartPar
+Oriented FAST and rotated BRIEF pipeline with multiscale detection. See {\hyperref[\detokenize{lectures/lecture05/descriptors:lec05-descriptors}]{\sphinxcrossref{\DUrole{std,std-ref}{Describe a patch, then judge its matches}}}} for the scale qualification.
+
+\sphinxlineitem{BRISK\index{BRISK@\spxentry{BRISK}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-BRISK}}}
+\sphinxAtStartPar
+Binary feature pipeline using long pairs for orientation and short pairs for descriptor bits. See {\hyperref[\detokenize{lectures/lecture05/descriptors:lec05-descriptors}]{\sphinxcrossref{\DUrole{std,std-ref}{Describe a patch, then judge its matches}}}}.
+
+\sphinxlineitem{Hamming distance\index{Hamming distance@\spxentry{Hamming distance}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Hamming-distance}}}
+\sphinxAtStartPar
+Number of differing positions in equal\sphinxhyphen{}length binary descriptors. See \eqref{equation:lectures/lecture05/descriptors:eq-lec05-binary}.
+
+\sphinxlineitem{Nearest\sphinxhyphen{}neighbor distance ratio\index{Nearest\sphinxhyphen{}neighbor distance ratio@\spxentry{Nearest\sphinxhyphen{}neighbor distance ratio}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Nearest-neighbor-distance-ratio}}}
+\sphinxAtStartPar
+Best\sphinxhyphen{}to\sphinxhyphen{}second\sphinxhyphen{}best candidate distance ratio for one query, used to reject ambiguous matches. See \eqref{equation:lectures/lecture05/descriptors:eq-lec05-ratio}.
+
+\sphinxlineitem{Gauge freedom\index{Gauge freedom@\spxentry{Gauge freedom}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Gauge-freedom}}}
+\sphinxAtStartPar
+Common coordinate changes that leave the observations unchanged. See {\hyperref[\detokenize{lectures/lecture06/ambiguity:lec06-ambiguity}]{\sphinxcrossref{\DUrole{std,std-ref}{What can the photographs actually determine?}}}} and \eqref{equation:lectures/lecture06/ambiguity:eq-lec06-gauge}.
+
+\sphinxlineitem{Affine factorization\index{Affine factorization@\spxentry{Affine factorization}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Affine-factorization}}}
+\sphinxAtStartPar
+Splitting a centered affine measurement matrix into motion and shape factors. See \eqref{equation:lectures/lecture06/factorization:eq-lec06-factorization}.
+
+\sphinxlineitem{Metric upgrade\index{Metric upgrade@\spxentry{Metric upgrade}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Metric-upgrade}}}
+\sphinxAtStartPar
+Constraining a reconstruction to recover Euclidean geometric properties, usually up to a similarity. See \eqref{equation:lectures/lecture06/factorization:eq-lec06-metric} and {\hyperref[\detokenize{lectures/lecture06/ambiguity:lec06-ambiguity}]{\sphinxcrossref{\DUrole{std,std-ref}{What can the photographs actually determine?}}}}.
+
+\sphinxlineitem{Bundle adjustment\index{Bundle adjustment@\spxentry{Bundle adjustment}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Bundle-adjustment}}}
+\sphinxAtStartPar
+Joint camera\sphinxhyphen{}and\sphinxhyphen{}point refinement against observed image reprojection error. See \eqref{equation:lectures/lecture06/optimization:eq-lec06-ba}.
+
+\sphinxlineitem{Gauss–Newton\index{Gauss–Newton@\spxentry{Gauss–Newton}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-GaussNewton}}}
+\sphinxAtStartPar
+Least\sphinxhyphen{}squares iteration using the linearized residual Jacobian. See \eqref{equation:lectures/lecture06/optimization:eq-lec06-updates} and {\hyperref[\detokenize{lectures/lecture06/optimization:ex-lec06-gn}]{\sphinxcrossref{\DUrole{std,std-ref}{the numerical update}}}}.
+
+\sphinxlineitem{Levenberg–Marquardt\index{Levenberg–Marquardt@\spxentry{Levenberg–Marquardt}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-LevenbergMarquardt}}}
+\sphinxAtStartPar
+Damped least\sphinxhyphen{}squares update with an acceptance policy. See \eqref{equation:lectures/lecture06/optimization:eq-lec06-updates}.
+
+\sphinxlineitem{Schur complement\index{Schur complement@\spxentry{Schur complement}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Schur-complement}}}
+\sphinxAtStartPar
+Block elimination that reduces a bundle system to camera parameters before recovering point updates. See \eqref{equation:lectures/lecture06/optimization:eq-lec06-schur}.
+
+\sphinxlineitem{P3P\index{P3P@\spxentry{P3P}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-P3P}}}
+\sphinxAtStartPar
+Calibrated pose estimation from three known 3D points and corresponding image rays, potentially with several solutions. See {\hyperref[\detokenize{lectures/lecture06/pipeline:lec06-pipeline}]{\sphinxcrossref{\DUrole{std,std-ref}{Grow a reconstruction one view at a time}}}}.
+
+\sphinxlineitem{Self\sphinxhyphen{}calibration\index{Self\sphinxhyphen{}calibration@\spxentry{Self\sphinxhyphen{}calibration}|spxpagem}\phantomsection\label{\detokenize{reference/glossary:term-Self-calibration}}}
+\sphinxAtStartPar
+Inferring intrinsic calibration through multi\sphinxhyphen{}view/scene constraints, subject to sufficient independent information and noncritical configurations. See {\hyperref[\detokenize{lectures/lecture06/pipeline:lec06-pipeline}]{\sphinxcrossref{\DUrole{std,std-ref}{Grow a reconstruction one view at a time}}}}.
+
+\end{description}
 
 \sphinxstepscope
 
@@ -14345,7 +17188,7 @@ Five original paired SVG/PDF diagrams explain sloping epipolar lines and candida
 
 \sphinxAtStartPar
 The essential\sphinxhyphen{}matrix decomposition was cross\sphinxhyphen{}checked against \sphinxhref{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}{OpenCV’s official camera\sphinxhyphen{}geometry documentation}%
-\begin{footnote}[2]\sphinxAtStartFootnote
+\begin{footnote}[6]\sphinxAtStartFootnote
 \sphinxnolinkurl{https://docs.opencv.org/4.12.0/d9/d0c/group\_\_calib3d.html}
 %
 \end{footnote}. Its role here is implementation verification of four candidates, translation direction, and cheirality; the supplied lecture and independently worked examples remain the teaching sources.
@@ -14358,6 +17201,12 @@ The 18 historical quizzes and seven original supplemental problems follow the fu
 
 \sphinxAtStartPar
 Red numbered step headings, short reasons, and blue mathematical workings are shared between HTML and LaTeX. Numbering and explicit labels carry the meaning when printed in grayscale. The source register distinguishes all duplicate retests and the seven newly authored booklet supplements.
+
+
+\section{Lecture 5–6 illustrations and method references}
+\label{\detokenize{reference/credits:lecture-56-illustrations-and-method-references}}
+\sphinxAtStartPar
+Selected source illustrations are cropped from the supplied Enrique Dunn lecture decks; individual credits remain in figure captions. These include NASA Mars imagery/Snavely matching illustrations, Heinly descriptor slides and the original method authors, the street\sphinxhyphen{}sign tracking illustration from Manhattan, and the Tomasi–Kanade house experiment. Where the deck does not identify an image creator or reuse terms, the register records that uncertainty. Extraction parameters are saved beside the assets. Original error\sphinxhyphen{}surface and refinement\sphinxhyphen{}ray diagrams have editable TikZ sources. ORB/BRISK primary documentation and papers are linked where the lecture statements require qualification.
 
 \sphinxstepscope
 
@@ -14543,6 +17392,39 @@ Lecture 2’s numerical examples are checked by \sphinxcode{\sphinxupquote{scrip
 \item {}
 \sphinxAtStartPar
 \sphinxstylestrong{Repeated radial notation, PDF page 6:} the radius/squared\sphinxhyphen{}radius clarification remains at its canonical Lecture 2 location.
+
+\end{itemize}
+
+
+\section{Lecture 5–6 slide qualifications}
+\label{\detokenize{reference/errata:lecture-56-slide-qualifications}}\begin{itemize}
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L5, page 75:} fixed\sphinxhyphen{}scale steering alone supplies no scale invariance; the full ORB pyramid pipeline handles multiple scales.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L5, page 81:} BRISK uses long pairs for orientation and short pairs for descriptor comparisons; the blanket instruction to avoid short pairs is misleading.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L5, page 85:} symmetry and zero diagonal apply to self\sphinxhyphen{}distances, not an arbitrary cross\sphinxhyphen{}image descriptor matrix.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L6, pages 28–35:} affine centered measurements have rank at most three; equality needs nondegeneracy.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L6, pages 7,25,41:} observation counts are necessary checks, not proofs of unique recovery.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L6, page 37:} metric upgrade must state its camera\sphinxhyphen{}scale assumptions and produce a valid positive definite metric from enough independent constraints.
+
+\item {}
+\sphinxAtStartPar
+\sphinxstylestrong{L6, pages 49–52:} linear algebraic triangulation and geometric image\sphinxhyphen{}error optimization are distinct objectives.
 
 \end{itemize}
 

@@ -1,27 +1,10 @@
 (lecture06)=
-# Lecture 6: Structure from motion
+# Lecture 6: Reconstruct a scene—and improve it
 
-**[Original quiz questions + fully worked solutions](quiz-workbook.md)** — complete problem statements, numbered red steps with a plain-English reason, and blue mathematics showing intermediate operations.
+**The goal:** turn tracks across photographs into camera poses and 3D points. Then adjust both until their projections agree with the measurements.
 
+Read [what reconstruction cannot determine](ambiguity.md), [affine factorization](factorization.md), [triangulation](triangulation.md), [the multi-view pipeline](pipeline.md), and [bundle adjustment](optimization.md). Finish with the [complete quiz workbook](quiz-workbook.md), [formula and source map](review.md), and [TLDR + short quiz](tldr.md).
 
-```{note}
-The main lecture explanations remain a planning outline. Its assigned quiz questions and the booklet’s relevant supplemental problems are now fully worked in the linked workbook; the slide audit and remaining chapter material will be completed separately.
-```
+**Source:** all 72 PDF pages of `wk6_cs532s24_SFM1.pdf`, Enrique Dunn. The deck credits Szeliski, Seitz, Snavely, Lazebnik, Hebert, and Choudhary. Page references below are one-based PDF pages. Repeated titles and repeated optimization slides are consolidated.
 
-## Planned scope
-
-Reconstruction ambiguity; factorization; triangulation; bundle adjustment.
-
-**Source deck:** `wk6_cs532s24_SFM1.pdf`. Full explanations will record verified printed slide labels and one-based PDF page numbers separately.
-
-## Examples and practice
-
-The [quiz workbook](quiz-workbook.md) contains both assigned historical quizzes and the relevant original practice problems from the supplied booklet. It is available now; this does not mark the full lecture complete.
-
-## Completion checklist
-
-- [ ] Audit every substantive slide topic and formula.
-- [ ] Write explanations, derivations, and formula/application boxes.
-- [ ] Add selected slide illustrations and independently checked quiz examples.
-- [ ] Complete keywords, glossary entries, and source references.
-- [ ] Check both the website and cumulative printable edition.
+We use Lecture 4's camera and epipolar geometry rather than teach it again. This chapter adds reconstruction ambiguity, many-view estimation, factorization, and optimization. Exactly one interactive appears at the point where a numerical update becomes a visible 3D improvement.

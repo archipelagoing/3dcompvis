@@ -1,7 +1,7 @@
 (formula-reference)=
 # Formula reference
 
-This reference will grow one lecture at a time. Every entry points to a named formula box, its assumptions, derivation, and application procedure. Lectures 1–4 are populated; Lectures 5–6 remain pending.
+Every entry points to a named formula box, its assumptions, derivation, and application procedure. All six lectures are populated.
 
 | Foundation | Formula | Explanation and application |
 | --- | --- | --- |
@@ -22,3 +22,11 @@ See the [Lecture 3 formula and source checklist](../lectures/lecture03/review.md
 ## Lecture 4
 
 See the [Lecture 4 formula and application map](../lectures/lecture04/review.md) for noisy rank-two estimation, epipolar pixel errors, essential matrices/poses, stereo depth and exact uncertainty, disparity bounds, and dense matching costs/support. Existing fundamental and rectification formulas keep their Lecture 2 teaching location.
+
+## Lecture 5
+
+See the [Lecture 5 formula and source checklist](../lectures/lecture05/review.md) for the structure tensor, eigenvalues, Harris/Shi–Tomasi, Lucas–Kanade, pyramids, normalization, binary descriptors, orientation, ratio tests and evaluation.
+
+## Lecture 6
+
+See the [Lecture 6 formula and source checklist](../lectures/lecture06/review.md) for gauge/counts, affine centering/SVD/metric upgrade, triangulation, canonical cameras, reprojection objectives, Jacobians, update rules and sparse elimination.

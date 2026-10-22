@@ -1,0 +1,16 @@
+{
+  "source": "3dcvMid/lectures/wk6_cs532s24_SFM1.pdf",
+  "pdf_pages": [
+    5
+  ],
+  "fractional_crop": [
+    0.06,
+    0.18,
+    0.97,
+    0.73
+  ],
+  "labels": [
+    "Tracks across facade views"
+  ],
+  "rights": "Original supplied teaching material; source captions retain known credits; reuse terms not independently identified."
+}

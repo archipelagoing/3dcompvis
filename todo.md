@@ -99,36 +99,38 @@ Source: `3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf`.
 - [x] Complete every item in the repeated lecture checklist; verify all high-priority formulas and errata.
 
 - [x] Incorporate L4 feedback: prominent epipolar example navigation; ray/plane/line intuition; guided matrix, transpose, nullspace and residual calculations; fully expanded quiz arithmetic; stereo sensitivity, signed exact errors, derivative and bounded-error examples. Rebuild web and printable LaTeX/PDF.
-- [ ] Review the revised Lecture 4 with the user before Lecture 5.
+- [x] User authorized progression to Lecture 5, then Lecture 6 without another review checkpoint.
 
 ## 5. Lecture 5 — Corners, tracking, descriptors, and matching
 
 Source: `3dcvMid/lectures/wk5_cs532_Corners.pdf`.
 
-- [ ] Select actual slide examples of feature detection/matching, including panorama or rover imagery if useful after inspection. Preserve image credits and show what the reader should notice.
+- [x] Select actual slide examples of feature detection/matching, including panorama or rover imagery if useful after inspection. Preserve image credits and show what the reader should notice.
 - [x] Integrate **Spring 2019 Quiz 6**, `olderquizzes/cs532s19_quiz6-2.pdf`: intersections, corners versus edges, slanted-edge ambiguity, and isolated pixels. Explain the structure tensor rather than relying only on intuition.
 - [x] Integrate **Fall 2025 Quiz 4**, `quizzesf25sol/cs532f25_quiz_4_solution.pdf`: exposure changes, brightness constancy, patch normalization, assumptions, and zero/low-variance limitations.
 - [x] Supply the booklet’s fully worked numerical Harris and Lucas–Kanade problems in the Lecture 5 quiz workbook.
-- [ ] Develop the main chapter’s complete Harris example: gradients, weighted sums, tensor, eigenvalues, determinant/trace response, thresholding, and non-maximum suppression.
-- [ ] Add a complete Lucas–Kanade example: Taylor approximation, displacement sign convention, `A`, `b`, normal equations, solvability, and interpreted motion. Illustrate the aperture problem.
-- [ ] Cover the slide-supported descriptors, invariance properties, matching metrics, and ambiguity with an illustrated matching example.
-- [ ] Complete every item in the repeated lecture checklist.
+- [x] Develop the main chapter’s complete Harris example: gradients, weighted sums, tensor, eigenvalues, determinant/trace response, thresholding, and non-maximum suppression.
+- [x] Add a complete Lucas–Kanade example: Taylor approximation, displacement sign convention, `A`, `b`, normal equations, solvability, and interpreted motion. Illustrate the aperture problem.
+- [x] Cover the slide-supported descriptors, invariance properties, matching metrics, and ambiguity with an illustrated matching example.
+- [x] Complete every item in the repeated lecture checklist.
 
 ## 6. Lecture 6 — Structure from motion
 
 Source: `3dcvMid/lectures/wk6_cs532s24_SFM1.pdf`.
 
-- [ ] Select the lecture's most informative reconstruction and feature-track examples. Use them to connect measurements, camera motion, and recovered structure.
+- [x] Select the lecture's most informative reconstruction and feature-track examples. Use them to connect measurements, camera motion, and recovered structure.
 - [x] Integrate **Fall 2025 Quiz 5**, `quizzesf25sol/cs532f25_quiz_5_solution-1.pdf`: facade/floor constraints, reconstruction upgrades, and weak-overlap sequential versus factorization choices. Correct unsupported full-scene metric-upgrade claims and distinguish unknown visibility from zero-valued measurements.
 - [x] Integrate **Fall 2025 Quiz 6**, `quizzesf25sol/cs532f25_quiz_6_solution.pdf`: large-scale pipeline choice and contaminated-match verification. Label advanced transfer material and check claims about computational complexity and failure modes.
 - [x] Supply the booklet’s complete factorization, linear triangulation and one-variable Gauss–Newton problems in the Lecture 6 workbook.
-- [ ] Develop the main chapter’s centered measurement-matrix/SVD factorization example, showing rank-three structure and affine/metric ambiguity.
-- [ ] Add a full linear-triangulation example: construct `AX = 0`, solve by SVD, dehomogenize, check cheirality and reprojection error, and explain degeneracy/noise.
-- [ ] Add a bundle-adjustment example with residuals, objective, gauge fixing, Jacobian structure, and a manageable Gauss–Newton/LM update. Explain the geometric effect rather than presenting unexplained matrix algebra.
-- [ ] Include a reconstruction-pipeline figure and distinguish calibrated, projective, affine, and metric/similarity recovery with explicit assumptions.
-- [ ] Complete every item in the repeated lecture checklist.
+- [x] Develop the main chapter’s centered measurement-matrix/SVD factorization example, showing rank-three structure and affine/metric ambiguity.
+- [x] Add a full linear-triangulation example: construct `AX = 0`, solve by SVD, dehomogenize, check cheirality and reprojection error, and explain degeneracy/noise.
+- [x] Add a bundle-adjustment example with residuals, objective, gauge fixing, Jacobian structure, and a manageable Gauss–Newton/LM update. Explain the geometric effect rather than presenting unexplained matrix algebra.
+- [x] Include a reconstruction-pipeline figure and distinguish calibrated, projective, affine, and metric/similarity recovery with explicit assumptions.
+- [x] Complete every item in the repeated lecture checklist.
 
 ## 7. Final book-wide completion
+
+Exam priority teaching/practice placements are mapped in `authoring/EXAM_COVERAGE.md`; the original `ExamToDo.md` remains the student's study checklist.
 
 - [ ] Reconcile the coverage ledger with all six PDFs: every substantive topic/formula is taught or has an explicit disposition.
 - [x] Reconcile the quiz index with the supplied booklet’s 18 in-scope historical sources and every grouped subquestion, including complete duplicate retests and primary/secondary placements. Keep Fall 2025 Quizzes 7 and 8 outside core scope.

@@ -1,0 +1,13 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec06-counts,necessary measurement counts,see section source range and coverage.csv,book/lectures/lecture06/ambiguity.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-gauge,projective reconstruction ambiguity,see section source range and coverage.csv,book/lectures/lecture06/ambiguity.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-affine,affine measurements and centering,see section source range and coverage.csv,book/lectures/lecture06/factorization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-factorization,rank-three affine factorization,see section source range and coverage.csv,book/lectures/lecture06/factorization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-metric,orthographic metric upgrade,see section source range and coverage.csv,book/lectures/lecture06/factorization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-ba,weighted reprojection least squares,see section source range and coverage.csv,book/lectures/lecture06/optimization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-jacobian,projection and pose Jacobian blocks,see section source range and coverage.csv,book/lectures/lecture06/optimization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-updates,"gradient, Newton, Gauss–Newton, and damping",see section source range and coverage.csv,book/lectures/lecture06/optimization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-schur,eliminate point updates with the Schur complement,see section source range and coverage.csv,book/lectures/lecture06/optimization.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-canonical,one canonical camera pair from a fundamental matrix,see section source range and coverage.csv,book/lectures/lecture06/pipeline.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-triangulation,linear homogeneous triangulation,see section source range and coverage.csv,book/lectures/lecture06/triangulation.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec06-geometric,geometric triangulation objectives,see section source range and coverage.csv,book/lectures/lecture06/triangulation.md,named numbered formula; assumptions and companion application; independent math checks

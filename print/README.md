@@ -1,7 +1,7 @@
 # Compile the printable textbook
 
 This folder is a generated print edition of the MyST pages in `book/`.
-It currently contains completed Lectures 1–4, the shared foundation and references, and clearly labeled planning outlines for Lectures 5–6. Interactive learning results have full static print counterparts.
+It contains all six lecture chapters, the shared foundation and references. Interactive learning results have full static print counterparts.
 
 ## Overleaf
 
@@ -33,4 +33,4 @@ will be overwritten.
 Overleaf import must still be verified in Overleaf itself. Local compilation of
 the portable bundle checks the underlying XeLaTeX workflow without that service.
 
-All six lectures now include complete quiz workbooks (18 historical quizzes plus seven original booklet supplements). Main lecture chapters 5–6 remain outlines. Quiz questions and red-step/blue-math solutions are part of this continuous manuscript and compile with the same XeLaTeX command.
+All six lectures now include complete quiz workbooks (18 historical quizzes plus seven original booklet supplements). All main lecture chapters are populated. Quiz questions and red-step/blue-math solutions are part of this continuous manuscript and compile with the same XeLaTeX command.

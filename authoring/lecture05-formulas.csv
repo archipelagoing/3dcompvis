@@ -1,0 +1,11 @@
+id,name,source_pdf_pages_or_quiz,destination,status
+eq-lec05-patch-energy,patch change and its local approximation,see section source range and coverage.csv,book/lectures/lecture05/corners.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-eigen,tensor eigenvalues and directional change,see section source range and coverage.csv,book/lectures/lecture05/corners.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-harris,Harris and Shi–Tomasi responses,see section source range and coverage.csv,book/lectures/lecture05/corners.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-binary,"binary tests, smoothing and Hamming distance",see section source range and coverage.csv,book/lectures/lecture05/descriptors.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-orientation,orientation from intensity moments,see section source range and coverage.csv,book/lectures/lecture05/descriptors.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-ratio,nearest-neighbor distance ratio,see section source range and coverage.csv,book/lectures/lecture05/descriptors.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-quality,matching evaluation,see section source range and coverage.csv,book/lectures/lecture05/descriptors.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-lk,brightness constancy and patch least squares,see section source range and coverage.csv,book/lectures/lecture05/tracking.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-iteration,iterative tracking and coarse-to-fine transfer,see section source range and coverage.csv,book/lectures/lecture05/tracking.md,named numbered formula; assumptions and companion application; independent math checks
+eq-lec05-photometric,exposure-normalized patch,see section source range and coverage.csv,book/lectures/lecture05/tracking.md,named numbered formula; assumptions and companion application; independent math checks

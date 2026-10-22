@@ -89,7 +89,9 @@ $d_1\le d_2$ are the first and second candidate distances for the **same query**
 
 (ex-lec05-bits)=
 `````{worked-example} Worked example 5.2 — a distinctive binary match
-**Original companion to:** pages 68 and 89–90. Query $A=10110010$ has candidates $B=10110011$ and $C=01001100$.
+```{original-question} Original practice question
+**Original companion to:** pages 68 and 89–90. Query $A=10110010$ has candidates $B=10110011$ and $C=01001100$. Apply a ratio threshold of 0.8 and state the next verification step.
+```
 
 ````{solution-step} 1 — Count differing positions
 **Why:** Binary descriptors are compared by Hamming distance.
@@ -143,7 +145,9 @@ TP/FP/FN/TN are true positives, false positives, false negatives and true negati
 
 (ex-lec05-confusion)=
 `````{worked-example} Worked example 5.3 — the slide's 100-pair table
-**Source:** PDF page 87 gives $TP=18$, $FP=4$, $FN=2$, $TN=76$.
+```{original-question} Source slide example
+**Source:** PDF page 87 gives $TP=18$, $FP=4$, $FN=2$, $TN=76$. Compute precision, recall, false-positive rate and accuracy.
+```
 
 ````{solution-step} 1 — Check the counts
 **Why:** The four cells must account for the same evaluation population.

@@ -113,10 +113,12 @@ The source toy-animal sequence, PDF pages 28–33. Thresholding produces cluster
 ```
 
 (ex-lec05-nms)=
-````{worked-example} Worked example 5.1 — a threshold is not NMS
+`````{worked-example} Worked example 5.1 — a threshold is not NMS
+```{original-question} Original practice question
 **Original companion to:** PDF pages 30–32. Suppose the local response grid is
 
 $$R=\begin{pmatrix}1&2&1&0&0\\2&9&8&0&1\\1&7&3&1&2\\0&0&1&6&1\\0&0&0&1&0\end{pmatrix}.$$
+```
 
 ````{solution-step} 1 — Apply the threshold
 **Why:** Weak responses should not become candidates.
@@ -135,7 +137,7 @@ In a $3\times3$ neighborhood, the $9$ suppresses the neighboring $8$ and $7$. Th
 
 Both surviving responses exceed the threshold and are local peaks. A later matching step must still identify the corresponding physical points.
 ````
-````
+`````
 
 ## Explore the surface in 3D
 

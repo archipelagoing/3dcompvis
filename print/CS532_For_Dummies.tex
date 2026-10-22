@@ -1,0 +1,499 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=.85in]{geometry}
+\usepackage{fontspec}\setmainfont{FreeSerif}\setsansfont{FreeSans}
+\usepackage{amsmath,amssymb,xcolor,tcolorbox,enumitem,needspace}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black]{hyperref}
+\definecolor{StepRed}{HTML}{A71930}\definecolor{MathBlue}{HTML}{124FAD}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\setlist[itemize]{nosep,leftmargin=*}
+\tcbset{colback=blue!2,colframe=blue!35!black,boxrule=.4pt,arc=2pt,left=5pt,right=5pt,top=3pt,bottom=3pt}
+\title{3D Computer Vision\\\large The For Dummies Study Edition}
+\author{CS 532 · Lectures 1–6}\date{}
+\begin{document}\maketitle
+
+
+\textbf{Six lectures. Plain English. The math you actually need.}
+
+
+
+Start with the idea, use the formula, then check the example. The full textbook contains the original quiz questions and expanded matrix solutions; this edition gives you a fast route through the same core ideas. The examples below are original practice questions.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 1 — Turn geometry into a language a computer can use}
+
+
+\textbf{The big idea:} a photograph tells you a direction toward an object. It usually does not tell you how far away the object is.
+
+
+
+\textbf{Homogeneous coordinates} add one extra number so lines, intersections, and perspective can be handled with matrix multiplication. A normal image point (2,3) becomes (2,3,1). Multiplying all three numbers by the same nonzero number does not change the point.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[(2,3,1)^T \sim (4,6,2)^T.\]\end{tcolorbox}
+
+
+\textbf{How to use it:} divide by the last coordinate to get an ordinary finite point. If the last coordinate is zero, the point is at infinity; do not divide by zero.
+
+
+
+\textbf{Points and lines:} a line has coefficients l=(a,b,c). A point x=(u,v,1) is on it when au+bv+c=0. The cross product of two distinct points gives their joining line; the cross product of two distinct lines gives their intersection, up to scale.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[l^T x=0, \qquad l=x_1\times x_2, \qquad x=l_1\times l_2.\]\end{tcolorbox}
+
+
+\textbf{Moving between coordinate frames:} rotate the coordinates, then translate. A rotation matrix changes direction while preserving lengths and angles. A translation changes the origin. Order matters.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[X_c=RX_w+t, \qquad T=\begin{pmatrix}R&t\\0^T&1\end{pmatrix}.\]\end{tcolorbox}
+
+
+The camera center C and translation are related by t=-RC. They are not generally the same vector. To undo a rigid transform, use rotation R-transpose and translation -R-transpose times t.
+
+
+
+\textbf{Other essentials:} a plane satisfies n-transpose X+d=0; a normal comes from the cross product of two independent directions in the plane. Rotation representations include matrices, axis-angle, and unit quaternions. They describe the same kind of motion using different parameters.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — check a point}
+
+
+\textbf{Problem:} Is x=(2,3,1) on l=(1,1,-5)?
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Substitute.} A point belongs to a line only when the line equation gives zero.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[l^Tx=1(2)+1(3)-5(1)=0.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Interpret.} Yes. Getting a nonzero result would mean the point is off the line.}
+
+
+
+\textbf{Remember:} homogeneous scale is a representation choice. Physical distance is a different issue.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 2 — Align pictures and estimate transformations}
+
+
+\textbf{The big idea:} a homography can map points on one scene plane between two photographs. It also handles pure camera rotation under the pinhole model. It does not generally align an arbitrary 3D scene with parallax.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[x'\sim Hx.\]\end{tcolorbox}
+
+
+\textbf{The recipe:} multiply the 3-by-3 matrix by the homogeneous point, then divide by the new last coordinate. Straight lines stay straight. Ordinary distances and angles generally do not stay the same.
+
+
+
+\textbf{Why eight unknowns?} H has nine entries, but multiplying the entire matrix by a nonzero scale makes the same mapping. That leaves eight independent parameters.
+
+
+
+\textbf{DLT estimation:} each matched point pair gives two linear equations. Four pairs are the minimal sample when they are in a suitable nondegenerate arrangement. Stack the equations into A, solve for its approximate nullspace with SVD, and reshape the result into H.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[Ah\approx0,\qquad A\in\mathbb R^{2n\times9}.\]\end{tcolorbox}
+
+
+\textbf{SVD in everyday language:} it identifies directions of strong and weak action in a matrix. Here we want the direction that A sends closest to zero: the last right singular vector. Normalize image coordinates before fitting, then undo the normalization afterward.
+
+
+
+\textbf{RANSAC:} many matches can be wrong. Repeatedly fit a model to a small random sample, count the matches it explains, then refine the best model using its inliers. A clean sample still needs nondegenerate geometry.
+
+
+
+\textbf{Warping:} for each output pixel, look backward into the input image. Interpolate because the required position usually falls between pixels.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — apply a homography}
+
+
+\textbf{Problem:} Map x=(2,1,1) using H with rows (1,0,0), (0,1,0), and (0.1,0,1).
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Multiply.} The third coordinate carries the perspective scaling.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[Hx=\begin{pmatrix}2\\1\\1.2\end{pmatrix}.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Divide.} Return to ordinary image coordinates.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[(u',v')=(2/1.2,1/1.2)\approx(1.667,0.833).\]\end{tcolorbox}
+
+
+\textbf{Remember:} point correspondences determine the model only when their configuration gives enough independent information.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 3 — Turn camera measurements into useful numbers}
+
+
+\textbf{The big idea:} the camera first converts world coordinates into camera coordinates, then divides by depth, then converts the result into pixels.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[x\sim K[R\mid t]X, \qquad u=f_xX_c/Z_c+c_x, \qquad v=f_yY_c/Z_c+c_y.\]\end{tcolorbox}
+
+
+\textbf{K is the camera's pixel conversion:} focal lengths are in pixels; the principal point (c\_x,c\_y) is the optical-axis location in the image. The common zero-skew K has rows (f\_x,0,c\_x), (0,f\_y,c\_y), and (0,0,1).
+
+
+
+\textbf{Field of view:} a wider angle means a shorter focal length for the same image width.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[f_x=\frac{W/2}{\tan(\alpha/2)}.\]\end{tcolorbox}
+
+
+\textbf{Ray-plane depth:} a pixel gives a ray X=C+lambda d. Substitute it into the known plane equation to solve for lambda. A ray parallel to the plane has zero denominator; it may have no unique intersection.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[\lambda=-\frac{n^TC+d_0}{n^Td}.\]\end{tcolorbox}
+
+
+Here n is the plane normal, d\_0 its offset, and d the ray direction. If d is not a unit vector, lambda is not automatically a distance in meters.
+
+
+
+\textbf{RANSAC budget:} if the inlier fraction is w and the sample size is s, a sample is clean with probability w-to-the-s under the independent model. Choose enough trials N to reach target success probability p.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[N\ge\frac{\ln(1-p)}{\ln(1-w^s)}.\]\end{tcolorbox}
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — focal length and RANSAC}
+
+
+\textbf{Problem:} A 640-pixel-wide image has 90-degree horizontal field of view. Separately, estimate a 99\% RANSAC budget for 50\% inliers and four-point samples.
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Use the half-angle.} The formula uses half the field of view.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[f_x=320/\tan45^\circ=320\text{ pixels}.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Round the budget upward.} A fraction of a trial cannot meet the target.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[N\ge\frac{\ln0.01}{\ln(1-0.5^4)}\approx71.36 \quad\Rightarrow\quad N=72.\]\end{tcolorbox}
+
+
+\textbf{Remember:} keep pixel units separate from world units. State the assumptions behind every probability calculation.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 4 — Find a match along a line, then recover depth}
+
+
+\textbf{The big idea:} knowing a point in one image restricts its match in the other image to an epipolar line. It does not usually determine a unique matching point.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[l'=Fx,\qquad x'^TFx=0,\qquad l=F^Tx'.\]\end{tcolorbox}
+
+
+\textbf{Read the dimensions:} F is 3-by-3. F times a point gives three line coefficients. A point belongs to that line when their dot product is zero. F-transpose handles the reverse direction under this convention.
+
+
+
+\textbf{The essential matrix E} expresses calibrated two-view geometry. It relates normalized camera coordinates and encodes relative rotation plus translation direction.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[E=K'^TFK,\qquad E=[t]_\times R.\]\end{tcolorbox}
+
+
+A valid F has rank two. A valid E has two equal nonzero singular values and one zero singular value. Decomposing E gives candidate poses; positive-depth checks select a physically valid one when the data are suitable. Translation magnitude remains unknown without scale information.
+
+
+
+\textbf{Rectified stereo:} corresponding points lie on matching image rows. Their horizontal difference is disparity d. Larger disparity means a nearer object.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[d=u_L-u_R,\qquad Z=\frac{fb}{d},\qquad \Delta Z\approx-\frac{fb}{d^2}\Delta d.\]\end{tcolorbox}
+
+
+Here f is in pixels, b is the baseline in world units, and d is in pixels. Depth has the same world units as b. The error formula is a local approximation; exact errors can be asymmetric.
+
+
+
+\textbf{Matching patches:} SAD/SSD compare intensities; NCC reduces sensitivity to affine brightness changes; Census compares local order. Occlusion and windows spanning different depths can still cause wrong matches.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — epipolar line}
+
+
+\textbf{Problem:} F has rows (0,0,0), (0,0,-1), (0,1,0). For x=(2,3,1), find the matching line and test x'=(5,3,1).
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Multiply every row.} The result describes a line, not the matched point.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[Fx=\begin{pmatrix}0\\-1\\3\end{pmatrix},\qquad -v'+3=0.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Test the proposed match.} Substitute its coordinates into that line.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[x'^TFx=5(0)+3(-1)+1(3)=0.\]\end{tcolorbox}
+
+
+It satisfies the geometry. Appearance and other checks must still establish the actual correspondence.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — depth and exact error}
+
+
+\textbf{Problem:} f=800 pixels, b=0.2 m, and d=40 pixels. What happens if the measured disparity becomes 41 or 39 pixels?
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Compute the original depth.} Multiply focal length by baseline, then divide by disparity.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[Z=800(0.2)/40=4\text{ m}.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Recompute rather than guess the sign.} Larger disparity means smaller depth.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[Z_{41}=160/41\approx3.90244\text{ m},\qquad Z_{39}=160/39\approx4.10256\text{ m}.\]\end{tcolorbox}
+
+
+The errors are about -9.76 cm and +10.26 cm. The derivative predicts about 10 cm in magnitude. Farther points are more sensitive to the same pixel error.
+
+
+
+\textbf{Remember:} a zero epipolar residual is a geometric test, not proof of a correct match. Small disparity makes depth fragile.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 5 — Find points you can actually track}
+
+
+\textbf{The big idea:} a patch must change when moved in either direction. A plain wall gives no clue. An edge gives one direction. A corner or textured patch can give both.
+
+
+
+\textbf{The structure tensor M} adds up gradient information across the patch. A gradient measures how intensity changes horizontally and vertically.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[M=\sum_p w_p\begin{pmatrix}I_x^2&I_xI_y\\I_xI_y&I_y^2\end{pmatrix},\qquad E(u,v)\approx(u,v)M(u,v)^T.\]\end{tcolorbox}
+
+
+\textbf{Eigenvalues} measure how strongly the patch constrains motion along two perpendicular directions. Both small means flat. One small means edge-like. Both sufficiently large means a useful feature. Two nonzero gradient components alone are not enough: they may describe one slanted edge.
+
+
+
+\textbf{Harris} combines determinant and trace into a score. Thresholding removes weak scores. Non-maximum suppression keeps local peaks instead of a cluster around one feature. Shi–Tomasi directly tests the smaller eigenvalue.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[R_H=\det M-k(\operatorname{tr}M)^2,\qquad R_{ST}=\lambda_{min}(M).\]\end{tcolorbox}
+
+
+\textbf{Lucas–Kanade tracking:} assume the patch keeps approximately the same brightness and shares a small displacement. Linearize intensity change, stack one equation per pixel, then solve for horizontal and vertical motion.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[I_xu+I_yv\approx-I_t,\qquad Ad\approx b,\qquad A^TAd=A^Tb.\]\end{tcolorbox}
+
+
+With this convention b=-I\_t. Iterate after warping. Pyramids make large motion smaller at coarse resolutions. An edge leaves motion along itself uncertain: the aperture problem. Reject poorly conditioned or inconsistent tracks.
+
+
+
+\textbf{Exposure changes:} subtract a patch's mean and divide by its standard deviation to reduce positive gain/offset changes. Flat patches have little variance; normalization cannot create missing texture.
+
+
+
+\textbf{Descriptors and matches:} BRIEF stores intensity comparisons as bits. ORB adds orientation and multiscale detection. BRISK uses long pairs for orientation and short pairs for descriptor bits. Hamming distance counts different bits. A nearest-neighbor ratio test rejects a best candidate that is barely better than second-best. Verify the surviving matches geometrically.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — Harris and motion}
+
+
+\textbf{Problem:} M has diagonal entries 4 and 9 and zero off-diagonals. Use k=0.04. Separately, solve patch equations u=2, v=1, u+v=3.
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Compute the response.} Determinant is the product of eigenvalues; trace is their sum.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[R_H=4(9)-0.04(4+9)^2=29.24,\qquad R_{ST}=4.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Solve and check the patch motion.} The third equation verifies the first two.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[d=(2,1)^T,\qquad u+v=2+1=3.\]\end{tcolorbox}
+
+
+\textbf{Remember:} find a feature, track it, describe it, and verify its match are separate tasks.
+
+
+
+\Needspace{7\baselineskip}\section*{Lecture 6 — Build 3D structure, then improve it}
+
+
+\textbf{The big idea:} tracks across images let us estimate camera poses and scene points together. The result must project back onto the measured pixels.
+
+
+
+\textbf{Reconstruction ambiguity:} photographs alone do not usually determine absolute size. Scaling all scene points and camera centers together preserves their projections. More general uncalibrated reconstructions can preserve images while distorting 3D geometry.
+
+
+
+\textbf{Projective → affine → metric:} parallelism and the plane at infinity help establish affine geometry; enough independent metric/calibration constraints recover angles and relative lengths. A known length can set scale. One tiled plane does not automatically determine every off-plane 3D relationship.
+
+
+
+\textbf{Affine factorization:} subtract each image's mean tracked position, stack coordinates into D, and split the centered matrix into motion M and shape S. In ideal affine data its rank is at most three. SVD supplies a low-rank fit. Missing observations are not zeros.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[D=MS,\qquad \operatorname{rank}(D)\le3.\]\end{tcolorbox}
+
+
+An invertible change C in the motion factor can be canceled in shape: (MC)(C-inverse S)=MS. Extra metric constraints are needed to choose a Euclidean interpretation.
+
+
+
+\textbf{Triangulation:} each pixel supplies a ray. With camera rows p1, p2, p3, an observation (u,v) supplies two linear equations. Stack them across views and use the last right singular vector of A.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[A_i=\begin{pmatrix}up_3^T-p_1^T\\vp_3^T-p_2^T\end{pmatrix},\qquad AX\approx0.\]\end{tcolorbox}
+
+
+Divide by the fourth homogeneous coordinate if nonzero. Then check positive camera depth, reprojection error, and sufficient angle between rays. Nearly parallel rays give unstable depth. Linear algebraic error and geometric pixel error are different objectives.
+
+
+
+\textbf{The practical pipeline:} initialize a reliable pair, reconstruct shared points, register another camera using known 3D points, triangulate new tracks, reject failures, and refine. Five-point relative pose uses two calibrated images; P3P estimates one calibrated camera from known 3D points. Both can produce multiple candidates.
+
+
+
+\textbf{Bundle adjustment:} change cameras and 3D points to reduce image prediction errors. Fix the otherwise arbitrary coordinate frame and scale. A Jacobian tells you how a small parameter change moves a predicted pixel.
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[r=\text{predicted pixel}-\text{measured pixel},\qquad E=\tfrac12\sum\|r\|^2.\]\end{tcolorbox}
+
+
+\begin{tcolorbox}\color{MathBlue}\[(J^TJ)\delta=-J^Tr,\qquad (J^TJ+\lambda D_s)\delta=-J^Tr.\]\end{tcolorbox}
+
+
+The first update is Gauss–Newton; the second adds LM damping with a positive diagonal scale matrix D\_s. Solve the system, update the model, then check the actual cost. Reject or reduce a step that makes the fit worse. Sparsity helps because each observation depends on only one camera and one point.
+
+
+
+\Needspace{6\baselineskip}\subsection*{Quick worked example — one improving depth update}
+
+
+\textbf{Problem:} fixed cameras give predicted right coordinate u\_R(Z)=260-160/Z pixels. The measured coordinate is 219. Start at Z=4 m.
+
+
+
+\textcolor{StepRed}{\textbf{Step 1 — Compute the error and sensitivity.} A positive residual means the prediction is too far right.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[r=260-160/4-219=1,\qquad J=160/4^2=10.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 2 — Solve the scalar update.} Use the local slope to move against the error.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[\delta_Z=-r/J=-0.1\text{ m},\qquad Z_{new}=3.9\text{ m}.\]\end{tcolorbox}
+
+
+\textcolor{StepRed}{\textbf{Step 3 — Check the real prediction.} A local approximation must improve the nonlinear problem.}
+
+
+
+\begin{tcolorbox}\color{MathBlue}\[r(3.9)\approx-0.025641,\qquad E_{new}\approx0.00032873<0.5.\]\end{tcolorbox}
+
+
+\textbf{Remember:} a solver returning numbers does not make a reconstruction correct. Check geometry, assumptions, and actual image error.
+
+
+
+\Needspace{7\baselineskip}\section*{Final TLDR — the whole course in six lines}
+
+
+\begin{itemize}
+\item Lecture 1: represent points, lines, planes, rotations, and coordinate changes consistently.
+\item Lecture 2: estimate transformations from good matches; reject outliers and degenerate samples.
+\item Lecture 3: calibrate the pixel geometry; use explicit units and probability assumptions.
+\item Lecture 4: epipolar lines restrict matches; disparity gives depth and controls its sensitivity.
+\item Lecture 5: useful patches constrain both motion directions; tracking and matching need verification.
+\item Lecture 6: reconstruct cameras and points, state the remaining ambiguity, then minimize reprojection error.
+\end{itemize}
+
+
+\Needspace{7\baselineskip}\section*{Two-minute self-check}
+
+
+\textbf{1. Why divide a homogeneous point by its last coordinate?} To recover ordinary finite coordinates; a zero last coordinate denotes an ideal point.
+
+
+
+\textbf{2. What does Fx give?} The corresponding epipolar line coefficients in the second image, under the stated convention.
+
+
+
+\textbf{3. What happens when disparity doubles?} For fixed focal length and baseline, depth halves.
+
+
+
+\textbf{4. Why is an edge difficult to track?} Motion along the edge produces little local appearance change.
+
+
+
+\textbf{5. Does rank three always hold in affine factorization?} No: rank is at most three; degenerate data can have lower rank.
+
+
+
+\textbf{6. What must you check after an optimization step?} Valid geometry and a reduction in the actual objective, not just its linear approximation.
+
+\end{document}
