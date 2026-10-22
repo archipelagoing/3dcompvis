@@ -114,3 +114,17 @@ _build/
 
 # poetry files
 pyproject.toml
+
+# Generated portable print bundle and local build caches
+print/_support/
+print/*.aux
+print/*.idx
+print/*.ilg
+print/*.ind
+print/*.out
+print/*.toc
+print/*.fls
+print/*.fdb_latexmk
+print/*.synctex.gz
+print/*.zip
+print/*.xdv

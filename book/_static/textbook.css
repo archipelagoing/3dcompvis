@@ -1,0 +1,25 @@
+/* Shared visual hierarchy; all essential content also goes through LaTeX. */
+:root { --textbook-accent: #24577a; }
+.bd-article-container { max-width: 54rem; }
+.bd-article p, .bd-article li { line-height: 1.7; }
+.bd-article h2 { margin-top: 2.2rem; }
+.bd-article h3 { margin-top: 1.6rem; }
+.bd-article figure { margin: 1.8rem 0; }
+.bd-article figcaption { font-size: .92rem; line-height: 1.5; }
+.admonition.formula-box, .admonition.application,
+.admonition.worked-example, .admonition.understanding-check {
+  border-left: .25rem solid var(--textbook-accent);
+  margin: 1.5rem 0;
+  box-shadow: none;
+}
+.admonition.formula-box > .admonition-title,
+.admonition.application > .admonition-title,
+.admonition.worked-example > .admonition-title,
+.admonition.understanding-check > .admonition-title {
+  background-color: var(--pst-color-surface);
+  font-weight: 650;
+}
+@media print {
+  .admonition { box-shadow: none; border: 1px solid #555; }
+  details > * { display: block !important; }
+}

@@ -1,0 +1,5 @@
+id,source,issue,lecture,status,verified_correction,destination
+E01,cs532f25_quiz_2_solution.pdf,Line/point confusion and matrix rank,4,flagged by study notes; verify during audit,,book/reference/errata.md
+E02,cs532f25_quiz_5_solution-1.pdf,Planar versus full-scene metric upgrade assumptions,6,flagged by study notes; verify during audit,,book/reference/errata.md
+E03,cs532f15_quiz4.pdf; cs532f15_quiz9.pdf,Filename/printed year mismatch,4,flagged by study notes; verify during audit,,book/reference/errata.md
+E04,cs532s20_quiz3.pdf,Mixed printed year/header,3,flagged by study notes; verify during audit,,book/reference/errata.md

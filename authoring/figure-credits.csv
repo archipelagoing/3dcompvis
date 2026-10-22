@@ -1,0 +1,2 @@
+figure_id,lecture,caption,source_file_or_url,pdf_page,printed_slide,original_or_adapted,credited_creator,license_or_permission_status,web_asset,print_asset,editable_source,status
+fig-pixel-axes,foundation,Pixel coordinate conventions,original diagram,,,original,CS 532 textbook project,original project asset; repository license,book/images/lecture01/pixel-axes.svg,book/images/lecture01/pixel-axes.pdf,book/images/lecture01/sources/pixel-axes.tex,verified SVG in HTML and vector PDF in compiled print edition

@@ -1,0 +1,564 @@
+id,lecture,source_file,pdf_page,printed_slide,extracted_heading,topic_or_formula,textbook_destination,slide_example,quiz_question,status
+L01-P001,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,1,,CS 532: 3D Computer Vision | Lecture 1,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P002,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,2,,What if … | we could turn the Internet into a camera?,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P003,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,3,,Visual Index of the World,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P004,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,4,,Visual Index of the World,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P005,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,5,,Applications,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P006,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,6,,"Objectives | • Approach Computer Vision from a geometric,",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P007,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,7,,Important Points | • This is an elective course. You chose to be,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P008,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,8,,Logistics | • Office hours:,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P009,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,9,,"Textbooks | • Richard Szeliski, Computer Vision:",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P010,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,10,,Introduction to Visual SLAM From Theory to PracticeLinks | to an external site.,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P011,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,11,,What is Computer Vision | • Extracting Concepts from Pixels,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P012,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,12,,Computer Vision | Visual,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P013,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,13,,Visual Concepts | Ground,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P014,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,14,,3D Modeling Problem Statement | Recover the 3D geometry and appearance of an,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P015,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,15,,3D Modeling Problem Statement | Recover the 3D geometry and appearance of an,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P016,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,16,,3D Modeling Problem Statement | Recover the 3D geometry and appearance of an,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P017,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,17,,Data-Driven 3D Modeling | Data Inclusive,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P018,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,18,,The 3D Modeling Process | Represent,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P019,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,19,,SfM: Data Association | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P020,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,20,,SfM: Registration | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P021,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,21,,SfM: Registration | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P022,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,22,,Dense 3D Modeling | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P023,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,23,,3D model from Images | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P024,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,24,,3D Model Generation | Spatial ordering,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P025,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,25,,The 3D Modeling Process | M,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P026,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,26,,The 3D Modeling Process | M,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P027,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,27,,What is Computer Vision | • It is not image processing,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P028,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,28,,Graphics vs. Vision | Lights   Viewpoint,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P029,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,29,,Graphics vs. Vision | Lights       Viewpoint,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P030,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,30,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P031,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,31,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P032,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,32,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P033,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,33,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P034,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,34,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P035,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,35,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P036,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,36,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P037,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,37,,Vision is Hard | • A 2D picture may be produced by many different 3D scenes,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P038,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,38,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P039,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,39,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P040,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,40,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P041,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,41,,Vision is Hard,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P042,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,42,,Why is Vision Hard? | • Loss of information due to projection from 3D to,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P043,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,43,,The Horizon | • Not all hard to explain phenomena are,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P044,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,44,,Vanishing Points,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P045,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,45,,Why 3D Vision? | • Structure from Motion,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P046,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,46,,3D Models,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P047,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,47,,Real-Time Video-based 3D Reconstruction | • Goal: real-time reconstruction of urban,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P048,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,48,,Data Collection,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P049,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,49,,Results: Chapel Hill,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P050,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,50,,Depth Map Estimation | 3 of 11 images and corresponding depth maps,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P051,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,51,,Depth Map Fusion | Raw Depth Map                   Fused Depth Map,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P052,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,52,,Rome in a Day,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P053,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,53,,The World in Six Days,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P054,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,54,,"Visual Turing Test (UW) | Shan, Adams, Curless, Furukawa and Seitz (2013)",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P055,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,55,,Visual SLAM,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P056,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,56,,Dynamic Reconstruction,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P057,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,57,,The Internet as a Camera… | • Massively Distributed First-Person Capture,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P058,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,58,,Other Ongoing Efforts… | • Remote Sensing,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P059,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,59,,Other Ongoing Efforts… | • Remote Sensing,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P060,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,60,,Other Ongoing Efforts… | • Remote Sensing,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P061,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,61,,Other Ongoing Efforts… | • Remote Sensing,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P062,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,62,,Introduction to Geometry | Based on slides by M. Pollefeys (ETH),,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P063,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,63,,Pin-hole Camera Model | • Euclidean Geometry,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P064,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,64,,2D Primitives,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P065,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,65,,"Points and Lines in 2D | • A point (x, y) lies on a line (a, b, c) when:",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P066,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,66,,Points and Lines in 2D,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P067,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,67,,Points from Lines and Vice Versa | • The intersection of two lines l and l’ is,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P068,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,68,,Ideal Points and the Line at Infinity,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P069,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,69,,Ideal Points and the Line at Infinity,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P070,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,70,,Ideal Points and the Line at Infinity,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P071,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,71,,Ideal Points and the Line at Infinity | • Intersection of two parallel lines:,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P072,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,72,,Rotation in 2D,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P073,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,73,,2D Rotations | Vector a=(xi+yj),,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P074,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,74,,2D Rotations | Vector b=R a,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P075,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,75,,2D Rotations | Vector b=R a,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P076,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,76,,2D Rotations | Vector b=R a,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P077,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,77,,Hands-on: 2D Transformations | • How to translate a point in homogeneous,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P078,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,78,,Hierarchy of 2D Transformations,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P079,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,79,,Transformation of Points and Lines | Point transformation,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P080,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,80,,3D Primitives,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P081,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,81,,3D points | 3D point,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P082,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,82,,Planes | 3D plane                                      Transformation,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P083,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,83,,"Planes from points | Solve π from X1T π = 0, X T2 π = 0 and X 3T π = 0",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P084,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,84,,"Planes from points | Solve π from X1T π = 0, X T2 π = 0 and X 3T π = 0",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P085,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,85,,"Points from planes | Solve X from π1T X = 0, π T2 X = 0 and π 3T X = 0",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P086,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,86,,Plucker Lines,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P087,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,87,,Plucker Lines | Reciprocal Product,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P088,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,88,,Rotations | • Rotation matrices around the 3 axes,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P089,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,89,,Rotation Example,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P090,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,90,,"Parameterization of Rotations | • In 3D, the 9-element rotation matrix has 3",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P091,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,91,,Axis-angle,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P092,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,92,,Quaternions | Quaternion Representation           Quaternion Use,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P093,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,93,,Rotation are compositional | • Three consecutive elemental rotations,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P094,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,94,,Euler Angles | • Define in Object-based coordinate,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P095,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,95,,Euler Angles,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P096,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,96,,Euler Angles,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P097,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,97,,Euler Angles,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P098,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,98,,Euler Angles to Rotation Matrix,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P099,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,99,,"Roll, Pitch, Yaw Angles",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P100,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,100,,"Roll, Pitch, Yaw Angles to Rotation | Matrix",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P101,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,101,,Rigid Motion,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P102,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,102,,Homogeneous Transformation,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P103,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,103,,Hierarchy of 3D Transformations,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P104,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,104,,Image Formation | Based on slides by John Oliensis,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P105,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,105,,Image Formation | Pinhole camera,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P106,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,106,,Projection Equation | • 2D world ➔ 1D image,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P107,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,107,,"Projection Equation: 3D | ( X ,Y , Z )",,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P108,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,108,,Perspective Projection: Properties | • 3D points ➔ image points,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P109,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,109,,Polyhedra Project to Polygons | (since lines project to lines),,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P110,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,110,,Properties: Distant objects are smaller | B’   C’,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P111,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,111,,Extrinsic Parameters | R (3x3) t (3x1) ,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P112,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,112,,Projection matrix | • Includes coordinate transformation and,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P113,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,113,,Projection matrix | • Mapping from 2-D to 3-D is a function of,,book/lectures/lecture01/index.md,,,pending lecture audit
+L01-P114,1,3dcvMid/lectures/wk1_2_cs532s26_IntroToGeometry.pdf,114,,Hands On: Camera Motion | • Choose a few 3D points visible to a camera,,book/lectures/lecture01/index.md,,,pending lecture audit
+L02-P001,2,3dcvMid/lectures/cs532_f25_Week2.pdf,1,,CS 532: 3D Computer Vision | Lecture 2,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P002,2,3dcvMid/lectures/cs532_f25_Week2.pdf,2,,Introduction to Geometry | Based on slides by M. Pollefeys (ETH),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P003,2,3dcvMid/lectures/cs532_f25_Week2.pdf,3,,Pin-hole Camera Model | • Euclidean Geometry,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P004,2,3dcvMid/lectures/cs532_f25_Week2.pdf,4,,2D Primitives,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P005,2,3dcvMid/lectures/cs532_f25_Week2.pdf,5,,"Points and Lines in 2D | • A point (x, y) lies on a line (a, b, c) when:",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P006,2,3dcvMid/lectures/cs532_f25_Week2.pdf,6,,Points and Lines in 2D,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P007,2,3dcvMid/lectures/cs532_f25_Week2.pdf,7,,Points from Lines and Vice Versa | • The intersection of two lines l and l’ is,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P008,2,3dcvMid/lectures/cs532_f25_Week2.pdf,8,,Ideal Points and the Line at Infinity,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P009,2,3dcvMid/lectures/cs532_f25_Week2.pdf,9,,Ideal Points and the Line at Infinity,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P010,2,3dcvMid/lectures/cs532_f25_Week2.pdf,10,,Ideal Points and the Line at Infinity,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P011,2,3dcvMid/lectures/cs532_f25_Week2.pdf,11,,Ideal Points and the Line at Infinity | • Intersection of two parallel lines:,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P012,2,3dcvMid/lectures/cs532_f25_Week2.pdf,12,,Rotation in 2D,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P013,2,3dcvMid/lectures/cs532_f25_Week2.pdf,13,,2D Rotations | Vector a=(xi+yj),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P014,2,3dcvMid/lectures/cs532_f25_Week2.pdf,14,,2D Rotations | Vector b=R a,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P015,2,3dcvMid/lectures/cs532_f25_Week2.pdf,15,,2D Rotations | Vector b=R a,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P016,2,3dcvMid/lectures/cs532_f25_Week2.pdf,16,,2D Rotations | Vector b=R a,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P017,2,3dcvMid/lectures/cs532_f25_Week2.pdf,17,,Hands-on: 2D Transformations | • How to translate a point in homogeneous,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P018,2,3dcvMid/lectures/cs532_f25_Week2.pdf,18,,Hierarchy of 2D Transformations,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P019,2,3dcvMid/lectures/cs532_f25_Week2.pdf,19,,Transformation of Points and Lines | Point transformation,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P020,2,3dcvMid/lectures/cs532_f25_Week2.pdf,20,,3D Primitives,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P021,2,3dcvMid/lectures/cs532_f25_Week2.pdf,21,,3D points | 3D point,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P022,2,3dcvMid/lectures/cs532_f25_Week2.pdf,22,,Planes | 3D plane                                      Transformation,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P023,2,3dcvMid/lectures/cs532_f25_Week2.pdf,23,,"Planes from points | Solve π from X1T π = 0, X T2 π = 0 and X 3T π = 0",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P024,2,3dcvMid/lectures/cs532_f25_Week2.pdf,24,,"Planes from points | Solve π from X1T π = 0, X T2 π = 0 and X 3T π = 0",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P025,2,3dcvMid/lectures/cs532_f25_Week2.pdf,25,,"Points from planes | Solve X from π1T X = 0, π T2 X = 0 and π 3T X = 0",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P026,2,3dcvMid/lectures/cs532_f25_Week2.pdf,26,,Plucker Lines,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P027,2,3dcvMid/lectures/cs532_f25_Week2.pdf,27,,Plucker Lines | Reciprocal Product,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P028,2,3dcvMid/lectures/cs532_f25_Week2.pdf,28,,Rotations | • Rotation matrices around the 3 axes,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P029,2,3dcvMid/lectures/cs532_f25_Week2.pdf,29,,Rotation Example,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P030,2,3dcvMid/lectures/cs532_f25_Week2.pdf,30,,"Parameterization of Rotations | • In 3D, the 9-element rotation matrix has 3",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P031,2,3dcvMid/lectures/cs532_f25_Week2.pdf,31,,Rotation are compositional | • Three consecutive elemental rotations,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P032,2,3dcvMid/lectures/cs532_f25_Week2.pdf,32,,Euler Angles | • Define in Object-based coordinate,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P033,2,3dcvMid/lectures/cs532_f25_Week2.pdf,33,,Euler Angles,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P034,2,3dcvMid/lectures/cs532_f25_Week2.pdf,34,,Euler Angles,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P035,2,3dcvMid/lectures/cs532_f25_Week2.pdf,35,,Euler Angles,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P036,2,3dcvMid/lectures/cs532_f25_Week2.pdf,36,,Euler Angles to Rotation Matrix,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P037,2,3dcvMid/lectures/cs532_f25_Week2.pdf,37,,"Roll, Pitch, Yaw Angles",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P038,2,3dcvMid/lectures/cs532_f25_Week2.pdf,38,,"Roll, Pitch, Yaw Angles to Rotation | Matrix",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P039,2,3dcvMid/lectures/cs532_f25_Week2.pdf,39,,Rigid Motion,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P040,2,3dcvMid/lectures/cs532_f25_Week2.pdf,40,,Homogeneous Transformation,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P041,2,3dcvMid/lectures/cs532_f25_Week2.pdf,41,,Hierarchy of 3D Transformations,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P042,2,3dcvMid/lectures/cs532_f25_Week2.pdf,42,,Rotation angle-axis,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P043,2,3dcvMid/lectures/cs532_f25_Week2.pdf,43,,Quaternions | Quaternion Representation           Quaternion Use,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P044,2,3dcvMid/lectures/cs532_f25_Week2.pdf,44,,Quaternions | • Alternative to Euler Angles,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P045,2,3dcvMid/lectures/cs532_f25_Week2.pdf,45,,Quaternions | • Introduced to Computer Graphics by Shoemake [1985],,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P046,2,3dcvMid/lectures/cs532_f25_Week2.pdf,46,,"Unit Quaternions | •   For convenience, we will use only unit length quaternions",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P047,2,3dcvMid/lectures/cs532_f25_Week2.pdf,47,,Quaternions as Rotations | • A quaternion can represent a rotation by angle θ around a,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P048,2,3dcvMid/lectures/cs532_f25_Week2.pdf,48,,Quaternion to Matrix | • To convert a quaternion to a rotation,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P049,2,3dcvMid/lectures/cs532_f25_Week2.pdf,49,,Matrix to Quaternion | q0 =   tr(M),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P050,2,3dcvMid/lectures/cs532_f25_Week2.pdf,50,,Hierarchy of 3D Transformations,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P051,2,3dcvMid/lectures/cs532_f25_Week2.pdf,51,,Image Formation | Based on slides by John Oliensis,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P052,2,3dcvMid/lectures/cs532_f25_Week2.pdf,52,,Image Formation | Pinhole camera,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P053,2,3dcvMid/lectures/cs532_f25_Week2.pdf,53,,Projection Equation | • 2D world ➔ 1D image,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P054,2,3dcvMid/lectures/cs532_f25_Week2.pdf,54,,"Projection Equation: 3D | ( X ,Y , Z )",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P055,2,3dcvMid/lectures/cs532_f25_Week2.pdf,55,,Perspective Projection: Properties | • 3D points ➔ image points,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P056,2,3dcvMid/lectures/cs532_f25_Week2.pdf,56,,Polyhedra Project to Polygons | (since lines project to lines),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P057,2,3dcvMid/lectures/cs532_f25_Week2.pdf,57,,Properties: Distant objects are smaller | B’   C’,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P058,2,3dcvMid/lectures/cs532_f25_Week2.pdf,58,,Extrinsic Parameters | R (3x3) t (3x1) ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P059,2,3dcvMid/lectures/cs532_f25_Week2.pdf,59,,Projection matrix | • Includes coordinate transformation and,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P060,2,3dcvMid/lectures/cs532_f25_Week2.pdf,60,,Projection matrix | • Mapping from 2-D to 3-D is a function of,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P061,2,3dcvMid/lectures/cs532_f25_Week2.pdf,61,,Hands On: Camera Motion | • Choose a few 3D points visible to a camera,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P062,2,3dcvMid/lectures/cs532_f25_Week2.pdf,62,,Projective Transformations in 2D | Definition:,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P063,2,3dcvMid/lectures/cs532_f25_Week2.pdf,63,,Mapping between planes | central projection may be expressed by x’=Hx,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P064,2,3dcvMid/lectures/cs532_f25_Week2.pdf,64,,Removing Projective Distortion | select four points in a plane with known coordinates,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P065,2,3dcvMid/lectures/cs532_f25_Week2.pdf,65,,A Hierarchy of Transformations | Projective linear group,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P066,2,3dcvMid/lectures/cs532_f25_Week2.pdf,66,,"Class I: Isometries | (iso=same, metric=measure)",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P067,2,3dcvMid/lectures/cs532_f25_Week2.pdf,67,,Class II: Similarities | (isometry + scale),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P068,2,3dcvMid/lectures/cs532_f25_Week2.pdf,68,,Class III: Affine Transformations |  x'   a11 a12 t x  x ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P069,2,3dcvMid/lectures/cs532_f25_Week2.pdf,69,,Class VI: Projective Transformations | A     t,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P070,2,3dcvMid/lectures/cs532_f25_Week2.pdf,70,,"Overview of Transformations |  h11   h12    h13     Concurrency, collinearity,",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P071,2,3dcvMid/lectures/cs532_f25_Week2.pdf,71,,Homework 1 | Warp the basketball,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P072,2,3dcvMid/lectures/cs532_f25_Week2.pdf,72,,Image Warping | Slides by Steve Seitz,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P073,2,3dcvMid/lectures/cs532_f25_Week2.pdf,73,,Image Transformations,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P074,2,3dcvMid/lectures/cs532_f25_Week2.pdf,74,,Parametric (Global) Warping | • Transformation T is a coordinate-changing machine:,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P075,2,3dcvMid/lectures/cs532_f25_Week2.pdf,75,,"Image Warping | Given a coordinate transform (x’,y’) = h(x,y)",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P076,2,3dcvMid/lectures/cs532_f25_Week2.pdf,76,,"Forward Warping | Send each pixel f(x,y) to its corresponding",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P077,2,3dcvMid/lectures/cs532_f25_Week2.pdf,77,,"Forward Warping | Send each pixel f(x,y) to its corresponding location",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P078,2,3dcvMid/lectures/cs532_f25_Week2.pdf,78,,"Inverse Warping | • Get each pixel g(x’,y’) from its corresponding",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P079,2,3dcvMid/lectures/cs532_f25_Week2.pdf,79,,"Inverse Warping | • Get each pixel g(x’,y’) from its corresponding location",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P080,2,3dcvMid/lectures/cs532_f25_Week2.pdf,80,,Bilinear Interpolation,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P081,2,3dcvMid/lectures/cs532_f25_Week2.pdf,81,,Forward vs. Inverse Warping | • Which is better?,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P082,2,3dcvMid/lectures/cs532_f25_Week2.pdf,82,,"Parameter Estimation | Slides by R. Hartley, A. Zisserman",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P083,2,3dcvMid/lectures/cs532_f25_Week2.pdf,83,,Homography: | Number of Measurements Required,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P084,2,3dcvMid/lectures/cs532_f25_Week2.pdf,84,,Approximate solutions | • Minimal solution,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P085,2,3dcvMid/lectures/cs532_f25_Week2.pdf,85,,Direct Linear Transformation (DLT) |  h 1T x ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P086,2,3dcvMid/lectures/cs532_f25_Week2.pdf,86,,Direct Linear Transformation (DLT) | Equations are linear in h,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P087,2,3dcvMid/lectures/cs532_f25_Week2.pdf,87,,Direct Linear Transformation (DLT) |  h ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P088,2,3dcvMid/lectures/cs532_f25_Week2.pdf,88,,Direct Linear Transformation (DLT) | • Solving for H        Ah = 0,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P089,2,3dcvMid/lectures/cs532_f25_Week2.pdf,89,,Direct Linear Transformation (DLT) |  A1 ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P090,2,3dcvMid/lectures/cs532_f25_Week2.pdf,90,,DLT Algorithm | Objective,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P091,2,3dcvMid/lectures/cs532_f25_Week2.pdf,91,,"Inhomogeneous solution | Since h can only be computed up to scale, ~",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P092,2,3dcvMid/lectures/cs532_f25_Week2.pdf,92,,"Normalizing Transformations | • Since DLT is not invariant to transformations,",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P093,2,3dcvMid/lectures/cs532_f25_Week2.pdf,93,,Importance of Normalization |  h1 ,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P094,2,3dcvMid/lectures/cs532_f25_Week2.pdf,94,,Normalized DLT Algorithm | Objective,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P095,2,3dcvMid/lectures/cs532_f25_Week2.pdf,95,,"RANSAC | Slides by R. Hartley, A. Zisserman",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P096,2,3dcvMid/lectures/cs532_f25_Week2.pdf,96,,Robust Estimation | • What if set of matches contains gross outliers?,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P097,2,3dcvMid/lectures/cs532_f25_Week2.pdf,97,,RANSAC | Objective,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P098,2,3dcvMid/lectures/cs532_f25_Week2.pdf,98,,"How Many Samples? | Choose N so that, with probability p, at least one random",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P099,2,3dcvMid/lectures/cs532_f25_Week2.pdf,99,,"Acceptable Consensus Set | • Typically, terminate when inlier ratio reaches expected",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P100,2,3dcvMid/lectures/cs532_f25_Week2.pdf,100,,"Adaptively Determining the Number of Samples | e is often unknown a priori, so pick worst case, e.g. 50%,",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P101,2,3dcvMid/lectures/cs532_f25_Week2.pdf,101,,Other robust algorithms | • RANSAC maximizes number of inliers,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P102,2,3dcvMid/lectures/cs532_f25_Week2.pdf,102,,Automatic Computation of H | Objective,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P103,2,3dcvMid/lectures/cs532_f25_Week2.pdf,103,,Determine Putative Correspondences | • Compare interest points,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P104,2,3dcvMid/lectures/cs532_f25_Week2.pdf,104,,Example: robust computation | Interest points,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P105,2,3dcvMid/lectures/cs532_f25_Week2.pdf,105,,Radial Distortion and | Undistortion,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P106,2,3dcvMid/lectures/cs532_f25_Week2.pdf,106,,Radial Distortion | short and long focal length,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P107,2,3dcvMid/lectures/cs532_f25_Week2.pdf,107,,[image-only or no extractable heading],,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P108,2,3dcvMid/lectures/cs532_f25_Week2.pdf,108,,[image-only or no extractable heading],,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P109,2,3dcvMid/lectures/cs532_f25_Week2.pdf,109,,Typical Undistortion Model | Correction of distortion,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P110,2,3dcvMid/lectures/cs532_f25_Week2.pdf,110,,Why Undistort?,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P111,2,3dcvMid/lectures/cs532_f25_Week2.pdf,111,,"Two-View Geometry | Slides by R. Hartley, A. Zisserman and M. Pollefeys",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P112,2,3dcvMid/lectures/cs532_f25_Week2.pdf,112,,Three questions: | (i)   Correspondence geometry: Given an image point x in the first,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P113,2,3dcvMid/lectures/cs532_f25_Week2.pdf,113,,"The Epipolar Geometry | C, C’, x, x’ and X are coplanar",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P114,2,3dcvMid/lectures/cs532_f25_Week2.pdf,114,,"The Epipolar Geometry | What if only C,C’,x are known?",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P115,2,3dcvMid/lectures/cs532_f25_Week2.pdf,115,,The Epipolar Geometry | All points on  project on l and l’,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P116,2,3dcvMid/lectures/cs532_f25_Week2.pdf,116,,The Epipolar Geometry | Family of planes  and lines l and l’,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P117,2,3dcvMid/lectures/cs532_f25_Week2.pdf,117,,"The Epipolar Geometry | epipoles e, e’",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P118,2,3dcvMid/lectures/cs532_f25_Week2.pdf,118,,Example: Converging Cameras,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P119,2,3dcvMid/lectures/cs532_f25_Week2.pdf,119,,Example: Motion Parallel to Image Plane | (simple for stereo → rectification),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P120,2,3dcvMid/lectures/cs532_f25_Week2.pdf,120,,Example: Forward Motion | e’,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P121,2,3dcvMid/lectures/cs532_f25_Week2.pdf,121,,The Fundamental Matrix F | algebraic representation of epipolar geometry,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P122,2,3dcvMid/lectures/cs532_f25_Week2.pdf,122,,The Fundamental Matrix F | correspondence condition,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P123,2,3dcvMid/lectures/cs532_f25_Week2.pdf,123,,The Fundamental Matrix F | X(λ ) = P x + λC,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P124,2,3dcvMid/lectures/cs532_f25_Week2.pdf,124,,The Fundamental Matrix F | F is the unique 3x3 rank 2 matrix that,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P125,2,3dcvMid/lectures/cs532_f25_Week2.pdf,125,,"Two View Geometry Computation: Linear Algorithm | For every match (m,m´):              x'T Fx = 0",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P126,2,3dcvMid/lectures/cs532_f25_Week2.pdf,126,,"Benefits from having F | • Given a pixel in one image, the",,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P127,2,3dcvMid/lectures/cs532_f25_Week2.pdf,127,,Image Pair Rectification | simplify stereo matching,,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P128,2,3dcvMid/lectures/cs532_f25_Week2.pdf,128,,Planar Rectification | (standard approach),,book/lectures/lecture02/index.md,,,pending lecture audit
+L02-P129,2,3dcvMid/lectures/cs532_f25_Week2.pdf,129,,[image-only or no extractable heading],,book/lectures/lecture02/index.md,,,pending lecture audit
+L03-P001,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,1,,CS 532: 3D Computer Vision | Lecture 3,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P002,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,2,,Image Formation | Based on slides by John Oliensis,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P003,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,3,,Image Formation | Pinhole camera,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P004,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,4,,Projection Equation | • 2D world ➔ 1D image,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P005,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,5,,"Projection Equation: 3D | ( X ,Y , Z )",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P006,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,6,,Perspective Projection: Properties | • 3D points ➔ image points,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P007,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,7,,Polyhedra Project to Polygons | (since lines project to lines),,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P008,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,8,,Properties: Distant objects are smaller | B’   C’,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P009,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,9,,Extrinsic Parameters | R (3x3) t (3x1) ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P010,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,10,,Projection matrix | • Includes coordinate transformation and,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P011,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,11,,Projection matrix | • Mapping from 2-D to 3-D is a function of,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P012,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,12,,Hands On: Camera Motion | • Choose a few 3D points visible to a camera,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P013,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,13,,Projective Transformations in 2D | Definition:,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P014,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,14,,Mapping between planes | central projection may be expressed by x’=Hx,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P015,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,15,,Removing Projective Distortion | select four points in a plane with known coordinates,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P016,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,16,,A Hierarchy of Transformations | Projective linear group,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P017,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,17,,"Class I: Isometries | (iso=same, metric=measure)",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P018,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,18,,Class II: Similarities | (isometry + scale),,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P019,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,19,,Class III: Affine Transformations |  x'   a11 a12 t x  x ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P020,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,20,,Class VI: Projective Transformations | A     t,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P021,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,21,,"Overview of Transformations |  h11   h12   h13     Concurrency, collinearity,",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P022,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,22,,Homework 1 | Warp the basketball,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P023,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,23,,Image Warping | Slides by Steve Seitz,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P024,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,24,,Image Transformations,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P025,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,25,,Parametric (Global) Warping | • Transformation T is a coordinate-changing machine:,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P026,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,26,,"Image Warping | Given a coordinate transform (x’,y’) = h(x,y)",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P027,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,27,,"Forward Warping | Send each pixel f(x,y) to its corresponding",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P028,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,28,,"Forward Warping | Send each pixel f(x,y) to its corresponding location",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P029,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,29,,"Inverse Warping | • Get each pixel g(x’,y’) from its corresponding",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P030,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,30,,"Inverse Warping | • Get each pixel g(x’,y’) from its corresponding location",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P031,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,31,,Bilinear Interpolation,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P032,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,32,,Forward vs. Inverse Warping | • Which is better?,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P033,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,33,,"Parameter Estimation | Slides by R. Hartley, A. Zisserman",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P034,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,34,,Homography: | Number of Measurements Required,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P035,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,35,,Approximate solutions | • Minimal solution,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P036,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,36,,Direct Linear Transformation (DLT) |  h 1T x ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P037,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,37,,Direct Linear Transformation (DLT) | Equations are linear in h,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P038,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,38,,Direct Linear Transformation (DLT) |  h ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P039,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,39,,Direct Linear Transformation (DLT) | • Solving for H        Ah = 0,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P040,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,40,,Direct Linear Transformation (DLT) |  A1 ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P041,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,41,,DLT Algorithm | Objective,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P042,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,42,,"Inhomogeneous solution | Since h can only be computed up to scale, ~",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P043,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,43,,"Normalizing Transformations | • Since DLT is not invariant to transformations,",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P044,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,44,,Importance of Normalization |  h1 ,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P045,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,45,,Normalized DLT Algorithm | Objective,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P046,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,46,,"RANSAC | Slides by R. Hartley, A. Zisserman",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P047,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,47,,Robust Estimation | • What if set of matches contains gross outliers?,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P048,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,48,,RANSAC | Objective,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P049,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,49,,"How Many Samples? | Choose N so that, with probability p, at least one random",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P050,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,50,,"Acceptable Consensus Set | • Typically, terminate when inlier ratio reaches expected",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P051,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,51,,"Adaptively Determining the Number of Samples | e is often unknown a priori, so pick worst case, e.g. 50%,",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P052,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,52,,Other robust algorithms | • RANSAC maximizes number of inliers,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P053,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,53,,Automatic Computation of H | Objective,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P054,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,54,,Determine Putative Correspondences | • Compare interest points,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P055,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,55,,Example: robust computation | Interest points,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P056,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,56,,Radial Distortion and | Undistortion,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P057,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,57,,Radial Distortion | short and long focal length,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P058,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,58,,[image-only or no extractable heading],,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P059,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,59,,[image-only or no extractable heading],,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P060,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,60,,Typical Undistortion Model | Correction of distortion,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P061,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,61,,Why Undistort?,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P062,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,62,,"Two-View Geometry | Slides by R. Hartley, A. Zisserman and M. Pollefeys",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P063,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,63,,Three questions: | (i) Correspondence geometry: Given an image point x in the first,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P064,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,64,,"The Epipolar Geometry | C, C’, x, x’ and X are coplanar",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P065,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,65,,"The Epipolar Geometry | What if only C,C’,x are known?",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P066,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,66,,The Epipolar Geometry | All points on  project on l and l’,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P067,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,67,,The Epipolar Geometry | Family of planes  and lines l and l’,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P068,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,68,,"The Epipolar Geometry | epipoles e, e’",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P069,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,69,,Example: Converging Cameras,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P070,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,70,,Example: Motion Parallel to Image Plane | (simple for stereo → rectification),,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P071,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,71,,Example: Forward Motion | e’,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P072,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,72,,The Fundamental Matrix F | algebraic representation of epipolar geometry,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P073,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,73,,The Fundamental Matrix F | correspondence condition,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P074,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,74,,The Fundamental Matrix F | X(λ ) = P x + λC,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P075,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,75,,The Fundamental Matrix F | F is the unique 3x3 rank 2 matrix that,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P076,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,76,,"Two View Geometry Computation: Linear Algorithm | For every match (m,m´):              x'T Fx = 0",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P077,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,77,,"Benefits from having F | • Given a pixel in one image, the",,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P078,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,78,,Image Pair Rectification | simplify stereo matching,,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P079,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,79,,Planar Rectification | (standard approach),,book/lectures/lecture03/index.md,,,pending lecture audit
+L03-P080,3,3dcvMid/lectures/wk3_cs532s26_ImageFormation+Homographies-1.pdf,80,,[image-only or no extractable heading],,book/lectures/lecture03/index.md,,,pending lecture audit
+L04-P001,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,1,,CS 532: 3D Computer Vision | Lecture 4,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P002,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,2,,Radial Distortion and | Undistortion,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P003,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,3,,Radial Distortion | short and long focal length,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P004,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,4,,[image-only or no extractable heading],,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P005,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,5,,[image-only or no extractable heading],,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P006,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,6,,Typical Undistortion Model | Correction of distortion,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P007,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,7,,Why Undistort?,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P008,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,8,,"Two-View Geometry | Slides by R. Hartley, A. Zisserman and M. Pollefeys",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P009,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,9,,Three questions: | (i) Correspondence geometry: Given an image point x in the first,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P010,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,10,,"The Epipolar Geometry | C, C’, x, x’ and X are coplanar",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P011,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,11,,"The Epipolar Geometry | What if only C,C’,x are known?",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P012,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,12,,The Epipolar Geometry | All points on  project on l and l’,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P013,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,13,,The Epipolar Geometry | Family of planes  and lines l and l’,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P014,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,14,,"The Epipolar Geometry | epipoles e, e’",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P015,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,15,,Example: Converging Cameras,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P016,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,16,,Example: Motion Parallel to Image Plane | (simple for stereo → rectification),,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P017,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,17,,Example: Forward Motion | e’,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P018,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,18,,The Fundamental Matrix F | algebraic representation of epipolar geometry,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P019,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,19,,The Fundamental Matrix F | correspondence condition,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P020,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,20,,The Fundamental Matrix F | F is the unique 3x3 rank 2 matrix that,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P021,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,21,,"Two View Geometry Computation: Linear Algorithm | For every match (m,m´):              x'T Fx = 0",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P022,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,22,,The Essential Matrix | ~fundamental matrix for calibrated cameras (remove K),,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P023,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,23,,"Four Possible Solutions from E | Given E and setting the first camera matrix P = [I | 0], there are four possible solutions for P’",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P024,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,24,,Fundamental Matrix | Estimation,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P025,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,25,,Epipolar Geometry: Basic Equation | x' T Fx = 0,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P026,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,26,,The Singularity Constraint | e'T F = 0    Fe = 0 detF = 0       rank F = 2,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P027,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,27,,The Singularity Constraint,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P028,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,28,,The NOT Normalized 8-point Algorithm |  f11 ,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P029,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,29,,"The Normalized 8-point Algorithm | Transform image to [-1,1]x[-1,1]",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P030,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,30,,Some Experiments,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P031,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,31,,Some Experiments,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P032,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,32,,Some Experiments | Residual error:,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P033,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,33,,Recommendations: | 1. Do not use unnormalized algorithms,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P034,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,34,,Robust Estimation | • What if set of matches contains gross outliers?,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P035,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,35,,RANSAC for F Estimation | Step 1. Extract features,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P036,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,36,,Finding more matches | restrict search range to neighborhood of epipolar line,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P037,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,37,,Degenerate Cases | • Degenerate cases,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P038,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,38,,"Benefits from having F | • Given a pixel in one image, the",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P039,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,39,,Image Pair Rectification | simplify stereo matching,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P040,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,40,,Planar Rectification | (standard approach),,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P041,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,41,,[image-only or no extractable heading],,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P042,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,42,,"Stereo Matching | Slides by Rick Szeliski, Pascal",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P043,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,43,,Large-scale 3D Modeling from Crowdsourced Data | Depthmap Estimation,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P044,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,44,,Large-scale 3D Modeling from Crowdsourced Data | Depthmap Estimation,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P045,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,45,,"Depthmap Estimation | • For each pixel p in image I determine a depth value,",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P046,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,46,,Two-View Hypothesis Generation | d9,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P047,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,47,,Two-View Hypothesis Generation | Depth,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P048,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,48,,Two-View Hypothesis | Generation,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P049,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,49,,Two-View Hypothesis Evaluation | Cost aggregation:,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P050,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,50,,Two-View Hypothesis Evaluation | Fronto-Parallel Plane,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P051,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,51,,Two-View Hypothesis Evaluation | Treat neighbors equally,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P052,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,52,,Two-View Hypothesis Evaluation | •Color differences,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P053,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,53,,Two-View Hypothesis Evaluation | Adaptive Weight,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P054,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,54,,Aggregated Photo-consistency | • Sum of Squared Differences (SSD),,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P055,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,55,,Stereo Matching | • Given two or more images of the same scene,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P056,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,56,,Stereo Matching | • Given two or more images of the same scene,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P057,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,57,,Stereo Matching | • What are some possible algorithms?,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P058,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,58,,"Rectification | • Project each image onto same plane, which is parallel to",,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P059,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,59,,Rectification | BAD!,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P060,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,60,,Rectification | GOOD!,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P061,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,61,,Finding Correspondences | • Apply feature matching criterion at all,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P062,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,62,,Basic Stereo Algorithm | For each epipolar line,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P063,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,63,,Disparity | • Disparity d is the difference between the x,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P064,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,64,,Stereo Reconstruction | 𝑏𝑓,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P065,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,65,,Finding Correspondences | • How do we determine correspondences?,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P066,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,66,,Neighborhood size | • Smaller neighborhood: more details,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P067,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,67,,Challenges | • Ill-posed inverse problem,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P068,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,68,,Pixel Dissimilarity | • Sum of Squared Differences of intensities (SSD),,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P069,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,69,,Cost/Score Curve | NCC,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P070,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,70,,Cost/Score Curve,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P071,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,71,,Fronto-Parallel Assumption | • The disparity is assumed to be the same in,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P072,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,72,,Shiftable Windows | • Avoid having using,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P073,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,73,,Rod-shaped Filters | • Instead of square windows aggregate cost,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P074,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,74,,Alternative Dissimilarity Measures | • Rank and Census transforms,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P075,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,75,,Locally Adaptive Support | Apply weights to contributions of,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P076,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,76,,Locally Adaptive Support | • Similarity in CIE Lab color space:,,book/lectures/lecture04/index.md,,,pending lecture audit
+L04-P077,4,3dcvMid/lectures/wk4_cs532s26_TwoViewGeometry.pdf,77,,Locally Adaptive Support: Results,,book/lectures/lecture04/index.md,,,pending lecture audit
+L05-P001,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,1,,CS 532: 3D Computer Vision | Lecture 5,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P002,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,2,,• Corner Feature Extraction | • Feature Tracking,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P003,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,3,,Feature extraction: Corners,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P004,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,4,,Why extract features? | • Motivation: panorama stitching,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P005,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,5,,Why extract features? | • Motivation: panorama stitching,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P006,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,6,,Why extract features? | • Motivation: panorama stitching,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P007,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,7,,Characteristics of good features | • Repeatability,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P008,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,8,,Applications | • Feature points are used for:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P009,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,9,,A hard feature matching problem | NASA Mars Rover images,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P010,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,10,,Answer below (look for tiny colored squares…) | NASA Mars Rover images,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P011,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,11,,Corner Detection: Basic Idea | • We should easily recognize the point by,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P012,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,12,,"Corner Detection: Mathematics | Change in appearance of window W for the shift [u,v]:",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P013,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,13,,"Corner Detection: Mathematics | Change in appearance of window W for the shift [u,v]:",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P014,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,14,,"Corner Detection: Mathematics | Change in appearance of window W for the shift [u,v]:",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P015,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,15,,Corner Detection: Mathematics | • First-order Taylor approximation for small,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P016,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,16,,Corner Detection: Mathematics | The quadratic approximation can be written as,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P017,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,17,,"Interpreting the second moment matrix | •   The surface E(u,v) is locally approximated by a quadratic",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P018,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,18,,"Interpreting the second moment matrix | First, consider the axis-aligned case (gradients are",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P019,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,19,,Interpreting the second moment matrix | u ,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P020,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,20,,Interpreting the second moment matrix | u ,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P021,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,21,,Quick Eigenvalue/Eigenvector | Review,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P022,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,22,,Visualization of second moment | matrices,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P023,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,23,,Visualization of second moment | matrices,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P024,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,24,,Interpreting the eigenvalues | Classification of image points using eigenvalues of M:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P025,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,25,,Corner response function | R = det( M ) −  trace ( M ) 2 = 12 −  (1 + 2 ) 2,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P026,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,26,,The Harris corner detector | 1. Compute partial derivatives at each pixel,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P027,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,27,,The Harris corner detector | 1. Compute partial derivatives at each pixel,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P028,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,28,,Harris Detector: Steps,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P029,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,29,,Harris Detector: Steps | Compute corner response R,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P030,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,30,,The Harris corner detector | 1. Compute partial derivatives at each pixel,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P031,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,31,,Harris Detector: Steps | Find points with large corner response: R > threshold,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P032,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,32,,Harris Detector: Steps | Take only the points of local maxima of R,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P033,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,33,,Harris Detector: Steps,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P034,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,34,,"Feature Matching | • Given a feature in I, how to find the best",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P035,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,35,,Kanade-Lucas-Tomasi Tracking | • Bruce D. Lucas and Takeo Kanade. An iterative image,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P036,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,36,,Camera Motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P037,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,37,,Object Motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P038,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,38,,Feature Tracking | • Challenges,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P039,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,39,,"Feature Tracking | I(x,y,t)                    I(x,y,t+1)",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P040,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,40,,"The Brightness Constancy Constraint | I(x,y,t)                              I(x,y,t+1)",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P041,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,41,,"The Brightness Constancy Constraint | Can we use this equation to recover image motion (u,v) at",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P042,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,42,,The Aperture Problem | Actual motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P043,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,43,,The Aperture Problem | Perceived motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P044,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,44,,The Barber Pole Illusion | http://en.wikipedia.org/wiki/Barberpole_illusion   44,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P045,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,45,,The Barber Pole Illusion | http://en.wikipedia.org/wiki/Barberpole_illusion   45,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P046,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,46,,Solving the Ambiguity… | • How to get more equations for a pixel?,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P047,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,47,,Solving the Ambiguity… | • Least squares problem:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P048,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,48,,Matching Patches across Images | • Overconstrained linear system,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P049,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,49,,"Conditions for Solvability | Optimal (u, v) satisfies Lucas-Kanade equation",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P050,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,50,,M = ATA is the second moment matrix ! | (Harris corner detector…),,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P051,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,51,,Low-texture region | – gradients have small magnitude,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P052,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,52,,Edge | – gradients very large or very small,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P053,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,53,,"High-texture Region | – gradients are different, large magnitudes",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P054,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,54,,The Aperture Problem Resolved | Actual motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P055,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,55,,The Aperture Problem Resolved | Perceived motion,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P056,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,56,,Dealing with Larger Motion: | Iterative Refinement,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P057,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,57,,Dealing with Larger Motion: | Coarse-to-Fine Registration,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P058,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,58,,Shi-Tomasi Feature Tracker | •   Find good features using eigenvalues of second-,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P059,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,59,,Tracking Example,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P060,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,60,,Summary of KLT tracking | • Find a good point to track (Harris corners),,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P061,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,61,,Feature Descriptors,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P062,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,62,,BRIEF | Binary Robust Independent,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P063,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,63,,"Goal | [0, 0, 1, 0, 1, 1, 0, 1, …]",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P064,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,64,,Feature Description | slide: J. Heinly,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P065,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,65,,BRIEF: Method | Descriptor: 0 1 1 0 1 0 …,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P066,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,66,,BRIEF: Sampling | 0.003,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P067,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,67,,BRIEF: Descriptor | slide: J. Heinly,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P068,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,68,,"BRIEF: Descriptor | • 128, 256, or 512 bits",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P069,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,69,,BRIEF: Summary | • Pros,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P070,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,70,,ORB | An Efficient Alternative,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P071,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,71,,Fast Corner Detector | • Continuous arc of pixels all much,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P072,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,72,,ORB: Method | Feature,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P073,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,73,,"on of corners, and we borrow   ner from | orientation,  the intensity",,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P074,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,74,,enerated by considering | ORB: Descriptor,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P075,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,75,,ORB: Summary | • Pros,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P076,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,76,,BRISK | Binary Robust Invariant,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P077,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,77,,BRISK: Method | Descriptor: 0 1 1 0 1 0 …,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P078,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,78,,BRISK: Rotation Invariance | Long-distance,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P079,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,79,,BRISK: Scale Invariance | Find maximum,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P080,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,80,,BRISK: | Gaussian Kernel,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P081,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,81,,BRISK: Descriptor | 512 Comparisons,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P082,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,82,,BRISK: Summary | • Pros,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P083,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,83,,Summary | BRIEF                                                       ORB          BRISK                  100,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P084,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,84,,FEATURE MATCHING,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P085,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,85,,Pre-processing: | Exhaustive Comparison,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P086,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,86,,Matching By Distance Thresholding | • Simplest method: set a distance threshold,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P087,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,87,,Evaluating Matching Quality | • Confusion matrix to estimate performance:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P088,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,88,,ROC CURVEs | ROC: Receiver Operating Characteristic,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P089,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,89,,Alternatives | • Other methods:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P090,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,90,,Examples,,book/lectures/lecture05/index.md,,,pending lecture audit
+L05-P091,5,3dcvMid/lectures/wk5_cs532_Corners.pdf,91,,Matching Strategy (7/7) | • Indexing structures:,,book/lectures/lecture05/index.md,,,pending lecture audit
+L06-P001,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,1,,CS 532: 3D Computer Vision | Lecture 6,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P002,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,2,,Structure From Motion,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P003,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,3,,Lecture Outline | • Structure from Motion,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P004,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,4,,Structure from Motion | Unknown,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P005,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,5,,Input: Feature Tracks | • Detect good features,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P006,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,6,,Structure from Motion | • Given many points in correspondence across,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P007,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,7,,Number of Constraints | •   How many points do we need to match?,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P008,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,8,,Bundle Adjustment | • What makes this non-linear minimization,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P009,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,9,,Structure from Motion | • Given a set of corresponding points in two or more,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P010,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,10,,Structure from Motion | • Given: m images of n fixed 3D points,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P011,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,11,,Structure from Motion Ambiguity | • If we scale the entire scene by some factor k,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P012,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,12,,Structure from Motion Ambiguity | • More generally: if we transform the scene using a,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P013,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,13,,Types of Ambiguity | Projective     A    t                 Preserves intersection and,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P014,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,14,,Projective Ambiguity | A    t,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P015,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,15,,Projective Ambiguity,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P016,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,16,,Affine Ambiguity | Affine,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P017,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,17,,Affine Ambiguity,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P018,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,18,,Similarity Ambiguity |  sR t ,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P019,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,19,,Similarity Ambiguity,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P020,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,20,,Structure from Motion: | Affine Cameras,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P021,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,21,,Structure from Motion | • Let’s start with affine cameras (the math is,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P022,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,22,,Orthographic Projection | • Special case of perspective projection,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P023,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,23,,Affine Cameras | Orthographic Projection,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P024,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,24,,Affine Cameras | • A general affine camera combines the effects of,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P025,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,25,,Affine Structure from Motion | • Given: m images of n fixed 3D points:,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P026,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,26,,Affine Structure from Motion | • Centering: subtract the centroid of the image points,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P027,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,27,,Affine Structure from Motion | • 2mn data (measurement) matrix:,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P028,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,28,,Affine Structure from Motion |  ˆx11    ˆx12      ˆx1n   A1 ,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P029,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,29,,Factorizing the Measurement Matrix,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P030,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,30,,Factorizing the Measurement Matrix | • Singular value decomposition of D:,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P031,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,31,,Factorizing the Measurement Matrix | • Singular value decomposition of D:,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P032,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,32,,Factorizing the Measurement Matrix,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P033,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,33,,Factorizing the Measurement Matrix | This decomposition minimizes,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P034,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,34,,Affine Ambiguity | • The decomposition is not unique. We get the same D,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P035,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,35,,Algorithm Summary | • Given: m images and n features xij,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P036,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,36,,[image-only or no extractable heading],,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P037,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,37,,[image-only or no extractable heading],,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P038,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,38,,Reconstruction Results | C. Tomasi and T. Kanade. Shape and motion from image streams under orthography:,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P039,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,39,,Structure from Motion: | Perspective Cameras,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P040,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,40,,Projective Structure from Motion | • Given: m images of n fixed 3D points,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P041,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,41,,Projective Structure from Motion | • Given: m images of n fixed 3D points,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P042,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,42,,Projective SFM: Two-camera Case | • Compute fundamental matrix F between,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P043,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,43,,Sequential Structure from Motion | • Initialize motion from two,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P044,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,44,,Sequential Structure from Motion | •Initialize motion from two images,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P045,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,45,,Sequential Structure from motion | •Initialize motion from two images using,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P046,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,46,,Bundle Adjustment | • Non-linear method for refining structure and motion,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P047,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,47,,Self-calibration | • Self-calibration (auto-calibration) is the process of,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P048,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,48,,Triangulation | More formulations exist,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P049,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,49,,Triangulation: Linear Solution | X,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P050,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,50,,"Triangulation: Linear Solution | Given P, P’, x, x’                      u              u ",,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P051,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,51,,Triangulation: Non-linear Solution | • Minimize projected error while satisfying,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P052,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,52,,Triangulation: Non-linear Solution | • Minimize projected error while satisfying,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P053,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,53,,[image-only or no extractable heading],,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P054,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,54,,[image-only or no extractable heading],,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P055,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,55,,[image-only or no extractable heading],,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P056,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,56,,Bundle Adjustment,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P057,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,57,,Bundle Adjustment | • Refines a visual reconstruction to produce,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P058,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,58,,Bundle Adjustment,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P059,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,59,,Bundle Adjustment | • Refines a visual reconstruction to produce,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P060,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,60,,Reprojection Error,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P061,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,61,,Notation,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P062,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,62,,Objective Function | • Minimization of weighted sum of squared,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P063,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,63,,Optimization Techniques | • Gradient Descent Method,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P064,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,64,,Gradient Descent Method | • A first-order optimization algorithm.,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P065,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,65,,Newton – Raphson Method | • Second order optimization method,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P066,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,66,,Newton – Raphson Method,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P067,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,67,,Gauss – Newton Method | • The Gauss–Newton algorithm is a method used to solve,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P068,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,68,,Gauss – Newton Method | • The Gauss–Newton algorithm is a method,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P069,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,69,,Gauss – Newton Method | • For well-parameterized bundle problems,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P070,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,70,,Levenberg – Marquardt Algorithm,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P071,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,71,,General Implementation Issues | • Exploit the problem structure,,book/lectures/lecture06/index.md,,,pending lecture audit
+L06-P072,6,3dcvMid/lectures/wk6_cs532s24_SFM1.pdf,72,,Additional Material and Software | • Open Source Structure-from-Motion,,book/lectures/lecture06/index.md,,,pending lecture audit
