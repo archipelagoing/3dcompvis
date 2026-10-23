@@ -132,13 +132,13 @@ Source: `3dcvMid/lectures/wk6_cs532s24_SFM1.pdf`.
 
 Exam priority teaching/practice placements are mapped in `authoring/EXAM_COVERAGE.md`; the original `ExamToDo.md` remains the student's study checklist.
 
-- [ ] Reconcile the coverage ledger with all six PDFs: every substantive topic/formula is taught or has an explicit disposition.
+- [x] Reconcile the coverage ledger with all six PDFs: every substantive topic/formula is taught or has an explicit disposition.
 - [x] Reconcile the quiz index with the supplied booklet’s 18 in-scope historical sources and every grouped subquestion, including complete duplicate retests and primary/secondary placements. Keep Fall 2025 Quizzes 7 and 8 outside core scope.
-- [ ] Verify all seven exam-gap topics and the exam-readiness route in `ExamToDo.md`; retain lecture order for the main reading route.
-- [ ] Consolidate notation, formula boxes, glossary, keyword index, bibliography, credits, and errata; remove accidental repetition and fix forward references.
-- [ ] Build and visually inspect the complete website and continuous PDF. Resolve references, print solutions, static interaction equivalents, image paths, and layout problems.
-- [ ] Compile the portable bundle from documented commands with local relative assets. Supply the complete `.tex`, PDF, images, bibliography/support files, and Overleaf/local build instructions.
-- [ ] Report actual checks and remaining limitations; publish the completed updates only when authorized.
+- [x] Verify all seven exam-gap topics and the exam-readiness route in `ExamToDo.md`; retain lecture order for the main reading route.
+- [x] Consolidate notation, formula boxes, glossary, keyword index, bibliography, credits, and errata; remove accidental repetition and fix forward references.
+- [x] Build and visually inspect the complete website and continuous PDF. Resolve references, print solutions, static interaction equivalents, image paths, and layout problems.
+- [x] Compile the portable bundle from documented commands with local relative assets. Supply the complete `.tex`, PDF, images, bibliography/support files, and Overleaf/local build instructions.
+- [x] Report actual checks and remaining limitations; publish the completed updates only when authorized.
 
 ## Cross-lecture quiz-format correction
 
@@ -148,4 +148,8 @@ Exam priority teaching/practice placements are mapped in `authoring/EXAM_COVERAG
 - [x] Expand matrix/vector products, substitutions and intermediate arithmetic; give every step a short reason, a red numbered heading and blue math in web and LaTeX. Also expand all 32 original end-of-chapter quiz answers in Lectures 1–4 using this format.
 - [x] Keep a question-level coverage register and update the authoring prompts/template to require this format.
 - [x] Complete independent math, original-question fidelity, web/mobile/color/navigation and continuous PDF/portable-bundle checks. See `authoring/QUIZ_WORKBOOK_STATUS.md`: 78 complete statements, 290 styled steps, 214-page current PDF, all bundled figures verified.
-- [ ] Review the new quiz format with the user; keep full Lecture 5–6 completion separate.
+- [ ] User review of the completed Lectures 5–6 and quiz format. No publishing or pushes performed.
+
+## Fast study edition
+
+- [x] Generate `For_Dummies.md` and an ordinary standalone `print/CS532_For_Dummies.tex`/PDF covering all six lectures in concise plain English, with essential formulas and original quick worked examples. Full historical quiz solutions remain in the main textbook.

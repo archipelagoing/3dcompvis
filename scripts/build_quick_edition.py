@@ -11,7 +11,7 @@ def inline(s):
  return s
 preamble=r'''\documentclass[11pt,letterpaper]{article}
 \usepackage[margin=.85in]{geometry}
-\usepackage{fontspec}\setmainfont{FreeSerif}\setsansfont{FreeSans}
+\usepackage{fontspec}\setmainfont{FreeSerif}[Extension=.otf,UprightFont=*,ItalicFont=*Italic,BoldFont=*Bold,BoldItalicFont=*BoldItalic]\setsansfont{FreeSans}[Extension=.otf,UprightFont=*,ItalicFont=*Oblique,BoldFont=*Bold,BoldItalicFont=*BoldOblique]
 \usepackage{amsmath,amssymb,xcolor,tcolorbox,enumitem,needspace}
 \usepackage[unicode,colorlinks=true,linkcolor=blue!45!black]{hyperref}
 \definecolor{StepRed}{HTML}{A71930}\definecolor{MathBlue}{HTML}{124FAD}
